@@ -32,9 +32,7 @@ The code accepts the following command-line flags:
 | `--omit_query_gaps=[true/false]` | Whether to omit gap positions of query sequence from entire sequences for NEFF computation | No | true | `--omit_query_gaps=false`	|
 | `--is_symmetric =true/false]` | Whether to consider gaps in number of differences when computing sequence similratity cutoff | No | true | `--is_symmetric=false`	|
 | `--non_standard_option=<value>` | Options for handling non-standard letters of the specified alphabet <br /> __0__: Treat them the same as standard letters <br /> __1__: Consider them as gaps when computing similarity cutoff of sequences (only used in asymmetryc version) <br /> __2__: Consider them as gaps in computing similarity cutoff and checking position match/mismatche | No | 0 | `--non_standard_option=1` |
-| `--depth=<value>` | Depth of MSA to be cosidered in computation (strating from the first sequence) | No | 0 (consider all sequences) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
-| `--pos_start=<value>` | Start position of each sequence to be considered in NEFF (inclusive) <br /> the value should be less than # of non-gap letters in query sequnce | No | 1 (start from the first sequence) | `--pos_start=10` |
-| `--pos_end=<value>` | Start position of each sequence to be considered in NEFF (inclusive) <br /> the value should be greater than pos_start | No | 10000 <br /><br /> (consider all position) | `--pos_end=10` <br />(if given value is greater than # of non-gap letters in query sequnce, it considers  # of non-gap letters in query sequnce)|
+| `--depth=<value>` | Depth of MSA to be cosidered in computation (strating from the first sequence) | No | inf (consider all sequences) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
 | `--gap_cutoff=<value>`| Threshold for considering a position as gappy and removing that (between 0 and 1) | No | 1 (no gappy position) | `--gap_cutoff=0.7` |
 
 
