@@ -29,7 +29,7 @@ The code accepts the following command-line flags:
 | `--check_validation=[true/false]` | Whether to validate the input MSA file based on alphabet or not | No | false | `--check_validation=true` |
 | `--threshold=<value>`	| Threshold value of considering two sequences similar (between 0 and 1) | No | 0.8 | `--threshold=0.7` |
 | `--norm=<value>` | Normalization option for NEFF <br /> __0__: Normalize by the square root of sequence length <br /> __1__: Normalize by the sequence length <br /> __2__: No Normalization | No | 0 | `--norm=2` |
-| `--omit_query_gaps=[true/false]` | Whether to omit gap positions of query sequence from entire sequences for NEFF computation | No | true | `--omit_query_gaps=false`	|
+| `--omit_query_gaps=[true/false]` | Whether to omit gap positions of query sequence from entire sequences for NEFF computation | No | true | `--omit_query_gaps=true`	|
 | `--is_symmetric =true/false]` | Whether to consider gaps in number of differences when computing sequence similratity cutoff | No | true | `--is_symmetric=false`	|
 | `--non_standard_option=<value>` | Options for handling non-standard letters of the specified alphabet <br /> __0__: Treat them the same as standard letters <br /> __1__: Consider them as gaps when computing similarity cutoff of sequences (only used in asymmetryc version) <br /> __2__: Consider them as gaps in computing similarity cutoff and checking position match/mismatche | No | 0 | `--non_standard_option=1` |
 | `--depth=<value>` | Depth of MSA to be cosidered in computation (strating from the first sequence) | No | inf (consider all sequences) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
