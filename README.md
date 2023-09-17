@@ -133,7 +133,7 @@ EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
 SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
 ```
 
-#### STO (Stockholm)
+### STO (Stockholm)
 It consists of:
 - A header line containing format and version information.
 - Mark-up lines that start with "#=GF," "#=GC," "#=GS," or "#=GR."
