@@ -9,7 +9,10 @@ This project consists of the following components:
 * __Common__: Additional utility functions and common definitions. <br>
 
 ### Getting Started:
-Download the source code and compile it using a C++ compiler that is compatible with C++11 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. <br>
+Download the source code and compile it using a C++ compiler that is compatible with C++11 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. You can navigate to the Makefile directory and easily enter the following command in the terminal:<br>
+```
+make
+```
 Once the compilation is complete, you can run the program via the command line.
 
 ## 1. NEFF Computation 
