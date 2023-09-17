@@ -327,43 +327,56 @@ void MSAReader_sto::readFile(ifstream& inputFile)
 
 void MSAReader_fasta::readFile(ifstream& inputFile)
 {
-    string line, id, sequence, temp, remarks = "";
     int num = 0;
+    string line, id, sequence, temp, remarks = "";
 
-    while (getline(inputFile, line))
+    // Read the file line by line
+    while (std::getline(inputFile, line))
     {
         if (!line.empty())
-        {
-            istringstream iss(line);
+        {           
+            if (line[0] == '>')
+            {
+                // If it's a header line, store the previous data (if any)
+                if (!id.empty() && !sequence.empty())
+                {
+                    // Adding some number at the end of ID, if already exists
+                    auto it = std::find_if(Sequences.begin(), Sequences.end(), [&](const Sequence& sequence) {
+                        return sequence.id == id;
+                    });
 
-            if (line[0] == '>') // Getting ID and remarks
-            {         
-                remarks.clear();                               
+                    if (it != Sequences.end())
+                    {
+                        id = id + '_' + to_string(++num);
+                    }
+
+                    Sequences.push_back({id, sequence, remarks});
+                }
+
+                // set id and clear remark and sequence
+                istringstream iss(line);                                               
                 iss >> id;
                 id = id.substr(1);
 
+                remarks.clear();
                 while (iss >> temp)
                 {
                     remarks =  remarks + " " + temp;
                 }
+
+                sequence.clear();
             }
             else
             {
-                iss >> sequence;
-
-                // Adding some number at the end of ID, if already exists
-                auto it = std::find_if(Sequences.begin(), Sequences.end(), [&](const Sequence& sequence) {
-                    return sequence.id == id;
-                });
-
-                if (it != Sequences.end())
-                {
-                    id = id + '_' + to_string(++num);
-                }
-
-                Sequences.push_back({id, sequence, remarks});
+                // Append the line to the sequence
+                sequence += line;
             }
         }
+    }
+    // Store the last entry (if any)
+    if (!id.empty() && !sequence.empty())
+    {
+        Sequences.push_back({id, sequence, remarks});
     }
 }
 

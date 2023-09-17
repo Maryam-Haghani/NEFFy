@@ -368,7 +368,7 @@ int main(int argc, char **argv)
             msa_reader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "a3m")
             msa_reader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
-        else if(format == "fasta" || format == "afa")
+        else if (std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
             msa_reader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "sto")
             msa_reader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
@@ -382,6 +382,8 @@ int main(int argc, char **argv)
             throw runtime_error("Not supported MSA file format (" + format + ")");
 
         vector<Sequence> sequences = msa_reader->read();
+
+        setDepth(sequences, flagHandler);
 
         // non_standard_option
         NonStandardHandler nonStandardOption = static_cast<NonStandardHandler>(stoi(flagHandler.getFlagValue("non_standard_option")));

@@ -42,6 +42,7 @@ const char* docstr = ""
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <algorithm>
 #include "flagHandler.h"
 #include "msaReader.h"
 #include "msaWriter.h"
@@ -69,7 +70,7 @@ void convert(string inFile, string outFile, bool checkValidation, Alphabet alpha
         msa_reader = new MSAReader_a2m(inFile, alphabet, checkValidation);
     else if(inFormat == "a3m")
         msa_reader = new MSAReader_a3m(inFile, alphabet, checkValidation);
-    else if(inFormat == "fasta" || inFormat == "afa")
+    else if(std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), outFormat) != FASTA_FORMATS.end())
         msa_reader = new MSAReader_fasta(inFile, alphabet, checkValidation);
     else if(inFormat == "sto")
         msa_reader = new MSAReader_sto(inFile, alphabet, checkValidation);
@@ -89,7 +90,7 @@ void convert(string inFile, string outFile, bool checkValidation, Alphabet alpha
         msaWriter = new MSAWriter_a2m(sequences, outFile);
     else if (outFormat == "a3m")
         msaWriter = new MSAWriter_a3m(sequences, outFile);
-    else if (outFormat == "fasta" || outFormat == "afa")
+    else if (std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), outFormat) != FASTA_FORMATS.end())
         msaWriter = new MSAWriter_fasta(sequences, outFile);
     else if (outFormat == "sto")
         msaWriter = new MSAWriter_sto(sequences, outFile);

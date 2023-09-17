@@ -71,7 +71,7 @@ class MSAWriter_sto : public MSAWriter
         void writeFile(std::ofstream& file) override;
 };
 
-// Derived class for writing in fasta / afa format
+// Derived class for writing in fasta format
 class MSAWriter_fasta : public MSAWriter
 {
     public:

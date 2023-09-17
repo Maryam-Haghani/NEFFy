@@ -56,6 +56,33 @@ void MSAWriter::write()
 
 void MSAWriter_a2m::writeFile(ofstream& outputFile)
 {
+    string querySequence = Sequences[0].sequence;
+
+    // Replace '-' to '.' for gaps aligned to insersions if query sequence contains any gaps
+    int gapPosition = querySequence.find('-');
+    if (gapPosition != string::npos)
+    {
+        int length = querySequence.size();
+
+        for (int pos = length - 1; pos >= 0; pos--)
+        {
+            if(querySequence[pos] == '-')
+            {
+                for (auto& sequence : Sequences)
+                {
+                    if (sequence.sequence[pos] == '-')
+                    {
+                        sequence.sequence[pos] = '.';         
+                    }
+                    else //converting to lowercase 
+                    {                    
+                        sequence.sequence[pos] = tolower(sequence.sequence[pos]);
+                    }
+                }
+            }                                        
+        }
+    }
+
     for (auto sequence : Sequences)
     {
         outputFile << '>' << sequence.id << sequence.remarks << endl; // Writing identifier and remarks
@@ -66,19 +93,18 @@ void MSAWriter_a2m::writeFile(ofstream& outputFile)
 void MSAWriter_a3m::writeFile(ofstream& outputFile)
 {
     string querySequence = Sequences[0].sequence;
-    auto writtenSequences = Sequences;
 
-    // Removing gaps aligned to insersions in query sequence contains any
-    size_t gapPosition = querySequence.find('-');
+    // Removing gaps aligned to insersions in query sequence if contains any
+    int gapPosition = querySequence.find('-');
     if (gapPosition != string::npos)
     {
-        size_t length = querySequence.size();
+        int length = querySequence.size();
 
         for (int pos = length - 1; pos >= 0; pos--)
         {
             if(querySequence[pos] == '-')
             {
-                for (auto& sequence : writtenSequences)
+                for (auto& sequence : Sequences)
                 {
                     if (sequence.sequence[pos] == '-')
                     {
@@ -93,7 +119,7 @@ void MSAWriter_a3m::writeFile(ofstream& outputFile)
         }
     }
 
-    for (auto sequence : writtenSequences)
+    for (auto sequence : Sequences)
     {
         outputFile << '>' << sequence.id << sequence.remarks << endl; // Writing identifier and remarks
         outputFile << sequence.sequence << endl;

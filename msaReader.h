@@ -81,7 +81,7 @@ private:
     void readFile(std::ifstream& file) override;
 };
 
-// Derived class for reading fasta / afa format
+// Derived class for reading fasta format
 class MSAReader_fasta : public MSAReader
 {
 public:
