@@ -9,6 +9,8 @@
 #include <vector>
 #include <string>
 
+const std::vector<std::string> FASTA_FORMATS = {"fasta", "afa", "fas", "fst", "fsa"};
+
 const std::string STANDARD_AMINO_ACIDS = "ACDEFGHIKLMNPQRSTVWY";
 const std::string NON_STANDARD_AMINO_ACIDS = "XOUBJZ";
 const std::string STANDARD_RNA_NUCLEOTIDES = "AUCG";
