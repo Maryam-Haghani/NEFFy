@@ -66,12 +66,125 @@ Suppose you have an MSA file named "input.fasta" that you want to convert to the
 ##  Supported File Formats   
 - __A2M__ (aligned FASTA-like format)
 - __A3M__ (compressed aligned FASTA-like format with lowercase letters for insertions)
-- __FASTA__ (FASTA format)
+- __FASTA__, __AFA__, __FAS__, __FST__, __FSA__ (FASTA format)
 - __STO__ (Stockholm format)
 - __CLUSTAL__ (CLUSTAL format)
 - __ALN__ (ALN format)
-- __AFA__ (fasta format)
 - __PFAM__ (format mostly used for neucleotides)
+
+Below, you will find a brief explanation of each format, along with an illustrative alignment example for each one.
+
+### A2M
+Each sequence is represented by two lines:
+- The first line starts with > followed by the sequence identifier and some other remarks.
+- The second line contains the aligned residues; Alignments are shown with:
+    - Inserts as lower case characters,
+    - Matches as upper case characters,
+    - Deletions as ' - ', and
+    - Gaps aligned to inserts as ' . '
+
+__Example__
+```
+>T1152
+MY...TVKPGDT......MWKIAV...K..YQI...GI.....SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+>MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1
+TY...D-KDGYR......HYRTRV...Y..YTL...RR.....NEDNALIA-REVFSQVYKKEAL-CPIA--------
+>ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1
+G-...EREKGR-......--HSKS...R..QEK...GF.....KEKK---P-TKKPSATNKPVNTAKPAA--------
+>tr|A0A235B7N0|A0A235B7N0_9BACL Uncharacterized protein OS=Paludifilum halophilum OX=1642702
+EAsavDRITSDSilenfvQWIFSE...E..KEVeekHT.....EESVQPTPAVKHSPDSSGSSKSSSSD---------
+>tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
+SA...KVKRGRT......FIPLRSateSfgYDV...IWkenenAVYLKSNPTIKPKDSTQ------------------
+ ```
+### A3M
+Each sequence is represented by two lines:
+- The first line starts with > followed by the sequence identifier and some other remarks.
+- The second line contains the aligned residues; Alignments are shown with:
+    - Inserts as lower case characters,
+    - Matches as upper case characters,
+    - Deletions as ' - ', and
+    - Gaps aligned to inserts as ' . ' (optional)
+  
+In A3M format, Gaps aligned to inserts (' . ') can be excluded, and one could view the A3M format as a more method method for representing an MSA compared to FASTA or A2M.
+
+__Example__
+```
+>T1152
+MYTVKPGDTMWKIAVKYQIGISEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+>MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1
+TYD-KDGYRHYRTRVYYTLRRNEDNALIA-REVFSQVYKKEAL-CPIA--------
+>ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1
+G-EREKGR---HSKSRQEKGFKEKK---P-TKKPSATNKPVNTAKPAA--------
+>tr|A0A235B7N0|A0A235B7N0_9BACL Uncharacterized protein OS=Paludifilum halophilum OX=1642702
+EAsavDRITSDSilenfvQWIFSEEKEVeekHTEESVQPTPAVKHSPDSSGSSKSSSSD---------
+>tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
+SAKVKRGRTFIPLRSateSfgYDVIWkenenAVYLKSNPTIKPKDSTQ------------------
+```
+
+### Fasta
+Sequences are separated by '>'.  The remaining lines before next '>' contain the aligned sequence, which:
+- lower and upper case are equivalent;
+- ' . ' and ' - ' are equivalent.
+Aligned => Sequences have the same length.
+
+__Example__
+```
+>T1152
+MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+>MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1
+TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
+>ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1
+G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
+>tr|A0A235B7N0|A0A235B7N0_9BACL Uncharacterized protein OS=Paludifilum halophilum OX=1642702
+EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
+>tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
+SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
+```
+
+#### STO (Stockholm)
+It consists of:
+- A header line containing format and version information.
+- Mark-up lines that start with "#=GF," "#=GC," "#=GS," or "#=GR."
+- Alignment lines featuring the sequence name and its corresponding aligned sequence. Within these lines:
+    - Inserts are represented as lowercase characters,
+    - Matches are indicated by uppercase characters, and
+    - Gaps are denoted by either ' . ' or ' - '.
+  
+Additionally, the "//" line indicates the end of the alignment.
+Sequences in this format are divided into segments of 200 characters.
+
+__Example__
+```
+# STOCKHOLM 1.0
+#=GF ID T1152
+#=GS T1152                                                       
+#=GS MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 
+#=GS ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   
+#=GS tr|A0A235B7N0|A0A235B7N0_9BACL                               Uncharacterized protein OS=Paludifilum halophilum OX=1642702
+#=GS tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                               Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
+
+T1152                                                       MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
+ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
+tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
+tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
+//
+```
+### ALN
+It only consists of aligned sequences, each on a separate line, and the initial sequence is gap-free.
+
+__Example__
+```
+MYTVKPGDTMWKIAVKYQIGISEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+TYD-KDGYRHYRTRVYYTLRRNEDNALIA-REVFSQVYKKEAL-CPIA--------
+G-EREKGR---HSKSRQEKGFKEKK---P-TKKPSATNKPVNTAKPAA--------
+EADRITSDSQWIFSEEKEVHTEESVQPTPAVKHSPDSSGSSKSSSSD---------
+SAKVKRGRTFIPLRSSYDVIWAVYLKSNPTIKPKDSTQ------------------
+```
+
+### CLUSTAL
+
+### PFAM
 
 ## Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
