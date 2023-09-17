@@ -97,15 +97,7 @@ EAsavDRITSDSilenfvQWIFSE...E..KEVeekHT.....EESVQPTPAVKHSPDSSGSSKSSSSD---------
 SA...KVKRGRT......FIPLRSateSfgYDV...IWkenenAVYLKSNPTIKPKDSTQ------------------
  ```
 ### A3M
-Each sequence is represented by two lines:
-- The first line starts with > followed by the sequence identifier and some other remarks.
-- The second line contains the aligned residues; Alignments are shown with:
-    - Inserts as lower case characters,
-    - Matches as upper case characters,
-    - Deletions as ' - ', and
-    - Gaps aligned to inserts as ' . ' (optional)
-  
-In A3M format, Gaps aligned to inserts (' . ') can be excluded, and one could view the A3M format as a more method method for representing an MSA compared to FASTA or A2M.
+It is almost like A2M format. The only difference is that Gaps aligned to inserts ('.') can be excluded, and one could view the A3M format as a more method method for representing an MSA compared to FASTA or A2M.
 
 __Example__
 ```
@@ -183,8 +175,43 @@ SAKVKRGRTFIPLRSSYDVIWAVYLKSNPTIKPKDSTQ------------------
 ```
 
 ### CLUSTAL
+Clustal is commonly associated with the Clustal series of programs for sequence alignment. The Clustal MSA format typically begins with a header line that provides information about the alignment.
+
+Following the header, Clustal format represents each sequence as a pair of columns in a line.
+- The first column contains the sequence name or identifier,
+- The second line contains the aligned sequence, which:
+    - Gaps are shown as '-'
+    - Matches are shown as uppercase letters.
+ 
+Sequences in this format are divided into segments of 60 characters.
+
+__Example__
+```
+Generated CLUSTAL format
+
+T1152                                                       MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIY
+MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVY
+ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATN
+tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSS
+tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ
+T1152                                                       PGQKINIPNILEHHHHHH
+MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 KKEAL-CPIA--------
+ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   KPVNTAKPAA--------
+tr|A0A235B7N0|A0A235B7N0_9BACL                              GSSKSSSSD---------
+tr|A0A1E5LFN5|A0A1E5LFN5_9BACI
+```
 
 ### PFAM
+It's similar to Clustal in the sense that it separates sequence identifiers and sequences with a tab, but unlike Clustal, the sequences are not uniformly indented. Additionally, it doesn't split sequences into 60-character segments, as Clustal does. Also, it does not contain header line.
+
+__Example__
+```
+T1152	MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1	TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
+ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1	G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
+tr|A0A235B7N0|A0A235B7N0_9BACL	EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
+tr|A0A1E5LFN5|A0A1E5LFN5_9BACI	SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
+```
 
 ## Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
