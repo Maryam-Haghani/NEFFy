@@ -215,6 +215,35 @@ ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1	G----EREKGR---------HS
 tr|A0A235B7N0|A0A235B7N0_9BACL	EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
 tr|A0A1E5LFN5|A0A1E5LFN5_9BACI	SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
 ```
+## Installing Other Tools
+### DeepMSA
+`git clone https://github.com/kad-ecoli/MSAParser.git`
+
+Or simply get the related file for NEFF calculation from _https://github.com/kad-ecoli/MSAParser/blob/master/calNf.cpp_
+
+For getting the executable: `g++ -O3 calNf.cpp -o calNf`
+
+### Gremlin
+`git clone https://github.com/sokrypton/GREMLIN_CPP.git`
+
+Or simply get _https://github.com/sokrypton/GREMLIN_CPP/blob/master/gremlin_cpp.cpp_
+
+For getting the executable: `g++ -O3 gremlin_cpp.cpp -o gremlin_cpp -fopenmp`
+
+### rMSA
+`git clone https://github.com/pylelab/rMSA.git`
+
+Or simply get _https://github.com/pylelab/rMSA/blob/master/src/fastNf.cpp_
+
+For getting the executable:
+`g++ -O3 fastNf.cpp -o fastNf`
+
+### Conkit
+`pip install conkit`
+
+### RaptorX
+Use _RaptorX-3DModeling/BuildFeatures/Helpers/CalcMeff.py_
+
 
 ## Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
