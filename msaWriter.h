@@ -14,6 +14,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <set>
 #include "common.h"
 
 class MSAWriter
@@ -23,6 +24,7 @@ class MSAWriter
         std::string fileName;
         std::string format;
         std::vector<Sequence> Sequences;
+        std::set<int> maskedIndices;
         int IDspace; // the max space needed to write ID, in order to all sequences be aligned in output file
 
         virtual void writeFile(std::ofstream& file) = 0;
@@ -34,8 +36,9 @@ class MSAWriter
        
         /// @brief Constructor
         /// @param sequences 
-        /// @param _file 
-        MSAWriter(std::vector<Sequence> sequences, std::string _file);
+        /// @param file 
+        /// @param maskedIndices 
+        MSAWriter(std::vector<Sequence> sequences, std::string file, std::set<int> maskedIndices={});
 
          /**
          * @brief Write sequences in the MSA file, based on the format of the output file.

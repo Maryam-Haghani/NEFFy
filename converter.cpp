@@ -33,9 +33,9 @@ const char* docstr = ""
 "Options:\n"
 "   --in_file=<input_file>            Path to the input MSA file\n"
 "   --out_file=<output_file>          Path to the output MSA file\n"
-"    --alphabet=<value>               Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
-"    --check_validation=<true/false>  Perform validation on sequences (default: true)\n"
-"Supported formats: A2M, A3M, FASTA,  STO, CLUSTAL, ALN, AFA, PFAM\n"
+"   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
+"   --check_validation=<true/false>   Perform validation on sequences (default: true)\n"
+"Supported formats: A2M, A3M, FASTA, STO, CLUSTAL, ALN, AFA, PFAM\n"
 ;
 
 #include <iostream>
@@ -70,7 +70,7 @@ void convert(string inFile, string outFile, bool checkValidation, Alphabet alpha
         msa_reader = new MSAReader_a2m(inFile, alphabet, checkValidation);
     else if(inFormat == "a3m")
         msa_reader = new MSAReader_a3m(inFile, alphabet, checkValidation);
-    else if(std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), outFormat) != FASTA_FORMATS.end())
+    else if(std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), inFormat) != FASTA_FORMATS.end())
         msa_reader = new MSAReader_fasta(inFile, alphabet, checkValidation);
     else if(inFormat == "sto")
         msa_reader = new MSAReader_sto(inFile, alphabet, checkValidation);
@@ -108,6 +108,23 @@ void convert(string inFile, string outFile, bool checkValidation, Alphabet alpha
     msaWriter->write();
 }
 
+/// @brief Get given alphabet by user
+/// @param flagHandler 
+/// @return 
+Alphabet getAlphabet(FlagHandler& flagHandler)
+{
+    Alphabet alphabet;
+    try {
+        alphabet = static_cast<Alphabet>(stoi(flagHandler.getFlagValue("alphabet")));
+        if (alphabet < Alphabet::protein || alphabet > Alphabet::DNA) {
+            throw runtime_error("");
+        }
+    } catch (const exception& e) {
+       throw runtime_error("Invalid 'alphabet' value. It is outside the valid enum range.");
+    }
+    return alphabet;
+}
+
 int main(int argc, char **argv)
 {
     /* Handling flags */
@@ -127,7 +144,7 @@ int main(int argc, char **argv)
         string outFile = flagHandler.getFlagValue("out_file");
 
         // alphabet
-        alphabet = static_cast<Alphabet>(stoi(flagHandler.getFlagValue("alphabet")));
+        alphabet = getAlphabet(flagHandler);
 
         // check_validation
         bool checkValidation = flagHandler.getFlagValue("check_validation") == "true";

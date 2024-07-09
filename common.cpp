@@ -11,6 +11,10 @@
 
 using namespace std;
 
+/// @brief Get format of the given file
+/// @param file 
+/// @param name 
+/// @return 
 string getFormat(string file, string name)
 {
     size_t index = file.find_last_of('.');
@@ -26,6 +30,8 @@ string getFormat(string file, string name)
     }
 }
 
+/// @brief Remove gap positions of the query sequence from all sequences
+/// @param sequences 
 void keepNonGapPositionsOfQuerySequence(vector<Sequence>& sequences)
 {
     vector<int> gapPositions;
@@ -53,6 +59,9 @@ void keepNonGapPositionsOfQuerySequence(vector<Sequence>& sequences)
     }
 }
 
+/// @brief Return all standard + non-standard + gap letters for the given alphabet
+/// @param alphabet 
+/// @return 
 string getAllowedLetters(Alphabet alphabet)
 {
     switch(alphabet)
@@ -68,6 +77,9 @@ string getAllowedLetters(Alphabet alphabet)
     }
 }
 
+/// @brief Return standard letters of the given alphabet
+/// @param alphabet 
+/// @return 
 string getStandardLetters(Alphabet alphabet)
 {
     switch(alphabet)
@@ -83,6 +95,9 @@ string getStandardLetters(Alphabet alphabet)
     }
 }
 
+/// @brief Return non-standard letters of the given alphabet
+/// @param alphabet 
+/// @return 
 string getNonStandardLetters(Alphabet alphabet)
 {
     switch(alphabet)

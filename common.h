@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 
-const std::vector<std::string> FASTA_FORMATS = {"fasta", "afa", "fas", "fst", "fsa"};
+inline const std::vector<std::string> FASTA_FORMATS = {"fasta", "afa", "fas", "fst", "fsa"};
 
 const std::string STANDARD_AMINO_ACIDS = "ACDEFGHIKLMNPQRSTVWY";
 const std::string NON_STANDARD_AMINO_ACIDS = "XOUBJZ";
@@ -59,7 +59,7 @@ enum NonStandardHandler
 std::string getFormat(std::string file, std::string name);
 
 /**
- * @brief Keep only the positions of non-gap residues in the query sequence for all sequences.
+ * @brief Keep only the positions of non-gap residues of the query sequence for all sequences.
  * @param sequences The vector of sequences to process.
  */
 void keepNonGapPositionsOfQuerySequence(std::vector<Sequence>& sequences);

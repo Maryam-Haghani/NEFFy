@@ -14,12 +14,12 @@
 #include <iomanip>
 #include "common.h"
 #include "msaWriter.h"
+#include <set>
 
 using namespace std;
 
-MSAWriter::MSAWriter(vector<Sequence> _sequences, string _file)
-    : Sequences(_sequences), file(_file) {}
-
+MSAWriter::MSAWriter(std::vector<Sequence> _sequences, std::string _file, std::set<int> _maskedIndices)
+    : Sequences(_sequences), file(_file), maskedIndices(_maskedIndices) {}
 
 void MSAWriter::generateIdForSequences()
 {
@@ -159,10 +159,13 @@ void MSAWriter_sto::writeFile(ofstream& outputFile)
 
 void MSAWriter_fasta::writeFile(ofstream& outputFile)
 {
-    for (auto sequence : Sequences)
+    for (int index = 0; index < Sequences.size(); ++index)
     {
-        outputFile << '>' << sequence.id << sequence.remarks << endl; // Writing identifier and remarks
-        outputFile << sequence.sequence << endl;
+        if (maskedIndices.find(index) == maskedIndices.end())
+        {
+            outputFile << '>' << Sequences[index].id << Sequences[index].remarks << endl; // Writing identifier and remarks
+            outputFile << Sequences[index].sequence << endl;
+        }
     }
 }
 
@@ -179,7 +182,7 @@ void MSAWriter_clustal::writeFile(ofstream& outputFile)
     }
 }
 
-void MSAWriter_aln::writeFile(ofstream& outputFile)
+void MSAWriter_aln::writeFile(std::ofstream& outputFile)
 {
     keepNonGapPositionsOfQuerySequence(Sequences);
 

@@ -7,11 +7,10 @@ prog=neff converter
 all: ${prog}
 
 neff: neff.cpp
-	${CC} ${CFLAGS} flagHandler.cpp common.cpp msaReader.cpp $@.cpp -o $@ ${LDFLAGS}
-
+	${CC} ${CFLAGS} -std=c++17 flagHandler.cpp common.cpp msaReader.cpp msaWriter.cpp msaSplitter.cpp $@.cpp -o $@
  
 converter: converter.cpp
-	${CC} ${CFLAGS} flagHandler.cpp common.cpp msaReader.cpp msaWriter.cpp $@.cpp -o $@ ${LDFLAGS}
+	${CC} ${CFLAGS} -std=c++17 flagHandler.cpp common.cpp msaReader.cpp msaWriter.cpp $@.cpp -o $@
 
 install: ${prog}
 	cp ${prog} ./bin

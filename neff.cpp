@@ -11,17 +11,26 @@
  *   ./neff --file=<input_file> [options]
  *
  * Options:
- *   --file=<input_file>             Path to the input MSA file (required)
- *   --alphabet=<value>              Valid alphabet of MSA;  alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
- *   --check_validation=<true/false> Perform validation on sequences (default: false)
- *   --threshold=<value>             Threshold value of considering two sequences similar (default: 0.8)
- *   --norm=<value>                  Normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)
- *   --omit_query_gaps=<true/false>  Omit gap positions of query sequence from all sequences for NEFF computation (default: false)
- *   --is_symmetric=<true/false>     Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)
- *   --non_standard_option=<value>   Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)
- *   --depth=<value>                 Depth of MSA to be cosidered in computation (default: depth of given MSA)
- *   --gap_cutoff=<value>            Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)
- * 
+ *   --file=<input_file>               Path to the input MSA file (required)\n"
+ *   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
+ *   --check_validation=<true/false>   Perform validation on sequences (default: false)\n"
+ *   --threshold=<value>               Threshold value of considering two sequences similar (default: 0.8)\n"
+ *   --norm=<value>                    NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)\n"
+ *   --omit_query_gaps=<true/false>    Omit gap positions of query sequence from all sequences for NEFF computation (default: true)\n"
+ *   --is_symmetric=<true/false>       Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)\n"
+ *   --non_standard_option=<value>     Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)\n"
+ *   --depth=<value>                   Depth of MSA to be cosidered in computation (default: depth of given MSA)\n"
+ *   --gap_cutoff=<value>              Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)\n"
+ *   --pos_start=<value>               Start position of each sequence to be considered in neff (inclusive (default: 1))\n"
+ *   --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: depth og given MSA))\n"
+ *   --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
+ *   --mask_enabled=<true/false>       If sequence masking is enabled for NEFF calculation (default: false)\n"
+ *   --mask_percent=<value>            Percentage of rows to be masked in each masking iteration (default: 0)\n"
+ *   --mask_count=<value>              Frequency of masking (default: 0)\n"
+ *   --paired_MSA=<true/false>         When MSA is in the form of PairedMSA and composed of 3 parts, compute NEFF for both paired MSA and individual monomer MSAs (default: false)\n"
+ *   --first_monomer_length=<value>    Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
+ *   --column_neff=<true/false>       Compute Column-wise NEFF (default: false)
+
  * In symmetric version, threshold for considering a pair of sequence as homolog simply depends on length of alignment, and it would be equal for all sequences and we see a symmetry in similarities
  * While in asymmetric version, threshold depends on number of non-gap residues; therefore, cutoff tends to be different for sequences)
  *
@@ -32,54 +41,81 @@ const char* docstr = ""
 "\n"
 "./neff --file=<input_file> [options]\n"
 "Options:\n"
-"    --file=<input_file>             Path to the input MSA file (required)\n"
-"    --alphabet=<value>              Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
-"    --check_validation=<true/false> Perform validation on sequences (default: false)\n"
-"    --threshold=<value>             Threshold value of considering two sequences similar (default: 0.8)\n"
-"    --norm=<value>                  Normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)\n"
-"    --omit_query_gaps=<true/false>  Omit gap positions of query sequence from all sequences for NEFF computation (default: false)\n"
-"    --is_symmetric=<true/false>     Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)\n"
-"    --non_standard_option=<value>   Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)\n"
-"    --depth=<value>                 Depth of MSA to be cosidered in computation (default: depth of given MSA)\n"
-"    --gap_cutoff=<value>            Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)\n"
+"    --file=<input_file>              Path to the input MSA file (required)\n"
+"    --alphabet=<value>               Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
+"    --check_validation=<true/false>  Perform validation on sequences (default: false)\n"
+"    --threshold=<value>              Threshold value of considering two sequences similar (default: 0.8)\n"
+"    --norm=<value>                   NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)\n"
+"    --omit_query_gaps=<true/false>   Omit gap positions of query sequence from all sequences for NEFF computation (default: true)\n"
+"    --is_symmetric=<true/false>      Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)\n"
+"    --non_standard_option=<value>    Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)\n"
+"    --depth=<value>                  Depth of MSA to be cosidered in computation (default: depth of given MSA)\n"
+"    --gap_cutoff=<value>             Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)\n"
+"    --pos_start=<value>              Start position of each sequence to be considered in neff (inclusive (default: 1))\n"
+"    --pos_end=<value>                Last position of each sequence to be considered in neff (inclusive (default: depth og given MSA))\n"
+"    --only_weights=<true/false>      Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
+"    --mask_enabled=<true/false>      If sequence masking is enabled for NEFF calculation (default: false)\n"
+"    --mask_percent=<value>           Percentage of rows to be masked in each masking iteration (default: 0)\n"
+"    --mask_count=<value>             Frequency of masking (default: 0)\n"
+"    --paired_MSA=<true/false>        When MSA is in the form of PairedMSA and composed of 3 parts, compute NEFF for both paired MSA and individual monomer MSAs (default: false)\n"
+"    --first_monomer_length=<value>   Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
+"    --column_neff=<true/false>       Compute Column-wise NEFF (default: false)"
 ;
 
+#include "flagHandler.h"
+#include "msaReader.h"
+#include "msaWriter.h"
+#include "msaSplitter.h"
 #include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_map>
 #include <cmath>
 #include <sstream>
-#include "flagHandler.h"
-#include "msaReader.h"
+#include <climits>
 #include "common.h"
 #include <cmath>
 #include <fstream>
 #include <algorithm>
+#include <tuple>
+#include <random>
+#include <iostream>
+#include <fstream>
+#include <set>
 
 using namespace std;
 
 unordered_map<string, FlagInfo> Flags =
 {
-    {"file", {true, ""}},                   // file path
-    {"alphabet", {false, "0"}},             // alphabet of MSA
-    {"check_validation", {false, "false"}}, // whether to perform validation on sequences to include only alphabet letters
-    {"threshold", {false, "0.8"}},          // threshold value for similarity
-    {"norm", {false, "0"}},                 // neff normalization option
-    {"omit_query_gaps", {false, "true"}},   // whether to omit gap positions of query sequence from all sequences for NEFF computation
-    {"is_symmetric", {false, "true"}},      // whether to consider gaps in similarity cutoff computation (asymmetric) or not (symmetric)
-    {"non_standard_option", {false, "0"}},  // handling non-standard letters in the given alphabet
-    {"depth", {false, "inf"}},              // depth of MSA to be cosidered in computation
-    {"gap_cutoff", {false, "1"}}            // cutoff value for considering a position as gappy and removing that
+    {"file", {true, ""}},                  // MSA file path
+    {"alphabet", {false, "0"}},            // Alphabet of MSA
+    {"check_validation", {false, "false"}},// Whether to perform validation on sequences to include only alphabet letters
+    {"threshold", {false, "0.8"}},         // Threshold value for sequence similarity
+    {"norm", {false, "0"}},                // NEFF normalization options
+    {"omit_query_gaps", {false, "true"}},  // Whether to omit gap positions of query sequence from all sequences
+    {"is_symmetric", {false, "true"}},     // Whether to consider gaps in similarity cutoff computation (asymmetric) or not (symmetric)
+    {"non_standard_option", {false, "0"}}, // Handling non-standard letters in the given alphabet of MSA
+    {"depth", {false, "inf"}},             // Depth of MSA to be cosidered in computation
+    {"gap_cutoff", {false, "1"}},          // Cutoff value for considering a position as gappy and removing that
+    {"pos_start", {false, "1"}},           // Start position of each sequence to be considered in NEFF (inclusive)
+    {"pos_end", {false, "inf"}},           // Last position of each sequence to be considered in NEFF (inclusive)
+    {"only_weights",{false, "false"}},     // Whether to return sequence weights instead of final NEFF
+    {"mask_enabled", {false, "false"}},    // If sequence masking is enabled for NEFF calculation
+    {"mask_percent", {false, "0"}},        // Percentage of rows to be masked in each masking iteration
+    {"mask_count", {false, "0"}},          // Frequency of masking
+    {"paired_MSA",{false, "false"}},       // When MSA is in the form of PairedMSA and composed of 3 parts, compute NEFF for both paired MSA and individual monomer MSAs.
+    {"first_monomer_length",{false, "0"}}, // Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSAs.
+    {"column_neff",{false, "false"}}       // Compute Column-wise NEFF
  };
 
-/// @brief map residues from char to digit
+/// @brief Map char residues to digit based on given 'nonStandardOption'
 /// @param c input letter
 /// @param standardLetters 
 /// @param nonStandardLetters 
 /// @param nonStandardOption 
 /// @return 
-int char2num(char c, string standardLetters, string nonStandardLetters, NonStandardHandler nonStandardOption)
+// int char2num(char c, string standardLetters, string nonStandardLetters, NonStandardHandler nonStandardOption)
+int char2num(char c, const string& standardLetters, const string& nonStandardLetters, NonStandardHandler nonStandardOption)
 {
     int position;
     int standardLetterSize = standardLetters.size();
@@ -102,7 +138,49 @@ int char2num(char c, string standardLetters, string nonStandardLetters, NonStand
     return 0; // condier as gap
 }
 
-/// @brief remove gappy positions from sequences
+/// @brief Get given float option by user
+/// @param flagHandler 
+/// @return 
+float getFloatValue(FlagHandler& flagHandler, string name) {
+    float value;
+    try {
+        value = stof(flagHandler.getFlagValue(name));
+        if (value <= 0.0 || value > 1.0) {
+            throw runtime_error("Invalid '" +  name + "' value. It should be a number between 0 and 1.");
+        }
+    } catch (const exception& e) {
+        throw runtime_error("Invalid '" +  name + "' value. It should be a number between 0 and 1.");
+    }
+    return value;
+}
+
+/// @brief Get given int option by user
+/// @param flagHandler 
+/// @return 
+int getIntValue(FlagHandler& flagHandler, string name) {
+    int value;
+    try
+    {
+        string svalue = flagHandler.getFlagValue(name);
+
+        if(svalue == "inf")
+            return INT_MAX;
+
+        value = stoi(svalue);
+        
+        if (value <=0)
+        {
+            throw runtime_error("Invalid '" +  name + "' value. It should be a positive number");
+        }
+    }
+    catch (const exception& e)
+    {
+        throw runtime_error("Invalid '" +  name + "' value. It should be a positive number");
+    }
+    return value;
+}
+
+/// @brief Remove gappy positions from sequences based on given 'gapCutoff'
 /// @param sequences 
 /// @param gapCutoff 
 void removeGappyPositions(vector<vector<int>>& sequences, float gapCutoff)
@@ -140,15 +218,15 @@ void removeGappyPositions(vector<vector<int>>& sequences, float gapCutoff)
     }
 }
 
-/// @brief map chars to digits and prepare sequences based values of omitGapsInQuery on gapCutoff
-/// @param sequences 
+/// @brief Map chars to digits based on provided 'nonStandardOption' and omit gap positions of query sequence in all sequences if omitGapsInQuery=true
+/// and also remove gappy positions based on given 'gapCutoff'
 /// @param omitGapsInQuery 
 /// @param alphabet 
 /// @param nonStandardOption 
 /// @param gapCutoff 
 /// @return 
-vector<vector<int>> processSequences(FlagHandler flagHandler, vector<Sequence> sequences, bool omitGapsInQuery,
-                                                    string standardLetters, string nonStandardLetters, NonStandardHandler nonStandardOption)
+vector<vector<int>> processSequences(vector<Sequence> sequences, bool omitGapsInQuery,
+                                                    string standardLetters, string nonStandardLetters, NonStandardHandler nonStandardOption, float gapCutoff)
 {
     vector<vector<int>> sequences2num;
     if(sequences.size() == 0)
@@ -179,13 +257,6 @@ vector<vector<int>> processSequences(FlagHandler flagHandler, vector<Sequence> s
         sequences2num.push_back(sequence2num);            
     }
 
-    // gap_cutoff
-    float gapCutoff = stof(flagHandler.getFlagValue("gap_cutoff"));
-    if (gapCutoff <= 0 || gapCutoff > 1)
-    {
-        throw runtime_error("gap_cutoff should be grater than 0 and equal or less than 1");
-    }
-
     if(gapCutoff < 1)
     {
         removeGappyPositions(sequences2num, gapCutoff);
@@ -194,27 +265,27 @@ vector<vector<int>> processSequences(FlagHandler flagHandler, vector<Sequence> s
     return sequences2num;
 }
 
-/// @brief compute NEFF base on given options
+/// @brief Compute sequence weights base on given options
 /// @param sequences 
 /// @param threshold 
 /// @param norm 
 /// @param isSymmetric 
 /// @param nonStandardOption 
-/// @return 
-float computeNEFF(vector<vector<int>> sequences, float threshold, Normalization norm, bool isSymmetric,
+/// @return inverse of sequence weights
+vector<int> computeWeights(vector<vector<int>> sequences, float threshold, bool isSymmetric,
                      string standardLetters, NonStandardHandler nonStandardOption)
 {
-    if(sequences.size() == 0)
-    {
-        cout << "There is no sequence to compute NEFF for." <<endl;
-        return 0;
-    }
-
+    int msa_depth = sequences.size();
     vector<int> querySequence = sequences[0];
     int length = querySequence.size();
 
-    int position, i, j; // loop indexes    
+    if(msa_depth == 0 || length ==0)
+    {
+        cerr << "There is no sequence to compute weights for." << endl;
+        exit(0);
+    }
 
+    int position, i, j; // loop indexes    
     int non_gap_count;
     vector <bool> non_gap_seq; // keeps positions of residues in a sequence
     vector<vector<bool>> non_gap_msa; // keeps positions of non-gap residues in all sequences
@@ -252,9 +323,7 @@ float computeNEFF(vector<vector<int>> sequences, float threshold, Normalization 
     }    
     non_gap_seq.clear();
 
-    int msa_depth = sequences.size();
     int mismatch_i = 0, mismatch_j = 0; // # mismatches in i'th and j'th sequences
-    float neff = 0;
     vector<int> sequence_weight(msa_depth, 1); // number of homolog sequences to each sequence
 
     // iterate through each pair of sequence and compute sequence weights
@@ -303,40 +372,334 @@ float computeNEFF(vector<vector<int>> sequences, float threshold, Normalization 
                 sequence_weight[j] += (mismatch_j <= cutoff[j]);
             }
         }
-        neff += 1./sequence_weight[i];
     }
 
-    // normalizing Nf
-    switch(norm)
+    return sequence_weight;
+}
+
+/// @brief Randomly mask sequences in the MSA (except the first sequence)
+/// @param sequences 
+/// @param percent 
+/// @return 
+tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequences, double percent) {
+    int totalSequences = sequences.size();
+    int numToMask = static_cast<int>(percent * totalSequences);
+
+    // Create a vector of indices, starting from 1 to exclude the first sequence
+    vector<int> indices(totalSequences - 1);
+    // for (int i = 1; i < totalSequences; ++i) {
+    //     indices[i - 1] = i;
+    // }
+    iota(indices.begin(), indices.end(), 1);
+
+    // Randomly shuffle the indices
+    random_device rd;
+    mt19937 gen(rd());
+    shuffle(indices.begin(), indices.end(), gen);
+
+    // Select the first numToMask indices to be masked
+    set<int> maskIndices(indices.begin(), indices.begin() + numToMask);
+
+    // Add the first sequence to the selected sequences
+    vector<vector<int>> selectedSequences;
+    selectedSequences.push_back(sequences[0]);
+
+    // Add the remaining sequences that are not masked
+    for (int i = 1; i < totalSequences; ++i) {
+        if (maskIndices.find(i) == maskIndices.end()) {
+            selectedSequences.push_back(sequences[i]);
+        }
+    }
+
+    return make_tuple(selectedSequences, maskIndices);
+}
+
+/// @brief Cumpote NEFF values based on sequence weights and given normalization
+/// @param sequence_weights 
+/// @param norm 
+/// @param sequenceLength 
+/// @return 
+float compute_neff(vector<int> sequence_weights, Normalization norm, int length)
+{
+    float neff = 0;
+    for (int i=0; i < sequence_weights.size(); i++)
+    {
+        neff += 1./sequence_weights[i];
+    }
+    
+    switch(norm) // normalizing Nf
     {
         case Sqrt_L:
-            return neff/sqrt(length);
+            neff = neff/sqrt(length);
+            break;
         case L:
-            return neff/length;
+            neff = neff/length;
+            break;
         default:
-            return neff;
+            break;
+    }
+    return neff;
+}
+
+/// @brief Get given alphabet by user
+/// @param flagHandler 
+/// @return 
+Alphabet getAlphabet(FlagHandler& flagHandler)
+{
+    Alphabet alphabet;
+    try {
+        alphabet = static_cast<Alphabet>(stoi(flagHandler.getFlagValue("alphabet")));
+        if (alphabet < Alphabet::protein || alphabet > Alphabet::DNA) {
+            throw runtime_error("");
+        }
+    } catch (const exception& e) {
+       throw runtime_error("Invalid 'alphabet' value. It is outside the valid enum range.");
+    }
+    return alphabet;
+}
+
+/// @brief Get given normalization option by user
+/// @param flagHandler 
+/// @return 
+Normalization getNormalization(FlagHandler& flagHandler) {
+    Normalization norm;
+    try {
+        norm = static_cast<Normalization>(stoi(flagHandler.getFlagValue("norm")));
+        if (norm < Normalization::Sqrt_L || norm > Normalization::None) {
+            throw runtime_error("");
+        } 
+    } catch (const exception& e) {
+        throw runtime_error("Invalid 'norm' value. It is outside the valid enum range.");
+    }
+    return norm;
+}
+
+/// @brief Get given non_standard_option option by user
+/// @param flagHandler 
+/// @return 
+NonStandardHandler getNonStandardOption(FlagHandler& flagHandler) {
+    NonStandardHandler nonStandardOption;
+    try {
+        nonStandardOption = static_cast<NonStandardHandler>(stoi(flagHandler.getFlagValue("non_standard_option")));
+        if (nonStandardOption < NonStandardHandler::AsStandard || nonStandardOption > NonStandardHandler::ConsiderGap) {
+            throw runtime_error("");
+        }
+    } catch (const exception& e) {
+        throw runtime_error("Invalid 'non_standard_option' value. It is outside the valid enum range.");
+    }
+    return nonStandardOption;
+}
+
+/// @brief Check flags     
+/// @param flagHandler 
+void checkFlags(FlagHandler& flagHandler)
+{
+    // Only one of mask_enabled, only_weights, or paired_MSA can be true at a time.
+    int trueCount = 0;
+    if (flagHandler.getFlagValue("mask_enabled") == "true") trueCount++;
+    if (flagHandler.getFlagValue("only_weights") == "true") trueCount++;
+    if (flagHandler.getFlagValue("paired_MSA") == "true") trueCount++;
+    if (flagHandler.getFlagValue("column_neff") == "true") trueCount++;
+    if (trueCount > 1)
+    {
+        throw runtime_error(
+            "Only one of 'mask_enabled', 'only_weights', 'column_neff', or 'paired_MSA' can be true at a time.");
+    }
+    if (flagHandler.getFlagValue("mask_enabled") == "true")
+    {
+        int maskCount;
+        try
+        {
+            maskCount = getIntValue(flagHandler, "mask_count");
+            if(maskCount == 0)
+            {
+                throw runtime_error("");
+            }
+        }
+        catch (const exception& e)
+        {
+            throw runtime_error("When 'mask_enabled' is true, 'mask_count' must be a positive number.");
+        }
+        
+        float maskPercent;
+        try
+        {
+            maskPercent = getFloatValue(flagHandler, "mask_percent");
+        }
+        catch (const exception& e)
+        {
+            throw runtime_error("When 'mask_enabled' is true, 'mask_percent' should be a number between 0 and 1");
+        }
+    }
+    if (flagHandler.getFlagValue("paired_MSA") == "true")
+    {
+        int firstMonomerLength;
+        try
+        {
+            firstMonomerLength = getIntValue(flagHandler, "first_monomer_length");
+            if(firstMonomerLength == 0)
+            {
+                throw runtime_error("");
+            }
+        }
+        catch (const exception& e)
+        {
+            throw runtime_error
+            ("When 'paired_MSA' is true, 'first_monomer_length' should be a positive number");
+        }
+        
+        if (!((flagHandler.getFlagValue("omit_query_gaps") == "true")
+        && (flagHandler.getFlagValue("gap_cutoff") == "1")
+        && (flagHandler.getFlagValue("pos_start") == "1")
+        && (flagHandler.getFlagValue("pos_end") == "inf")))
+        {
+            throw runtime_error
+            ("When paired_MSA is true, 'omit_query_gaps', 'pos_start', and 'pos_end' should remain at their default parameters.");
+        }
     }
 }
-/// @brief set desired depth based on given flag
+
+/// @brief Set MSA depth based on 'depth' flag
 /// @param sequences 
 /// @param flagHandler 
 void setDepth(vector<Sequence>& sequences, FlagHandler flagHandler)
 {
-    float threshold, gapCutoff;
-    int depth, startPos, endPos;
-    std::istringstream iss;
-    // set depth
-    string sdepth = flagHandler.getFlagValue("depth");
-    if(sdepth != "inf")
-    {
-        iss.str(sdepth);
-        if (!(iss >> depth) || !iss.eof() || depth <= 0)
+    int depth;
+
+    depth = getIntValue(flagHandler, "depth");
+
+    // consider the original depth if the given value is greater than the original depth
+    depth = min(depth, (int)sequences.size());
+    sequences.resize(depth);   
+}
+
+int getNonGapStartPosition(string firstAlignement, int startPos)
+{
+    if(startPos != 0){
+        int nonGapPosition = 0;
+        int i;
+        for (i = 0; i < firstAlignement.length(); i++)
         {
-            throw runtime_error("\'depth\' should be a positive integer.");
+            if (firstAlignement[i] != '-') {
+                nonGapPosition++;
+                if (nonGapPosition == startPos) break;
+            }
         }
-        depth = min(depth, (int)sequences.size()); // if given value is greater than original depth, consider the original depth
-        sequences.resize(depth);
+        return i;
     }
+    return 0;
+}
+
+int getNonGapEndPosition(string firstAlignement, int startPos, int length)
+{
+    int nonGapPosition = 0;
+    int i;
+
+    for (i = startPos; i < firstAlignement.length(); i++)
+    {
+        if (firstAlignement[i] != '-') {
+            nonGapPosition++;
+            if (nonGapPosition == length)   break;
+        }
+    }
+    return i;
+}
+
+/// @brief Set desired positiones to compute NEFF for based on given 'pos_start' and 'pos_end' flags
+/// @param sequences 
+/// @param flagHandler 
+void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
+{
+    int startPos;
+    int endPos;
+
+    string firstAlignment = sequences[0].sequence;
+    int lengthOfFirstAlignment = firstAlignment.length();
+
+    int coutOfGapPositions = count(firstAlignment.begin(), firstAlignment.end(), '-');
+    int lengthOfQuerySeq = lengthOfFirstAlignment - coutOfGapPositions;
+
+    // pos_start
+    startPos = getIntValue(flagHandler, "pos_start");
+
+    if (startPos >= lengthOfFirstAlignment)
+    {
+        throw runtime_error("'pos_start' should be less than length of query sequnce.");
+    }
+
+    // pos_end
+    endPos = getIntValue(flagHandler, "pos_end");
+
+    if (endPos <= startPos)
+    {
+        throw runtime_error("'pos_end' should be greater than 'pos_start'");
+    }
+    // condider the last position if given value is greater than length of query sequnce
+    endPos = min(endPos, lengthOfFirstAlignment);
+    
+    // is start and end positions are different from start and end positions of the quesry sequence
+    if(startPos != 1 || endPos != lengthOfQuerySeq)
+    {
+        int nonGapStartPos = startPos-1;
+        int nonGapEndPos = endPos-1;
+
+        // set non-gap start position and end position if there is any gaps in the first alignment        
+        if (coutOfGapPositions > 0)
+        {
+            nonGapStartPos = getNonGapStartPosition(firstAlignment, startPos);
+            if(endPos != lengthOfQuerySeq)
+            {
+                nonGapEndPos = getNonGapEndPosition(firstAlignment, nonGapStartPos, endPos-startPos+1);         
+            }
+        }
+        // extract the substrings based on nonGap positions of start and end  AND update sequences, accordingly
+        for (auto& sequence : sequences)
+        {
+            sequence.sequence = sequence.sequence.substr(nonGapStartPos , nonGapEndPos - nonGapStartPos + 1);
+        }
+    }
+}
+
+/// @brief compute column-wise NEFF
+/// @param sequences 
+/// @param sequence_weights
+/// @param norm 
+/// @return 
+std::vector<double> computeColumnwiseNEFF
+(const vector<vector<int>>& sequences, const vector<int>& sequence_weights, Normalization norm) {
+    int numSequences = sequences.size();
+    if (numSequences == 0) {
+        return {};
+    }
+    int sequenceLength = sequences[0].size();
+    
+    vector<double> columnNEFF(sequenceLength, 0.0);
+    
+    for (int col = 0; col < sequenceLength; ++col) {
+        double sumWeights = 0.0;
+        for (int row = 0; row < numSequences; ++row) {
+            // include sequence weight of the current seqeunce in the column NEFF, if column is not corresponding to a gap position
+            if (sequences[row][col] != 0)
+            {
+                sumWeights += 1./ sequence_weights[row];
+            }
+        }
+
+        switch(norm) // normalizing Nf
+        {
+            case Sqrt_L:
+                columnNEFF[col] = sumWeights/sqrt(sequenceLength);
+                break;
+            case L:
+                columnNEFF[col] = sumWeights/sequenceLength;
+                break;
+            default:
+                columnNEFF[col] = sumWeights;
+                break;
+        }
+    }
+    
+    return columnNEFF;
 }
 
 int main(int argc, char **argv)
@@ -345,31 +708,43 @@ int main(int argc, char **argv)
     vector<string> args(argv + 1, argv + argc);
     FlagHandler flagHandler(Flags);
 
+    string file, format;
+    float threshold, gapCutoff;
+    bool checkValidation, omitGapsInQuery, isSymmetric;
+    Alphabet alphabet;
+    NonStandardHandler nonStandardOption;
+    Normalization norm;
+    string standardLetters, nonStandardLetters;
+    vector<Sequence> sequences;
+    vector<Sequence> initial_sequences;
+    vector<vector<int>> sequences2num;
+    vector<int> sequence_weights;
+
     try
     { 
         flagHandler.processFlags(args);
         flagHandler.checkRequiredFlags();
+
+        checkFlags(flagHandler);
     
         // file
-        string file = flagHandler.getFlagValue("file");
-        string format = getFormat(file, "file");
-
+        file = flagHandler.getFlagValue("file");
+        format = getFormat(file, "file");
+        
         // alphabet
-        Alphabet alphabet = static_cast<Alphabet>(stoi(flagHandler.getFlagValue("alphabet")));
+        alphabet = getAlphabet(flagHandler);
 
         // check_validation
-        bool checkValidation = flagHandler.getFlagValue("check_validation") == "true";
+        checkValidation = flagHandler.getFlagValue("check_validation") == "true";
 
         // omit_query_gaps
-        bool omitGapsInQuery = flagHandler.getFlagValue("omit_query_gaps") == "true";
+        omitGapsInQuery = flagHandler.getFlagValue("omit_query_gaps") == "true";
 
         MSAReader* msa_reader;
         if (format == "a2m")
             msa_reader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "a3m")
             msa_reader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
-        else if (std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
-            msa_reader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "sto")
             msa_reader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "clustal")
@@ -378,46 +753,155 @@ int main(int argc, char **argv)
             msa_reader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery);
         else if (format == "pfam")
             msa_reader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
+        else if (find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
+            msa_reader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
         else
             throw runtime_error("Not supported MSA file format (" + format + ")");
 
-        vector<Sequence> sequences = msa_reader->read();
+        sequences = msa_reader->read();
 
         setDepth(sequences, flagHandler);
 
+        getPositions(sequences, flagHandler);
+
         // non_standard_option
-        NonStandardHandler nonStandardOption = static_cast<NonStandardHandler>(stoi(flagHandler.getFlagValue("non_standard_option")));
+        nonStandardOption = getNonStandardOption(flagHandler);
 
-        string standardLetters= getStandardLetters(alphabet);
-        string nonStandardLetters= getNonStandardLetters(alphabet);
+        standardLetters = getStandardLetters(alphabet);
+        nonStandardLetters = getNonStandardLetters(alphabet);
 
-        vector<vector<int>> sequences2num = processSequences
-                                            (flagHandler, sequences, omitGapsInQuery, standardLetters, nonStandardLetters, nonStandardOption);
+        // gap_cutoff
+        gapCutoff = getFloatValue(flagHandler, "gap_cutoff");
+
+        sequences2num = processSequences(
+            sequences, omitGapsInQuery, standardLetters, nonStandardLetters, nonStandardOption, gapCutoff);
 
         // norm
-        Normalization norm = static_cast<Normalization>(stoi(flagHandler.getFlagValue("norm")));
+        norm = getNormalization(flagHandler);
 
         // threshold
-        float threshold = stof(flagHandler.getFlagValue("threshold"));
-        if (threshold < 0 || threshold > 1)
-        {
-            throw runtime_error("Threshold should be between 0 and 1");
-        }
+        threshold = getFloatValue(flagHandler, "threshold");
         
         // is_symmetric
-        bool isSymmetric = flagHandler.getFlagValue("is_symmetric") == "true";
+        isSymmetric = flagHandler.getFlagValue("is_symmetric") == "true";
 
-        cout << sequences2num[0].size() << endl; //length
+        float neff = 0.0;
 
-        cout << sequences2num.size() << endl; //msa depth
+        if (flagHandler.getFlagValue("paired_MSA") == "true")
+        {
+            int splitPosition = getIntValue(flagHandler, "first_monomer_length");
+            MSASplitter splitter(splitPosition);
 
-        cout << computeNEFF(sequences2num,  threshold, norm, isSymmetric, standardLetters, nonStandardOption) << endl;
+            if (splitter.hasBlockForm(sequences2num))
+            {
+                auto [pairedMSA, msa1, msa2] = splitter.returnSets();
+
+                // pairedMSA
+                sequence_weights = computeWeights(pairedMSA, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = compute_neff(sequence_weights, norm, pairedMSA[0].size());
+                cout << "NEFF of Paired MSA:" << neff << endl;
+
+                // MSA 1
+                sequence_weights = computeWeights(msa1, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = compute_neff(sequence_weights, norm, msa1[0].size());
+                cout << "NEFF of first MSA:" << neff << endl;
+
+                // MSA 2
+                sequence_weights = computeWeights(msa2, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = compute_neff(sequence_weights, norm, msa2[0].size());
+                cout << "NEFF of second MSA:" << neff << endl;
+                return 0;
+            }
+            else
+            {
+                cerr << "MSA is not in the form of Paired MSA" << endl;
+                return 1;
+            }
+        }
+
+        int length = sequences2num[0].size();
+        
+        if(flagHandler.getFlagValue("mask_enabled") == "true")
+        {
+            vector<float> neff_values;
+            set<int> maskedIndices;
+            float highestNeff = 0.0;
+            
+            // Mask percent% of the sequences masked
+            float maskPercent = getFloatValue(flagHandler, "mask_percent");
+            int maskCount = getIntValue(flagHandler, "mask_count");
+
+            for (int i = 0; i < maskCount; ++i)
+            {
+                auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskPercent);
+
+                sequence_weights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = compute_neff(sequence_weights, norm, length);
+                neff_values.push_back(neff);
+                if(neff > highestNeff)
+                {
+                    highestNeff = neff;
+                    maskedIndices = currentmaskedIndices;
+                }
+            }
+
+            ofstream output_file("neff_values.txt");
+            // write NEFF values corresponding to each mask in a file
+            if (output_file.is_open())
+            {
+                output_file << "NEFF Values for each mask iteration:\n"; 
+                for (int mask_number = 0; mask_number < neff_values.size(); ++mask_number)
+                {
+                    output_file << "Mask " << mask_number + 1 << ": " << neff_values[mask_number] << "\n";
+                }
+                output_file.close();
+            }
+
+            // Write the masked MSA with highest NEFF in a file
+            MSAWriter* msaWriter = new MSAWriter_fasta(sequences, "MSA_with_highest_neff.fasta", maskedIndices);
+            msaWriter->write();
+            return 0;
+        }
+        
+        // cout << length << endl; //length
+        // cout << sequences2num.size() << endl; //msa depth
+
+        sequence_weights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+
+        if(flagHandler.getFlagValue("only_weights") == "true")
+        {
+            cout << "Sequence weights:" << endl;
+            for (int i=0; i < sequence_weights.size(); i++)
+            {
+                cout << 1./sequence_weights[i] << ' ';
+            }
+            cout << endl << flush;
+            return 0;
+        }
+
+        if(flagHandler.getFlagValue("column_neff") == "true")
+        {
+            vector<double> columnNEFF = computeColumnwiseNEFF(sequences2num, sequence_weights, norm);
+            cout << "Column-wise NEFF:" << endl;
+            for (int col=0; col < columnNEFF.size(); col++)
+            {
+                cout << columnNEFF[col] << ' ';
+            }
+            // Compute the mean of columnNEFF
+            double meanColumnNEFF = accumulate(columnNEFF.begin(), columnNEFF.end(), 0.0) / length;
+            cout << "\nAverage of Column-wise NEFF: " << meanColumnNEFF <<endl << flush;
+            return 0;
+        }
+
+        neff = compute_neff(sequence_weights, norm, length);
+        cout << "NEFF:" << neff << endl;
         
         return 0;
     }
     catch (const exception& e)
     {
         cerr << "Error: " << e.what() << endl;
+        cerr << docstr;
         return 1;
     }
 }
