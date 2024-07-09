@@ -22,14 +22,14 @@
  *   --depth=<value>                   Depth of MSA to be cosidered in computation (default: depth of given MSA)\n"
  *   --gap_cutoff=<value>              Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)\n"
  *   --pos_start=<value>               Start position of each sequence to be considered in neff (inclusive (default: 1))\n"
- *   --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: depth og given MSA))\n"
+ *   --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: length of MSA sequence))\n"
  *   --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
- *   --mask_enabled=<true/false>       If sequence masking is enabled for NEFF calculation (default: false)\n"
- *   --mask_percent=<value>            Percentage of rows to be masked in each masking iteration (default: 0)\n"
+ *   --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)\n"
+ *   --mask_percent=<value>            Percentage of sequences to be masked in each masking iteration (default: 0)\n"
  *   --mask_count=<value>              Frequency of masking (default: 0)\n"
- *   --paired_MSA=<true/false>         When MSA is in the form of PairedMSA and composed of 3 parts, compute NEFF for both paired MSA and individual monomer MSAs (default: false)\n"
+ *   --paired_MSA=<true/false>         Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts (default: false)\n"
  *   --first_monomer_length=<value>    Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
- *   --column_neff=<true/false>       Compute Column-wise NEFF (default: false)
+ *   --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
 
  * In symmetric version, threshold for considering a pair of sequence as homolog simply depends on length of alignment, and it would be equal for all sequences and we see a symmetry in similarities
  * While in asymmetric version, threshold depends on number of non-gap residues; therefore, cutoff tends to be different for sequences)
@@ -52,12 +52,12 @@ const char* docstr = ""
 "    --depth=<value>                  Depth of MSA to be cosidered in computation (default: depth of given MSA)\n"
 "    --gap_cutoff=<value>             Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)\n"
 "    --pos_start=<value>              Start position of each sequence to be considered in neff (inclusive (default: 1))\n"
-"    --pos_end=<value>                Last position of each sequence to be considered in neff (inclusive (default: depth og given MSA))\n"
+"    --pos_end=<value>                Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))\n"
 "    --only_weights=<true/false>      Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
-"    --mask_enabled=<true/false>      If sequence masking is enabled for NEFF calculation (default: false)\n"
-"    --mask_percent=<value>           Percentage of rows to be masked in each masking iteration (default: 0)\n"
+"    --mask_enabled=<true/false>      Enable random sequence masking for NEFF calculation (default: false)\n"
+"    --mask_percent=<value>           Percentage of sequences to be masked in each masking iteration (default: 0)\n"
 "    --mask_count=<value>             Frequency of masking (default: 0)\n"
-"    --paired_MSA=<true/false>        When MSA is in the form of PairedMSA and composed of 3 parts, compute NEFF for both paired MSA and individual monomer MSAs (default: false)\n"
+"    --paired_MSA=<true/false>        Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts (default: false)\n"
 "    --first_monomer_length=<value>   Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
 "    --column_neff=<true/false>       Compute Column-wise NEFF (default: false)"
 ;
@@ -87,25 +87,25 @@ using namespace std;
 
 unordered_map<string, FlagInfo> Flags =
 {
-    {"file", {true, ""}},                  // MSA file path
-    {"alphabet", {false, "0"}},            // Alphabet of MSA
-    {"check_validation", {false, "false"}},// Whether to perform validation on sequences to include only alphabet letters
-    {"threshold", {false, "0.8"}},         // Threshold value for sequence similarity
-    {"norm", {false, "0"}},                // NEFF normalization options
-    {"omit_query_gaps", {false, "true"}},  // Whether to omit gap positions of query sequence from all sequences
-    {"is_symmetric", {false, "true"}},     // Whether to consider gaps in similarity cutoff computation (asymmetric) or not (symmetric)
-    {"non_standard_option", {false, "0"}}, // Handling non-standard letters in the given alphabet of MSA
-    {"depth", {false, "inf"}},             // Depth of MSA to be cosidered in computation
-    {"gap_cutoff", {false, "1"}},          // Cutoff value for considering a position as gappy and removing that
-    {"pos_start", {false, "1"}},           // Start position of each sequence to be considered in NEFF (inclusive)
-    {"pos_end", {false, "inf"}},           // Last position of each sequence to be considered in NEFF (inclusive)
-    {"only_weights",{false, "false"}},     // Whether to return sequence weights instead of final NEFF
-    {"mask_enabled", {false, "false"}},    // If sequence masking is enabled for NEFF calculation
-    {"mask_percent", {false, "0"}},        // Percentage of rows to be masked in each masking iteration
-    {"mask_count", {false, "0"}},          // Frequency of masking
-    {"paired_MSA",{false, "false"}},       // When MSA is in the form of PairedMSA and composed of 3 parts, compute NEFF for both paired MSA and individual monomer MSAs.
-    {"first_monomer_length",{false, "0"}}, // Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSAs.
-    {"column_neff",{false, "false"}}       // Compute Column-wise NEFF
+    {"file", {true, ""}},                   // MSA file path
+    {"alphabet", {false, "0"}},             // Alphabet of MSA
+    {"check_validation", {false, "false"}}, // Perform validation on sequences to include only alphabet letters
+    {"threshold", {false, "0.8"}},          // Threshold value for sequence similarity
+    {"norm", {false, "0"}},                 // NEFF normalization options
+    {"omit_query_gaps", {false, "true"}},   // Omit gap positions of query sequence from all sequences
+    {"is_symmetric", {false, "true"}},      // Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric)
+    {"non_standard_option", {false, "0"}},  // Handling non-standard letters in the given alphabet of MSA
+    {"depth", {false, "inf"}},              // Depth of MSA to be cosidered in computation
+    {"gap_cutoff", {false, "1"}},           // Cutoff value for considering a position as gappy and removing that
+    {"pos_start", {false, "1"}},            // Start position of each sequence to be considered in NEFF (inclusive)
+    {"pos_end", {false, "inf"}},            // Last position of each sequence to be considered in NEFF (inclusive)
+    {"only_weights", {false, "false"}},     // Return sequence weights instead of final NEFF
+    {"mask_enabled", {false, "false"}},     // Enable random  sequence masking for NEFF calculation
+    {"mask_percent", {false, "0"}},         // Percentage of sequences to be masked in each masking iteration
+    {"mask_count", {false, "0"}},           // Frequency of masking
+    {"paired_MSA", {false, "false"}},       // Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts
+    {"first_monomer_length", {false, "0"}}, // Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSAs.
+    {"column_neff", {false, "false"}}       // Compute Column-wise NEFF
  };
 
 /// @brief Map char residues to digit based on given 'nonStandardOption'
@@ -193,10 +193,10 @@ void removeGappyPositions(vector<vector<int>>& sequences, float gapCutoff)
     int i, j;
 
     // find gappy positions
-  	for(i = length-1; i >= 0; i--)
+    for(i = length-1; i >= 0; i--)
     {
-  		int gapCount = 0;
-  		for(j = 0; j < depth; j++)
+        int gapCount = 0;
+        for(j = 0; j < depth; j++)
         {
             if(sequences[j][i] == 0)
             {
@@ -205,8 +205,8 @@ void removeGappyPositions(vector<vector<int>>& sequences, float gapCutoff)
         }
         if(gapCount >= gapCutoffNo)
         {
-  	        removingPositions.push_back(i);
-  		}
+            removingPositions.push_back(i);
+        }
     }
     //remove gappy positions from all sequences
     for (auto& sequence : sequences)
@@ -863,8 +863,8 @@ int main(int argc, char **argv)
             return 0;
         }
         
-        // cout << length << endl; //length
-        // cout << sequences2num.size() << endl; //msa depth
+        cout << "MSA sequnce Length: "<< length << endl;
+        cout << "MSA depth: " << sequences2num.size() << endl;
 
         sequence_weights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
 
@@ -894,7 +894,7 @@ int main(int argc, char **argv)
         }
 
         neff = compute_neff(sequence_weights, norm, length);
-        cout << "NEFF:" << neff << endl;
+        cout << "NEFF: " << neff << endl;
         
         return 0;
     }
