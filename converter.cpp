@@ -71,9 +71,11 @@ unordered_map<string, FlagInfo> Flags =
     {"check_validation", {false, "true"}},  // whether to perform validation on sequences to include only alphabet letters
 };
 
-/**
- * @brief Convert the format of the input MSA file to the format of the output MSA file.
- */
+/// @brief Convert the format of the input MSA file to the format of the output MSA file.
+/// @param inFile 
+/// @param outFile 
+/// @param checkValidation 
+/// @param alphabet 
 void convert(string inFile, string outFile, bool checkValidation, Alphabet alphabet)
 {
     string inFormat = getFormat(inFile, "in_file");

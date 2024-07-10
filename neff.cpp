@@ -131,7 +131,6 @@ unordered_map<string, FlagInfo> Flags =
 /// @param nonStandardLetters 
 /// @param nonStandardOption 
 /// @return 
-// int char2num(char c, string standardLetters, string nonStandardLetters, NonStandardHandler nonStandardOption)
 int char2num(char c, const string& standardLetters, const string& nonStandardLetters, NonStandardHandler nonStandardOption)
 {
     int position;
@@ -282,7 +281,7 @@ vector<vector<int>> processSequences(vector<Sequence> sequences, bool omitGapsIn
     return sequences2num;
 }
 
-/// @brief Compute sequence weights base on given options
+/// @brief Compute sequence weights based on given options
 /// @param sequences 
 /// @param threshold 
 /// @param norm 
@@ -396,11 +395,11 @@ vector<int> computeWeights(vector<vector<int>> sequences, float threshold, bool 
 
 /// @brief Randomly mask sequences in the MSA (except the first sequence)
 /// @param sequences 
-/// @param percent 
-/// @return 
-tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequences, double percent) {
+/// @param maskPercent 
+/// @return unmasked sequences, masked indices
+tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequences, double maskPercent) {
     int totalSequences = sequences.size();
-    int numToMask = static_cast<int>(percent * totalSequences);
+    int numToMask = static_cast<int>(maskPercent * totalSequences);
 
     // Create a vector of indices, starting from 1 to exclude the first sequence
     vector<int> indices(totalSequences - 1);
@@ -590,6 +589,10 @@ void setDepth(vector<Sequence>& sequences, FlagHandler flagHandler)
     sequences.resize(depth);   
 }
 
+/// @brief Get the index of the given startPos in the original first sequence of MSA despite of gaps in the MSA
+/// @param firstAlignement 
+/// @param startPos 
+/// @return startPos + number of gaps until that position for the first sequence in the MSA
 int getNonGapStartPosition(string firstAlignement, int startPos)
 {
     if(startPos != 0){
@@ -607,6 +610,11 @@ int getNonGapStartPosition(string firstAlignement, int startPos)
     return 0;
 }
 
+/// @brief Get the end index in the original sequence after a 'length' number of non-gap positions.
+/// @param firstAlignement 
+/// @param startPos 
+/// @param length 
+/// @return The end index in the MSA sequence including gaps.
 int getNonGapEndPosition(string firstAlignement, int startPos, int length)
 {
     int nonGapPosition = 0;
@@ -677,7 +685,7 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
     }
 }
 
-/// @brief compute column-wise NEFF
+/// @brief Compute column-wise NEFF
 /// @param sequences 
 /// @param sequenceWeights
 /// @param norm 
@@ -828,12 +836,12 @@ int main(int argc, char **argv)
                 // MSA 1
                 sequenceWeights = computeWeights(msa1, threshold, isSymmetric, standardLetters, nonStandardOption);
                 neff = computeNeff(sequenceWeights, norm, msa1[0].size());
-                cout << "NEFF of first MSA:" << neff << endl;
+                cout << "NEFF of first monomer:" << neff << endl;
 
                 // MSA 2
                 sequenceWeights = computeWeights(msa2, threshold, isSymmetric, standardLetters, nonStandardOption);
                 neff = computeNeff(sequenceWeights, norm, msa2[0].size());
-                cout << "NEFF of second MSA:" << neff << endl;
+                cout << "NEFF of second monomer:" << neff << endl;
                 return 0;
             }
             else
