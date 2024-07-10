@@ -27,7 +27,7 @@
  *   --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)\n"
  *   --mask_percent=<value>            Percentage of sequences to be masked in each masking iteration (default: 0)\n"
  *   --mask_count=<value>              Frequency of masking (default: 0)\n"
- *   --paired_MSA=<true/false>         Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts (default: false)\n"
+ *   --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)\n"
  *   --first_monomer_length=<value>    Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
  *   --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
 
@@ -61,7 +61,7 @@ Options:
     --mask_enabled=<true/false>      Enable random sequence masking for NEFF calculation (default: false)
     --mask_percent=<value>           Percentage of sequences to be masked in each masking iteration (default: 0)
     --mask_count=<value>             Frequency of masking (default: 0)
-    --paired_MSA=<true/false>        Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts (default: false)
+    --multimer_MSA=<true/false>      Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)
     --first_monomer_length=<value>   Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)
     --column_neff=<true/false>       Compute Column-wise NEFF (default: false)
 
@@ -72,8 +72,8 @@ Options:
     * Do random masking for 20% of sequences in the MSA for 10 times and compute NEFF:
         ./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_percent=0.2
 
-    * Compute NEFF for paired_MSA and individual MSAs of the goven MSA (example.sto is in the form of paired MSA, and length of first monomer is 20)
-        ./neff --file=example.sto --paired_MSA=true --first_monomer_length=20
+    * Compute NEFF for paired MSA and individual MSAs of the goven MSA (example.sto is in the form of multimer MSA, and length of first monomer is 20)
+        ./neff --file=example.sto --multimer_MSA=true --first_monomer_length=20
 
     * compute column-wise NEFF
         ./neff --file=example.aln --column_neff=true
@@ -120,7 +120,7 @@ unordered_map<string, FlagInfo> Flags =
     {"mask_enabled", {false, "false"}},     // Enable random  sequence masking for NEFF calculation
     {"mask_percent", {false, "0"}},         // Percentage of sequences to be masked in each masking iteration
     {"mask_count", {false, "0"}},           // Frequency of masking
-    {"paired_MSA", {false, "false"}},       // Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts
+    {"multimer_MSA", {false, "false"}},     // Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts
     {"first_monomer_length", {false, "0"}}, // Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSAs.
     {"column_neff", {false, "false"}}       // Compute Column-wise NEFF
  };
@@ -510,16 +510,16 @@ NonStandardHandler getNonStandardOption(FlagHandler& flagHandler) {
 /// @param flagHandler 
 void checkFlags(FlagHandler& flagHandler)
 {
-    // Only one of mask_enabled, only_weights, or paired_MSA can be true at a time.
+    // Only one of mask_enabled, only_weights, or multimer_MSA can be true at a time.
     int trueCount = 0;
     if (flagHandler.getFlagValue("mask_enabled") == "true") trueCount++;
     if (flagHandler.getFlagValue("only_weights") == "true") trueCount++;
-    if (flagHandler.getFlagValue("paired_MSA") == "true") trueCount++;
+    if (flagHandler.getFlagValue("multimer_MSA") == "true") trueCount++;
     if (flagHandler.getFlagValue("column_neff") == "true") trueCount++;
     if (trueCount > 1)
     {
         throw runtime_error(
-            "Only one of 'mask_enabled', 'only_weights', 'column_neff', or 'paired_MSA' can be true at a time.");
+            "Only one of 'mask_enabled', 'only_weights', 'column_neff', or 'multimer_MSA' can be true at a time.");
     }
     if (flagHandler.getFlagValue("mask_enabled") == "true")
     {
@@ -547,7 +547,7 @@ void checkFlags(FlagHandler& flagHandler)
             throw runtime_error("When 'mask_enabled' is true, 'mask_percent' should be a number between 0 and 1");
         }
     }
-    if (flagHandler.getFlagValue("paired_MSA") == "true")
+    if (flagHandler.getFlagValue("multimer_MSA") == "true")
     {
         int firstMonomerLength;
         try
@@ -561,7 +561,7 @@ void checkFlags(FlagHandler& flagHandler)
         catch (const exception& e)
         {
             throw runtime_error
-            ("When 'paired_MSA' is true, 'first_monomer_length' should be a positive number");
+            ("When 'multimer_MSA' is true, 'first_monomer_length' should be a positive number");
         }
         
         if (!((flagHandler.getFlagValue("omit_query_gaps") == "true")
@@ -570,7 +570,7 @@ void checkFlags(FlagHandler& flagHandler)
         && (flagHandler.getFlagValue("pos_end") == "inf")))
         {
             throw runtime_error
-            ("When paired_MSA is true, 'omit_query_gaps', 'pos_start', and 'pos_end' should remain at their default parameters.");
+            ("When multimer_MSA is true, 'omit_query_gaps', 'pos_start', and 'pos_end' should remain at their default parameters.");
         }
     }
 }
@@ -819,7 +819,7 @@ int main(int argc, char **argv)
 
         float neff = 0.0;
 
-        if (flagHandler.getFlagValue("paired_MSA") == "true")
+        if (flagHandler.getFlagValue("multimer_MSA") == "true")
         {
             int splitPosition = getIntValue(flagHandler, "first_monomer_length");
             MSASplitter splitter(splitPosition);
@@ -846,7 +846,7 @@ int main(int argc, char **argv)
             }
             else
             {
-                cerr << "MSA is not in the form of Paired MSA" << endl;
+                cerr << "MSA is not in the form of multimer MSA" << endl;
                 return 1;
             }
         }
