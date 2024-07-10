@@ -1,7 +1,15 @@
 # NEFFy: NEFF Calculator and MSA File Converter
 This tool provides functionality to compute the Number of Effective sequences (NEFF) and convert Multiple Sequence Alignment (MSA) files between different formats.
 
-### Project Components
+## Table of Contents
+- [Project Components](#project-components)
+- [Getting Started](#getting-started)
+- [NEFF Computation](#neff-computation)
+- [MSA File Conversion](#msa-file-conversion)
+- [Supported File Formats](#supported-file-formats)
+- [Error Handling](#error-handling)
+
+## Project Components
 This project consists of the following components:
 * __FlagHandler__: Handles command-line flags. <br>
 * __MSAReader__: Reads an MSA file and processes the sequences in a specific format. <br>
@@ -9,14 +17,15 @@ This project consists of the following components:
 * __MSASplitter__: Splits MSA to paired_MSA and individual MSAs. <br>
 * __Common__: Additional utility functions and common definitions. <br>
 
-### Getting Started:
+## Getting Started
 Download the source code and compile it using a C++ compiler that is compatible with C++17 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. You can navigate to the Makefile directory and easily enter the following command in the terminal:<br>
+
 ```
 make
 ```
 Once the compilation is complete, you can run the program via the command line.
 
-## 1. NEFF Computation 
+## NEFF Computation
 
 NEFF computation determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It takes into account sequence similarities and provides a measure of sequence diversity.  <br>
 The code takes command-line flags for input and subsequently computes the score for an MSA file.
@@ -34,12 +43,12 @@ The code accepts the following command-line flags:
 | `--threshold=<value>`	| Threshold value of considering two sequences similar (between 0 and 1) | No | 0.8 | `--threshold=0.7` |
 | `--norm=<value>` | Normalization option for NEFF <br /> __0__: Normalize by the square root of sequence length <br /> __1__: Normalize by the sequence length <br /> __2__: No Normalization | No | 0 | `--norm=2` |
 | `--omit_query_gaps=[true/false]` | Omit gap positions of query sequence from entire sequences for NEFF computation | No | true | `--omit_query_gaps=true`	|
-| `--is_symmetric =true/false]` | Consider gaps in number of differences when computing sequence similratity cutoff (asymmetric) or not (symmetric)| No | true | `--is_symmetric=false`	|
+| `--is_symmetric =true/false]` | Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)| No | true | `--is_symmetric=false`	|
 | `--non_standard_option=<value>` | Options for handling non-standard letters of the specified alphabet <br /> __0__: Treat them the same as standard letters <br /> __1__: Consider them as gaps when computing similarity cutoff of sequences (only used in asymmetryc version) <br /> __2__: Consider them as gaps in computing similarity cutoff and checking position of match/mismatch | No | 0 | `--non_standard_option=1` |
-| `--depth=<value>` | Depth of MSA to be cosidered in computation (strating from the first sequence) | No | inf (consider all sequences) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
+| `--depth=<value>` | Depth of MSA to be considered in computation (starting from the first sequence) | No | inf (consider all sequences) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
 | `--gap_cutoff=<value>`| Threshold for considering a position as gappy and removing that (between 0 and 1) | No | 1 (no gappy position) | `--gap_cutoff=0.7` |
-| `--pos_start=<value>`| Start position of each sequence to be considered in neff (inclusive) | No | 1 (the first position) | `--pos_start=10` |
-| `--pos_end=<value>`| Last position of each sequence to be considered in neff (inclusive) | No | inf (consider all sequence) | `--pos_end=50` (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)|
+| `--pos_start=<value>`| Start position of each sequence to be considered in NEFF (inclusive) | No | 1 (the first position) | `--pos_start=10` |
+| `--pos_end=<value>`| Last position of each sequence to be considered in NEFF (inclusive) | No | inf (consider all sequence) | `--pos_end=50` (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)|
 | `--only_weights=[true/false]` | Return only sequence weights, rather than the final NEFF | No | false | `--only_weights=true`    |
 | `--mask_enabled=[true/false]` | Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF | No | false | `--mask_enabled=true`    |
 | `--mask_percent=<value>` | Percentage of sequences to be masked in each masking iteration | when _mask_enabled_=true | 0 | `--mask_percent=0.4`    |
@@ -50,9 +59,9 @@ The code accepts the following command-line flags:
 
 #### Example
     ./neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
-  As output, it will print the final MSA lenght, depth and Neff to the console, based on the given options.
+  As output, it will print the final MSA length, depth and Neff to the console, based on the given options.
 
-## 2. MSA File Conversion
+## MSA File Conversion
 The MSA file conversion allows you to convert MSA files between different supported formats. <br />
 All you need is specify the input and output files with their formats, and the tool will perform the conversion accordingly.
 
@@ -75,160 +84,20 @@ Suppose you have an MSA file named "input.fasta" that you want to convert to the
 
     ./converter --in_file=input.fasta --out_file=output.a2m
 
-##  Supported File Formats   
+## Supported File Formats
 - __A2M__ (aligned FASTA-like format)
 - __A3M__ (compressed aligned FASTA-like format with lowercase letters for insertions)
 - __FASTA__, __AFA__, __FAS__, __FST__, __FSA__ (FASTA format)
 - __STO__ (Stockholm format)
 - __CLUSTAL__ (CLUSTAL format)
 - __ALN__ (ALN format)
-- __PFAM__ (format mostly used for neucleotides)
+- __PFAM__ (format mostly used for nucleotides)
 
-Below, you will find a brief explanation of each format, along with an illustrative alignment example for each one.
-
-### A2M
-Each sequence is represented by two lines:
-- The first line starts with > followed by the sequence identifier and some other remarks.
-- The second line contains the aligned residues; Alignments are shown with:
-    - Inserts as lower case characters,
-    - Matches as upper case characters,
-    - Deletions as ' - ', and
-    - Gaps aligned to inserts as ' . '
-
-__Example__
-```
->T1152
-MY...TVKPGDT......MWKIAV...K..YQI...GI.....SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
->MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1
-TY...D-KDGYR......HYRTRV...Y..YTL...RR.....NEDNALIA-REVFSQVYKKEAL-CPIA--------
->ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1
-G-...EREKGR-......--HSKS...R..QEK...GF.....KEKK---P-TKKPSATNKPVNTAKPAA--------
->tr|A0A235B7N0|A0A235B7N0_9BACL Uncharacterized protein OS=Paludifilum halophilum OX=1642702
-EAsavDRITSDSilenfvQWIFSE...E..KEVeekHT.....EESVQPTPAVKHSPDSSGSSKSSSSD---------
->tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
-SA...KVKRGRT......FIPLRSateSfgYDV...IWkenenAVYLKSNPTIKPKDSTQ------------------
- ```
-### A3M
-It is almost like A2M format. The only difference is that Gaps aligned to inserts ('.') can be excluded, and one could view the A3M format as a more method method for representing an MSA compared to FASTA or A2M.
-
-__Example__
-```
->T1152
-MYTVKPGDTMWKIAVKYQIGISEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
->MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1
-TYD-KDGYRHYRTRVYYTLRRNEDNALIA-REVFSQVYKKEAL-CPIA--------
->ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1
-G-EREKGR---HSKSRQEKGFKEKK---P-TKKPSATNKPVNTAKPAA--------
->tr|A0A235B7N0|A0A235B7N0_9BACL Uncharacterized protein OS=Paludifilum halophilum OX=1642702
-EAsavDRITSDSilenfvQWIFSEEKEVeekHTEESVQPTPAVKHSPDSSGSSKSSSSD---------
->tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
-SAKVKRGRTFIPLRSateSfgYDVIWkenenAVYLKSNPTIKPKDSTQ------------------
-```
-
-### Fasta
-Sequences are separated by '>'.  The remaining lines before next '>' contain the aligned sequence, which:
-- lower and upper case are equivalent;
-- ' . ' and ' - ' are equivalent.
-Aligned => Sequences have the same length.
-
-__Example__
-```
->T1152
-MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
->MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1
-TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
->ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1
-G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
->tr|A0A235B7N0|A0A235B7N0_9BACL Uncharacterized protein OS=Paludifilum halophilum OX=1642702
-EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
->tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
-SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
-```
-
-### STO (Stockholm)
-It consists of:
-- A header line containing format and version information.
-- Mark-up lines that start with "#=GF," "#=GC," "#=GS," or "#=GR."
-- Alignment lines featuring the sequence name and its corresponding aligned sequence. Within these lines:
-    - Inserts are represented as lowercase characters,
-    - Matches are indicated by uppercase characters, and
-    - Gaps are denoted by either ' . ' or ' - '.
-  
-Additionally, the "//" line indicates the end of the alignment.
-Sequences in this format are divided into segments of 200 characters.
-
-__Example__
-```
-# STOCKHOLM 1.0
-#=GF ID T1152
-#=GS T1152                                                       
-#=GS MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 
-#=GS ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   
-#=GS tr|A0A235B7N0|A0A235B7N0_9BACL                               Uncharacterized protein OS=Paludifilum halophilum OX=1642702
-#=GS tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                               Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
-
-T1152                                                       MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
-MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
-ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
-tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
-tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
-//
-```
-### ALN
-It only consists of aligned sequences, each on a separate line, and the initial sequence is gap-free.
-
-__Example__
-```
-MYTVKPGDTMWKIAVKYQIGISEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
-TYD-KDGYRHYRTRVYYTLRRNEDNALIA-REVFSQVYKKEAL-CPIA--------
-G-EREKGR---HSKSRQEKGFKEKK---P-TKKPSATNKPVNTAKPAA--------
-EADRITSDSQWIFSEEKEVHTEESVQPTPAVKHSPDSSGSSKSSSSD---------
-SAKVKRGRTFIPLRSSYDVIWAVYLKSNPTIKPKDSTQ------------------
-```
-
-### CLUSTAL
-Clustal is commonly associated with the Clustal series of programs for sequence alignment. The Clustal MSA format typically begins with a header line that provides information about the alignment.
-
-Following the header, Clustal format represents each sequence as a pair of columns in a line.
-- The first column contains the sequence name or identifier,
-- The second line contains the aligned sequence, which:
-    - Gaps are shown as '-'
-    - Matches are shown as uppercase letters.
- 
-Sequences in this format are divided into segments of 60 characters.
-
-__Example__
-```
-Generated CLUSTAL format
-
-T1152                                                       MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIY
-MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVY
-ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATN
-tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSS
-tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ
-T1152                                                       PGQKINIPNILEHHHHHH
-MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 KKEAL-CPIA--------
-ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   KPVNTAKPAA--------
-tr|A0A235B7N0|A0A235B7N0_9BACL                              GSSKSSSSD---------
-tr|A0A1E5LFN5|A0A1E5LFN5_9BACI
-```
-
-### PFAM
-It's similar to Clustal in the sense that it separates sequence identifiers and sequences with a tab, but unlike Clustal, the sequences are not uniformly indented. Additionally, it doesn't split sequences into 60-character segments, as Clustal does. Also, it does not contain header line.
-
-__Example__
-```
-T1152	MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
-MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1	TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
-ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1	G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
-tr|A0A235B7N0|A0A235B7N0_9BACL	EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
-tr|A0A1E5LFN5|A0A1E5LFN5_9BACI	SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
-```
+In the [documentation](https://maryam-haghani.github.io/Neffy/msa_formats.html), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
 
 ## Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
 Please refer to the error message for troubleshooting or make necessary corrections to the input.
 
 ----------------
-For further assistance or inquiries, please consult the documentation or contact the developer.
-
+For further assistance, please see the [documentation](https://maryam-haghani.github.io/Neffy/).
