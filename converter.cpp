@@ -4,14 +4,13 @@
  *
  * This program converts the format of an input Multiple Sequence Alignment (MSA) file
  * to the format of an output MSA file. It supports the following formats:
- *      -A2M (FASTA-like format with additional annotations)
- *      -A3M (Extended A2M format)
- *      -FASTA (Standard FASTA format)
- *      -STO (Stockholm format)
- *      -Clustal (CLUSTAL format)
- *      -ALN (ALN format)
- *      -AFA
- *      -PFAM
+ *      -a2m (fasta-like format with additional annotations)
+ *      -a3m (extended A2M format)
+ *      -fasta (including subformats: afa, fas, fst, fsa)
+ *      -sto (Stockholm format)
+ *      -clustal
+ *      -aln
+ *      -pfam
 
  *
  * Usage:
@@ -27,16 +26,31 @@
  * file is saved in the specified output file path.
  */
 
-const char* docstr = ""
-"\n"
-"./converter --in_file=<input_file> --out_file=<output_file> [options]\n"
-"Options:\n"
-"   --in_file=<input_file>            Path to the input MSA file\n"
-"   --out_file=<output_file>          Path to the output MSA file\n"
-"   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
-"   --check_validation=<true/false>   Perform validation on sequences (default: true)\n"
-"Supported formats: A2M, A3M, FASTA, STO, CLUSTAL, ALN, AFA, PFAM\n"
-;
+const char* docstr = R"(
+
+This program converts the format of an input Multiple Sequence Alignment (MSA) file to the format of an output MSA file.
+It supports the following formats:
+    - a2m
+    - a3m
+    - fasta (including subformats: afa, fas, fst, fsa)
+    - sto
+    - clustal
+    - aln
+    - pfam
+
+./converter --in_file=<input_file> --out_file=<output_file> [options]
+
+Options:
+   --in_file=<input_file>            Path to the input MSA file
+   --out_file=<output_file>          Path to the output MSA file
+   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
+   --check_validation=<true/false>   Perform validation on sequences (default: true)
+
+Examples:
+    ./converter --in_file=example.a3m --out_file=output.sto --alphabet=1
+    ./converter --in_file=example.fasta --out_file=output.clustal --check_validation=false
+    ./converter --in_file=example.aln --out_file=output.pfam --alphabet=2
+)";
 
 #include <iostream>
 #include <vector>
@@ -65,25 +79,25 @@ void convert(string inFile, string outFile, bool checkValidation, Alphabet alpha
     string inFormat = getFormat(inFile, "in_file");
     string outFormat = getFormat(outFile, "out_file");
 
-    MSAReader* msa_reader;
+    MSAReader* msaReader;
     if (inFormat == "a2m")
-        msa_reader = new MSAReader_a2m(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_a2m(inFile, alphabet, checkValidation);
     else if(inFormat == "a3m")
-        msa_reader = new MSAReader_a3m(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_a3m(inFile, alphabet, checkValidation);
     else if(std::find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), inFormat) != FASTA_FORMATS.end())
-        msa_reader = new MSAReader_fasta(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_fasta(inFile, alphabet, checkValidation);
     else if(inFormat == "sto")
-        msa_reader = new MSAReader_sto(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_sto(inFile, alphabet, checkValidation);
     else if(inFormat == "clustal")
-        msa_reader = new MSAReader_clustal(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_clustal(inFile, alphabet, checkValidation);
     else if (inFormat == "aln")
-        msa_reader = new MSAReader_aln(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_aln(inFile, alphabet, checkValidation);
     else if (inFormat == "pfam")
-        msa_reader = new MSAReader_pfam(inFile, alphabet, checkValidation);
+        msaReader = new MSAReader_pfam(inFile, alphabet, checkValidation);
     else
         throw runtime_error("Not supported input MSA file format (" + inFormat + ")");
 
-    vector<Sequence> sequences = msa_reader->read();
+    vector<Sequence> sequences = msaReader->read();
 
     MSAWriter* msaWriter;
     if (outFormat == "a2m")
@@ -131,6 +145,14 @@ int main(int argc, char **argv)
     vector<string> args(argv + 1, argv + argc);
     FlagHandler flagHandler(Flags);
     Alphabet alphabet;
+
+    // Check for help flag
+    for (const auto& arg : args) {
+        if (arg == "-h" || arg == "--help") {
+            cout << docstr << endl;
+            return 0;
+        }
+    }
 
     try
     { 

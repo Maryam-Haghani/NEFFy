@@ -3,7 +3,7 @@
  * @brief This file contains the declaration of the MSAReader class and its derived classes.
  *
  * The MSAReader class provides functionality to read multiple sequence alignments (MSA) from different file formats.
- * It supports reading MSAs in a2m, a3m, stockholm, fasta, CLUSTAL, and aln formats.
+ * It supports reading MSAs in a2m, a3m, stockholm, fasta, clustal, pfam and aln formats.
  * The MSAReader class is an abstract base class, and the derived classes provide specific implementations for each format.
  */
 

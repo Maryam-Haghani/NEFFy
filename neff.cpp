@@ -37,30 +37,47 @@
  * NEFF is computed based on the given options.
  */
 
-const char* docstr = ""
-"\n"
-"./neff --file=<input_file> [options]\n"
-"Options:\n"
-"    --file=<input_file>              Path to the input MSA file (required)\n"
-"    --alphabet=<value>               Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
-"    --check_validation=<true/false>  Perform validation on sequences (default: false)\n"
-"    --threshold=<value>              Threshold value of considering two sequences similar (default: 0.8)\n"
-"    --norm=<value>                   NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)\n"
-"    --omit_query_gaps=<true/false>   Omit gap positions of query sequence from all sequences for NEFF computation (default: true)\n"
-"    --is_symmetric=<true/false>      Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)\n"
-"    --non_standard_option=<value>    Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)\n"
-"    --depth=<value>                  Depth of MSA to be cosidered in computation (default: depth of given MSA)\n"
-"    --gap_cutoff=<value>             Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)\n"
-"    --pos_start=<value>              Start position of each sequence to be considered in neff (inclusive (default: 1))\n"
-"    --pos_end=<value>                Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))\n"
-"    --only_weights=<true/false>      Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
-"    --mask_enabled=<true/false>      Enable random sequence masking for NEFF calculation (default: false)\n"
-"    --mask_percent=<value>           Percentage of sequences to be masked in each masking iteration (default: 0)\n"
-"    --mask_count=<value>             Frequency of masking (default: 0)\n"
-"    --paired_MSA=<true/false>        Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts (default: false)\n"
-"    --first_monomer_length=<value>   Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
-"    --column_neff=<true/false>       Compute Column-wise NEFF (default: false)"
-;
+const char* docstr = R"(
+
+./neff --file=<input_file> [options]
+
+This program computes the Number of Effective Sequences (NEFF) for a multiple sequence alignment (MSA) file.
+NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA.
+
+Options:
+    --file=<input_file>              Path to the input MSA file (required)
+    --alphabet=<value>               Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
+    --check_validation=<true/false>  Perform validation on sequences (default: false)
+    --threshold=<value>              Threshold value of considering two sequences similar (default: 0.8)
+    --norm=<value>                   NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)
+    --omit_query_gaps=<true/false>   Omit gap positions of query sequence from all sequences for NEFF computation (default: true)
+    --is_symmetric=<true/false>      Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)
+    --non_standard_option=<value>    Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)
+    --depth=<value>                  Depth of MSA to be cosidered in computation (default: depth of given MSA)
+    --gap_cutoff=<value>             Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)
+    --pos_start=<value>              Start position of each sequence to be considered in neff (inclusive (default: 1))
+    --pos_end=<value>                Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))
+    --only_weights=<true/false>      Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)
+    --mask_enabled=<true/false>      Enable random sequence masking for NEFF calculation (default: false)
+    --mask_percent=<value>           Percentage of sequences to be masked in each masking iteration (default: 0)
+    --mask_count=<value>             Frequency of masking (default: 0)
+    --paired_MSA=<true/false>        Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of PairedMSA and composed of 3 parts (default: false)
+    --first_monomer_length=<value>   Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)
+    --column_neff=<true/false>       Compute Column-wise NEFF (default: false)
+
+ Examples:
+    * Compute NEFF for RNA MSA:
+        ./neff --file=example.a3m --threshold=0.7 --norm=2 --is_symmetric=false --alphabet=1
+
+    * Do random masking for 20% of sequences in the MSA for 10 times and compute NEFF:
+        ./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_percent=0.2
+
+    * Compute NEFF for paired_MSA and individual MSAs of the goven MSA (example.sto is in the form of paired MSA, and length of first monomer is 20)
+        ./neff --file=example.sto --paired_MSA=true --first_monomer_length=20
+
+    * compute column-wise NEFF
+        ./neff --file=example.aln --column_neff=true
+)";
 
 #include "flagHandler.h"
 #include "msaReader.h"
@@ -415,16 +432,16 @@ tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequence
 }
 
 /// @brief Cumpote NEFF values based on sequence weights and given normalization
-/// @param sequence_weights 
+/// @param sequenceWeights 
 /// @param norm 
 /// @param sequenceLength 
 /// @return 
-float compute_neff(vector<int> sequence_weights, Normalization norm, int length)
+float computeNeff(vector<int> sequenceWeights, Normalization norm, int length)
 {
     float neff = 0;
-    for (int i=0; i < sequence_weights.size(); i++)
+    for (int i=0; i < sequenceWeights.size(); i++)
     {
-        neff += 1./sequence_weights[i];
+        neff += 1./sequenceWeights[i];
     }
     
     switch(norm) // normalizing Nf
@@ -662,11 +679,11 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
 
 /// @brief compute column-wise NEFF
 /// @param sequences 
-/// @param sequence_weights
+/// @param sequenceWeights
 /// @param norm 
 /// @return 
 std::vector<double> computeColumnwiseNEFF
-(const vector<vector<int>>& sequences, const vector<int>& sequence_weights, Normalization norm) {
+(const vector<vector<int>>& sequences, const vector<int>& sequenceWeights, Normalization norm) {
     int numSequences = sequences.size();
     if (numSequences == 0) {
         return {};
@@ -681,7 +698,7 @@ std::vector<double> computeColumnwiseNEFF
             // include sequence weight of the current seqeunce in the column NEFF, if column is not corresponding to a gap position
             if (sequences[row][col] != 0)
             {
-                sumWeights += 1./ sequence_weights[row];
+                sumWeights += 1./ sequenceWeights[row];
             }
         }
 
@@ -708,6 +725,14 @@ int main(int argc, char **argv)
     vector<string> args(argv + 1, argv + argc);
     FlagHandler flagHandler(Flags);
 
+    // Check for help flag
+    for (const auto& arg : args) {
+        if (arg == "-h" || arg == "--help") {
+            cout << docstr << endl;
+            return 0;
+        }
+    }
+
     string file, format;
     float threshold, gapCutoff;
     bool checkValidation, omitGapsInQuery, isSymmetric;
@@ -716,9 +741,8 @@ int main(int argc, char **argv)
     Normalization norm;
     string standardLetters, nonStandardLetters;
     vector<Sequence> sequences;
-    vector<Sequence> initial_sequences;
     vector<vector<int>> sequences2num;
-    vector<int> sequence_weights;
+    vector<int> sequenceWeights;
 
     try
     { 
@@ -740,25 +764,25 @@ int main(int argc, char **argv)
         // omit_query_gaps
         omitGapsInQuery = flagHandler.getFlagValue("omit_query_gaps") == "true";
 
-        MSAReader* msa_reader;
+        MSAReader* msaReader;
         if (format == "a2m")
-            msa_reader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "a3m")
-            msa_reader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "sto")
-            msa_reader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
         else if(format == "clustal")
-            msa_reader = new MSAReader_clustal(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_clustal(file, alphabet, checkValidation, omitGapsInQuery);
         else if (format == "aln")
-            msa_reader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery);
         else if (format == "pfam")
-            msa_reader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
         else if (find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
-            msa_reader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
+            msaReader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
         else
             throw runtime_error("Not supported MSA file format (" + format + ")");
 
-        sequences = msa_reader->read();
+        sequences = msaReader->read();
 
         setDepth(sequences, flagHandler);
 
@@ -797,18 +821,18 @@ int main(int argc, char **argv)
                 auto [pairedMSA, msa1, msa2] = splitter.returnSets();
 
                 // pairedMSA
-                sequence_weights = computeWeights(pairedMSA, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = compute_neff(sequence_weights, norm, pairedMSA[0].size());
+                sequenceWeights = computeWeights(pairedMSA, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, pairedMSA[0].size());
                 cout << "NEFF of Paired MSA:" << neff << endl;
 
                 // MSA 1
-                sequence_weights = computeWeights(msa1, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = compute_neff(sequence_weights, norm, msa1[0].size());
+                sequenceWeights = computeWeights(msa1, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, msa1[0].size());
                 cout << "NEFF of first MSA:" << neff << endl;
 
                 // MSA 2
-                sequence_weights = computeWeights(msa2, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = compute_neff(sequence_weights, norm, msa2[0].size());
+                sequenceWeights = computeWeights(msa2, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, msa2[0].size());
                 cout << "NEFF of second MSA:" << neff << endl;
                 return 0;
             }
@@ -823,7 +847,7 @@ int main(int argc, char **argv)
         
         if(flagHandler.getFlagValue("mask_enabled") == "true")
         {
-            vector<float> neff_values;
+            vector<float> neffValues;
             set<int> maskedIndices;
             float highestNeff = 0.0;
             
@@ -835,9 +859,9 @@ int main(int argc, char **argv)
             {
                 auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskPercent);
 
-                sequence_weights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = compute_neff(sequence_weights, norm, length);
-                neff_values.push_back(neff);
+                sequenceWeights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, length);
+                neffValues.push_back(neff);
                 if(neff > highestNeff)
                 {
                     highestNeff = neff;
@@ -845,35 +869,39 @@ int main(int argc, char **argv)
                 }
             }
 
-            ofstream output_file("neff_values.txt");
+            string neffFile = "neff_values.txt";
+            ofstream outputFile(neffFile);
             // write NEFF values corresponding to each mask in a file
-            if (output_file.is_open())
+            if (outputFile.is_open())
             {
-                output_file << "NEFF Values for each mask iteration:\n"; 
-                for (int mask_number = 0; mask_number < neff_values.size(); ++mask_number)
+                outputFile << "NEFF Values for each mask iteration:\n"; 
+                for (int maskNo = 0; maskNo < neffValues.size(); ++maskNo)
                 {
-                    output_file << "Mask " << mask_number + 1 << ": " << neff_values[mask_number] << "\n";
+                    outputFile << "Mask " << maskNo + 1 << ": " << neffValues[maskNo] << "\n";
                 }
-                output_file.close();
+                outputFile.close();
+                cout << "NEFF values for each mask iteration have been saved in " << neffFile << endl;
             }
 
             // Write the masked MSA with highest NEFF in a file
-            MSAWriter* msaWriter = new MSAWriter_fasta(sequences, "MSA_with_highest_neff.fasta", maskedIndices);
+            string msaFile = "MSA_with_highest_neff.fasta";
+            MSAWriter* msaWriter = new MSAWriter_fasta(sequences, msaFile, maskedIndices);
             msaWriter->write();
+            cout << "Masked MSA file corresponding to the highest NEFF value among masking iterations has been saved in "<< msaFile << endl;
             return 0;
         }
         
         cout << "MSA sequnce Length: "<< length << endl;
         cout << "MSA depth: " << sequences2num.size() << endl;
 
-        sequence_weights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+        sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
 
         if(flagHandler.getFlagValue("only_weights") == "true")
         {
             cout << "Sequence weights:" << endl;
-            for (int i=0; i < sequence_weights.size(); i++)
+            for (int i=0; i < sequenceWeights.size(); i++)
             {
-                cout << 1./sequence_weights[i] << ' ';
+                cout << 1./sequenceWeights[i] << ' ';
             }
             cout << endl << flush;
             return 0;
@@ -881,7 +909,7 @@ int main(int argc, char **argv)
 
         if(flagHandler.getFlagValue("column_neff") == "true")
         {
-            vector<double> columnNEFF = computeColumnwiseNEFF(sequences2num, sequence_weights, norm);
+            vector<double> columnNEFF = computeColumnwiseNEFF(sequences2num, sequenceWeights, norm);
             cout << "Column-wise NEFF:" << endl;
             for (int col=0; col < columnNEFF.size(); col++)
             {
@@ -893,7 +921,7 @@ int main(int argc, char **argv)
             return 0;
         }
 
-        neff = compute_neff(sequence_weights, norm, length);
+        neff = computeNeff(sequenceWeights, norm, length);
         cout << "NEFF: " << neff << endl;
         
         return 0;

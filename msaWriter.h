@@ -3,7 +3,8 @@
  * @brief This file contains the declaration of the MSAWriter class and its derived classes.
  *
  * The MSAWriter class provides functionality to write multiple sequence alignments (MSA) to different file formats.
- * It supports writing MSAs in a2m, a3m, stockholm, fasta, CLUSTAL, and aln formats.
+ * It supports writing MSAs in a2m, a3m, stockholm, fasta, clustal, pfam and aln formats.
+ * 
  * The MSAWriter class is an abstract base class, and the derived classes provide specific implementations for each format.
  * 
  */
@@ -83,7 +84,7 @@ class MSAWriter_fasta : public MSAWriter
         void writeFile(std::ofstream& file) override;
 };
 
-// Derived class for writing in CLUSTAL format
+// Derived class for writing in clustal format
 class MSAWriter_clustal : public MSAWriter
 {
     public:
