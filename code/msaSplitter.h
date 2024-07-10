@@ -1,3 +1,20 @@
+/**
+ * @file msaSplitter.h
+ * @brief This file contains the declaration of the MSASplitter class to manage and manipulate MSAs.
+ * 
+ * The MSASplitter class provides methods to:
+ * - Verify if the MSA is in a paired form, where sequences are followed by the MSA of the first monomer, followed by the MSA of the second monomer.
+ * - Split the MSA into three sets: paired MSA, MSA of the first monomer, and MSA of the second monomer.
+ * 
+ * The class includes:
+ * - A constructor to initialize the split position.
+ * - Methods to verify the structure of the MSA and return the split sets.
+ * - Private helper functions to determine set membership and extract non-zero parts of the MSA rows.
+ * 
+ * Usage:
+ * Create an instance of MSASplitter with the desired split position, then use its methods to process and retrieve MSA sets.
+ */
+
 #ifndef MSA_SPLITTER_H
 #define MSA_SPLITTER_H
 
