@@ -49,10 +49,10 @@ pip install neffy
 ## Usage
 - An example of neff computation:
 ```bash
-python ./example/compute_neff.py --file=example.a2m
+python ./example/compute_neff.py --file=./example/example.a2m
 ```
 
 - An example of MSA conversion:
 ```bash
-python ./example/convert_msa.py --in_file=example.a2m --out_file=example.fasta
+python ./example/convert_msa.py --in_file=./example/example.a2m --out_file=./example/example.fasta
 ```
