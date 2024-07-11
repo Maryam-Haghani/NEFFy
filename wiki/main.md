@@ -22,14 +22,14 @@ Once the compilation is complete, you can run the program via the command line.
 NEFF computation determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It takes into account sequence similarities and provides a measure of sequence diversity.  <br>
 The code takes command-line flags for input and subsequently computes the score for an MSA file.
 <br />
-The detailed usage documentation can be found on the [NEFF Computation page](\ref neff).
+The detailed usage documentation can be found on the [NEFF Computation](\ref neff) page.
 
 \anchor msa-file-conversion
 ## MSA File Conversion
 The MSA File Conversion tool provides a convenient way to convert Multiple Sequence Alignment (MSA) files between various supported formats. <br />
 This versatile utility simplifies the process of format conversion, ensuring compatibility across different bioinformatics software and analysis pipelines. Simply specify the input and output files along with their formats, and the tool will handle the conversion for you.
 <br />
-The detailed usage documentation can be found on the [MSA File Conversion](\ref converter).
+The detailed usage documentation can be found on the [MSA File Conversion](\ref converter) page.
 
 \anchor error-handling
 ## Error Handling
