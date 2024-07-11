@@ -11,7 +11,6 @@ def main():
     
     try:
         output = neffy.compute_neff(args)
-        #output = neffy.compute_neff(['--file=s.s'])
         print(output)
     except RuntimeError as e:
         print(f"{e}")
