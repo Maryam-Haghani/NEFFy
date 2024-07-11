@@ -1,0 +1,48 @@
+\chapter{NEFF Calculator and MSA File Converter}
+\hypertarget{index}{}\label{index}\index{NEFF Calculator and MSA File Converter@{NEFF Calculator and MSA File Converter}}
+\label{index_md_wiki_2main}%
+\Hypertarget{index_md_wiki_2main}%
+This tool provides functionality to compute the Number of Effective sequences (NEFF) and convert Multiple \doxylink{struct_sequence}{Sequence} Alignment (MSA) files between different \doxysectlink{msa_formats}{MSA formats}{0}.\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{index_autotoc_md7}
+
+\begin{DoxyItemize}
+\item \doxylink{index_getting-started}{Getting Started}
+\item \doxylink{index_neff-computation}{NEFF Computation}
+\item \doxylink{index_msa-file-conversion}{MSA File Conversion}
+\item \doxylink{index_error-handling}{Error Handling}
+\end{DoxyItemize}
+
+\label{index_getting-started}%
+\Hypertarget{index_getting-started}%
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{index_autotoc_md8}
+Download the source code and compile it using a C++ compiler that is compatible with C++17 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. You can navigate to the Makefile directory and easily enter the following command in the terminal\+:~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+ Once the compilation is complete, you can run the program via the command line.
+
+\label{index_neff-computation}%
+\Hypertarget{index_neff-computation}%
+\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{NEFF Computation}{NEFF Computation}}\label{index_autotoc_md9}
+NEFF computation determines the effective number of homologous sequences within a Multiple \doxylink{struct_sequence}{Sequence} Alignment (MSA). It takes into account sequence similarities and provides a measure of sequence diversity. ~\newline
+ The code takes command-\/line flags for input and subsequently computes the score for an MSA file. ~\newline
+ The detailed usage documentation can be found on the \doxysectlink{neff}{NEFF Computation page}{0}.
+
+\label{index_msa-file-conversion}%
+\Hypertarget{index_msa-file-conversion}%
+\hypertarget{index_autotoc_md10}{}\doxysection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{index_autotoc_md10}
+The MSA File Conversion tool provides a convenient way to convert Multiple \doxylink{struct_sequence}{Sequence} Alignment (MSA) files between various supported formats. ~\newline
+ This versatile utility simplifies the process of format conversion, ensuring compatibility across different bioinformatics software and analysis pipelines. Simply specify the input and output files along with their formats, and the tool will handle the conversion for you. ~\newline
+ The detailed usage documentation can be found on the \doxysectlink{converter}{MSA File Conversion}{0}.
+
+\label{index_error-handling}%
+\Hypertarget{index_error-handling}%
+\hypertarget{index_autotoc_md11}{}\doxysection{\texorpdfstring{Error Handling}{Error Handling}}\label{index_autotoc_md11}
+If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. ~\newline
+ Please refer to the error message for troubleshooting or make necessary corrections to the input.
+
+\DoxyHorRuler{0}
+ For further assistance or inquiries, please \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} or create an \href{https://github.com/Maryam-Haghani/Neffy/issues}{\texttt{ issue}} in the Git\+Hub repository. 
