@@ -18,7 +18,7 @@
 
 using namespace std;
 
-MSASplitter::MSASplitter(int _splitPosition) : splitPosition(_splitPosition) {}
+MSASplitter::MSASplitter(vector<int> _splitPositions) : splitPositions(_splitPositions) {}
 
 bool MSASplitter::hasBlockForm(const vector<vector<int>>& vectors) {
     bool set2Started = false;
@@ -30,11 +30,11 @@ bool MSASplitter::hasBlockForm(const vector<vector<int>>& vectors) {
             if (isSet2(row))
             {
                 set2Started = true;
-                set2.push_back(getNonZeroPart(row, 0, splitPosition));
+                set2.push_back(getNonZeroPart(row, 0, splitPositions[0]));
             } else if (isSet3(row))
             {
                 set3Started = true;
-                set3.push_back(getNonZeroPart(row, splitPosition, row.size())); // Set 3 can start if set 2 is empty  
+                set3.push_back(getNonZeroPart(row, splitPositions[0], row.size())); // Set 3 can start if set 2 is empty  
             }
             else {
                 set1.push_back(row);
@@ -42,10 +42,10 @@ bool MSASplitter::hasBlockForm(const vector<vector<int>>& vectors) {
         } else if (set2Started && !set3Started) {
             // We are in set 2 or set 3 can start
             if (isSet2(row)) {
-                set2.push_back(getNonZeroPart(row, 0, splitPosition));
+                set2.push_back(getNonZeroPart(row, 0, splitPositions[0]));
             } else if (isSet3(row)) {
                 set3Started = true;
-                set3.push_back(getNonZeroPart(row, splitPosition, row.size()));
+                set3.push_back(getNonZeroPart(row, splitPositions[0], row.size()));
             } else {
                 return false; // Invalid row for set 2 or set 3
             }
@@ -54,16 +54,16 @@ bool MSASplitter::hasBlockForm(const vector<vector<int>>& vectors) {
             if (!isSet3(row)) {
                 return false; // Invalid row for set 3
             }
-            set3.push_back(getNonZeroPart(row, splitPosition, row.size()));
+            set3.push_back(getNonZeroPart(row, splitPositions[0], row.size()));
         }
     }
 
-    return true; // If it passes all checks, it's valid
+    return set2Started || set3Started; // If it passes all checks, it's valid
 }
 
 bool MSASplitter::isSet2(const vector<int>& row) const {
-    if (row.size() <= splitPosition) return false;  // check the row has enough elements
-    for (int i = splitPosition; i < row.size(); ++i)
+    if (row.size() <= splitPositions[0]) return false;  // check the row has enough elements
+    for (int i = splitPositions[0]; i < row.size(); ++i)
     {
         if (row[i] != 0) return false;  // elements from position splitPosition onward should be 0
     }
@@ -71,8 +71,8 @@ bool MSASplitter::isSet2(const vector<int>& row) const {
 }
 
 bool MSASplitter::isSet3(const vector<int>& row) const {
-    if (row.size() <= splitPosition) return false;  // check the row has enough elements
-    for (int i = 0; i < splitPosition; ++i)
+    if (row.size() <= splitPositions[0]) return false;  // check the row has enough elements
+    for (int i = 0; i < splitPositions[0]; ++i)
     {
         if (row[i] != 0) return false;  // elements up to position splitPosition should be 0
     }
@@ -91,10 +91,10 @@ vector<int> MSASplitter::getNonZeroPart(const vector<int>& row, int start, int e
 tuple<vector<vector<int>>, vector<vector<int>>, vector<vector<int>>> MSASplitter::returnSets()
 {
     // Insert the elements from position 0 to splitPosition of the first row of set1 at the beginning of set2
-    set2.insert(set2.begin(), vector<int>(set1[0].begin(), set1[0].begin() + splitPosition));
+    set2.insert(set2.begin(), vector<int>(set1[0].begin(), set1[0].begin() + splitPositions[0]));
 
     // Insert the elements from position splitPosition+1 to the last position of the first row of set1 at the beginning of set3
-    set3.insert(set3.begin(), vector<int>(set1[0].begin() + splitPosition, set1[0].end()));
+    set3.insert(set3.begin(), vector<int>(set1[0].begin() + splitPositions[0], set1[0].end()));
 
     return make_tuple(set1, set2, set3);
 }

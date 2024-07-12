@@ -51,6 +51,23 @@ public:
      * @throws std::runtime_error if a required flag is missing a value.
      */
     void checkRequiredFlags() const;
+
+    /// @brief Get given float option by user
+    /// @param flagHandler 
+    /// @param name 
+    /// @return 
+    float getFloatValue(const std::string& name) const;
+
+    /// @brief Get given int option by user
+    /// @param flagHandler 
+    /// @param name
+    /// @return 
+    std::vector<int> getIntArrayValue(const std::string& name) const;
+
+    /// @brief Get given int option by user
+    /// @param name 
+    /// @return 
+    int getIntValue(const std::string& name) const;
 };
 
 #endif

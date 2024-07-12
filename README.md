@@ -54,7 +54,7 @@ The code accepts the following command-line flags:
 | `--mask_percent=<value>` | Percentage of sequences to be masked in each masking iteration | when _mask_enabled_=true | 0 | `--mask_percent=0.4`    |
 | `--mask_count=<value>` | Number of masking iterations | when _mask_enabled_=true | 0 | `--mask_count=0`    |
 | `--multimer_MSA=[true/false]` | Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts | No | false | `--multimer_MSA=true`    |
-| `--first_monomer_length=<value>` | Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA | when _multimer_MSA_=true | 0 | `--first_monomer_length=17`    |
+| `--monomer_length=<list of values>` | Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs | when _multimer_MSA_=true | 0 | `--monomer_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
 #### Example

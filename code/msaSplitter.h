@@ -24,7 +24,7 @@
 
 class MSASplitter {
 public:
-    MSASplitter(int _splitPosition);
+    MSASplitter(std::vector<int> _splitPositions);
 
     /// @brief Verify if the MSA is in the form of a paired MSA (sequences followed by the MSA of the first monomer, followed by the MSA of the second monomer)
     /// @param msa 
@@ -39,7 +39,7 @@ private:
     std::vector<std::vector<int>> set1;
     std::vector<std::vector<int>> set2;
     std::vector<std::vector<int>> set3;
-    int splitPosition; // Split position
+    std::vector<int> splitPositions;
 
     bool isSet2(const std::vector<int>& row) const;
     bool isSet3(const std::vector<int>& row) const;

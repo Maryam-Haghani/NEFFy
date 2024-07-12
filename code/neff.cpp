@@ -28,7 +28,7 @@
  *   --mask_percent=<value>            Percentage of sequences to be masked in each masking iteration (default: 0)\n"
  *   --mask_count=<value>              Frequency of masking (default: 0)\n"
  *   --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)\n"
- *   --first_monomer_length=<value>    Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)\n"
+ *   --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)\n"
  *   --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
 
  * In symmetric version, threshold for considering a pair of sequence as homolog simply depends on length of alignment, and it would be equal for all sequences and we see a symmetry in similarities
@@ -45,25 +45,25 @@ This program computes the Number of Effective Sequences (NEFF) for a multiple se
 NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA.
 
 Options:
-    --file=<input_file>              Path to the input MSA file (required)
-    --alphabet=<value>               Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
-    --check_validation=<true/false>  Perform validation on sequences (default: false)
-    --threshold=<value>              Threshold value of considering two sequences similar (default: 0.8)
-    --norm=<value>                   NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)
-    --omit_query_gaps=<true/false>   Omit gap positions of query sequence from all sequences for NEFF computation (default: true)
-    --is_symmetric=<true/false>      Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)
-    --non_standard_option=<value>    Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)
-    --depth=<value>                  Depth of MSA to be cosidered in computation (default: depth of given MSA)
-    --gap_cutoff=<value>             Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)
-    --pos_start=<value>              Start position of each sequence to be considered in neff (inclusive (default: 1))
-    --pos_end=<value>                Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))
-    --only_weights=<true/false>      Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)
-    --mask_enabled=<true/false>      Enable random sequence masking for NEFF calculation (default: false)
-    --mask_percent=<value>           Percentage of sequences to be masked in each masking iteration (default: 0)
-    --mask_count=<value>             Frequency of masking (default: 0)
-    --multimer_MSA=<true/false>      Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)
-    --first_monomer_length=<value>   Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSA (default: 0)
-    --column_neff=<true/false>       Compute Column-wise NEFF (default: false)
+    --file=<input_file>               Path to the input MSA file (required)
+    --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
+    --check_validation=<true/false>   Perform validation on sequences (default: false)
+    --threshold=<value>               Threshold value of considering two sequences similar (default: 0.8)
+    --norm=<value>                    NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)
+    --omit_query_gaps=<true/false>    Omit gap positions of query sequence from all sequences for NEFF computation (default: true)
+    --is_symmetric=<true/false>       Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)
+    --non_standard_option=<value>     Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)
+    --depth=<value>                   Depth of MSA to be cosidered in computation (default: depth of given MSA)
+    --gap_cutoff=<value>              Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)
+    --pos_start=<value>               Start position of each sequence to be considered in neff (inclusive (default: 1))
+    --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))
+    --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)
+    --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)
+    --mask_percent=<value>            Percentage of sequences to be masked in each masking iteration (default: 0)
+    --mask_count=<value>              Frequency of masking (default: 0)
+    --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)
+    --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)
+    --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
 
  Examples:
     * Compute NEFF for RNA MSA:
@@ -72,8 +72,8 @@ Options:
     * Do random masking for 20% of sequences in the MSA for 10 times and compute NEFF:
         ./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_percent=0.2
 
-    * Compute NEFF for paired MSA and individual MSAs of the goven MSA (example.sto is in the form of multimer MSA, and length of first monomer is 20)
-        ./neff --file=example.sto --multimer_MSA=true --first_monomer_length=20
+    * Compute NEFF for paired MSA and individual MSAs of the given MSA of a protein dimer (example.sto is in the form of multimer MSA, and length of first monomer is 20)
+        ./neff --file=example.sto --multimer_MSA=true --monomer_length=20
 
     * compute column-wise NEFF
         ./neff --file=example.aln --column_neff=true
@@ -96,7 +96,6 @@ Options:
 #include <algorithm>
 #include <tuple>
 #include <random>
-#include <iostream>
 #include <fstream>
 #include <set>
 
@@ -121,7 +120,7 @@ unordered_map<string, FlagInfo> Flags =
     {"mask_percent", {false, "0"}},         // Percentage of sequences to be masked in each masking iteration
     {"mask_count", {false, "0"}},           // Frequency of masking
     {"multimer_MSA", {false, "false"}},     // Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts
-    {"first_monomer_length", {false, "0"}}, // Length of the first monomer, which is used to obtain NEFF for both paired MSA and individual monomer MSAs.
+    {"monomer_length", {false, "0"}},       // Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs.
     {"column_neff", {false, "false"}}       // Compute Column-wise NEFF
  };
 
@@ -152,48 +151,6 @@ int char2num(char c, const string& standardLetters, const string& nonStandardLet
         }
     }
     return 0; // condier as gap
-}
-
-/// @brief Get given float option by user
-/// @param flagHandler 
-/// @return 
-float getFloatValue(FlagHandler& flagHandler, string name) {
-    float value;
-    try {
-        value = stof(flagHandler.getFlagValue(name));
-        if (value <= 0.0 || value > 1.0) {
-            throw runtime_error("Invalid '" +  name + "' value. It should be a number between 0 and 1.");
-        }
-    } catch (const exception& e) {
-        throw runtime_error("Invalid '" +  name + "' value. It should be a number between 0 and 1.");
-    }
-    return value;
-}
-
-/// @brief Get given int option by user
-/// @param flagHandler 
-/// @return 
-int getIntValue(FlagHandler& flagHandler, string name) {
-    int value;
-    try
-    {
-        string svalue = flagHandler.getFlagValue(name);
-
-        if(svalue == "inf")
-            return INT_MAX;
-
-        value = stoi(svalue);
-        
-        if (value <=0)
-        {
-            throw runtime_error("Invalid '" +  name + "' value. It should be a positive number");
-        }
-    }
-    catch (const exception& e)
-    {
-        throw runtime_error("Invalid '" +  name + "' value. It should be a positive number");
-    }
-    return value;
 }
 
 /// @brief Remove gappy positions from sequences based on given 'gapCutoff'
@@ -526,7 +483,7 @@ void checkFlags(FlagHandler& flagHandler)
         int maskCount;
         try
         {
-            maskCount = getIntValue(flagHandler, "mask_count");
+            maskCount = flagHandler.getIntValue("mask_count");
             if(maskCount == 0)
             {
                 throw runtime_error("");
@@ -540,7 +497,7 @@ void checkFlags(FlagHandler& flagHandler)
         float maskPercent;
         try
         {
-            maskPercent = getFloatValue(flagHandler, "mask_percent");
+            maskPercent = flagHandler.getFloatValue("mask_percent");
         }
         catch (const exception& e)
         {
@@ -549,19 +506,15 @@ void checkFlags(FlagHandler& flagHandler)
     }
     if (flagHandler.getFlagValue("multimer_MSA") == "true")
     {
-        int firstMonomerLength;
+        vector<int> monomerLength;
         try
         {
-            firstMonomerLength = getIntValue(flagHandler, "first_monomer_length");
-            if(firstMonomerLength == 0)
-            {
-                throw runtime_error("");
-            }
+            monomerLength = flagHandler.getIntArrayValue("monomer_length");
         }
         catch (const exception& e)
         {
             throw runtime_error
-            ("When 'multimer_MSA' is true, 'first_monomer_length' should be a positive number");
+            ("When 'multimer_MSA' is true, 'monomer_length' should be a list of positive numbers");
         }
         
         if (!((flagHandler.getFlagValue("omit_query_gaps") == "true")
@@ -582,7 +535,7 @@ void setDepth(vector<Sequence>& sequences, FlagHandler flagHandler)
 {
     int depth;
 
-    depth = getIntValue(flagHandler, "depth");
+    depth = flagHandler.getIntValue("depth");
 
     // consider the original depth if the given value is greater than the original depth
     depth = min(depth, (int)sequences.size());
@@ -645,7 +598,7 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
     int lengthOfQuerySeq = lengthOfFirstAlignment - coutOfGapPositions;
 
     // pos_start
-    startPos = getIntValue(flagHandler, "pos_start");
+    startPos = flagHandler.getIntValue("pos_start");
 
     if (startPos >= lengthOfFirstAlignment)
     {
@@ -653,7 +606,7 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
     }
 
     // pos_end
-    endPos = getIntValue(flagHandler, "pos_end");
+    endPos = flagHandler.getIntValue("pos_end");
 
     if (endPos <= startPos)
     {
@@ -803,7 +756,7 @@ int main(int argc, char **argv)
         nonStandardLetters = getNonStandardLetters(alphabet);
 
         // gap_cutoff
-        gapCutoff = getFloatValue(flagHandler, "gap_cutoff");
+        gapCutoff = flagHandler.getFloatValue("gap_cutoff");
 
         sequences2num = processSequences(
             sequences, omitGapsInQuery, standardLetters, nonStandardLetters, nonStandardOption, gapCutoff);
@@ -812,7 +765,7 @@ int main(int argc, char **argv)
         norm = getNormalization(flagHandler);
 
         // threshold
-        threshold = getFloatValue(flagHandler, "threshold");
+        threshold = flagHandler.getFloatValue("threshold");
         
         // is_symmetric
         isSymmetric = flagHandler.getFlagValue("is_symmetric") == "true";
@@ -821,7 +774,7 @@ int main(int argc, char **argv)
 
         if (flagHandler.getFlagValue("multimer_MSA") == "true")
         {
-            int splitPosition = getIntValue(flagHandler, "first_monomer_length");
+            vector<int> splitPosition = flagHandler.getIntArrayValue("monomer_length");
             MSASplitter splitter(splitPosition);
 
             if (splitter.hasBlockForm(sequences2num))
@@ -846,7 +799,8 @@ int main(int argc, char **argv)
             }
             else
             {
-                cerr << "MSA is not in the form of multimer MSA" << endl;
+                cerr << "Provided MSA is not in the form of a multimer MSA composed of "
+                     << splitPosition.size()+1 << " monomers" << endl;
                 return 1;
             }
         }
@@ -860,8 +814,8 @@ int main(int argc, char **argv)
             float highestNeff = 0.0;
             
             // Mask percent% of the sequences masked
-            float maskPercent = getFloatValue(flagHandler, "mask_percent");
-            int maskCount = getIntValue(flagHandler, "mask_count");
+            float maskPercent = flagHandler.getFloatValue("mask_percent");
+            int maskCount = flagHandler.getIntValue("mask_count");
 
             for (int i = 0; i < maskCount; ++i)
             {

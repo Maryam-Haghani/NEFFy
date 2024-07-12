@@ -6,14 +6,14 @@ prog=neff converter
 
 all: ${prog}
 
-neff: neff.cpp
-	${CC} ${CFLAGS} -std=c++17 flagHandler.cpp common.cpp msaReader.cpp msaWriter.cpp msaSplitter.cpp $@.cpp -o $@
+neff: code/neff.cpp
+	${CC} ${CFLAGS} -std=c++17 code/flagHandler.cpp code/common.cpp code/msaReader.cpp code/msaWriter.cpp code/msaSplitter.cpp code/neff.cpp -o neff
  
-converter: converter.cpp
-	${CC} ${CFLAGS} -std=c++17 flagHandler.cpp common.cpp msaReader.cpp msaWriter.cpp $@.cpp -o $@
+converter: code/converter.cpp
+	${CC} ${CFLAGS} -std=c++17 code/flagHandler.cpp code/common.cpp code/msaReader.cpp code/msaWriter.cpp code/converter.cpp -o converter
 
 install: ${prog}
 	cp ${prog} ./bin
 	
 clean:
-	rm ${prog}
+	rm -f ${prog}

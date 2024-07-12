@@ -4,6 +4,10 @@
  */
 
 #include "flagHandler.h"
+#include <sstream>
+#include <stdexcept>
+#include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -79,4 +83,63 @@ void FlagHandler::checkRequiredFlags() const
             throw runtime_error("Missing value for required flag: " + flagName);
         }
     }
+}
+
+float FlagHandler::getFloatValue(const string& name) const
+{
+    float value;
+    try {
+        value = stof(getFlagValue(name));
+        if (value <= 0.0 || value > 1.0) {
+            throw runtime_error("Invalid '" + name + "' value. It should be a number between 0 and 1.");
+        }
+    } catch (const exception& e) {
+        throw runtime_error("Invalid '" + name + "' value. It should be a number between 0 and 1.");
+    }
+    return value;
+}
+
+vector<int> FlagHandler::getIntArrayValue(const string& name) const
+{
+    vector<int> values;
+    try {
+        string svalue = getFlagValue(name);
+
+        stringstream ss(svalue);
+        string item;
+        while (getline(ss, item, ',')) {
+            int value = stoi(item);
+            if (value <= 0) {
+                throw runtime_error("Invalid '" + name + "' value. Each value should be a positive number");
+            }
+            values.push_back(value);
+        }
+
+        if (values.empty()) {
+            throw runtime_error("Invalid '" + name + "' value. It should contain at least one positive number");
+        }
+    } catch (const exception& e) {
+        throw runtime_error("Invalid '" + name + "' value. Each value should be an array of positive numbers");
+    }
+    return values;
+}
+
+int FlagHandler::getIntValue(const string& name) const
+{
+    int value;
+    try {
+        string svalue = getFlagValue(name);
+
+        if (svalue == "inf")
+            return INT_MAX;
+
+        value = stoi(svalue);
+
+        if (value <= 0) {
+            throw runtime_error("Invalid '" + name + "' value. It should be a positive number");
+        }
+    } catch (const exception& e) {
+        throw runtime_error("Invalid '" + name + "' value. It should be a positive number");
+    }
+    return value;
 }
