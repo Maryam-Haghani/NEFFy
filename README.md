@@ -53,7 +53,7 @@ The code accepts the following command-line flags:
 | `--mask_enabled=[true/false]` | Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF | No | false | `--mask_enabled=true`    |
 | `--mask_percent=<value>` | Percentage of sequences to be masked in each masking iteration | when _mask_enabled_=true | 0 | `--mask_percent=0.4`    |
 | `--mask_count=<value>` | Number of masking iterations | when _mask_enabled_=true | 0 | `--mask_count=0`    |
-| `--multimer_MSA=[true/false]` | Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts | No | false | `--multimer_MSA=true`    |
+| `--multimer_MSA=[true/false]` | Compute NEFF for paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA | No | false | `--multimer_MSA=true`    |
 | `--monomer_length=<list of values>` | Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs | when _multimer_MSA_=true | 0 | `--monomer_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
