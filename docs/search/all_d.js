@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['pfam_0',['PFAM',['../msa_formats.html#autotoc_md19',1,'']]],
-  ['processflags_1',['processFlags',['../class_flag_handler.html#ac38f216e5616214e253a9e25c2e755e9',1,'FlagHandler']]],
-  ['processsequences_2',['processSequences',['../neff_8cpp.html#a84c94adb8619073e4246b5a9ea90568e',1,'neff.cpp']]],
-  ['protein_3',['protein',['../common_8h.html#ad321c418983642eb2b4360826d489ec4a7eebac5ec8b6706eb00b1a2b17836d99',1,'common.h']]]
+  ['of_20contents_0',['Table of Contents',['../index.html#autotoc_md7',1,'']]],
+  ['of_20effective_20sequences_20neff_1',['Number of EFFective sequences (NEFF)',['../neff.html',1,'']]],
+  ['of_20other_20tools_2',['Installation of Other Tools',['../other_tools.html',1,'']]],
+  ['omitgaps_3',['omitGaps',['../class_m_s_a_reader.html#a8a14f09f0127afc4cbe9705b1eae9315',1,'MSAReader']]],
+  ['options_3a_4',['Options:',['../neff_computation.html#autotoc_md24',1,'']]],
+  ['other_20tools_5',['Installation of Other Tools',['../other_tools.html',1,'']]],
+  ['other_5ftools_2emd_6',['other_tools.md',['../other__tools_8md.html',1,'']]],
+  ['overview_7',['Overview',['../converter.html#autotoc_md0',1,'Overview'],['../neff_computation.html#autotoc_md21',1,'Overview']]]
 ];

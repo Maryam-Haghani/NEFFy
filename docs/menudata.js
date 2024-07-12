@@ -24,8 +24,9 @@
 */
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
-{text:"NEFF Computation",url:"neff.html"},
+{text:"NEFF Computation",url:"neff_computation.html"},
 {text:"MSA File Conversion",url:"converter.html"},
+{text:"About NEFF",url:"neff.html"},
 {text:"MSA Formats",url:"msa_formats.html"},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},

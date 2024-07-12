@@ -1,15 +1,13 @@
 var searchData=
 [
-  ['sequence_0',['Sequence',['../struct_sequence.html',1,'']]],
-  ['sequence_1',['sequence',['../struct_sequence.html#aceea1f464ac511c8d8ab7d10229c6e2e',1,'Sequence']]],
-  ['sequences_2',['Sequences',['../class_m_s_a_reader.html#a8d47973f8edb13b9fc89ab2a14720443',1,'MSAReader::Sequences'],['../class_m_s_a_writer.html#a79650331bf37ebbbc5f0eb4ce1ef2785',1,'MSAWriter::Sequences']]],
-  ['setdepth_3',['setDepth',['../neff_8cpp.html#a2a38072d57fb8937bad0d63abd244ca7',1,'neff.cpp']]],
-  ['sqrt_5fl_4',['Sqrt_L',['../common_8h.html#a268aac553a187f781fad176cf0ada14ea9cf59750c46815a6671a352d5f75f0d0',1,'common.h']]],
-  ['standard_5famino_5facids_5',['STANDARD_AMINO_ACIDS',['../common_8h.html#acce6f36ae6d960b9d172c09f06357e44',1,'common.h']]],
-  ['standard_5fdna_5fnucleotides_6',['STANDARD_DNA_NUCLEOTIDES',['../common_8h.html#a43b11597b2f51799912662182567d3ee',1,'common.h']]],
-  ['standard_5frna_5fnucleotides_7',['STANDARD_RNA_NUCLEOTIDES',['../common_8h.html#ad38e8843145278cc7247126fe01fb91a',1,'common.h']]],
-  ['started_8',['Getting Started',['../index.html#autotoc_md8',1,'']]],
-  ['sto_20stockholm_9',['STO (Stockholm)',['../msa_formats.html#autotoc_md16',1,'']]],
-  ['stockholm_10',['STO (Stockholm)',['../msa_formats.html#autotoc_md16',1,'']]],
-  ['supported_20file_20formats_11',['Supported File Formats',['../neff.html#autotoc_md24',1,'']]]
+  ['raptorx_0',['RaptorX',['../other_tools.html#autotoc_md32',1,'']]],
+  ['read_1',['read',['../class_m_s_a_reader.html#a356034b6d0d5bd18a3ab260718dd48fb',1,'MSAReader']]],
+  ['readfile_2',['readFile',['../class_m_s_a_reader.html#a64e2867b03ae541903f3f088c8eb6ad6',1,'MSAReader']]],
+  ['references_3',['References',['../neff.html#autotoc_md20',1,'']]],
+  ['remarks_4',['remarks',['../struct_sequence.html#aa19c72c6fd8f6193aba7cdfcf5c1d64c',1,'Sequence']]],
+  ['removegappypositions_5',['removeGappyPositions',['../neff_8cpp.html#a85f0b065ef69a8d7ae84bc0907e8c39b',1,'neff.cpp']]],
+  ['required_6',['required',['../struct_flag_info.html#a71576d3da60bed92d6d70b15f3a4ec8a',1,'FlagInfo']]],
+  ['returnsets_7',['returnSets',['../class_m_s_a_splitter.html#ae1347634d7169861f8d2ad5c852d86ca',1,'MSASplitter']]],
+  ['rmsa_8',['rMSA',['../other_tools.html#autotoc_md30',1,'']]],
+  ['rna_9',['RNA',['../common_8h.html#ad321c418983642eb2b4360826d489ec4a92efc5f13441d2abd5e146e629196c7e',1,'common.h']]]
 ];

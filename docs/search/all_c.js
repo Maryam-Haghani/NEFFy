@@ -1,10 +1,16 @@
 var searchData=
 [
-  ['of_20contents_0',['Table of Contents',['../index.html#autotoc_md7',1,'']]],
-  ['of_20other_20tools_1',['Installation of Other Tools',['../other_tools.html',1,'']]],
-  ['omitgaps_2',['omitGaps',['../class_m_s_a_reader.html#a8a14f09f0127afc4cbe9705b1eae9315',1,'MSAReader']]],
-  ['options_3a_3',['Options:',['../neff.html#autotoc_md23',1,'']]],
-  ['other_20tools_4',['Installation of Other Tools',['../other_tools.html',1,'']]],
-  ['other_5ftools_2emd_5',['other_tools.md',['../other__tools_8md.html',1,'']]],
-  ['overview_6',['Overview',['../converter.html#autotoc_md0',1,'Overview'],['../neff.html#autotoc_md20',1,'Overview']]]
+  ['neff_0',['Number of EFFective sequences (NEFF)',['../neff.html',1,'']]],
+  ['neff_20calculator_20and_20msa_20file_20converter_1',['NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
+  ['neff_20computation_2',['NEFF Computation',['../index.html#autotoc_md9',1,'']]],
+  ['neff_20computation_20tool_3',['NEFF Computation Tool',['../neff_computation.html',1,'']]],
+  ['neff_2ecpp_4',['neff.cpp',['../neff_8cpp.html',1,'']]],
+  ['neff_2emd_5',['neff.md',['../neff_8md.html',1,'']]],
+  ['neff_5fcomputation_2emd_6',['neff_computation.md',['../neff__computation_8md.html',1,'']]],
+  ['non_5fstandard_5famino_5facids_7',['NON_STANDARD_AMINO_ACIDS',['../common_8h.html#a3290b454157a7312fdef5471899c9055',1,'common.h']]],
+  ['non_5fstandard_5fnucleotides_8',['NON_STANDARD_NUCLEOTIDES',['../common_8h.html#a9ed74e137d15cecc717aa200adacb0e4',1,'common.h']]],
+  ['none_9',['None',['../common_8h.html#a268aac553a187f781fad176cf0ada14eac9d3e887722f2bc482bcca9d41c512af',1,'common.h']]],
+  ['nonstandardhandler_10',['NonStandardHandler',['../common_8h.html#a1105b29855665d3017b4a2b889b3f02a',1,'common.h']]],
+  ['normalization_11',['Normalization',['../common_8h.html#a268aac553a187f781fad176cf0ada14e',1,'common.h']]],
+  ['number_20of_20effective_20sequences_20neff_12',['Number of EFFective sequences (NEFF)',['../neff.html',1,'']]]
 ];

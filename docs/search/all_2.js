@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['deepmsa_0',['DeepMSA',['../other_tools.html#autotoc_md27',1,'']]],
-  ['dna_1',['DNA',['../common_8h.html#ad321c418983642eb2b4360826d489ec4acf4f4b33c0fa7b8f3cd37f44af0f5ce8',1,'common.h']]],
-  ['docstr_2',['docstr',['../converter_8cpp.html#af733a28ff1678d1d21721d9f4fe468af',1,'docstr:&#160;converter.cpp'],['../neff_8cpp.html#af733a28ff1678d1d21721d9f4fe468af',1,'docstr:&#160;neff.cpp']]]
+  ['calculator_20and_20msa_20file_20converter_0',['NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
+  ['char2num_1',['char2num',['../neff_8cpp.html#a0aad7c0a3babadf0f62647fea7f86e38',1,'neff.cpp']]],
+  ['checkflags_2',['checkFlags',['../neff_8cpp.html#a3eb861a46ba7fb52c4e9d2f8e20d7fee',1,'neff.cpp']]],
+  ['checkrequiredflags_3',['checkRequiredFlags',['../class_flag_handler.html#aa1e1b7401c7d94431ac7e3bd815392f7',1,'FlagHandler']]],
+  ['checkvalidation_4',['checkValidation',['../class_m_s_a_reader.html#a106c1e8996e7a0f8f8c76ec335cb2216',1,'MSAReader']]],
+  ['clustal_5',['CLUSTAL',['../msa_formats.html#autotoc_md18',1,'']]],
+  ['collaboration_20span_6',['&lt;span style=&quot;color:green&quot;&gt; Community Feedback and Collaboration &lt;/span&gt;',['../index.html#autotoc_md12',1,'']]],
+  ['color_3agreen_20community_20feedback_20and_20collaboration_20span_7',['&lt;span style=&quot;color:green&quot;&gt; Community Feedback and Collaboration &lt;/span&gt;',['../index.html#autotoc_md12',1,'']]],
+  ['command_20line_20flags_3a_8',['Command-line Flags:',['../converter.html#autotoc_md3',1,'']]],
+  ['common_2ecpp_9',['common.cpp',['../common_8cpp.html',1,'']]],
+  ['common_2eh_10',['common.h',['../common_8h.html',1,'']]],
+  ['community_20feedback_20and_20collaboration_20span_11',['&lt;span style=&quot;color:green&quot;&gt; Community Feedback and Collaboration &lt;/span&gt;',['../index.html#autotoc_md12',1,'']]],
+  ['computation_12',['NEFF Computation',['../index.html#autotoc_md9',1,'']]],
+  ['computation_20tool_13',['NEFF Computation Tool',['../neff_computation.html',1,'']]],
+  ['computecolumnwiseneff_14',['computeColumnwiseNEFF',['../neff_8cpp.html#a34c5c5af59f85462b69de4c060883efb',1,'neff.cpp']]],
+  ['computeneff_15',['computeNeff',['../neff_8cpp.html#ab62e2d4b3843e404e7b7cf478a7bfcb9',1,'neff.cpp']]],
+  ['computeweights_16',['computeWeights',['../neff_8cpp.html#a326f49375aa69b197b475af4407af8ce',1,'neff.cpp']]],
+  ['conkit_17',['Conkit',['../other_tools.html#autotoc_md31',1,'']]],
+  ['considergap_18',['ConsiderGap',['../common_8h.html#a1105b29855665d3017b4a2b889b3f02aa23d5a357eaa655ef082dde85433d2334',1,'common.h']]],
+  ['considergapincutoff_19',['ConsiderGapInCutoff',['../common_8h.html#a1105b29855665d3017b4a2b889b3f02aa5b3ed107d9c68833dec24ce92c7f03f0',1,'common.h']]],
+  ['containsinvalidletters_20',['containsInvalidLetters',['../class_m_s_a_reader.html#ac79629b6cce3127ccb303a0378ffe1eb',1,'MSAReader']]],
+  ['contents_21',['Table of Contents',['../index.html#autotoc_md7',1,'']]],
+  ['conversion_22',['Conversion',['../converter.html',1,'MSA File Conversion'],['../index.html#autotoc_md10',1,'MSA File Conversion']]],
+  ['convert_23',['convert',['../converter_8cpp.html#ac78d42ddaf55e89ff6e10ffed0aca5ac',1,'converter.cpp']]],
+  ['converter_24',['NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
+  ['converter_2ecpp_25',['converter.cpp',['../converter_8cpp.html',1,'']]],
+  ['converter_2emd_26',['converter.md',['../converter_8md.html',1,'']]]
 ];

@@ -21,7 +21,7 @@ The MSA File Conversion tool is designed to handle the conversion of MSA files f
     * __aln:__ ALN format.
     * __pfam:__ PFAM format.
 
-In the [MSA format page](\ref msaFormats), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
+In the [MSA format page](\ref msa_formats), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
 
 For further details, please refer to the [Usage](#usage) section and [Example](#example).
 
@@ -54,5 +54,6 @@ Please note that the conversion is performed based on the specified input and ou
 ```sh
 ./converter --in_file=example.aln --out_file=output.pfam --alphabet=2
 ```
+<br>
 ----------------
 For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.

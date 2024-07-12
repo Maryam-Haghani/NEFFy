@@ -1,4 +1,4 @@
-\page msaFormats MSA Formats
+\page msa_formats MSA Formats
 
 ### A2M
 Each sequence is represented by two lines:

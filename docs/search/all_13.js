@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['write_0',['write',['../class_m_s_a_writer.html#ac775d5a398728b6cb16c1cfd69c217a4',1,'MSAWriter']]],
-  ['writefile_1',['writeFile',['../class_m_s_a_writer.html#a6cdd74b0a9b7320b3968b019d630adab',1,'MSAWriter']]]
+  ['validatesequences_0',['validateSequences',['../class_m_s_a_reader.html#a4133a7ba29d17a4898531efc2b58cc5c',1,'MSAReader']]],
+  ['value_1',['value',['../struct_flag_info.html#a43fc7c94dc89f5c51a666b943946d5f8',1,'FlagInfo']]]
 ];

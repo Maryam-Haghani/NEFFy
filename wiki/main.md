@@ -1,5 +1,5 @@
 # NEFF Calculator and MSA File Converter
-This tool provides functionality to compute the Number of Effective sequences (NEFF) and convert Multiple Sequence Alignment (MSA) files between different [MSA formats](\ref msaFormats).
+This tool provides functionality to compute the Number of Effective sequences ([NEFF](\ref neff)) and convert Multiple [Sequence](\ref a) Alignment (MSA) files between different [MSA formats](\ref msa_formats).
 
 ## Table of Contents
 
@@ -19,10 +19,10 @@ Once the compilation is complete, you can run the program via the command line.
 
 \anchor neff-computation
 ## NEFF Computation
-NEFF computation determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It takes into account sequence similarities and provides a measure of sequence diversity.  <br>
+NEFF computation determines the effective number of homologous sequences within an MSA. It takes into account sequence similarities and provides a measure of sequence diversity.  <br>
 The code takes command-line flags for input and subsequently computes the score for an MSA file.
 <br />
-The detailed usage documentation can be found on the [NEFF Computation](\ref neff) page.
+The detailed usage documentation can be found on the [NEFF Computation](\ref neff_computation) page.
 
 \anchor msa-file-conversion
 ## MSA File Conversion
@@ -36,5 +36,13 @@ The detailed usage documentation can be found on the [MSA File Conversion](\ref 
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
 Please refer to the error message for troubleshooting or make necessary corrections to the input.
 
-----------------
-For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.
+<br><br><br><br>
+
+### <span style="color:green"> Community Feedback and Collaboration </span>
+We highly value the input and collaboration from our community. You can share your feedback, report issues, and collaborate with us via:
+- __Email__: You can reach us directly [contact the developer](mailto:haghani@vt.edu) for any inquiries, suggestions, or issues you encounter. We strive to respond to all emails promptly.
+- __GitHub Issues__: For more technical feedback, bug reports, and feature requests, please use our [GitHub Issues page](https://github.com/Maryam-Haghani/Neffy/issues).
+
+
+<!-- ----------------
+For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository. -->
