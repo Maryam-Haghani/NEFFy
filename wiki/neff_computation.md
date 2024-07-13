@@ -15,7 +15,7 @@ Per-residue NEFF values for each position in the MSA were calculated by summing 
 
 * __Multimer MSA NEFF__: The tool is capable of detecting the MSA format of a multimer, identifying paired MSA sequences, and unpaired sequences across chains in a block-diagonal manner, similar to AlphaFold-Multimer. By specifying the length of the monomers by user, the tool can calculate NEFF for each set.
 
-* __Random Masking for MSA Denoising based on NEFF__: Users can specify the percentage of sequences to be masked and the number of iterations for masking. The tool computes NEFF for each iteration and reports the highest NEFF value along with the corresponding masked MSA. This feature helps in denoising the MSA for downstream tasks.
+* __Random Masking for MSA Denoising__: NEFFy can perform MSA denoising by systematically masking sequences across different iterations to eliminate less informative or redundant sequences, which are considered noise. Users can define the percentage of sequences to be masked and the number of iterations for masking. NEFFy calculates the NEFF for each iteration and chooses the masking that yields the highest NEFF value. This represents the most diverse and informative MSA, making it valuable for downstream tasks.
 
 For further details, please refer to the [Usage](#usage) section and [Example](#example).
 
