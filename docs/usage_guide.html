@@ -5,7 +5,7 @@
 <meta http="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NEFFy: NEFF Computation Tool</title>
+<title>NEFFy: How to Use</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -114,31 +114,47 @@ $(function(){ initResizable(false); });
 </div><!-- top -->
 <div id="doc-content">
 <div><div class="header">
-  <div class="headertitle"><div class="title">NEFF Computation Tool</div></div>
+  <div class="headertitle"><div class="title">How to Use</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md21"></a>
-Overview</h2>
-<p>This program computes the Number of Effective Sequences (NEFF) for a multiple sequence alignment (MSA) file. NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA and provides a measure of sequence diversity. It is widely used in bioinformatics to assess the diversity of a set of sequences.</p>
-<h2><a class="anchor" id="autotoc_md22"></a>
-Features</h2>
-<p>This NEFF computation tool provides versatile options for analyzing the diversity of sequences in an MSA, including symmetric and asymmetric NEFF, column-wise NEFF, paired and unpaired MSA NEFF, and random masking for denoising. It caters to various needs in bioinformatics and structural biology, ensuring a comprehensive assessment of sequence alignments.</p>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md35"></a>
+Table of Contents</h2>
 <ul>
-<li><b>Symmetric NEFF</b>: In this mode, the threshold for considering a pair of sequences as homologous depends on the length of the alignment. This threshold is equal for all sequences, leading to symmetry in similarities.</li>
-<li><b>Asymmetric NEFF</b>: Here, the threshold depends on the number of non-gap residues, making the cutoff different for each sequence. This method provides a more detailed and accurate representation of sequence diversity.</li>
-<li><b>Column-wise NEFF (Per-Residue NEFF)</b>: This method computes NEFF for each position in the alignment. It is used by tools like AlphaFold for more precise per-residue sequence diversity assessment. Per-residue NEFF values for each position in the MSA were calculated by summing the weights of the sequences that have a residue (i.e., non-gap characters) at that specific position.</li>
-<li><b>Multimer MSA NEFF</b>: The tool is capable of detecting the MSA format of a multimer, identifying paired MSA sequences, and unpaired sequences across chains in a block-diagonal manner, similar to AlphaFold-Multimer. By specifying the length of the monomers by user, the tool can calculate NEFF for each set.</li>
-<li><b>Random Masking for MSA Denoising</b>: NEFFy can perform MSA denoising by systematically masking sequences across different iterations to eliminate less informative or redundant sequences, which are considered noise. Users can define the percentage of sequences to be masked and the number of iterations for masking. NEFFy calculates the NEFF for each iteration and chooses the masking that yields the highest NEFF value. This represents the most diverse and informative MSA, making it valuable for downstream tasks.</li>
+<li><a class="el" href="#executable">C++ Executable File</a><ul>
+<li><a class="el" href="#neff_computation">NEFF Computation</a><ul>
+<li><a class="el" href="#neff_usage">Usage</a></li>
+<li><a class="el" href="#neff_parameters">Parameters</a></li>
+<li><a class="el" href="#neff_example">Example</a></li>
 </ul>
-<p>For further details, please refer to the <a class="el" href="#usage">Usage</a> section and <a class="el" href="#example">Example</a>.</p>
-<p><a class="anchor" id="usage"></a></p>
-<h2><a class="anchor" id="autotoc_md23"></a>
-Usage</h2>
+</li>
+<li><a class="el" href="#converter">MSA File Conversion</a><ul>
+<li><a class="el" href="#converter_usage">Usage</a></li>
+<li><a class="el" href="#converter_parameters">Parameters</a></li>
+<li><a class="el" href="#converter_example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="el" href="#python">Python Library</a><ul>
+<li><a class="el" href="#python_neff">NEFF Computation</a></li>
+<li><a class="el" href="#python_converter">MSA File Conversion</a></li>
+</ul>
+</li>
+</ul>
+<p><a class="anchor" id="executable"></a></p>
+<h1><a class="anchor" id="autotoc_md36"></a>
+C++ Executable File</h1>
+<p><a class="anchor" id="neff_computation"></a></p>
+<h2><a class="anchor" id="autotoc_md37"></a>
+NEFF Computation</h2>
+<p><a class="anchor" id="neff_usage"></a></p>
+<h3><a class="anchor" id="autotoc_md38"></a>
+Usage:</h3>
 <div class="fragment"><div class="line">./neff --file=&lt;input_file&gt; [options]</div>
-</div><!-- fragment --><p> The code takes command-line flags for input and subsequently computes the score for an MSA file.</p>
-<p>To calculate NEFF, provide an MSA file and indicate the desired flags. NEFF will be computed and presented as the result.</p>
-<h3><a class="anchor" id="autotoc_md24"></a>
-Options:</h3>
+</div><!-- fragment --><p>To calculate NEFF, provide an MSA file and indicate the desired parameters. NEFF will be computed and presented as the result.</p>
+<p><a class="anchor" id="neff_parameters"></a></p>
+<h3><a class="anchor" id="autotoc_md39"></a>
+Parameters:</h3>
 <p>The code accepts the following command-line flags: </p><table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Flag   </th><th class="markdownTableHeadNone">Description   </th><th class="markdownTableHeadNone">Required   </th><th class="markdownTableHeadNone">Default Value   </th><th class="markdownTableHeadNone">Example    </th></tr>
@@ -191,21 +207,9 @@ Options:</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--column_neff=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute Column-wise NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--column_neff=true</code>   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md25"></a>
-Supported File Formats</h3>
-<ul>
-<li><b>A2M</b> (aligned FASTA-like format)</li>
-<li><b>A3M</b> (compressed aligned FASTA-like format with lowercase letters for insertions)</li>
-<li><b>FASTA</b>, <b>AFA</b>, <b>FAS</b>, <b>FST</b>, <b>FSA</b> (FASTA format)</li>
-<li><b>STO</b> (Stockholm format)</li>
-<li><b>CLUSTAL</b> (CLUSTAL format)</li>
-<li><b>ALN</b> (ALN format)</li>
-<li><b>PFAM</b> (format mostly used for nucleotides)</li>
-</ul>
-<p>In the <a class="el" href="msa_formats.html">MSA format page</a>, you will find a brief explanation of each format, along with an illustrative alignment example for each one.</p>
-<p><a class="anchor" id="example"></a></p>
-<h2><a class="anchor" id="autotoc_md26"></a>
-Example</h2>
+<p><a class="anchor" id="neff_example"></a></p>
+<h3><a class="anchor" id="autotoc_md40"></a>
+Example:</h3>
 <ul>
 <li><b>Compute Asymmetric NEFF for RNA MSA:</b> <div class="fragment"><div class="line">./neff --file=example.a3m --threshold=0.7 --norm=2 --is_symmetric=false --alphabet=1</div>
 </div><!-- fragment --> The resulting NEFF value will be displayed on the console based on the specified options.</li>
@@ -222,10 +226,105 @@ Example</h2>
 <li><b>Random Masking and NEFF Calculation:</b> <div class="fragment"><div class="line">./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_percent=0.2</div>
 </div><!-- fragment --> The tool will mask 20% of sequences in the example.fasta MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in the <em>neff_values.txt</em> file. The masked MSA corresponding to the highest NEFF value will be saved in the <em>MSA_with_highest_neff.fasta</em> file, representing the denoised MSA of the given example.fasta MSA, which can be used for downstream tasks requiring a high-quality MSA.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md27"></a>
-<br  />
-</h2>
-<p>For further assistance or inquiries, please <a href="#" onclick="location.href='mai'+'lto:'+'hag'+'ha'+'ni@'+'vt'+'.ed'+'u'; return false;">contact the developer</a> or create an <a href="https://github.com/Maryam-Haghani/Neffy/issues">issue</a> in the GitHub repository. </p>
+<p><br  />
+</p>
+<p><a class="anchor" id="converter"></a></p>
+<h2><a class="anchor" id="autotoc_md41"></a>
+MSA File Conversion</h2>
+<p>To convert an MSA file, specify the input file, output file, and the desired input and output formats. The tool will read the input file, perform the conversion, and write the resulting MSA to the output file in the specified format.</p>
+<p><a class="anchor" id="converter_usage"></a></p>
+<h3><a class="anchor" id="autotoc_md42"></a>
+Usage:</h3>
+<div class="fragment"><div class="line">./converter --in_file=&lt;input_file&gt; --out_file=&lt;input_file&gt; [options]</div>
+</div><!-- fragment --><p> <a class="anchor" id="converter_parameters"></a></p>
+<h3><a class="anchor" id="autotoc_md43"></a>
+Parameters:</h3>
+<p>The code accepts the following command-line flags: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Flag   </th><th class="markdownTableHeadNone">Description   </th><th class="markdownTableHeadNone">Required   </th><th class="markdownTableHeadNone">Default Value   </th><th class="markdownTableHeadNone">Example    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>--in_file=&lt;filename&gt;</code>   </td><td class="markdownTableBodyNone">Specifies the input MSA file to be converted.<br  />
+ Replace <code>&lt;filename&gt;</code> with the path and name of the input file   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone"><code>--in_file=input.fasta</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>--out_file=&lt;filename&gt;</code>   </td><td class="markdownTableBodyNone">Specifies the output file where the converted MSA will be saved.<br  />
+ Replace <code>&lt;filename&gt;</code> with the desired path and name of the output file   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone"><code>--out_file=output.a2m</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>--alphabet=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Alphabet of MSA <br  />
+ <b>0</b>: Protein <br  />
+ <b>1</b>: RNA <br  />
+ <b>2</b>: DNA   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--alphabet=1</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>--check_validation=[true/false]</code>   </td><td class="markdownTableBodyNone">Validate the input MSA file based on alphabet or not   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">true   </td><td class="markdownTableBodyNone"><code>--check_validation=true</code>   </td></tr>
+</table>
+<p>Please note that the conversion is performed based on the specified input and output file extensions.</p>
+<p><a class="anchor" id="converter_example"></a></p>
+<h3><a class="anchor" id="autotoc_md44"></a>
+Example:</h3>
+<ul>
+<li><b>Convert an A3M file to Stockholm format with RNA alphabet:</b> <div class="fragment"><div class="line">./converter --in_file=example.a3m --out_file=output.sto --alphabet=1</div>
+</div><!-- fragment --></li>
+<li><b>Convert a FASTA file to Clustal format without validation:</b> <div class="fragment"><div class="line">./converter --in_file=example.fasta --out_file=output.clustal --check_validation=false</div>
+</div><!-- fragment --></li>
+<li><b>Convert an ALN file to PFAM format with DNA alphabet:</b> <div class="fragment"><div class="line">./converter --in_file=example.aln --out_file=output.pfam --alphabet=2</div>
+</div><!-- fragment --> <br  />
+</li>
+</ul>
+<hr  />
+<p> <a class="anchor" id="python"></a></p>
+<h1><a class="anchor" id="autotoc_md46"></a>
+Python Library</h1>
+<p><a class="anchor" id="python_neff"></a></p>
+<h2><a class="anchor" id="autotoc_md47"></a>
+NEFF Computation</h2>
+<p>To compute the neff:</p>
+<div class="fragment"><div class="line">python compute_neff.py --file=./example/example.a2m</div>
+</div><!-- fragment --><p>Where <code>compute_neff.py</code>:</p>
+<div class="fragment"><div class="line"><span class="keyword">import</span> sys</div>
+<div class="line"><span class="keyword">import</span> neffy</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">def </span><a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>():</div>
+<div class="line">    <span class="comment"># Get arguments from the command line</span></div>
+<div class="line">    args = sys.argv[1:]</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args:</div>
+<div class="line">        print(<span class="stringliteral">&quot;Please provide arguments for the neff tool.&quot;</span>)</div>
+<div class="line">        <span class="keywordflow">return</span></div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">try</span>:</div>
+<div class="line">        output = neffy.compute_neff(args)</div>
+<div class="line">        print(output)</div>
+<div class="line">    <span class="keywordflow">except</span> RuntimeError <span class="keyword">as</span> e:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;{e}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line">    <a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>()</div>
+<div class="ttc" id="aconverter_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition</b> converter.cpp:144</div></div>
+</div><!-- fragment --><p><a class="anchor" id="python_converter"></a></p>
+<h2><a class="anchor" id="autotoc_md48"></a>
+MSA File Conversion</h2>
+<p>To convert MSA:</p>
+<div class="fragment"><div class="line">python convert_msa.py --in_file=./example/example.a2m --out_file=./example/example.fasta</div>
+</div><!-- fragment --><p>Where <code>convert_msa.py</code>:</p>
+<div class="fragment"><div class="line"><span class="keyword">import</span> sys</div>
+<div class="line"><span class="keyword">import</span> neffy</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">def </span><a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>():</div>
+<div class="line">    <span class="comment"># Get arguments from the command line</span></div>
+<div class="line">    args = sys.argv[1:]</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args:</div>
+<div class="line">        print(<span class="stringliteral">&quot;Please provide arguments for the neff tool.&quot;</span>)</div>
+<div class="line">        <span class="keywordflow">return</span></div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">try</span>:</div>
+<div class="line">        output = neffy.convert_msa(args)</div>
+<div class="line">        print(output)</div>
+<div class="line">    <span class="keywordflow">except</span> RuntimeError <span class="keyword">as</span> e:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;{e}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line">    <a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>()</div>
+</div><!-- fragment --><p><span style="color:purple; font-size: larger;"> As the <code>NEFFy</code> Python library is currently in its beta version, the stable version of the library will include changes where the methods <b>compute_neff</b> and <b>convert_msa</b> will accept arguments as method parameters. </span> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!DOCTYPE html>

@@ -1,0 +1,279 @@
+\chapter{How to Use}
+\hypertarget{usage_guide}{}\label{usage_guide}\index{How to Use@{How to Use}}
+\hypertarget{usage_guide_autotoc_md35}{}\doxysubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{usage_guide_autotoc_md35}
+
+\begin{DoxyItemize}
+\item \doxylink{usage_guide_executable}{C++ Executable File}
+\begin{DoxyItemize}
+\item \doxylink{usage_guide_neff_computation}{NEFF Computation}
+\begin{DoxyItemize}
+\item \doxylink{usage_guide_neff_usage}{Usage}
+\item \doxylink{usage_guide_neff_parameters}{Parameters}
+\item \doxylink{usage_guide_neff_example}{Example}
+\end{DoxyItemize}
+\item \doxylink{usage_guide_converter}{MSA File Conversion}
+\begin{DoxyItemize}
+\item \doxylink{usage_guide_converter_usage}{Usage}
+\item \doxylink{usage_guide_converter_parameters}{Parameters}
+\item \doxylink{usage_guide_converter_example}{Example}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item \doxylink{usage_guide_python}{Python Library}
+\begin{DoxyItemize}
+\item \doxylink{usage_guide_python_neff}{NEFF Computation}
+\item \doxylink{usage_guide_python_converter}{MSA File Conversion}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\label{usage_guide_executable}%
+\Hypertarget{usage_guide_executable}%
+\hypertarget{usage_guide_autotoc_md36}{}\doxysection{\texorpdfstring{C++ Executable File}{C++ Executable File}}\label{usage_guide_autotoc_md36}
+\label{usage_guide_neff_computation}%
+\Hypertarget{usage_guide_neff_computation}%
+\hypertarget{usage_guide_autotoc_md37}{}\doxysubsection{\texorpdfstring{NEFF Computation}{NEFF Computation}}\label{usage_guide_autotoc_md37}
+\label{usage_guide_neff_usage}%
+\Hypertarget{usage_guide_neff_usage}%
+\hypertarget{usage_guide_autotoc_md38}{}\doxysubsubsection{\texorpdfstring{Usage\+:}{Usage\+:}}\label{usage_guide_autotoc_md38}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./neff\ -\/-\/file=<input\_file>\ [options]}
+
+\end{DoxyCode}
+
+
+To calculate NEFF, provide an MSA file and indicate the desired parameters. NEFF will be computed and presented as the result.
+
+\label{usage_guide_neff_parameters}%
+\Hypertarget{usage_guide_neff_parameters}%
+\hypertarget{usage_guide_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{usage_guide_autotoc_md39}
+The code accepts the following command-\/line flags\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Flag   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Example    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Flag   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Example    }\\\cline{1-5}
+\endhead
+{\ttfamily -\/-\/file=\texorpdfstring{$<$}{<}filename\texorpdfstring{$>$}{>}}   &Input file containing multiple sequence alignment   &Yes   &N/A   &{\ttfamily -\/-\/file=my\+\_\+alignment.\+fasta}    \\\cline{1-5}
+{\ttfamily -\/-\/alphabet=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Alphabet of MSA ~\newline
+ {\bfseries{0}}\+: Protein ~\newline
+ {\bfseries{1}}\+: RNA ~\newline
+ {\bfseries{2}}\+: DNA   &No   &0   &{\ttfamily -\/-\/alphabet=1}    \\\cline{1-5}
+{\ttfamily -\/-\/check\+\_\+validation=\mbox{[}true/false\mbox{]}}   &Validate the input MSA file based on alphabet or not   &No   &false   &{\ttfamily -\/-\/check\+\_\+validation=true}    \\\cline{1-5}
+{\ttfamily -\/-\/threshold=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Threshold value of considering two sequences similar (between 0 and 1)   &No   &0.\+8   &{\ttfamily -\/-\/threshold=0.\+7}    \\\cline{1-5}
+{\ttfamily -\/-\/norm=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Normalization option for NEFF ~\newline
+ {\bfseries{0}}\+: Normalize by the square root of sequence length ~\newline
+ {\bfseries{1}}\+: Normalize by the sequence length ~\newline
+ {\bfseries{2}}\+: No Normalization   &No   &0   &{\ttfamily -\/-\/norm=2}    \\\cline{1-5}
+{\ttfamily -\/-\/omit\+\_\+query\+\_\+gaps=\mbox{[}true/false\mbox{]}}   &Omit gap positions of query sequence from entire sequences for NEFF computation   &No   &true   &{\ttfamily -\/-\/omit\+\_\+query\+\_\+gaps=true}    \\\cline{1-5}
+{\ttfamily -\/-\/is\+\_\+symmetric =true/false\mbox{]}}   &Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)   &No   &true   &{\ttfamily -\/-\/is\+\_\+symmetric=false}    \\\cline{1-5}
+{\ttfamily -\/-\/non\+\_\+standard\+\_\+option=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Options for handling non-\/standard letters of the specified alphabet ~\newline
+ {\bfseries{0}}\+: Treat them the same as standard letters ~\newline
+ {\bfseries{1}}\+: Consider them as gaps when computing similarity cutoff of sequences (only used in asymmetryc version) ~\newline
+ {\bfseries{2}}\+: Consider them as gaps in computing similarity cutoff and checking position of match/mismatch   &No   &0   &{\ttfamily -\/-\/non\+\_\+standard\+\_\+option=1}    \\\cline{1-5}
+{\ttfamily -\/-\/depth=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Depth of MSA to be used in NEFF computation (starting from the first sequence)   &No   &inf (consider all sequences)   &{\ttfamily -\/-\/depth=10} ~\newline
+(if given value is greater than original depth, it considers the original depth)    \\\cline{1-5}
+{\ttfamily -\/-\/gap\+\_\+cutoff=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Threshold for considering a position as gappy and removing that (between 0 and 1)   &No   &1 (no gappy position)   &{\ttfamily -\/-\/gap\+\_\+cutoff=0.\+7}    \\\cline{1-5}
+{\ttfamily -\/-\/pos\+\_\+start=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Start position of each sequence to be considered in NEFF (inclusive)   &No   &1 (the first position)   &{\ttfamily -\/-\/pos\+\_\+start=10}    \\\cline{1-5}
+{\ttfamily -\/-\/pos\+\_\+end=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Last position of each sequence to be considered in NEFF (inclusive)   &No   &inf (consider all sequence)   &{\ttfamily -\/-\/pos\+\_\+end=50} (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)    \\\cline{1-5}
+{\ttfamily -\/-\/only\+\_\+weights=\mbox{[}true/false\mbox{]}}   &Return only sequence weights, rather than the final NEFF   &No   &false   &{\ttfamily -\/-\/only\+\_\+weights=true}    \\\cline{1-5}
+{\ttfamily -\/-\/mask\+\_\+enabled=\mbox{[}true/false\mbox{]}}   &Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF   &No   &false   &{\ttfamily -\/-\/mask\+\_\+enabled=true}    \\\cline{1-5}
+{\ttfamily -\/-\/mask\+\_\+percent=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Percentage of sequences to be masked in each masking iteration   &when {\itshape mask\+\_\+enabled}=true   &0   &{\ttfamily -\/-\/mask\+\_\+percent=0.\+4}    \\\cline{1-5}
+{\ttfamily -\/-\/mask\+\_\+count=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Number of masking iterations   &when {\itshape mask\+\_\+enabled}=true   &0   &{\ttfamily -\/-\/mask\+\_\+count=0}    \\\cline{1-5}
+{\ttfamily -\/-\/multimer\+\_\+\+MSA=\mbox{[}true/false\mbox{]}}   &Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts   &No   &false   &{\ttfamily -\/-\/multimer\+\_\+\+MSA=true}    \\\cline{1-5}
+{\ttfamily -\/-\/monomer\+\_\+length=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Length of the monomers, which is used to obtain NEFF for both paired MSA and individual monomer MSA   &when {\itshape multimer\+\_\+\+MSA}=true   &0   &{\ttfamily -\/-\/monomer\+\_\+length=17}    \\\cline{1-5}
+{\ttfamily -\/-\/column\+\_\+neff=\mbox{[}true/false\mbox{]}}   &Compute Column-\/wise NEFF   &No   &false   &{\ttfamily -\/-\/column\+\_\+neff=true}   \\\cline{1-5}
+\end{longtabu}
+
+
+\label{usage_guide_neff_example}%
+\Hypertarget{usage_guide_neff_example}%
+\hypertarget{usage_guide_autotoc_md40}{}\doxysubsubsection{\texorpdfstring{Example\+:}{Example\+:}}\label{usage_guide_autotoc_md40}
+
+\begin{DoxyItemize}
+\item {\bfseries{Compute Asymmetric NEFF for RNA MSA\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./neff\ -\/-\/file=example.a3m\ -\/-\/threshold=0.7\ -\/-\/norm=2\ -\/-\/is\_symmetric=false\ -\/-\/alphabet=1}
+
+\end{DoxyCode}
+ The resulting NEFF value will be displayed on the console based on the specified options.
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\bfseries{Compute NEFF for Multimer MSA\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./neff\ -\/-\/file=example.sto\ -\/-\/multimer\_MSA=true\ -\/-\/monomer\_length=20}
+
+\end{DoxyCode}
+ The tool will identify paired MSA sequences and sequences for the individual MSAs of monomers in the {\itshape example.\+sto} file which corresponds to a protein dimer, assuming the first monomer has a length of 20 residues. It will report NEFF values for the paired MSA as well as for the MSAs corresponding to unpaired sequences. If the provided MSA is not in the form of a multimer MSA, the tool will raise an error stating "{}\+MSA is not in the form of multimer MSA"{}.
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\bfseries{Compute Column-\/wise NEFF\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./neff\ -\/-\/file=example.aln\ -\/-\/column\_neff=true}
+
+\end{DoxyCode}
+ The result will display the NEFF value for each position in the alignment on a per-\/residue (column-\/wise) basis.
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\bfseries{Random Masking and NEFF Calculation\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./neff\ -\/-\/file=example.fasta\ -\/-\/mask\_enabled=true\ -\/-\/mask\_count=10\ -\/-\/mask\_percent=0.2}
+
+\end{DoxyCode}
+ The tool will mask 20\% of sequences in the example.\+fasta MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in the {\itshape neff\+\_\+values.\+txt} file. The masked MSA corresponding to the highest NEFF value will be saved in the {\itshape MSA\+\_\+with\+\_\+highest\+\_\+neff.\+fasta} file, representing the denoised MSA of the given example.\+fasta MSA, which can be used for downstream tasks requiring a high-\/quality MSA.
+\end{DoxyItemize}
+
+~\newline
+
+
+\label{usage_guide_converter}%
+\Hypertarget{usage_guide_converter}%
+\hypertarget{usage_guide_autotoc_md41}{}\doxysubsection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{usage_guide_autotoc_md41}
+To convert an MSA file, specify the input file, output file, and the desired input and output formats. The tool will read the input file, perform the conversion, and write the resulting MSA to the output file in the specified format.
+
+\label{usage_guide_converter_usage}%
+\Hypertarget{usage_guide_converter_usage}%
+\hypertarget{usage_guide_autotoc_md42}{}\doxysubsubsection{\texorpdfstring{Usage\+:}{Usage\+:}}\label{usage_guide_autotoc_md42}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./converter\ -\/-\/in\_file=<input\_file>\ -\/-\/out\_file=<input\_file>\ [options]}
+
+\end{DoxyCode}
+ \label{usage_guide_converter_parameters}%
+\Hypertarget{usage_guide_converter_parameters}%
+\hypertarget{usage_guide_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{usage_guide_autotoc_md43}
+The code accepts the following command-\/line flags\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Flag   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Example    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Flag   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Example    }\\\cline{1-5}
+\endhead
+{\ttfamily -\/-\/in\+\_\+file=\texorpdfstring{$<$}{<}filename\texorpdfstring{$>$}{>}}   &Specifies the input MSA file to be converted.~\newline
+ Replace {\ttfamily \texorpdfstring{$<$}{<}filename\texorpdfstring{$>$}{>}} with the path and name of the input file   &Yes   &N/A   &{\ttfamily -\/-\/in\+\_\+file=input.\+fasta}    \\\cline{1-5}
+{\ttfamily -\/-\/out\+\_\+file=\texorpdfstring{$<$}{<}filename\texorpdfstring{$>$}{>}}   &Specifies the output file where the converted MSA will be saved.~\newline
+ Replace {\ttfamily \texorpdfstring{$<$}{<}filename\texorpdfstring{$>$}{>}} with the desired path and name of the output file   &Yes   &N/A   &{\ttfamily -\/-\/out\+\_\+file=output.\+a2m}    \\\cline{1-5}
+{\ttfamily -\/-\/alphabet=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Alphabet of MSA ~\newline
+ {\bfseries{0}}\+: Protein ~\newline
+ {\bfseries{1}}\+: RNA ~\newline
+ {\bfseries{2}}\+: DNA   &No   &0   &{\ttfamily -\/-\/alphabet=1}    \\\cline{1-5}
+{\ttfamily -\/-\/check\+\_\+validation=\mbox{[}true/false\mbox{]}}   &Validate the input MSA file based on alphabet or not   &No   &true   &{\ttfamily -\/-\/check\+\_\+validation=true}   \\\cline{1-5}
+\end{longtabu}
+
+
+Please note that the conversion is performed based on the specified input and output file extensions.
+
+\label{usage_guide_converter_example}%
+\Hypertarget{usage_guide_converter_example}%
+\hypertarget{usage_guide_autotoc_md44}{}\doxysubsubsection{\texorpdfstring{Example\+:}{Example\+:}}\label{usage_guide_autotoc_md44}
+
+\begin{DoxyItemize}
+\item {\bfseries{Convert an A3M file to Stockholm format with RNA alphabet\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./converter\ -\/-\/in\_file=example.a3m\ -\/-\/out\_file=output.sto\ -\/-\/alphabet=1}
+
+\end{DoxyCode}
+
+\item {\bfseries{Convert a FASTA file to Clustal format without validation\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./converter\ -\/-\/in\_file=example.fasta\ -\/-\/out\_file=output.clustal\ -\/-\/check\_validation=false}
+
+\end{DoxyCode}
+
+\item {\bfseries{Convert an ALN file to PFAM format with DNA alphabet\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./converter\ -\/-\/in\_file=example.aln\ -\/-\/out\_file=output.pfam\ -\/-\/alphabet=2}
+
+\end{DoxyCode}
+ ~\newline
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+ \label{usage_guide_python}%
+\Hypertarget{usage_guide_python}%
+\hypertarget{usage_guide_autotoc_md46}{}\doxysection{\texorpdfstring{Python Library}{Python Library}}\label{usage_guide_autotoc_md46}
+\label{usage_guide_python_neff}%
+\Hypertarget{usage_guide_python_neff}%
+\hypertarget{usage_guide_autotoc_md47}{}\doxysubsection{\texorpdfstring{NEFF Computation}{NEFF Computation}}\label{usage_guide_autotoc_md47}
+To compute the neff\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ compute\_neff.py\ -\/-\/file=./example/example.a2m}
+
+\end{DoxyCode}
+
+
+Where {\ttfamily compute\+\_\+neff.\+py}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\textcolor{keyword}{import}\ neffy}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{def\ }\mbox{\hyperlink{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}():}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Get\ arguments\ from\ the\ command\ line}}
+\DoxyCodeLine{\ \ \ \ args\ =\ sys.argv[1:]}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ args:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Please\ provide\ arguments\ for\ the\ neff\ tool."{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ output\ =\ neffy.compute\_neff(args)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(output)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ RuntimeError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{e\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}()}
+
+\end{DoxyCode}
+
+
+\label{usage_guide_python_converter}%
+\Hypertarget{usage_guide_python_converter}%
+\hypertarget{usage_guide_autotoc_md48}{}\doxysubsection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{usage_guide_autotoc_md48}
+To convert MSA\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ convert\_msa.py\ -\/-\/in\_file=./example/example.a2m\ -\/-\/out\_file=./example/example.fasta}
+
+\end{DoxyCode}
+
+
+Where {\ttfamily convert\+\_\+msa.\+py}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\textcolor{keyword}{import}\ neffy}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{def\ }\mbox{\hyperlink{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}():}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ Get\ arguments\ from\ the\ command\ line}}
+\DoxyCodeLine{\ \ \ \ args\ =\ sys.argv[1:]}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ args:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Please\ provide\ arguments\ for\ the\ neff\ tool."{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ output\ =\ neffy.convert\_msa(args)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(output)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ RuntimeError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{e\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}()}
+
+\end{DoxyCode}
+
+
+ As the {\ttfamily NEFFy} Python library is currently in its beta version, the stable version of the library will include changes where the methods {\bfseries{compute\+\_\+neff}} and {\bfseries{convert\+\_\+msa}} will accept arguments as method parameters.  

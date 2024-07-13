@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['msa_20file_20conversion_0',['MSA File Conversion',['../converter.html',1,'']]],
-  ['msa_20file_20converter_1',['NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
-  ['msa_20formats_2',['MSA Formats',['../msa_formats.html',1,'']]]
+  ['help_20page_0',['Help Page',['../help.html',1,'']]],
+  ['how_20to_20use_1',['How to Use',['../usage_guide.html',1,'']]]
 ];

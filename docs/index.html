@@ -5,7 +5,7 @@
 <meta http="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NEFFy: NEFF Calculator and MSA File Converter</title>
+<title>NEFFy: NEFFy: NEFF Calculator and MSA File Converter</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -114,49 +114,75 @@ $(function(){ initResizable(false); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">NEFF Calculator and MSA File Converter </div></div>
+  <div class="headertitle"><div class="title">NEFFy: NEFF Calculator and MSA File Converter </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_wiki_2main"></a>This tool provides functionality to compute the Number of Effective sequences (<a class="el" href="neff.html">NEFF</a>) and convert Multiple Sequence Alignment (MSA) files between different <a class="el" href="msa_formats.html">MSA formats</a>.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<div class="textblock"><p><a class="anchor" id="md_wiki_2main"></a> </p>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Table of Contents</h1>
 <ul>
-<li><a class="el" href="#getting-started">Getting Started</a></li>
-<li><a class="el" href="#neff-computation">NEFF Computation</a></li>
-<li><a class="el" href="#msa-file-conversion">MSA File Conversion</a></li>
-<li><a class="el" href="#error-handling">Error Handling</a></li>
+<li><a class="el" href="#overview">Overview</a></li>
+<li>Tools<ul>
+<li><a class="el" href="#overview_neff_computation">NEFF Computation</a></li>
+<li><a class="el" href="#overview_converter">MSA File Conversion</a></li>
 </ul>
-<p><a class="anchor" id="getting-started"></a></p>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Getting Started</h1>
-<p>Download the source code and compile it using a C++ compiler that is compatible with C++17 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. You can navigate to the Makefile directory and easily enter the following command in the terminal:<br  />
+</li>
+<li><a class="el" href="#how-use-neffy">How to Use NEFFy</a><ul>
+<li><a class="el" href="#use_executable">Executable File</a></li>
+<li><a class="el" href="#use_lib">Python Library</a></li>
+</ul>
+</li>
+<li><a class="el" href="#error_handling">Error Handling</a></li>
+<li><a class="el" href="#feedback">Feedback and Collaboration</a></li>
+</ul>
+<p><a class="anchor" id="overview"></a>NEFFy is a versatile, efficient, and comprehensive tool for bioinformatics research, offering advanced features for calculating <a class="el" href="neff.html">NEFF</a> (Normalized Effective Number of Sequences) for Multiple Sequence Alignments (MSA)s of any biological sequences, including protein, RNA, and DNA across various <a class="el" href="msa_formats.html">MSA formats</a>. It surpasses existing tools in efficiency and functionality. <br  />
+ Additionally, NEFFy includes built-in support for format conversion, allowing users to seamlessly convert between different <a class="el" href="msa_formats.html">MSA formats</a>.<br  />
 </p>
-<div class="fragment"><div class="line">make</div>
-</div><!-- fragment --><p> Once the compilation is complete, you can run the program via the command line.</p>
-<p><a class="anchor" id="neff-computation"></a></p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-NEFF Computation</h1>
-<p>NEFF computation determines the effective number of homologous sequences within an MSA. It takes into account sequence similarities and provides a measure of sequence diversity. <br  />
- The code takes command-line flags for input and subsequently computes the score for an MSA file. <br  />
- The detailed usage documentation can be found on the <a class="el" href="neff_computation.html">NEFF Computation</a> page.</p>
-<p><a class="anchor" id="msa-file-conversion"></a></p>
-<h1><a class="anchor" id="autotoc_md10"></a>
-MSA File Conversion</h1>
-<p>The MSA File Conversion tool provides a convenient way to convert Multiple <a class="el" href="struct_sequence.html">Sequence</a> Alignment (MSA) files between various supported formats. <br  />
- This versatile utility simplifies the process of format conversion, ensuring compatibility across different bioinformatics software and analysis pipelines. Simply specify the input and output files along with their formats, and the tool will handle the conversion for you. <br  />
- The detailed usage documentation can be found on the <a class="el" href="converter.html">MSA File Conversion</a> page.</p>
-<p><a class="anchor" id="error-handling"></a></p>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<p><a class="anchor" id="overview_neff_computation"></a></p>
+<h2><a class="anchor" id="autotoc_md14"></a>
+NEFF Computation</h2>
+<p>NEFF computation tool provides versatile options for analyzing the diversity of sequences in an MSA, including symmetric and asymmetric NEFF, column-wise NEFF, paired and unpaired MSA NEFF, and random masking for denoising. It caters to various needs in bioinformatics and structural biology, ensuring a comprehensive assessment of sequence alignments.</p>
+<ul>
+<li><b>Symmetric NEFF</b>: In this mode, the threshold for considering a pair of sequences as homologous depends on the length of the alignment. This threshold is equal for all sequences, leading to symmetry in similarities.</li>
+<li><b>Asymmetric NEFF</b>: Here, the threshold depends on the number of non-gap residues, making the cutoff different for each sequence. This method provides a more detailed and accurate representation of sequence diversity.</li>
+<li><b>Column-wise NEFF (Per-Residue NEFF)</b>: This method computes NEFF for each position in the alignment. It is used by tools like AlphaFold for more precise per-residue sequence diversity assessment. Per-residue NEFF values for each position in the MSA were calculated by summing the weights of the sequences that have a residue (i.e., non-gap characters) at that specific position.</li>
+<li><b>Multimer MSA NEFF</b>: The tool is capable of detecting the MSA format of a multimer, identifying paired MSA sequences, and unpaired sequences across chains in a block-diagonal manner, similar to AlphaFold-Multimer. By specifying the length of the monomers by user, the tool can calculate NEFF for each set.</li>
+<li><b>Random Masking for MSA Denoising</b>: NEFFy can perform MSA denoising by systematically masking sequences across different iterations to eliminate less informative or redundant sequences, which are considered noise. Users can define the percentage of sequences to be masked and the number of iterations for masking. NEFFy calculates the NEFF for each iteration and chooses the masking that yields the highest NEFF value. This represents the most diverse and informative MSA, making it valuable for downstream tasks.</li>
+<li><b>Multiple Format Support:</b> The tool supports various <a class="el" href="msa_formats.html">MSA formats</a>.</li>
+</ul>
+<p>Please fine to the document of how to use executable and python library.</p>
+<p><a class="anchor" id="overview_converter"></a></p>
+<h2><a class="anchor" id="autotoc_md15"></a>
+MSA File Conversion</h2>
+<p>The MSA File Conversion tool is designed to handle the conversion of MSA files from one format to another with minimal user intervention. By specifying the input and output files along with their formats, users can effortlessly convert MSA files while preserving sequence integrity and annotations. This tool supports a wide range of <a class="el" href="msa_formats.html">MSA formats</a>, making it an essential utility for researchers working with sequence alignment data.</p>
+<ul>
+<li><b>Easy Conversion Process:</b> Users only need to specify the input and output files along with their desired formats. The tool handles the rest, including reading the input file, performing the conversion, and writing the output file.</li>
+<li><b>Alphabet Specification:</b> The tool allows users to specify the alphabet of the MSA (Protein, RNA, DNA) to ensure proper handling and validation of sequences.</li>
+<li><b>Validation Option:</b> Users can choose whether to perform validation on sequences, ensuring data integrity and consistency.</li>
+<li><b>Multiple Format Support:</b> The tool supports various <a class="el" href="msa_formats.html">MSA formats</a>.</li>
+</ul>
+<p><br  />
+</p>
+<hr  />
+<p> <a class="anchor" id="how-use-neffy"></a></p>
+<h1><a class="anchor" id="autotoc_md17"></a>
+How to Use NEFFy</h1>
+<p>NEFFy is designed to be flexible and user-friendly, offering two main versions to cater to different user needs: <a class="anchor" id="use_executable"></a></p><ol type="1">
+<li><b>Executable File</b>: Use NEFFy as a command-line interface for seamless integration into automated workflows. <a class="anchor" id="use_lib"></a></li>
+<li><b>Python Library</b>: This version acts as a wrapper for NEFFy’s C++ executable files, making it accessible for any user with limited coding experience.</li>
+</ol>
+<p>Whether you prefer the command-line interface or the simplicity of a Python library, NEFFy ensures smooth and efficient usage for all.<br  />
+ For detailed installation and usage guides, please visit the <a class="el" href="installation_guide.html">Installation Guide</a> and <a class="el" href="usage_guide.html">How to Use</a> pages.</p>
+<hr  />
+<p> <a class="anchor" id="error_handling"></a></p>
+<h1><a class="anchor" id="autotoc_md19"></a>
 Error Handling</h1>
 <p>If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br  />
  Please refer to the error message for troubleshooting or make necessary corrections to the input.</p>
-<p><br  />
-<br  />
-<br  />
-<br  />
-</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
-<span style="color:green"> Community Feedback and Collaboration </span></h2>
+<hr  />
+<p><a class="anchor" id="feedback"></a></p>
+<h1><a class="anchor" id="autotoc_md21"></a>
+Feedback and Collaboration</h1>
 <p>We highly value the input and collaboration from our community. You can share your feedback, report issues, and collaborate with us via:</p><ul>
 <li><b>Email</b>: You can reach us directly <a href="#" onclick="location.href='mai'+'lto:'+'hag'+'ha'+'ni@'+'vt'+'.ed'+'u'; return false;">contact the developer</a> for any inquiries, suggestions, or issues you encounter. We strive to respond to all emails promptly.</li>
 <li><b>GitHub Issues</b>: For more technical feedback, bug reports, and feature requests, please use our <a href="https://github.com/Maryam-Haghani/Neffy/issues">GitHub Issues page</a>. </li>

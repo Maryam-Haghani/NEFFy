@@ -4,10 +4,11 @@
   <!-- Navigation index tabs for HTML output -->
   <navindex>
     <tab type="mainpage" visible="yes" title=""/>
-    <tab type="user" visible="yes" url="neff_computation.html"  title="NEFF Computation"/>
-    <tab type="user" visible="yes" url="converter.html"  title="MSA File Conversion"/>
-    <tab type="user" visible="yes" url="neff.html"  title="About NEFF"/>
+    <tab type="user" visible="yes" url="installation_guide.html"  title="Installation Guide"/>
+    <tab type="user" visible="yes" url="usage_guide.html"  title="How To Use"/>
+    <tab type="user" visible="yes" url="neff.html"  title="NEFF"/>
     <tab type="user" visible="yes" url="msa_formats.html"  title="MSA Formats"/>
+    <tab type="user" visible="yes" url="help.html"  title="Help"/>
     <tab type="topics" visible="yes" title="" intro=""/>
     <tab type="modules" visible="yes" title="" intro="">
       <tab type="modulelist" visible="yes" title="" intro=""/>

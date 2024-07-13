@@ -24,10 +24,11 @@
 */
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
-{text:"NEFF Computation",url:"neff_computation.html"},
-{text:"MSA File Conversion",url:"converter.html"},
-{text:"About NEFF",url:"neff.html"},
+{text:"Installation Guide",url:"installation_guide.html"},
+{text:"How To Use",url:"usage_guide.html"},
+{text:"NEFF",url:"neff.html"},
 {text:"MSA Formats",url:"msa_formats.html"},
+{text:"Help",url:"help.html"},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},
 {text:"Class Index",url:"classes.html"},

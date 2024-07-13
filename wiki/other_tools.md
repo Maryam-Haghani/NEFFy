@@ -1,4 +1,4 @@
-\page otherTools Installation of Other Tools
+\page other Other NEFF Computation Tools
 
 ### DeepMSA
 `git clone https://github.com/kad-ecoli/MSAParser.git`

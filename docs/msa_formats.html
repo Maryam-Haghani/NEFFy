@@ -117,7 +117,7 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">MSA Formats</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3><a class="anchor" id="autotoc_md13"></a>
+<div class="textblock"><h3><a class="anchor" id="autotoc_md22"></a>
 A2M</h3>
 <p>Each sequence is represented by two lines:</p><ul>
 <li>The first line starts with &gt; followed by the sequence identifier and some other remarks.</li>
@@ -139,7 +139,7 @@ A2M</h3>
 <div class="line">EAsavDRITSDSilenfvQWIFSE...E..KEVeekHT.....EESVQPTPAVKHSPDSSGSSKSSSSD---------</div>
 <div class="line">&gt;tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675</div>
 <div class="line">SA...KVKRGRT......FIPLRSateSfgYDV...IWkenenAVYLKSNPTIKPKDSTQ------------------</div>
-</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md23"></a>
 A3M</h3>
 <p>It is almost like A2M format. The only difference is that Gaps aligned to inserts ('.') can be excluded, and one could view the A3M format as a more method method for representing an MSA compared to FASTA or A2M.</p>
 <p><b>Example</b> </p><div class="fragment"><div class="line">&gt;T1152</div>
@@ -152,7 +152,7 @@ A3M</h3>
 <div class="line">EAsavDRITSDSilenfvQWIFSEEKEVeekHTEESVQPTPAVKHSPDSSGSSKSSSSD---------</div>
 <div class="line">&gt;tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675</div>
 <div class="line">SAKVKRGRTFIPLRSateSfgYDVIWkenenAVYLKSNPTIKPKDSTQ------------------</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md24"></a>
 Fasta</h3>
 <p>Sequences are separated by '&gt;'. The remaining lines before next '&gt;' contain the aligned sequence, which:</p><ul>
 <li>lower and upper case are equivalent;</li>
@@ -168,7 +168,7 @@ Fasta</h3>
 <div class="line">EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------</div>
 <div class="line">&gt;tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675</div>
 <div class="line">SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md25"></a>
 STO (Stockholm)</h3>
 <p>It consists of:</p><ul>
 <li>A header line containing format and version information.</li>
@@ -195,7 +195,7 @@ STO (Stockholm)</h3>
 <div class="line">tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------</div>
 <div class="line">tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------</div>
 <div class="line">//</div>
-</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md17"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md26"></a>
 ALN</h3>
 <p>It only consists of aligned sequences, each on a separate line, and the initial sequence is gap-free.</p>
 <p><b>Example</b> </p><div class="fragment"><div class="line">MYTVKPGDTMWKIAVKYQIGISEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH</div>
@@ -203,7 +203,7 @@ ALN</h3>
 <div class="line">G-EREKGR---HSKSRQEKGFKEKK---P-TKKPSATNKPVNTAKPAA--------</div>
 <div class="line">EADRITSDSQWIFSEEKEVHTEESVQPTPAVKHSPDSSGSSKSSSSD---------</div>
 <div class="line">SAKVKRGRTFIPLRSSYDVIWAVYLKSNPTIKPKDSTQ------------------</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md27"></a>
 CLUSTAL</h3>
 <p>Clustal is commonly associated with the Clustal series of programs for sequence alignment. The Clustal MSA format typically begins with a header line that provides information about the alignment.</p>
 <p>Following the header, Clustal format represents each sequence as a pair of columns in a line.</p><ul>
@@ -227,7 +227,7 @@ CLUSTAL</h3>
 <div class="line">ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   KPVNTAKPAA--------</div>
 <div class="line">tr|A0A235B7N0|A0A235B7N0_9BACL                              GSSKSSSSD---------</div>
 <div class="line">tr|A0A1E5LFN5|A0A1E5LFN5_9BACI</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md28"></a>
 PFAM</h3>
 <p>It's similar to Clustal in the sense that it separates sequence identifiers and sequences with a tab, but unlike Clustal, the sequences are not uniformly indented. Additionally, it doesn't split sequences into 60-character segments, as Clustal does. Also, it does not contain header line.</p>
 <p><b>Example</b> </p><div class="fragment"><div class="line">T1152   MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH</div>

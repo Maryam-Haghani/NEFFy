@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['of_20effective_20sequences_20neff_0',['Number of EFFective sequences (NEFF)',['../neff.html',1,'']]],
-  ['of_20other_20tools_1',['Installation of Other Tools',['../other_tools.html',1,'']]],
-  ['other_20tools_2',['Installation of Other Tools',['../other_tools.html',1,'']]]
+  ['msa_20file_20converter_0',['NEFFy: NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
+  ['msa_20formats_1',['MSA Formats',['../msa_formats.html',1,'']]]
 ];

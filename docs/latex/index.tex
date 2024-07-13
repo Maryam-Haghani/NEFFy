@@ -1,54 +1,94 @@
-\chapter{NEFF Calculator and MSA File Converter}
-\hypertarget{index}{}\label{index}\index{NEFF Calculator and MSA File Converter@{NEFF Calculator and MSA File Converter}}
+\chapter{NEFFy\+: NEFF Calculator and MSA File Converter}
+\hypertarget{index}{}\label{index}\index{NEFFy: NEFF Calculator and MSA File Converter@{NEFFy: NEFF Calculator and MSA File Converter}}
 \label{index_md_wiki_2main}%
 \Hypertarget{index_md_wiki_2main}%
-This tool provides functionality to compute the Number of Effective sequences (\doxysectlink{neff}{NEFF}{0}) and convert Multiple Sequence Alignment (MSA) files between different \doxysectlink{msa_formats}{MSA formats}{0}.\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{index_autotoc_md7}
+ \hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{index_autotoc_md13}
 
 \begin{DoxyItemize}
-\item \doxylink{index_getting-started}{Getting Started}
-\item \doxylink{index_neff-computation}{NEFF Computation}
-\item \doxylink{index_msa-file-conversion}{MSA File Conversion}
-\item \doxylink{index_error-handling}{Error Handling}
+\item \doxylink{index_overview}{Overview}
+\item Tools
+\begin{DoxyItemize}
+\item \doxylink{index_overview_neff_computation}{NEFF Computation}
+\item \doxylink{index_overview_converter}{MSA File Conversion}
+\end{DoxyItemize}
+\item \doxylink{index_how-use-neffy}{How to Use NEFFy}
+\begin{DoxyItemize}
+\item \doxylink{index_use_executable}{Executable File}
+\item \doxylink{index_use_lib}{Python Library}
+\end{DoxyItemize}
+\item \doxylink{index_error_handling}{Error Handling}
+\item \doxylink{index_feedback}{Feedback and Collaboration}
 \end{DoxyItemize}
 
-\label{index_getting-started}%
-\Hypertarget{index_getting-started}%
-\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{index_autotoc_md8}
-Download the source code and compile it using a C++ compiler that is compatible with C++17 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. You can navigate to the Makefile directory and easily enter the following command in the terminal\+:~\newline
+\label{index_overview}%
+\Hypertarget{index_overview}%
+NEFFy is a versatile, efficient, and comprehensive tool for bioinformatics research, offering advanced features for calculating \doxysectlink{neff}{NEFF}{0} (Normalized Effective Number of Sequences) for Multiple Sequence Alignments (MSA)s of any biological sequences, including protein, RNA, and DNA across various \doxysectlink{msa_formats}{MSA formats}{0}. It surpasses existing tools in efficiency and functionality. ~\newline
+ Additionally, NEFFy includes built-\/in support for format conversion, allowing users to seamlessly convert between different \doxysectlink{msa_formats}{MSA formats}{0}.~\newline
 
 
+\label{index_overview_neff_computation}%
+\Hypertarget{index_overview_neff_computation}%
+\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{NEFF Computation}{NEFF Computation}}\label{index_autotoc_md14}
+NEFF computation tool provides versatile options for analyzing the diversity of sequences in an MSA, including symmetric and asymmetric NEFF, column-\/wise NEFF, paired and unpaired MSA NEFF, and random masking for denoising. It caters to various needs in bioinformatics and structural biology, ensuring a comprehensive assessment of sequence alignments.
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{make}
 
-\end{DoxyCode}
- Once the compilation is complete, you can run the program via the command line.
+\begin{DoxyItemize}
+\item {\bfseries{Symmetric NEFF}}\+: In this mode, the threshold for considering a pair of sequences as homologous depends on the length of the alignment. This threshold is equal for all sequences, leading to symmetry in similarities.
+\item {\bfseries{Asymmetric NEFF}}\+: Here, the threshold depends on the number of non-\/gap residues, making the cutoff different for each sequence. This method provides a more detailed and accurate representation of sequence diversity.
+\item {\bfseries{Column-\/wise NEFF (Per-\/\+Residue NEFF)}}\+: This method computes NEFF for each position in the alignment. It is used by tools like Alpha\+Fold for more precise per-\/residue sequence diversity assessment. Per-\/residue NEFF values for each position in the MSA were calculated by summing the weights of the sequences that have a residue (i.\+e., non-\/gap characters) at that specific position.
+\item {\bfseries{Multimer MSA NEFF}}\+: The tool is capable of detecting the MSA format of a multimer, identifying paired MSA sequences, and unpaired sequences across chains in a block-\/diagonal manner, similar to Alpha\+Fold-\/\+Multimer. By specifying the length of the monomers by user, the tool can calculate NEFF for each set.
+\item {\bfseries{Random Masking for MSA Denoising}}\+: NEFFy can perform MSA denoising by systematically masking sequences across different iterations to eliminate less informative or redundant sequences, which are considered noise. Users can define the percentage of sequences to be masked and the number of iterations for masking. NEFFy calculates the NEFF for each iteration and chooses the masking that yields the highest NEFF value. This represents the most diverse and informative MSA, making it valuable for downstream tasks.
+\item {\bfseries{Multiple Format Support\+:}} The tool supports various \doxysectlink{msa_formats}{MSA formats}{0}.
+\end{DoxyItemize}
 
-\label{index_neff-computation}%
-\Hypertarget{index_neff-computation}%
-\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{NEFF Computation}{NEFF Computation}}\label{index_autotoc_md9}
-NEFF computation determines the effective number of homologous sequences within an MSA. It takes into account sequence similarities and provides a measure of sequence diversity. ~\newline
- The code takes command-\/line flags for input and subsequently computes the score for an MSA file. ~\newline
- The detailed usage documentation can be found on the \doxysectlink{neff_computation}{NEFF Computation}{0} page.
+Please fine to the document of how to use executable and python library.
 
-\label{index_msa-file-conversion}%
-\Hypertarget{index_msa-file-conversion}%
-\hypertarget{index_autotoc_md10}{}\doxysection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{index_autotoc_md10}
-The MSA File Conversion tool provides a convenient way to convert Multiple \doxylink{struct_sequence}{Sequence} Alignment (MSA) files between various supported formats. ~\newline
- This versatile utility simplifies the process of format conversion, ensuring compatibility across different bioinformatics software and analysis pipelines. Simply specify the input and output files along with their formats, and the tool will handle the conversion for you. ~\newline
- The detailed usage documentation can be found on the \doxysectlink{converter}{MSA File Conversion}{0} page.
+\label{index_overview_converter}%
+\Hypertarget{index_overview_converter}%
+\hypertarget{index_autotoc_md15}{}\doxysubsection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{index_autotoc_md15}
+The MSA File Conversion tool is designed to handle the conversion of MSA files from one format to another with minimal user intervention. By specifying the input and output files along with their formats, users can effortlessly convert MSA files while preserving sequence integrity and annotations. This tool supports a wide range of \doxysectlink{msa_formats}{MSA formats}{0}, making it an essential utility for researchers working with sequence alignment data.
 
-\label{index_error-handling}%
-\Hypertarget{index_error-handling}%
-\hypertarget{index_autotoc_md11}{}\doxysection{\texorpdfstring{Error Handling}{Error Handling}}\label{index_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{Easy Conversion Process\+:}} Users only need to specify the input and output files along with their desired formats. The tool handles the rest, including reading the input file, performing the conversion, and writing the output file.
+\item {\bfseries{Alphabet Specification\+:}} The tool allows users to specify the alphabet of the MSA (Protein, RNA, DNA) to ensure proper handling and validation of sequences.
+\item {\bfseries{Validation Option\+:}} Users can choose whether to perform validation on sequences, ensuring data integrity and consistency.
+\item {\bfseries{Multiple Format Support\+:}} The tool supports various \doxysectlink{msa_formats}{MSA formats}{0}.
+\end{DoxyItemize}
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{index_how-use-neffy}%
+\Hypertarget{index_how-use-neffy}%
+\hypertarget{index_autotoc_md17}{}\doxysection{\texorpdfstring{How to Use NEFFy}{How to Use NEFFy}}\label{index_autotoc_md17}
+NEFFy is designed to be flexible and user-\/friendly, offering two main versions to cater to different user needs\+: \label{index_use_executable}%
+\Hypertarget{index_use_executable}%
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Executable File}}\+: Use NEFFy as a command-\/line interface for seamless integration into automated workflows. \label{index_use_lib}%
+\Hypertarget{index_use_lib}%
+
+\item {\bfseries{Python Library}}\+: This version acts as a wrapper for NEFFy’s C++ executable files, making it accessible for any user with limited coding experience.
+\end{DoxyEnumerate}
+
+Whether you prefer the command-\/line interface or the simplicity of a Python library, NEFFy ensures smooth and efficient usage for all.~\newline
+ For detailed installation and usage guides, please visit the \doxysectlink{installation_guide}{Installation Guide}{0} and \doxysectlink{usage_guide}{How to Use}{0} pages.
+
+\DoxyHorRuler{0}
+ \label{index_error_handling}%
+\Hypertarget{index_error_handling}%
+\hypertarget{index_autotoc_md19}{}\doxysection{\texorpdfstring{Error Handling}{Error Handling}}\label{index_autotoc_md19}
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. ~\newline
  Please refer to the error message for troubleshooting or make necessary corrections to the input.
 
-~\newline
-~\newline
-~\newline
-~\newline
-\hypertarget{index_autotoc_md12}{}\doxysubsection{\texorpdfstring{ Community Feedback and Collaboration }{ Community Feedback and Collaboration }}\label{index_autotoc_md12}
+\DoxyHorRuler{0}
+
+
+\label{index_feedback}%
+\Hypertarget{index_feedback}%
+\hypertarget{index_autotoc_md21}{}\doxysection{\texorpdfstring{Feedback and Collaboration}{Feedback and Collaboration}}\label{index_autotoc_md21}
 We highly value the input and collaboration from our community. You can share your feedback, report issues, and collaborate with us via\+:
 \begin{DoxyItemize}
 \item {\bfseries{Email}}\+: You can reach us directly \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} for any inquiries, suggestions, or issues you encounter. We strive to respond to all emails promptly.

@@ -1,5 +1,8 @@
 \page neff Number of EFFective sequences (NEFF)
 
+NEFF measures sequence diversity within MSAs, which are crucial for extracting correlated mutation information and essential for biological investigations like contact map and structure prediction. NEFF has shown a strong correlation with prediction accuracy in models such as AlphaFold.
+<br>
+
 For an MSA, NEFF can be formulated as:
 
 \f[

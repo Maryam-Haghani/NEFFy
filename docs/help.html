@@ -5,7 +5,7 @@
 <meta http="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NEFFy: wiki/about_neff.md File Reference</title>
+<title>NEFFy: Help Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,6 +29,7 @@ MathJax.Hub.Config({
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px; /* Add top margin */
   }
   #projectinfo {
     display: flex;
@@ -37,6 +38,9 @@ MathJax.Hub.Config({
   #github-link {
     margin-left: auto;
     margin-right: 20px; /* Add a small right margin */
+  }
+  .green-text {
+    color: green; /* Set text color to green */
   }
 </style>
 </head>
@@ -109,11 +113,71 @@ $(function(){ initResizable(false); });
 
 </div><!-- top -->
 <div id="doc-content">
-<div class="header">
-  <div class="headertitle"><div class="title">wiki/about_neff.md File Reference</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Help Page</div></div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><h2><a class="anchor" id="autotoc_md0"></a>
+Table of Contents</h2>
+<ul>
+<li><a class="el" href="#make_installation">make Installation</a></li>
+</ul>
+<p><a class="anchor" id="make_installation"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+<code>make</code> Installation</h1>
+<p>To use the <code>make</code> command, follow the steps below according to your operating system:</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+macOS</h2>
+<p>The <code>make</code> command is not available by default on macOS. However, it can be easily installed by installing the Xcode Command Line Tools. You can do this by running the following command in the Terminal: </p><div class="fragment"><div class="line">xcode-select --install</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
+Linux</h2>
+<p>The <code>make</code> command is commonly available by default on many Linux distributions. If it's not installed, it can be easily added using the package manager of your distribution. For example:</p><ul>
+<li>On Debian-based systems (e.g., Ubuntu): <div class="fragment"><div class="line">sudo apt-get install make</div>
+</div><!-- fragment --></li>
+<li>On Red Hat-based systems (e.g., Fedora): <div class="fragment"><div class="line">sudo dnf install make</div>
+</div><!-- fragment --></li>
+<li>On Arch-based systems: <div class="fragment"><div class="line">sudo pacman -S make</div>
+</div><!-- fragment --></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Windows</h2>
+<p>The <code>make</code> command is not available by default on Windows. However, it can be installed through several methods:</p>
+<ol type="1">
+<li><b>Using Cygwin</b>:<ul>
+<li>Install Cygwin from the <a href="https://www.cygwin.com/">Cygwin website</a>.</li>
+<li>During the installation, select <code>make</code> from the package list.</li>
+</ul>
+</li>
+<li><b>Using GnuWin</b>:<ul>
+<li>Go to the <a href="http://gnuwin32.sourceforge.net/packages/make.htm">GnuWin website</a>.</li>
+<li>Download the <code>make</code> package setup executable (e.g., <code>make-3.81.exe</code>).</li>
+<li>Run the installer and follow the instructions to install <code>make</code>.</li>
+</ul>
+</li>
+<li><b>Using WSL (Windows Subsystem for Linux)</b>:<ul>
+<li>Install WSL and a Linux distribution from the Microsoft Store (e.g., Ubuntu).</li>
+<li>Once the distribution is set up, you can use the package manager to install <code>make</code> as you would on a native Linux system.</li>
+</ul>
+</li>
+</ol>
+<p><b>Set Up Environment Variables</b>:</p><ul>
+<li>After installing, add the <code>make</code> binary to your system’s PATH.</li>
+<li>Open the Start Menu, search for "Environment Variables," and select "Edit the system environment variables."</li>
+<li>In the System Properties window, click on the "Environment Variables" button.</li>
+<li>In the Environment Variables window, find the "Path" variable in the "System variables" section, select it, and click "Edit."</li>
+<li>Click "New" and add the path to the directory where <code>make.exe</code> was installed (e.g., <code>C:\Program Files (x86)\GnuWin32\bin</code>).</li>
+<li>Click "OK" to close all the windows.</li>
+</ul>
+<p><b>Verify the Installation</b>:</p><ul>
+<li>Open a new Command Prompt window.</li>
+<li>Type <code>make --version</code> and press Enter.</li>
+<li>You should see the version information for <code>make</code>, confirming that it has been installed correctly.</li>
+</ul>
+<p>By following these steps, you can have the <code>make</code> command available on macOS, Linux, and Windows, ensuring a consistent development environment across different operating systems.</p>
+<hr  />
+<p> For further assistance or inquiries, please <a href="#" onclick="location.href='mai'+'lto:'+'hag'+'ha'+'ni@'+'vt'+'.ed'+'u'; return false;">contact the developer</a> or create an <a href="https://github.com/Maryam-Haghani/Neffy/issues">issue</a> in the GitHub repository. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['usage_0',['Usage',['../converter.html#autotoc_md2',1,'Usage'],['../neff_computation.html#autotoc_md23',1,'Usage']]]
+  ['upcoming_20_3a_0',['Installation From PyPI (upcoming):',['../installation_guide.html#autotoc_md11',1,'']]],
+  ['usage_3a_1',['Usage:',['../usage_guide.html#autotoc_md38',1,'Usage:'],['../usage_guide.html#autotoc_md42',1,'Usage:']]],
+  ['usage_5fguide_2emd_2',['usage_guide.md',['../usage__guide_8md.html',1,'']]],
+  ['use_3',['How to Use',['../usage_guide.html',1,'']]],
+  ['use_20neffy_4',['How to Use NEFFy',['../index.html#autotoc_md17',1,'']]]
 ];

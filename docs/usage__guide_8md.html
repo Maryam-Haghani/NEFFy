@@ -5,7 +5,7 @@
 <meta http="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NEFFy: Number of EFFective sequences (NEFF)</title>
+<title>NEFFy: wiki/usage_guide.md File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,6 +29,7 @@ MathJax.Hub.Config({
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px; /* Add top margin */
   }
   #projectinfo {
     display: flex;
@@ -37,6 +38,9 @@ MathJax.Hub.Config({
   #github-link {
     margin-left: auto;
     margin-right: 20px; /* Add a small right margin */
+  }
+  .green-text {
+    color: green; /* Set text color to green */
   }
 </style>
 </head>
@@ -109,40 +113,11 @@ $(function(){ initResizable(false); });
 
 </div><!-- top -->
 <div id="doc-content">
-<div><div class="header">
-  <div class="headertitle"><div class="title">Number of EFFective sequences (NEFF)</div></div>
+<div class="header">
+  <div class="headertitle"><div class="title">wiki/usage_guide.md File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>For an MSA, NEFF can be formulated as:</p>
-<p class="formulaDsp">
-\[
-\left( \frac{1}{\sqrt{L}} \right) \sum_{n=1}^{N} \frac{1}{1 + \sum_{m=1, m \neq n}^{N} I[S_{m,n} \geq thr]}
-\]
-</p>
-<p><br  />
-</p>
-<p>where \(L\) is the number of residues in the sequence, \(N\) is the number of sequences in an MSA, \(S_{m,n}\) is the sequence identity between \(m\)-th and \(n\)-th sequences, \(thr\) is the threshold cutoff to determine whether two sequences are similar or not, and \(I\) is the inversion bracket, meaning that \(I[S_{m,n} \geq thr]\) equals 1 if \(S_{m,n} \geq thr\) and 0 otherwise.</p>
-<p>Note that \(\sqrt{L}\) is used as a normalization factor here.</p>
-<p>Generally, one can see NEFF simply as a normalized summation of sequence weights for all sequences in an MSA. If the number of sequences (including itself) similar to sequence \(i\) is \(n_i\), then its sequence weight is \(\frac{1}{n_i}\). This approach for calculating NEFF has been commonly employed in many other contact prediction methods such as [1][2][3][4][5][6].</p>
-<p><br  />
-<br  />
-<br  />
-<br  />
-<br  />
-</p>
-<h4><a class="anchor" id="autotoc_md0"></a>
-References</h4>
-<p><small></p><ol type="1">
-<li>Morcos, F., et al. "Direct-coupling analysis of residue coevolution captures native contacts across many protein families." Proceedings of the National Academy of Sciences 108.49 (2011): E1293-E1301.</li>
-<li>Simkovic, F., et al. "ConKit: a Python interface to contact predictions." Bioinformatics 33.14 (2017): 2209-2211.</li>
-<li>Wu, Q., et al. "Analysis of several key factors affecting DCA-based contact prediction in metagenome coevolution." Bioinformatics 35.14 (2019): 2497-2503.</li>
-<li>Zhang, J., et al. "DeepMSA: constructing deep multiple sequence alignment to improve contact prediction and fold-recognition for distant-homology proteins." Bioinformatics 36.5 (2020): 1460-1466.</li>
-<li>Liu, Y., et al. "Protein contact prediction using metagenome sequence data improves fold recognition." Bioinformatics 37.12 (2021): 1770-1776.</li>
-<li>Li, Y., et al. "TripletRes: fragment-free protein structure prediction using triplet transformers." Bioinformatics 37.22-23 (2021): 4101-4107. </li>
-</ol>
-<p></small> </p>
-</div></div><!-- contents -->
-</div><!-- PageDoc -->
+</div><!-- contents -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

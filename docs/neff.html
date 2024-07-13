@@ -117,7 +117,9 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">Number of EFFective sequences (NEFF)</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>For an MSA, NEFF can be formulated as:</p>
+<div class="textblock"><p>NEFF measures sequence diversity within MSAs, which are crucial for extracting correlated mutation information and essential for biological investigations like contact map and structure prediction. NEFF has shown a strong correlation with prediction accuracy in models such as AlphaFold. <br  />
+</p>
+<p>For an MSA, NEFF can be formulated as:</p>
 <p class="formulaDsp">
 \[
 \left( \frac{1}{\sqrt{L}} \right) \sum_{n=1}^{N} \frac{1}{1 + \sum_{m=1, m \neq n}^{N} I[S_{m,n} \geq thr]}
@@ -134,7 +136,7 @@ $(function(){ initResizable(false); });
 <br  />
 <br  />
 </p>
-<h4><a class="anchor" id="autotoc_md20"></a>
+<h4><a class="anchor" id="autotoc_md29"></a>
 References</h4>
 <p><small></p><ol type="1">
 <li>Morcos, F., et al. "Direct-coupling analysis of residue coevolution captures native contacts across many protein families." Proceedings of the National Academy of Sciences 108.49 (2011): E1293-E1301.</li>

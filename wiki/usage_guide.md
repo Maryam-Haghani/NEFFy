@@ -1,34 +1,34 @@
-\page neff_computation NEFF Computation Tool
+\page usage_guide How to Use
 
-## Overview
-This program computes the Number of Effective Sequences (NEFF) for a multiple sequence alignment (MSA) file. NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA and provides a measure of sequence diversity. It is widely used in bioinformatics to assess the diversity of a set of sequences.
+## Table of Contents
+- [C++ Executable File](#executable)
+  - [NEFF Computation](#neff_computation)
+      - [Usage](#neff_usage)
+      - [Parameters](#neff_parameters)
+      - [Example](#neff_example)
+  - [MSA File Conversion](#converter)
+      - [Usage](#converter_usage)
+      - [Parameters](#converter_parameters)
+      - [Example](#converter_example)
+- [Python Library](#python)
+  - [NEFF Computation](#python_neff)
+  - [MSA File Conversion](#python_converter)
 
-## Features
-This NEFF computation tool provides versatile options for analyzing the diversity of sequences in an MSA, including symmetric and asymmetric NEFF, column-wise NEFF, paired and unpaired MSA NEFF, and random masking for denoising. It caters to various needs in bioinformatics and structural biology, ensuring a comprehensive assessment of sequence alignments.
+\anchor executable
+#  C++ Executable File
 
-* __Symmetric NEFF__: In this mode, the threshold for considering a pair of sequences as homologous depends on the length of the alignment. This threshold is equal for all sequences, leading to symmetry in similarities.
-
-* __Asymmetric NEFF__: Here, the threshold depends on the number of non-gap residues, making the cutoff different for each sequence. This method provides a more detailed and accurate representation of sequence diversity.
-
-* __Column-wise NEFF (Per-Residue NEFF)__: This method computes NEFF for each position in the alignment. It is used by tools like AlphaFold for more precise per-residue sequence diversity assessment. 
-Per-residue NEFF values for each position in the MSA were calculated by summing the weights of the sequences that have a residue (i.e., non-gap characters) at that specific position.
-
-* __Multimer MSA NEFF__: The tool is capable of detecting the MSA format of a multimer, identifying paired MSA sequences, and unpaired sequences across chains in a block-diagonal manner, similar to AlphaFold-Multimer. By specifying the length of the monomers by user, the tool can calculate NEFF for each set.
-
-* __Random Masking for MSA Denoising__: NEFFy can perform MSA denoising by systematically masking sequences across different iterations to eliminate less informative or redundant sequences, which are considered noise. Users can define the percentage of sequences to be masked and the number of iterations for masking. NEFFy calculates the NEFF for each iteration and chooses the masking that yields the highest NEFF value. This represents the most diverse and informative MSA, making it valuable for downstream tasks.
-
-For further details, please refer to the [Usage](#usage) section and [Example](#example).
-
-\anchor usage
-## Usage
+\anchor neff_computation
+## NEFF Computation
+\anchor neff_usage
+### Usage:
 ```sh
 ./neff --file=<input_file> [options]
 ```
-The code takes command-line flags for input and subsequently computes the score for an MSA file.
 
-To calculate NEFF, provide an MSA file and indicate the desired flags. NEFF will be computed and presented as the result.
+To calculate NEFF, provide an MSA file and indicate the desired parameters. NEFF will be computed and presented as the result.
 
-### Options:
+\anchor neff_parameters
+### Parameters:
 The code accepts the following command-line flags:
 | Flag | Description | Required | Default Value | Example	| 
 |------|-------------|----------|---------------|---------|
@@ -52,19 +52,9 @@ The code accepts the following command-line flags:
 | `--monomer_length=<value>` | Length of the monomers, which is used to obtain NEFF for both paired MSA and individual monomer MSA | when _multimer_MSA_=true | 0 | `--monomer_length=17`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
-### Supported File Formats
-- __A2M__ (aligned FASTA-like format)
-- __A3M__ (compressed aligned FASTA-like format with lowercase letters for insertions)
-- __FASTA__, __AFA__, __FAS__, __FST__, __FSA__ (FASTA format)
-- __STO__ (Stockholm format)
-- __CLUSTAL__ (CLUSTAL format)
-- __ALN__ (ALN format)
-- __PFAM__ (format mostly used for nucleotides)
 
-In the [MSA format page](\ref msa_formats), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
-
-\anchor example
-## Example
+\anchor neff_example
+### Example:
 
 - __Compute Asymmetric NEFF for RNA MSA:__
 ```sh
@@ -91,5 +81,115 @@ The result will display the NEFF value for each position in the alignment on a p
 The tool will mask 20% of sequences in the example.fasta MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in the _neff_values.txt_ file. The masked MSA corresponding to the highest NEFF value will be saved in the _MSA_with_highest_neff.fasta_ file, representing the denoised MSA of the given example.fasta MSA, which can be used for downstream tasks requiring a high-quality MSA.
 
 <br>
-----------------
-For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.
+
+\anchor converter
+## MSA File Conversion
+To convert an MSA file, specify the input file, output file, and the desired input and output formats. The tool will read the input file, perform the conversion, and write the resulting MSA to the output file in the specified format.
+
+\anchor converter_usage
+### Usage:
+```sh
+./converter --in_file=<input_file> --out_file=<input_file> [options]
+```
+\anchor converter_parameters
+### Parameters:
+The code accepts the following command-line flags:
+| Flag | Description | Required | Default Value | Example	| 
+|------|-------------|----------|---------------|---------|
+| `--in_file=<filename>` | Specifies the input MSA file to be converted.<br /> Replace `<filename>` with the path and name of the input file | Yes | N/A | `--in_file=input.fasta` |
+| `--out_file=<filename>`| Specifies the output file where the converted MSA will be saved.<br /> Replace `<filename>` with the desired path and name of the output file | Yes | N/A | `--out_file=output.a2m` |
+| `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
+| `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
+
+Please note that the conversion is performed based on the specified input and output file extensions.
+
+\anchor converter_example
+### Example:
+- __Convert an A3M file to Stockholm format with RNA alphabet:__
+```sh
+./converter --in_file=example.a3m --out_file=output.sto --alphabet=1
+```
+- __Convert a FASTA file to Clustal format without validation:__
+```sh
+./converter --in_file=example.fasta --out_file=output.clustal --check_validation=false
+```
+- __Convert an ALN file to PFAM format with DNA alphabet:__
+```sh
+./converter --in_file=example.aln --out_file=output.pfam --alphabet=2
+```
+<br>
+
+---
+\anchor python
+# Python Library
+
+\anchor python_neff
+## NEFF Computation
+
+To compute the neff:
+
+```bash
+python compute_neff.py --file=./example/example.a2m
+```
+
+Where `compute_neff.py`:
+
+```python
+import sys
+import neffy
+
+def main():
+    # Get arguments from the command line
+    args = sys.argv[1:]
+    
+    if not args:
+        print("Please provide arguments for the neff tool.")
+        return
+    
+    try:
+        output = neffy.compute_neff(args)
+        print(output)
+    except RuntimeError as e:
+        print(f"{e}")
+
+if __name__ == "__main__":
+    main()
+```
+
+\anchor python_converter
+## MSA File Conversion
+
+To convert MSA:
+
+```bash
+python convert_msa.py --in_file=./example/example.a2m --out_file=./example/example.fasta
+```
+
+Where `convert_msa.py`:
+
+```python
+import sys
+import neffy
+
+def main():
+    # Get arguments from the command line
+    args = sys.argv[1:]
+    
+    if not args:
+        print("Please provide arguments for the neff tool.")
+        return
+    
+    try:
+        output = neffy.convert_msa(args)
+        print(output)
+    except RuntimeError as e:
+        print(f"{e}")
+
+if __name__ == "__main__":
+    main()
+```
+
+<span style="color:purple; font-size: larger;">
+As the `NEFFy` Python library is currently in its beta version, the stable version of the library will include changes where the methods **compute_neff** and **convert_msa** will accept arguments as method parameters.
+</span>
+

@@ -15,6 +15,6 @@ var searchData=
   ['getnormalization_12',['getNormalization',['../neff_8cpp.html#ae47cb37f52d8c7698eadca7c8e9d2c7e',1,'neff.cpp']]],
   ['getpositions_13',['getPositions',['../neff_8cpp.html#a5db795718fa6d1ed9054f10acd9fcaf0',1,'neff.cpp']]],
   ['getstandardletters_14',['getStandardLetters',['../common_8cpp.html#a95b0b6a008c315f0ad222494ffbc5a2e',1,'getStandardLetters(Alphabet alphabet):&#160;common.cpp'],['../common_8h.html#a1bfa6753319e14bc5bb85df568644fae',1,'getStandardLetters(Alphabet alphabet):&#160;common.cpp']]],
-  ['getting_20started_15',['Getting Started',['../index.html#autotoc_md8',1,'']]],
-  ['gremlin_16',['Gremlin',['../other_tools.html#autotoc_md29',1,'']]]
+  ['gremlin_15',['Gremlin',['../other.html#autotoc_md31',1,'']]],
+  ['guide_16',['Installation Guide',['../installation_guide.html',1,'']]]
 ];

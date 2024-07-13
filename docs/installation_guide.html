@@ -5,7 +5,7 @@
 <meta http="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NEFFy: wiki/neff_computation.md File Reference</title>
+<title>NEFFy: Installation Guide</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -113,11 +113,72 @@ $(function(){ initResizable(false); });
 
 </div><!-- top -->
 <div id="doc-content">
-<div class="header">
-  <div class="headertitle"><div class="title">wiki/neff_computation.md File Reference</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Installation Guide</div></div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><h2><a class="anchor" id="autotoc_md6"></a>
+Table of Contents</h2>
+<ul>
+<li><a class="el" href="#executable_install">C++ Executable File</a></li>
+<li><a class="el" href="#python_install">Python Library</a><ul>
+<li><a class="el" href="#python_source">Installation from Source</a></li>
+<li><a class="el" href="#python_pypi">Installation From PyPI (upcoming)</a></li>
+</ul>
+</li>
+</ul>
+<p><a class="anchor" id="executable_install"></a></p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+C++ Executable File</h1>
+<p>To install the executable version of NEFFy:</p><ol type="1">
+<li>Clone the repository: <div class="fragment"><div class="line">git clone https://github.com/Maryam-Haghani/Neffy.git</div>
+</div><!-- fragment --></li>
+<li>Navigate to the project directory: <div class="fragment"><div class="line">cd Neffy</div>
+</div><!-- fragment --></li>
+<li>Compile the code using a C++ compiler that supports C++17 or a newer version, through the provided <a href="https://github.com/Maryam-Haghani/Neffy/blob/main/Makefile">Makefile</a> in the repository. <div class="fragment"><div class="line">make</div>
+</div><!-- fragment --><ul>
+<li><b>If the <code>make</code> command is not available on your operating system, refer to the <a class="el" href="help.html">Help</a> page.</b></li>
+</ul>
+</li>
+</ol>
+<p>Once the compilation is complete, you can run the program via the command line. <br  />
+ This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation.</p>
+<hr  />
+<p> <a class="anchor" id="python_install"></a></p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Python Library</h1>
+<p><a class="anchor" id="python_source"></a></p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Installation from Source</h2>
+<p>To install the library from the source:</p>
+<ol type="1">
+<li>Clone the repository: <div class="fragment"><div class="line">git clone https://github.com/Maryam-Haghani/Neffy.git</div>
+</div><!-- fragment --></li>
+<li>Checkout the specific branch: <div class="fragment"><div class="line">git checkout python-lib</div>
+</div><!-- fragment --></li>
+<li>Navigate to the project directory: <div class="fragment"><div class="line">cd Neffy</div>
+</div><!-- fragment --></li>
+<li>Ensure you have <code>setuptools</code> and <code>wheel</code> installed: <div class="fragment"><div class="line">pip install setuptools wheel</div>
+</div><!-- fragment --></li>
+<li>Build the source distribution and wheel: <div class="fragment"><div class="line">python setup.py sdist bdist_wheel</div>
+</div><!-- fragment --></li>
+<li>Install the package from the root directory of the project: <div class="fragment"><div class="line">pip install .</div>
+</div><!-- fragment --><ul>
+<li>Alternatively, you can install the package directly from the built wheel file (in the <code>dist</code> directory): <div class="fragment"><div class="line">pip install dist/neffy-0.1-py3-none-any.whl</div>
+</div><!-- fragment --> <a class="anchor" id="python_pypi"></a></li>
+</ul>
+</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Installation From PyPI (upcoming):</h2>
+<p>Our Python library will soon be available on PyPI. This will make it easier for you to install and manage the library using pip. <br  />
+ To install the package from PyPI: </p><pre class="fragment">```bash
+pip install neffy
+```
+</pre><hr  />
+<p> For further assistance or inquiries, please <a href="#" onclick="location.href='mai'+'lto:'+'hag'+'ha'+'ni@'+'vt'+'.ed'+'u'; return false;">contact the developer</a> or create an <a href="https://github.com/Maryam-Haghani/Neffy/issues">issue</a> in the GitHub repository. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
