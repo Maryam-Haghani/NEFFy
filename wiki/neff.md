@@ -12,7 +12,7 @@ where \f$L\f$ is the number of residues in the sequence, \f$N\f$ is the number o
 
 Note that \f$\frac{1}{\sqrt{L}}\f$ is used as a normalization factor here.
 
-Generally, one can see NEFF simply as a normalized summation of sequence weights for all sequences in an MSA. If the number of sequences (including itself) similar to sequence \f$i\f$ is \f$n_i\f$, then its sequence weight is \f$\frac{1}{n_i}\f$. This approach for calculating NEFF has been commonly employed in many other contact prediction methods such as [1][2][3][4][5][6].
+Generally, one can see NEFF simply as a normalized summation of sequence weights for all sequences in an MSA. If the number of sequences (including itself) similar to sequence \f$i\f$ is \f$n_i\f$, then its sequence weight is \f$\frac{1}{n_i}\f$. This approach for calculating NEFF has been widely used in various contact and structure prediction tools, as demonstrated in references [1-6].
 
 <br><br><br><br><br>
 
