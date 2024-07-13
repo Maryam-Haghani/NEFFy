@@ -5,7 +5,7 @@ This tool provides functionality to compute the Number of Effective sequences (N
 - [Installation](#installation)
 - [Tutorial](#tutorial)
   - [Project Outline](#project-outline)
-  - [Command-line Usage / Parameters](#command-line-usage--parameters)
+  - [Command-line Usage](#command-line-usage)
     - [NEFF Computation](#1-neff-computation)
     - [MSA File Conversion](#2-msa-file-conversion)
 - [Supported File Formats](#supported-file-formats)
@@ -29,10 +29,11 @@ This tutorial will first explain the structure of the NEFFy repository, followed
 
 ### Project Outline
 The NEFFy repository is structured as follows:
+
 ![outline](docs/figs/outline.png)
 
 
-### Command-line Usage / Parameters
+### Command-line Usage
 ### 1. NEFF Computation
 
 NEFF determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It accounts for sequence similarities and provides a measure of sequence diversity.\\
