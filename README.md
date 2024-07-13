@@ -21,7 +21,7 @@ make
 ```
 If the _make_ command is not available on your operating system, [here](https://maryam-haghani.github.io/Neffy/executable_installation.html) is how you can install it.
 
-Once the compilation is complete, you can run the program via the command line. <br>
+Once the compilation is complete, you can run the program via the command line. <br/>
 This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation.
 
 ## Tutorial
@@ -36,8 +36,8 @@ The NEFFy repository is structured as follows:
 ### Command-line Usage
 ### 1. NEFF Computation
 
-NEFF determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It accounts for sequence similarities and provides a measure of sequence diversity.\\
-To calculate NEFF, use the ./neff program, provide an MSA file, and specify the desired flags.
+NEFF determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It accounts for sequence similarities and provides a measure of sequence diversity. <br/>
+To calculate NEFF, use the _neff_ program, provide an MSA file, and specify the desired flags.
 
 #### Flags:
 The code accepts the following command-line flags:
@@ -70,8 +70,8 @@ The code accepts the following command-line flags:
 For more details, please refer to the [neff documentation](https://maryam-haghani.github.io/Neffy/neff_computation.html).
 
 ### 2. MSA File Conversion
-The MSA file conversion allows you to convert MSA files between different supported formats. <br />
-All you need is to use the ./converter program and specify the input and output files with their formats, and the tool will perform the conversion accordingly.
+The MSA file conversion allows you to convert MSA files between different supported formats. <br/>
+All you need is to use the _converter_ program and specify the input and output files with their formats, and the tool will perform the conversion accordingly.
 
 #### Flags:
 The code accepts the following command-line flags:
@@ -103,7 +103,7 @@ For more details, please refer to the [converter documentation](https://maryam-h
 In the [documentation](https://maryam-haghani.github.io/Neffy/msa_formats.html), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
 
 ### Error Handling
-If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
+If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br/>
 Please refer to the error message for troubleshooting or make necessary corrections to the input.
 
 ## License
