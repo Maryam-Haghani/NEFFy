@@ -2,38 +2,43 @@
 This tool provides functionality to compute the Number of Effective sequences (NEFF) and convert Multiple Sequence Alignment (MSA) files between different formats.
 
 ## Table of Contents
-- [Project Components](#project-components)
-- [Getting Started](#getting-started)
-- [NEFF Computation](#neff-computation)
-- [MSA File Conversion](#msa-file-conversion)
+- [Installation](#installation)
+- [Tutorial](#tutorial)
+  - [Project Outline](#project-outline)
+  - [Command-line Usage / Parameters](#command-line-usage--parameters)
+    - [NEFF Computation](#1-neff-computation)
+    - [MSA File Conversion](#2-msa-file-conversion)
 - [Supported File Formats](#supported-file-formats)
 - [Error Handling](#error-handling)
+- [License](#license)
 
-## Project Components
-This project consists of the following components:
-* __FlagHandler__: Handles command-line flags. <br>
-* __MSAReader__: Reads an MSA file and processes the sequences in a specific format. <br>
-* __MSAWriter__: Writes MSA to an output file in a specific format. <br>
-* __MSASplitter__: Splits MSA to paired_MSA and individual MSAs. <br>
-* __Common__: Additional utility functions and common definitions. <br>
+## Installation
+To install the NEFFy tool, clone the repository and compile the code using a C++ compiler that supports C++17 or a newer version. You can use the provided [Makefile](Makefile) in the repository for this purpose. Navigate to the repository directory and enter the following command in the terminal:
 
-## Getting Started
-Download the source code and compile it using a C++ compiler that is compatible with C++17 or a more recent version. The provided Makefile in the repository can also be utilized for this purpose. You can navigate to the Makefile directory and easily enter the following command in the terminal:<br>
 
 ```
 make
 ```
-Once the compilation is complete, you can run the program via the command line.
+If the _make_ command is not available on your operating system, [here](https://maryam-haghani.github.io/Neffy/executable_installation.html) is how you can install it.
 
-## NEFF Computation
+Once the compilation is complete, you can run the program via the command line. <br>
+This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation.
 
-NEFF computation determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It takes into account sequence similarities and provides a measure of sequence diversity.  <br>
-The code takes command-line flags for input and subsequently computes the score for an MSA file.
+## Tutorial
+This tutorial will first explain the structure of the NEFFy repository, followed by a guide on how to use it.
 
-### Usage
-To calculate NEFF, provide an MSA file and indicate the desired flags. NEFF will be computed and presented as the result.
+### Project Outline
+The NEFFy repository is structured as follows:
+![outline](docs/figs/outline.png)
 
-#### Command-line Flags:
+
+### Command-line Usage / Parameters
+### 1. NEFF Computation
+
+NEFF determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It accounts for sequence similarities and provides a measure of sequence diversity.\\
+To calculate NEFF, use the ./neff program, provide an MSA file, and specify the desired flags.
+
+#### Flags:
 The code accepts the following command-line flags:
 | Flag | Description | Required | Default Value | Example	| 
 |------|-------------|----------|---------------|---------|
@@ -57,18 +62,17 @@ The code accepts the following command-line flags:
 | `--monomer_length=<list of values>` | Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs | when _multimer_MSA_=true | 0 | `--monomer_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
-#### Example
-    ./neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
+#### Example:
+    neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
   As output, it will print the final MSA length, depth and Neff to the console, based on the given options.
 
-## MSA File Conversion
+For more details, please refer to the [neff documentation](https://maryam-haghani.github.io/Neffy/neff_computation.html).
+
+### 2. MSA File Conversion
 The MSA file conversion allows you to convert MSA files between different supported formats. <br />
-All you need is specify the input and output files with their formats, and the tool will perform the conversion accordingly.
+All you need is to use the ./converter program and specify the input and output files with their formats, and the tool will perform the conversion accordingly.
 
-### Usage
-To convert an MSA file, specify the input file, output file, and the desired input and output formats. The tool will read the input file, perform the conversion, and write the resulting MSA to the output file in the specified format.
-
-#### Command-line Flags:
+#### Flags:
 The code accepts the following command-line flags:
 | Flag | Description | Required | Default Value | Example	| 
 |------|-------------|----------|---------------|---------|
@@ -79,12 +83,14 @@ The code accepts the following command-line flags:
 
 Please note that the conversion is performed based on the specified input and output file extensions.
 
-#### Example
-Suppose you have an MSA file named "input.fasta" that you want to convert to the A2M format and save it as "output.a2m".
+#### Example:
+Suppose you have an MSA file named "input.fasta" and you want to convert to the A2M format and save it as "output.a2m".
 
-    ./converter --in_file=input.fasta --out_file=output.a2m
+    converter --in_file=input.fasta --out_file=output.a2m
 
-## Supported File Formats
+For more details, please refer to the [converter documentation](https://maryam-haghani.github.io/Neffy/converter.html).
+
+### Supported File Formats
 - __A2M__ (aligned FASTA-like format)
 - __A3M__ (compressed aligned FASTA-like format with lowercase letters for insertions)
 - __FASTA__, __AFA__, __FAS__, __FST__, __FSA__ (FASTA format)
@@ -95,9 +101,12 @@ Suppose you have an MSA file named "input.fasta" that you want to convert to the
 
 In the [documentation](https://maryam-haghani.github.io/Neffy/msa_formats.html), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
 
-## Error Handling
+### Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br>
 Please refer to the error message for troubleshooting or make necessary corrections to the input.
+
+## License
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
 
 ----------------
 For further assistance, please see the [documentation](https://maryam-haghani.github.io/Neffy/).
