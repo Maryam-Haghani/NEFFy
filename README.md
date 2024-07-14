@@ -66,7 +66,7 @@ The code accepts the following command-line flags:
 | `--monomer_length=<list of values>` | Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs | when _multimer_MSA_=true | 0 | `--monomer_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
-For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/overview.html#overview_neff_computation).
+For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/index.html#overview_neff_computation).
 
 #### Example:
     neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
@@ -88,7 +88,7 @@ The code accepts the following command-line flags:
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
 
 Please note that the conversion is performed based on the specified input and output file extensions. <br>
-For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/overview.html#overview_converter).
+For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/index.html#overview_converter).
 
 #### Example:
 Suppose you have an MSA file named "input.fasta" and you want to convert to the A2M format and save it as "output.a2m".
