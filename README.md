@@ -1,6 +1,6 @@
 # NEFFy: NEFF Calculator and MSA File Converter
-This tool provides functionality to compute the Number of Effective sequences (NEFF) within a multiple sequence alignment (MSA) and convert Multiple Sequence Alignment (MSA) files between different formats. <br>
-
+NEFFy is a versatile and efficient tool for bioinformatics research, offering advanced features for calculating NEFF (Normalized Effective Number of Sequences) for Multiple Sequence Alignments (MSA)s of any biological sequences, including protein, RNA, and DNA across various MSA formats. <br>
+Additionally, NEFFy includes built-in support for format conversion, allowing users to seamlessly convert between different MSA formats.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -20,10 +20,12 @@ To install the NEFFy tool, clone the repository and compile the code using a C++
 ```
 make
 ```
-If the _make_ command is not available on your operating system, [here](https://maryam-haghani.github.io/Neffy/help.html#make_installation) is how you can install it.
+If the `make` command is not available on your operating system, [here](https://maryam-haghani.github.io/Neffy/help.html#make_installation) is how you can install it.
 
 Once the compilation is complete, you can run the program via the command line. <br/>
-This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation.
+This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation. <br>
+
+For more information on installing the executable, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/installation_guide.html#executable_install).
 
 ## Tutorial
 This tutorial will first explain the structure of the NEFFy repository, followed by a guide on how to use it.
@@ -64,11 +66,13 @@ The code accepts the following command-line flags:
 | `--monomer_length=<list of values>` | Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs | when _multimer_MSA_=true | 0 | `--monomer_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
+For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/overview.html#overview_neff_computation).
+
 #### Example:
     neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
   As output, it will print the final MSA length, depth and Neff to the console, based on the given options.
 
-For more details, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/usage_guide.html).
+For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/usage_guide.html#neff_computation).
 
 ### 2. MSA File Conversion
 The MSA file conversion allows you to convert MSA files between different supported formats. <br/>
@@ -83,15 +87,15 @@ The code accepts the following command-line flags:
 | `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
 
-Please note that the conversion is performed based on the specified input and output file extensions.
+Please note that the conversion is performed based on the specified input and output file extensions. <br>
+For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/overview.html#overview_converter).
 
 #### Example:
 Suppose you have an MSA file named "input.fasta" and you want to convert to the A2M format and save it as "output.a2m".
 
     converter --in_file=input.fasta --out_file=output.a2m
     
-For more details, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/usage_guide.html).
-
+For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/usage_guide.html#converter).
 
 ### Supported File Formats
 - __A2M__ (aligned FASTA-like format)
