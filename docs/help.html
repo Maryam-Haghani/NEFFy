@@ -117,19 +117,30 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">Help Page</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md0"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md16"></a>
 Table of Contents</h2>
 <ul>
 <li><a class="el" href="#make_installation">make Installation</a></li>
+<li><a class="el" href="#alphabet">Alphabet</a></li>
+<li><a class="el" href="#non_standard">Non-standard Residues</a></li>
 </ul>
+<p><a class="anchor" id="alphabet"></a></p>
+<h1><a class="anchor" id="autotoc_md17"></a>
+Alphabet</h1>
+<p>Each biological sequence is encoded using a valid set of characters to represent its composition. In the case of <code>protein</code>, this set consists of 20 canonical amino acids, with each amino acid being represented by a specific letter. The list includes: <b>A, C, D, E, F, G, H, I, L, M, N, P, Q, R, S, T, V, W, Y.</b> Additionally, six non-standard amino acids, as detailed below, also are included within the protein alphabet. For <code>DNA</code> sequences, the alphabet comprises <b>A, T, C, G</b> along with non-standard nucleic acid, <b>N</b>. Similarly, in the case of <code>RNA</code> sequences, the alphabet consists of <b>A, U, C, G</b> along with non-standard nucleic acid, <b>N</b>. <br  />
+ Among the <a class="el" href="other_tools.html">available tools</a> for NEFF computation, while <em>RaptorX</em> and <em>Conkit</em> do not explicitly specify an alphabet, <em>DeepMSA</em> and <em>rMSA</em> operate within the <code>protein</code> alphabet. In contrast, <em>Gremlin</em> provides support for both <code>protein</code> and <code>RNA</code> (implicitly including <code>DNA</code>). Similarly, <em>NEFFy</em> covers a broad spectrum of biological sequences, encompassing proteins and nucleic acids, much like <em>Gremlin</em>.</p>
+<p><a class="anchor" id="non_standard"></a></p>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Non-standard Residues</h1>
+<p>Non-standard residues are those that fall outside the standard set of residues, which typically includes <code>N</code> for DNAs and RNAs and <code>X</code>, <code>B</code>, <code>J</code>, <code>O</code>, <code>U</code> and <code>Z</code> for proteins. When it comes to NEFF computation and comparing the positions of a pair of sequences for similarity, there are various strategies available for handling these non-standard residues. One approach is to treat them as if they were standard amino acids, akin to the behavior exhibited by <em>DeepMSA</em>'s symmetric version. Alternatively, they can be designated as gaps only when determining the permissible number of mismatches for each sequence, resembling the approach taken by <em>DeepMSA</em>'s asymmetric option. Another option, similar to the practices of <em>rMSA</em> and <em>Gremlin</em>, involves categorizing them as gaps both in the calculation of number of allowable mismatches and in aligning corresponding positions for a pair of sequences. Among the tools, <em>RaptorX</em> and <em>Conkit</em> do not handle these residues. NEFFy is the only tool capable of handling these residues based on user preference,and its default option is to treat them as standard residues.</p>
 <p><a class="anchor" id="make_installation"></a></p>
-<h1><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 <code>make</code> Installation</h1>
 <p>To use the <code>make</code> command, follow the steps below according to your operating system:</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 macOS</h2>
 <p>The <code>make</code> command is not available by default on macOS. However, it can be easily installed by installing the Xcode Command Line Tools. You can do this by running the following command in the Terminal: </p><div class="fragment"><div class="line">xcode-select --install</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
 Linux</h2>
 <p>The <code>make</code> command is commonly available by default on many Linux distributions. If it's not installed, it can be easily added using the package manager of your distribution. For example:</p><ul>
 <li>On Debian-based systems (e.g., Ubuntu): <div class="fragment"><div class="line">sudo apt-get install make</div>
@@ -139,7 +150,7 @@ Linux</h2>
 <li>On Arch-based systems: <div class="fragment"><div class="line">sudo pacman -S make</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Windows</h2>
 <p>The <code>make</code> command is not available by default on Windows. However, it can be installed through several methods:</p>
 <ol type="1">

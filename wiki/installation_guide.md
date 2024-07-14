@@ -72,6 +72,5 @@ To install the package from PyPI:
     pip install neffy
     ```
 
-
 ----------------
 For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.

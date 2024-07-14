@@ -2,6 +2,18 @@
 
 ## Table of Contents
 - [make Installation](#make_installation)
+- [Alphabet](#alphabet)
+- [Non-standard Residues](#non_standard)
+
+\anchor alphabet
+# Alphabet
+Each biological sequence is encoded using a valid set of characters to represent its composition. In the case of `protein`, this set consists of 20 canonical amino acids, with each amino acid being represented by a specific letter. The list includes: __A, C, D, E, F, G, H, I, L, M, N, P, Q, R, S, T, V, W, Y.__ Additionally, six non-standard amino acids, as detailed below, also are included within the protein alphabet.
+For `DNA` sequences, the alphabet comprises __A, T, C, G__ along with non-standard nucleic acid, __N__. Similarly, in the case of `RNA` sequences, the alphabet consists of __A, U, C, G__ along with non-standard nucleic acid, __N__. <br>
+Among the [available tools](\ref other_tools) for NEFF computation, while _RaptorX_ and _Conkit_ do not explicitly specify an alphabet, _DeepMSA_ and _rMSA_ operate within the `protein` alphabet. In contrast, _Gremlin_ provides support for both `protein` and `RNA` (implicitly including `DNA`). Similarly, _NEFFy_ covers a broad spectrum of biological sequences, encompassing proteins and nucleic acids, much like _Gremlin_.
+
+\anchor non_standard
+# Non-standard Residues
+Non-standard residues are those that fall outside the standard set of residues, which typically includes `N` for DNAs and RNAs and  `X`, `B`, `J`, `O`, `U` and `Z` for proteins. When it comes to NEFF computation and comparing the positions of a pair of sequences for similarity, there are various strategies available for handling these non-standard residues. One approach is to treat them as if they were standard amino acids, akin to the behavior exhibited by _DeepMSA_'s symmetric version. Alternatively, they can be designated as gaps only when determining the permissible number of mismatches for each sequence, resembling the approach taken by _DeepMSA_'s asymmetric option. Another option, similar to the practices of _rMSA_ and _Gremlin_, involves categorizing them as gaps both in the calculation of number of allowable mismatches and in aligning corresponding positions for a pair of sequences. Among the tools, _RaptorX_ and _Conkit_ do not handle these residues. NEFFy is the only tool capable of handling these residues based on user preference,and its default option is to treat them as standard residues.
 
 \anchor make_installation
 # `make` Installation

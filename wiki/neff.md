@@ -24,7 +24,7 @@ Generally, one can see NEFF simply as a normalized summation of sequence weights
 1. Morcos, F., et al. "Direct-coupling analysis of residue coevolution captures native contacts across many protein families." Proceedings of the National Academy of Sciences 108.49 (2011): E1293-E1301.
 2. Simkovic, F., et al. "ConKit: a Python interface to contact predictions." Bioinformatics 33.14 (2017): 2209-2211.
 3. Wu, Q., et al. "Analysis of several key factors affecting DCA-based contact prediction in metagenome coevolution." Bioinformatics 35.14 (2019): 2497-2503.
-4. Zhang, J., et al. "DeepMSA: constructing deep multiple sequence alignment to improve contact prediction and fold-recognition for distant-homology proteins." Bioinformatics 36.5 (2020): 1460-1466.
+4. Zhang, J., et al. "DeepMSA: constructing deep multiple sequence alignment to improve contact prediction and fold-recognition for distant-homology proteins." Bioinformatics 36.5 (2020).
 5. Liu, Y., et al. "Protein contact prediction using metagenome sequence data improves fold recognition." Bioinformatics 37.12 (2021): 1770-1776.
 6. Li, Y., et al. "TripletRes: fragment-free protein structure prediction using triplet transformers." Bioinformatics 37.22-23 (2021): 4101-4107.
 </small>

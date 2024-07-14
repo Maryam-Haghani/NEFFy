@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['deepmsa_0',['DeepMSA',['../other.html#autotoc_md30',1,'']]],
-  ['dna_1',['DNA',['../common_8h.html#ad321c418983642eb2b4360826d489ec4acf4f4b33c0fa7b8f3cd37f44af0f5ce8',1,'common.h']]],
-  ['docstr_2',['docstr',['../converter_8cpp.html#af733a28ff1678d1d21721d9f4fe468af',1,'docstr:&#160;converter.cpp'],['../neff_8cpp.html#af733a28ff1678d1d21721d9f4fe468af',1,'docstr:&#160;neff.cpp']]]
+  ['a2m_0',['A2M',['../msa_formats.html#autotoc_md47',1,'']]],
+  ['a3m_1',['A3M',['../msa_formats.html#autotoc_md48',1,'']]],
+  ['aln_2',['ALN',['../msa_formats.html#autotoc_md51',1,'']]],
+  ['alphabet_3',['Alphabet',['../common_8h.html#ad321c418983642eb2b4360826d489ec4',1,'Alphabet:&#160;common.h'],['../help.html#autotoc_md17',1,'Alphabet']]],
+  ['alphabet_4',['alphabet',['../class_m_s_a_reader.html#a62ef473c45e89fa7f79e48f7677ed084',1,'MSAReader']]],
+  ['and_20collaboration_5',['Feedback and Collaboration',['../index.html#autotoc_md46',1,'']]],
+  ['and_20msa_20file_20converter_6',['and MSA File Converter',['../md_code_2_r_e_a_d_m_e.html',1,'NEFFy: NEFF Calculator and MSA File Converter'],['../index.html',1,'NEFFy: NEFF Calculator and MSA File Converter']]],
+  ['asstandard_7',['AsStandard',['../common_8h.html#a1105b29855665d3017b4a2b889b3f02aabb3fca5076f29805e098e7e3f2bf475a',1,'common.h']]]
 ];

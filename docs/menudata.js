@@ -23,11 +23,12 @@
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
+{text:"Overview",url:"index.html"},
 {text:"Installation Guide",url:"installation_guide.html"},
 {text:"How To Use",url:"usage_guide.html"},
 {text:"NEFF",url:"neff.html"},
 {text:"MSA Formats",url:"msa_formats.html"},
+{text:"Other Tools",url:"other_tools.html"},
 {text:"Help",url:"help.html"},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},

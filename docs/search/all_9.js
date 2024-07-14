@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['keepnongappositionsofquerysequence_0',['keepNonGapPositionsOfQuerySequence',['../common_8cpp.html#a2f59bd7f829ff2896e1cda4d41dce065',1,'keepNonGapPositionsOfQuerySequence(vector&lt; Sequence &gt; &amp;sequences):&#160;common.cpp'],['../common_8h.html#a7f89060b582fc435cc6a74bee0dc9d07',1,'keepNonGapPositionsOfQuerySequence(std::vector&lt; Sequence &gt; &amp;sequences):&#160;common.h']]]
+  ['handling_0',['Handling',['../md_code_2_r_e_a_d_m_e.html#autotoc_md13',1,'Error Handling'],['../index.html#autotoc_md44',1,'Error Handling']]],
+  ['hasblockform_1',['hasBlockForm',['../class_m_s_a_splitter.html#ae8404bd58178ab8ecc5dba762fe79147',1,'MSASplitter']]],
+  ['help_20page_2',['Help Page',['../help.html',1,'']]],
+  ['help_2emd_3',['help.md',['../help_8md.html',1,'']]],
+  ['how_20to_20use_4',['How to Use',['../usage_guide.html',1,'']]],
+  ['how_20to_20use_20neffy_5',['How to Use NEFFy',['../index.html#autotoc_md42',1,'']]]
 ];

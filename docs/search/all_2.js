@@ -1,27 +1,4 @@
 var searchData=
 [
-  ['c_20executable_20file_0',['C Executable File',['../installation_guide.html#autotoc_md7',1,'C++ Executable File'],['../usage_guide.html#autotoc_md36',1,'C++ Executable File']]],
-  ['calculator_20and_20msa_20file_20converter_1',['NEFFy: NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
-  ['char2num_2',['char2num',['../neff_8cpp.html#a0aad7c0a3babadf0f62647fea7f86e38',1,'neff.cpp']]],
-  ['checkflags_3',['checkFlags',['../neff_8cpp.html#a3eb861a46ba7fb52c4e9d2f8e20d7fee',1,'neff.cpp']]],
-  ['checkrequiredflags_4',['checkRequiredFlags',['../class_flag_handler.html#aa1e1b7401c7d94431ac7e3bd815392f7',1,'FlagHandler']]],
-  ['checkvalidation_5',['checkValidation',['../class_m_s_a_reader.html#a106c1e8996e7a0f8f8c76ec335cb2216',1,'MSAReader']]],
-  ['clustal_6',['CLUSTAL',['../msa_formats.html#autotoc_md27',1,'']]],
-  ['collaboration_7',['Feedback and Collaboration',['../index.html#autotoc_md21',1,'']]],
-  ['common_2ecpp_8',['common.cpp',['../common_8cpp.html',1,'']]],
-  ['common_2eh_9',['common.h',['../common_8h.html',1,'']]],
-  ['computation_10',['Computation',['../index.html#autotoc_md14',1,'NEFF Computation'],['../usage_guide.html#autotoc_md37',1,'NEFF Computation'],['../usage_guide.html#autotoc_md47',1,'NEFF Computation']]],
-  ['computation_20tools_11',['Other NEFF Computation Tools',['../other.html',1,'']]],
-  ['computecolumnwiseneff_12',['computeColumnwiseNEFF',['../neff_8cpp.html#a34c5c5af59f85462b69de4c060883efb',1,'neff.cpp']]],
-  ['computeneff_13',['computeNeff',['../neff_8cpp.html#ab62e2d4b3843e404e7b7cf478a7bfcb9',1,'neff.cpp']]],
-  ['computeweights_14',['computeWeights',['../neff_8cpp.html#a326f49375aa69b197b475af4407af8ce',1,'neff.cpp']]],
-  ['conkit_15',['Conkit',['../other.html#autotoc_md33',1,'']]],
-  ['considergap_16',['ConsiderGap',['../common_8h.html#a1105b29855665d3017b4a2b889b3f02aa23d5a357eaa655ef082dde85433d2334',1,'common.h']]],
-  ['considergapincutoff_17',['ConsiderGapInCutoff',['../common_8h.html#a1105b29855665d3017b4a2b889b3f02aa5b3ed107d9c68833dec24ce92c7f03f0',1,'common.h']]],
-  ['containsinvalidletters_18',['containsInvalidLetters',['../class_m_s_a_reader.html#ac79629b6cce3127ccb303a0378ffe1eb',1,'MSAReader']]],
-  ['contents_19',['Contents',['../help.html#autotoc_md0',1,'Table of Contents'],['../installation_guide.html#autotoc_md6',1,'Table of Contents'],['../index.html#autotoc_md13',1,'Table of Contents'],['../usage_guide.html#autotoc_md35',1,'Table of Contents']]],
-  ['conversion_20',['Conversion',['../index.html#autotoc_md15',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md41',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md48',1,'MSA File Conversion']]],
-  ['convert_21',['convert',['../converter_8cpp.html#ac78d42ddaf55e89ff6e10ffed0aca5ac',1,'converter.cpp']]],
-  ['converter_22',['NEFFy: NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
-  ['converter_2ecpp_23',['converter.cpp',['../converter_8cpp.html',1,'']]]
+  ['_3a_0',['Installation From PyPI (upcoming):',['../installation_guide.html#autotoc_md29',1,'']]]
 ];
