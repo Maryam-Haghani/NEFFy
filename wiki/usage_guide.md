@@ -14,6 +14,8 @@
   - [NEFF Computation](#python_neff)
   - [MSA File Conversion](#python_converter)
 
+<br>
+
 \anchor executable
 #  C++ Executable File
 
@@ -117,6 +119,7 @@ Please note that the conversion is performed based on the specified input and ou
 ```sh
 ./converter --in_file=example.aln --out_file=output.pfam --alphabet=2
 ```
+
 <br>
 
 ---
@@ -156,6 +159,8 @@ if __name__ == "__main__":
     main()
 ```
 
+<br>
+
 \anchor python_converter
 ## MSA File Conversion
 
@@ -192,4 +197,9 @@ if __name__ == "__main__":
 <span style="color:purple; font-size: larger;">
 As the `NEFFy` Python library is currently in its beta version, the stable version of the library will include changes where the methods **compute_neff** and **convert_msa** will accept arguments as method parameters.
 </span>
+
+<br>
+
+----------------
+For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.
 

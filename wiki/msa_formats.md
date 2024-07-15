@@ -1,6 +1,18 @@
 \page msa_formats MSA Formats
 
-### A2M
+## Table of Contents
+- [A2M](#a2m)
+- [A3M](#a3m)
+- [Fasta](#fasta)
+- [STO](#sto)
+- [ALN](#aln)
+- [CLUSTAL](#clustal)
+- [PFAM](#pfam)
+
+<br>
+
+\anchor a2m
+## A2M
 Each sequence is represented by two lines:
 - The first line starts with > followed by the sequence identifier and some other remarks.
 - The second line contains the aligned residues; Alignments are shown with:
@@ -22,7 +34,11 @@ EAsavDRITSDSilenfvQWIFSE...E..KEVeekHT.....EESVQPTPAVKHSPDSSGSSKSSSSD---------
 >tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
 SA...KVKRGRT......FIPLRSateSfgYDV...IWkenenAVYLKSNPTIKPKDSTQ------------------
  ```
-### A3M
+<br>
+
+---
+\anchor a3m
+## A3M
 It is almost like A2M format. The only difference is that Gaps aligned to inserts ('.') can be excluded, and one could view the A3M format as a more method method for representing an MSA compared to FASTA or A2M.
 
 __Example__
@@ -38,8 +54,11 @@ EAsavDRITSDSilenfvQWIFSEEKEVeekHTEESVQPTPAVKHSPDSSGSSKSSSSD---------
 >tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
 SAKVKRGRTFIPLRSateSfgYDVIWkenenAVYLKSNPTIKPKDSTQ------------------
 ```
+<br>
 
-### Fasta
+---
+\anchor fasta
+## Fasta
 Sequences are separated by '>'.  The remaining lines before next '>' contain the aligned sequence, which:
 - lower and upper case are equivalent;
 - ' . ' and ' - ' are equivalent.
@@ -58,8 +77,11 @@ EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
 >tr|A0A1E5LFN5|A0A1E5LFN5_9BACI Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
 SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
 ```
+<br>
 
-### STO (Stockholm)
+---
+\anchor sto
+## STO (Stockholm)
 It consists of:
 - A header line containing format and version information.
 - Mark-up lines that start with "#=GF," "#=GC," "#=GS," or "#=GR."
@@ -88,7 +110,11 @@ tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQW
 tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
 //
 ```
-### ALN
+<br>
+
+---
+\anchor aln
+## ALN
 It only consists of aligned sequences, each on a separate line, and the initial sequence is gap-free.
 
 __Example__
@@ -99,8 +125,11 @@ G-EREKGR---HSKSRQEKGFKEKK---P-TKKPSATNKPVNTAKPAA--------
 EADRITSDSQWIFSEEKEVHTEESVQPTPAVKHSPDSSGSSKSSSSD---------
 SAKVKRGRTFIPLRSSYDVIWAVYLKSNPTIKPKDSTQ------------------
 ```
+<br>
 
-### CLUSTAL
+---
+\anchor clustal
+## CLUSTAL
 Clustal is commonly associated with the Clustal series of programs for sequence alignment. The Clustal MSA format typically begins with a header line that provides information about the alignment.
 
 Following the header, Clustal format represents each sequence as a pair of columns in a line.
@@ -126,8 +155,11 @@ ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   KPVNTAKPAA--------
 tr|A0A235B7N0|A0A235B7N0_9BACL                              GSSKSSSSD---------
 tr|A0A1E5LFN5|A0A1E5LFN5_9BACI
 ```
+<br>
 
-### PFAM
+---
+\anchor pfam
+## PFAM
 It's similar to Clustal in the sense that it separates sequence identifiers and sequences with a tab, but unlike Clustal, the sequences are not uniformly indented. Additionally, it doesn't split sequences into 60-character segments, as Clustal does. Also, it does not contain header line.
 
 __Example__
@@ -138,3 +170,7 @@ ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   G----EREKGR---------
 tr|A0A235B7N0|A0A235B7N0_9BACL  EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
 tr|A0A1E5LFN5|A0A1E5LFN5_9BACI  SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
 ```
+<br>
+
+----------------
+For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.

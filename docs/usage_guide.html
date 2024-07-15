@@ -117,7 +117,7 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">How to Use</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md62"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md64"></a>
 Table of Contents</h2>
 <ul>
 <li><a class="el" href="#executable">C++ Executable File</a><ul>
@@ -141,19 +141,21 @@ Table of Contents</h2>
 </ul>
 </li>
 </ul>
+<p><br  />
+</p>
 <p><a class="anchor" id="executable"></a></p>
-<h1><a class="anchor" id="autotoc_md63"></a>
+<h1><a class="anchor" id="autotoc_md65"></a>
 C++ Executable File</h1>
 <p><a class="anchor" id="neff_computation"></a></p>
-<h2><a class="anchor" id="autotoc_md64"></a>
+<h2><a class="anchor" id="autotoc_md66"></a>
 NEFF Computation</h2>
 <p><a class="anchor" id="neff_usage"></a></p>
-<h3><a class="anchor" id="autotoc_md65"></a>
+<h3><a class="anchor" id="autotoc_md67"></a>
 Usage:</h3>
 <div class="fragment"><div class="line">./neff --file=&lt;input_file&gt; [options]</div>
 </div><!-- fragment --><p>To calculate NEFF, provide an MSA file and indicate the desired parameters. NEFF will be computed and presented as the result.</p>
 <p><a class="anchor" id="neff_parameters"></a></p>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md68"></a>
 Parameters:</h3>
 <p>The code accepts the following command-line flags: </p><table class="markdownTable">
 <tr class="markdownTableHead">
@@ -208,7 +210,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone"><code>--column_neff=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute Column-wise NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--column_neff=true</code>   </td></tr>
 </table>
 <p><a class="anchor" id="neff_example"></a></p>
-<h3><a class="anchor" id="autotoc_md67"></a>
+<h3><a class="anchor" id="autotoc_md69"></a>
 Example:</h3>
 <ul>
 <li><b>Compute Asymmetric NEFF for RNA MSA:</b> <div class="fragment"><div class="line">./neff --file=example.a3m --threshold=0.7 --norm=2 --is_symmetric=false --alphabet=1</div>
@@ -229,15 +231,15 @@ Example:</h3>
 <p><br  />
 </p>
 <p><a class="anchor" id="converter"></a></p>
-<h2><a class="anchor" id="autotoc_md68"></a>
+<h2><a class="anchor" id="autotoc_md70"></a>
 MSA File Conversion</h2>
 <p>To convert an MSA file, specify the input file, output file, and the desired input and output formats. The tool will read the input file, perform the conversion, and write the resulting MSA to the output file in the specified format.</p>
 <p><a class="anchor" id="converter_usage"></a></p>
-<h3><a class="anchor" id="autotoc_md69"></a>
+<h3><a class="anchor" id="autotoc_md71"></a>
 Usage:</h3>
 <div class="fragment"><div class="line">./converter --in_file=&lt;input_file&gt; --out_file=&lt;input_file&gt; [options]</div>
 </div><!-- fragment --><p> <a class="anchor" id="converter_parameters"></a></p>
-<h3><a class="anchor" id="autotoc_md70"></a>
+<h3><a class="anchor" id="autotoc_md72"></a>
 Parameters:</h3>
 <p>The code accepts the following command-line flags: </p><table class="markdownTable">
 <tr class="markdownTableHead">
@@ -258,7 +260,7 @@ Parameters:</h3>
 </table>
 <p>Please note that the conversion is performed based on the specified input and output file extensions.</p>
 <p><a class="anchor" id="converter_example"></a></p>
-<h3><a class="anchor" id="autotoc_md71"></a>
+<h3><a class="anchor" id="autotoc_md73"></a>
 Example:</h3>
 <ul>
 <li><b>Convert an A3M file to Stockholm format with RNA alphabet:</b> <div class="fragment"><div class="line">./converter --in_file=example.a3m --out_file=output.sto --alphabet=1</div>
@@ -266,15 +268,16 @@ Example:</h3>
 <li><b>Convert a FASTA file to Clustal format without validation:</b> <div class="fragment"><div class="line">./converter --in_file=example.fasta --out_file=output.clustal --check_validation=false</div>
 </div><!-- fragment --></li>
 <li><b>Convert an ALN file to PFAM format with DNA alphabet:</b> <div class="fragment"><div class="line">./converter --in_file=example.aln --out_file=output.pfam --alphabet=2</div>
-</div><!-- fragment --> <br  />
-</li>
+</div><!-- fragment --></li>
 </ul>
+<p><br  />
+</p>
 <hr  />
 <p> <a class="anchor" id="python"></a></p>
-<h1><a class="anchor" id="autotoc_md73"></a>
+<h1><a class="anchor" id="autotoc_md75"></a>
 Python Library</h1>
 <p><a class="anchor" id="python_neff"></a></p>
-<h2><a class="anchor" id="autotoc_md74"></a>
+<h2><a class="anchor" id="autotoc_md76"></a>
 NEFF Computation</h2>
 <p>To compute the neff:</p>
 <div class="fragment"><div class="line">python compute_neff.py --file=./example/example.a2m</div>
@@ -299,8 +302,10 @@ NEFF Computation</h2>
 <div class="line"><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
 <div class="line">    <a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>()</div>
 <div class="ttc" id="aconverter_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition</b> converter.cpp:144</div></div>
-</div><!-- fragment --><p><a class="anchor" id="python_converter"></a></p>
-<h2><a class="anchor" id="autotoc_md75"></a>
+</div><!-- fragment --><p><br  />
+</p>
+<p><a class="anchor" id="python_converter"></a></p>
+<h2><a class="anchor" id="autotoc_md77"></a>
 MSA File Conversion</h2>
 <p>To convert MSA:</p>
 <div class="fragment"><div class="line">python convert_msa.py --in_file=./example/example.a2m --out_file=./example/example.fasta</div>
@@ -324,7 +329,11 @@ MSA File Conversion</h2>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
 <div class="line">    <a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>()</div>
-</div><!-- fragment --><p><span style="color:purple; font-size: larger;"> As the <code>NEFFy</code> Python library is currently in its beta version, the stable version of the library will include changes where the methods <b>compute_neff</b> and <b>convert_msa</b> will accept arguments as method parameters. </span> </p>
+</div><!-- fragment --><p><span style="color:purple; font-size: larger;"> As the <code>NEFFy</code> Python library is currently in its beta version, the stable version of the library will include changes where the methods <b>compute_neff</b> and <b>convert_msa</b> will accept arguments as method parameters. </span></p>
+<p><br  />
+</p>
+<hr  />
+<p> For further assistance or inquiries, please <a href="#" onclick="location.href='mai'+'lto:'+'hag'+'ha'+'ni@'+'vt'+'.ed'+'u'; return false;">contact the developer</a> or create an <a href="https://github.com/Maryam-Haghani/Neffy/issues">issue</a> in the GitHub repository. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!DOCTYPE html>

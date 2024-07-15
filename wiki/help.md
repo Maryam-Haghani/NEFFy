@@ -1,20 +1,28 @@
 \page help Help Page
 
 ## Table of Contents
-- [make Installation](#make_installation)
 - [Alphabet](#alphabet)
 - [Non-standard Residues](#non_standard)
+- [make Installation](#make_installation)
+
+<br>
 
 \anchor alphabet
 # Alphabet
-Each biological sequence is encoded using a valid set of characters to represent its composition. In the case of `protein`, this set consists of 20 canonical amino acids, with each amino acid being represented by a specific letter. The list includes: __A, C, D, E, F, G, H, I, L, M, N, P, Q, R, S, T, V, W, Y.__ Additionally, six non-standard amino acids, as detailed below, also are included within the protein alphabet.
-For `DNA` sequences, the alphabet comprises __A, T, C, G__ along with non-standard nucleic acid, __N__. Similarly, in the case of `RNA` sequences, the alphabet consists of __A, U, C, G__ along with non-standard nucleic acid, __N__. <br>
-Among the [available tools](\ref other_tools) for NEFF computation, while _RaptorX_ and _Conkit_ do not explicitly specify an alphabet, _DeepMSA_ and _rMSA_ operate within the `protein` alphabet. In contrast, _Gremlin_ provides support for both `protein` and `RNA` (implicitly including `DNA`). Similarly, _NEFFy_ covers a broad spectrum of biological sequences, encompassing proteins and nucleic acids, much like _Gremlin_.
+Each biological sequence is encoded using a valid set of characters to represent its composition. In the case of `protein`, this set consists of 20 canonical amino acids, with each amino acid being represented by a specific letter. The list includes: `A`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `K`, `L`, `M`, `N`, `P`, `Q`, `R`, `S`, `T`, `V`, `W`, `Y`. Additionally, six non-standard amino acids, as detailed in [Non-standard Residues](#non_standard) section, also are included within the protein alphabet. <br>
+For `DNA` sequences, the alphabet comprises `A`, `U`, `C`, `G` along with non-standard nucleic acid, `N`. Similarly, in the case of `RNA` sequences, the alphabet consists of `A`, `U`, `C`, `G` along with non-standard nucleic acid, `N`. <br>
+Among the [available tools](\ref other_tools) for NEFF computation, while \htmlonly<a href="other_tools.html#raptorX">RaptorX</a>\endhtmlonly and \htmlonly<a href="other_tools.html#conkit">Conkit</a>\endhtmlonly do not explicitly specify an alphabet, \htmlonly<a href="other_tools.html#deep_msa">DeepMSA</a>\endhtmlonly and \htmlonly<a href="other_tools.html#rMSA">rMSA</a>\endhtmlonly operate within the `protein` alphabet. In contrast, \htmlonly<a href="other_tools.html#gremlin">Gremlin</a>\endhtmlonly provides support for both `protein` and `RNA` (implicitly including `DNA`). Similarly, `NEFFy` covers a broad spectrum of biological sequences, encompassing proteins and nucleic acids, much like \htmlonly<a href="other_tools.html#gremlin">Gremlin</a>\endhtmlonly.
 
+<br>
+
+---
 \anchor non_standard
 # Non-standard Residues
-Non-standard residues are those that fall outside the standard set of residues, which typically includes `N` for DNAs and RNAs and  `X`, `B`, `J`, `O`, `U` and `Z` for proteins. When it comes to NEFF computation and comparing the positions of a pair of sequences for similarity, there are various strategies available for handling these non-standard residues. One approach is to treat them as if they were standard amino acids, akin to the behavior exhibited by _DeepMSA_'s symmetric version. Alternatively, they can be designated as gaps only when determining the permissible number of mismatches for each sequence, resembling the approach taken by _DeepMSA_'s asymmetric option. Another option, similar to the practices of _rMSA_ and _Gremlin_, involves categorizing them as gaps both in the calculation of number of allowable mismatches and in aligning corresponding positions for a pair of sequences. Among the tools, _RaptorX_ and _Conkit_ do not handle these residues. NEFFy is the only tool capable of handling these residues based on user preference,and its default option is to treat them as standard residues.
+Non-standard residues are those that fall outside the standard set of residues, which typically includes `N` for DNAs and RNAs and `X`, `B`, `J`, `O`, `U` and `Z` for proteins. When it comes to NEFF computation and comparing the positions of a pair of sequences for similarity, there are various strategies available for handling these non-standard residues. One approach is to treat them as if they were standard amino acids, akin to the behavior exhibited by \htmlonly<a href="other_tools.html#deep_msa">DeepMSA</a>\endhtmlonly's symmetric version. Alternatively, they can be designated as gaps only when determining the permissible number of mismatches for each sequence, resembling the approach taken by \htmlonly<a href="other_tools.html#deep_msa">DeepMSA</a>\endhtmlonly's asymmetric option. Another option, similar to the practices of \htmlonly<a href="other_tools.html#rMSA">rMSA</a>\endhtmlonly and \htmlonly<a href="other_tools.html#gremlin">Gremlin</a>\endhtmlonly, involves categorizing them as gaps both in the calculation of number of allowable mismatches and in aligning corresponding positions for a pair of sequences. Among the tools, \htmlonly<a href="other_tools.html#raptorX">RaptorX</a>\endhtmlonly and \htmlonly<a href="other_tools.html#conkit">Conkit</a>\endhtmlonly do not handle these residues. NEFFy is the only tool capable of handling these residues based on user preference,and its default option is to treat them as standard residues.
 
+<br>
+
+---
 \anchor make_installation
 # `make` Installation
 
@@ -74,6 +82,8 @@ The `make` command is not available by default on Windows. However, it can be in
 - You should see the version information for `make`, confirming that it has been installed correctly.
 
 By following these steps, you can have the `make` command available on macOS, Linux, and Windows, ensuring a consistent development environment across different operating systems.
+
+<br>
 
 ----------------
 For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.

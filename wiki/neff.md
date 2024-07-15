@@ -28,3 +28,7 @@ Generally, one can see NEFF simply as a normalized summation of sequence weights
 5. Liu, Y., et al. "Protein contact prediction using metagenome sequence data improves fold recognition." Bioinformatics 37.12 (2021): 1770-1776.
 6. Li, Y., et al. "TripletRes: fragment-free protein structure prediction using triplet transformers." Bioinformatics 37.22-23 (2021): 4101-4107.
 </small>
+<br>
+
+----------------
+For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.
