@@ -20,12 +20,12 @@ To install the NEFFy tool, clone the repository and compile the code using a C++
 ```
 make
 ```
-If the `make` command is not available on your operating system, [here](https://maryam-haghani.github.io/Neffy/help.html#make_installation) is how you can install it.
+If the `make` command is not available on your operating system, [here](https://maryam-haghani.github.io/NEFFy/help.html#make_installation) is how you can install it.
 
 Once the compilation is complete, you can run the program via the command line. <br/>
 This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation. <br>
 
-For more information on installing the executable, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/installation_guide.html#executable_install).
+For more information on installing the executable, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/installation_guide.html#executable_install).
 
 ## Tutorial
 This tutorial will first explain the structure of the NEFFy repository, followed by a guide on how to use it.
@@ -66,13 +66,13 @@ The code accepts the following command-line flags:
 | `--monomer_length=<list of values>` | Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs | when _multimer_MSA_=true | 0 | `--monomer_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
-For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/index.html#overview_neff_computation).
+For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/index.html#overview_neff_computation).
 
 #### Example:
     neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
   As output, it will print the final MSA length, depth and Neff to the console, based on the given options.
 
-For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/usage_guide.html#neff_computation).
+For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/usage_guide.html#neff_computation).
 
 ### 2. MSA File Conversion
 The MSA file conversion allows you to convert MSA files between different supported formats. <br/>
@@ -88,14 +88,14 @@ The code accepts the following command-line flags:
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
 
 Please note that the conversion is performed based on the specified input and output file extensions. <br>
-For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/index.html#overview_converter).
+For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/index.html#overview_converter).
 
 #### Example:
 Suppose you have an MSA file named "input.fasta" and you want to convert to the A2M format and save it as "output.a2m".
 
     converter --in_file=input.fasta --out_file=output.a2m
     
-For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/Neffy/usage_guide.html#converter).
+For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/usage_guide.html#converter).
 
 ### Supported File Formats
 - __A2M__ (aligned FASTA-like format)
@@ -106,7 +106,7 @@ For detailed instructions on usage, please refer to the [documentation](https://
 - __ALN__ (ALN format)
 - __PFAM__ (format mostly used for nucleotides)
 
-In the [documentation](https://maryam-haghani.github.io/Neffy/msa_formats.html), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
+In the [documentation](https://maryam-haghani.github.io/NEFFy/msa_formats.html), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
 
 ### Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br/>
@@ -116,4 +116,4 @@ Please refer to the error message for troubleshooting or make necessary correcti
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
 
 ----------------
-For further assistance, please see the [documentation](https://maryam-haghani.github.io/Neffy/).
+For further assistance, please see the [documentation](https://maryam-haghani.github.io/NEFFy/).
