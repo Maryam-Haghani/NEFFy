@@ -38,23 +38,23 @@ To calculate NEFF, provide an MSA file and indicate the desired parameters. NEFF
 The code accepts the following command-line flags:
 | Flag | Description | Required | Default Value | Example	| 
 |------|-------------|----------|---------------|---------|
-| `--file=<filename>` | Input file containing multiple sequence alignment  | Yes | N/A | `--file=my_alignment.fasta` |
+| `--file=<filename>` | Path to the input file containing the multiple sequence alignment (MSA) data  | Yes | N/A | `--file=my_alignment.fasta` |
 | `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | false | `--check_validation=true` |
-| `--threshold=<value>`	| Threshold value of considering two sequences similar (between 0 and 1) | No | 0.8 | `--threshold=0.7` |
+| `--threshold=<value>`	| Similarity threshold for sequence weighting, must be between 0 and 1. | No | 0.8 | `--threshold=0.7` |
 | `--norm=<value>` | Normalization option for NEFF <br /> __0__: Normalize by the square root of sequence length <br /> __1__: Normalize by the sequence length <br /> __2__: No Normalization | No | 0 | `--norm=2` |
-| `--omit_query_gaps=[true/false]` | Omit gap positions of query sequence from entire sequences for NEFF computation | No | true | `--omit_query_gaps=true`	|
+| `--omit_query_gaps=[true/false]` | Omit gap positions of query sequence from all sequences for NEFF computation | No | true | `--omit_query_gaps=true`	|
 | `--is_symmetric =true/false]` | Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)| No | true | `--is_symmetric=false`	|
 | `--non_standard_option=<value>` | Options for handling non-standard letters of the specified alphabet <br /> __0__: Treat them the same as standard letters <br /> __1__: Consider them as gaps when computing similarity cutoff of sequences (only used in asymmetryc version) <br /> __2__: Consider them as gaps in computing similarity cutoff and checking position of match/mismatch | No | 0 | `--non_standard_option=1` |
-| `--depth=<value>` | Depth of MSA to be used in NEFF computation (starting from the first sequence) | No | inf (consider all sequences) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
+| `--depth=<value>` | Depth of MSA to be used in NEFF computation (starting from the first sequence) | No | inf (consider the whole sequence) | `--depth=10` <br />(if given value is greater than original depth, it considers the original depth) |
 | `--gap_cutoff=<value>`| Threshold for considering a position as gappy and removing that (between 0 and 1) | No | 1 (no gappy position) | `--gap_cutoff=0.7` |
 | `--pos_start=<value>`| Start position of each sequence to be considered in NEFF (inclusive) | No | 1 (the first position) | `--pos_start=10` |
-| `--pos_end=<value>`| Last position of each sequence to be considered in NEFF (inclusive) | No | inf (consider all sequence) | `--pos_end=50` (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)|
+| `--pos_end=<value>`| Last position of each sequence to be considered in NEFF (inclusive) | No | inf (consider the whole sequence) | `--pos_end=50` (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)|
 | `--only_weights=[true/false]` | Return only sequence weights, rather than the final NEFF | No | false | `--only_weights=true`    |
 | `--mask_enabled=[true/false]` | Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF | No | false | `--mask_enabled=true`    |
 | `--mask_percent=<value>` | Percentage of sequences to be masked in each masking iteration | when _mask_enabled_=true | 0 | `--mask_percent=0.4`    |
 | `--mask_count=<value>` | Number of masking iterations | when _mask_enabled_=true | 0 | `--mask_count=0`    |
-| `--multimer_MSA=[true/false]` | Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts | No | false | `--multimer_MSA=true`    |
+| `--multimer_MSA=[true/false]` | Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of multiple monomers | No | false | `--multimer_MSA=true`    |
 | `--monomer_length=<value>` | Length of the monomers, which is used to obtain NEFF for both paired MSA and individual monomer MSA | when _multimer_MSA_=true | 0 | `--monomer_length=17`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
 
@@ -139,28 +139,27 @@ Please note that the conversion is performed based on the specified input and ou
 ### Parameters:
 The method accepts the following parameters:
 
-| Parameter             | Type              | Default Value                | Description                                                                                   |
-|-----------------------|-------------------|------------------------------|-----------------------------------------------------------------------------------------------|
-| `file`                | string            | N/A                          | Path to the input file containing the multiple sequence alignment (MSA) data.                 |
-| `alphabet`            | Alphabet          | Alphabet.Protein             | Enum to specify the type of sequences in the MSA (Protein, RNA, or DNA).                      |
-| `check_validation`    | bool              | False                        | Whether to check the validation of the MSA file.                                              |
-| `threshold`           | float             | 0.8                          | Similarity threshold for sequence weighting, must be between 0 and 1.                         |
-| `norm`                | int               | Normalization.Sqrt_L         | Enum to specify normalization method (Sqrt_Length, Length, or No_Normalization).              |
-| `omit_query_gaps`     | bool              | True                         | Whether to omit gaps in the query sequence.                                                   |
-| `is_symmetric`        | bool              | True                         | Whether the calculation is symmetric.                                                         |
-| `non_standard_option` | int               | NonStandardOption.AsStandard | Enum to handle non-standard residues (AsStandard, ConsiderGapInCutoff, ConsiderGap).          |
-| `depth`               | float             | inf                          | Maximum depth (number of sequences) to consider.                                              |
-| `gap_cutoff`          | int               | 1                            | Cutoff value for gap percentage in sequences.                                                 |
-| `pos_start`           | int               | 1                            | Start position in the alignment for calculation.                                              |
-| `pos_end`             | float             | inf                          | End position in the alignment for calculation.                                                |
-| `only_weights`        | bool              | False                        | Whether to only calculate sequence weights without normalizing.                               |
-| `mask_enabled`        | bool              | False                        | Whether to apply a mask to the sequences.                                                     |
-| `mask_percent`        | int               | 0                            | Percentage of the sequence to be masked if `mask_enabled` is True.                            |
-| `mask_count`          | int               | 0                            | Number of sequences to mask if `mask_enabled` is True.                                        |
-| `multimer_MSA`        | bool              | False                        | Whether the MSA represents multimeric complexes.                                              |
-| `first_monomer_length`| int               | 0                            | Length of the first monomer in a multimeric MSA.                                              |
-| `column_neff`         | bool              | False                        | Whether to compute Neff for each column separately.                                           |
-| **Returns**           | float             | N/A                          | The computed Neff value for the given MSA.
+| Parameter             | Type              | Required | Default Value                | Description                                                                         |
+|-----------------------|-------------------|----------|------------------------------|-------------------------------------------------------------------------------------|
+| `file`                | string            | Yes      | N/A                          | Path to the input file containing the multiple sequence alignment (MSA)             |
+| `alphabet`            | Alphabet          | No       | Alphabet.Protein             | Enum to specify the type of sequences in the MSA (__Protein__, __RNA__, or __DNA__) |
+| `check_validation`    | bool              | No       | False                        | Validate the input MSA file based on alphabet or not                                |
+| `threshold`           | float             | No       | 0.8                          | Similarity threshold for sequence weighting, must be between 0 and 1.               |
+| `norm` | int | No | Normalization.Sqrt_Length | Enum to specify normalization method for NEFF (__Sqrt_Length__, __Length__, or __No_Normalization__)|
+| `omit_query_gaps`     | bool              | No       | True                         | Omit gap positions of query sequence from all sequences for NEFF computation     |
+| `is_symmetric` | bool | No | True | Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric) |
+| `non_standard_option` | int | No | NonStandardOption.AsStandard | Enum to handle non-standard residues of the specified alphabet (__AsStandard__, __ConsiderGapInCutoff__, __ConsiderGap__) |
+| `depth`               | float             | No       | inf (consider the whole sequence) | Depth of MSA to be used in NEFF computation (starting from the first sequence) |
+| `gap_cutoff`          | int               | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
+| `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
+| `pos_end`             | float             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
+| `only_weights`        | bool              | No       | False                        | Return only sequence weights, rather than the final NEFF                            |
+| `mask_enabled`        | bool              | No       | False                        | Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF |
+| `mask_percent`        | int               | when mask_enabled=true | 0              | Percentage of sequences to be masked in each masking iteration                      |
+| `mask_count`          | int               | when mask_enabled=true | 0              | Number of masking iterations                                                        |
+| `multimer_MSA` | bool | No | False | Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of multiple monomers |
+| `monomer_length` | int | when multimer_MSA=true | 0   | Length of the monomers, which is used to obtain NEFF for both paired MSA and individual monomer MSA |
+| `column_neff`         | bool              | No       | False       | Compute Column-wise NEFF |
 
 \anchor python_neff_example
 ### Example:
@@ -196,13 +195,12 @@ if __name__ == "__main__":
 ### Parameters:
 The method accepts the following parameters:
 
-| Parameter             | Type            | Default Value          | Description                                                                                   |
-|-----------------------|-----------------|------------------------|-----------------------------------------------------------------------------------------------|
-| in_file             | string            | N/A                    | Path to the input MSA file that needs to be converted.                                        |
-| out_file            | string            | N/A                    | Path where the converted MSA file will be saved.                                              |
-| alphabet            | Alphabet          | Alphabet.Protein       | Enum to specify the type of sequences in the MSA (Protein, RNA, or DNA).                      |
-| check_validation    | bool              | False                  | Whether to check the validation of the MSA file before conversion.                            |
-| **Returns**         | string            | N/A                    | Output message from the conversion process.
+| Parameter | Type | Required | Default Value | Description |
+|-----------|------|----------|---------------|-------------|
+| in_file | string | Yes | N/A | Path to the input MSA file that needs to be converted |
+| out_file | string | Yes | N/A | Path where the converted MSA file will be saved |
+| alphabet | Alphabet | No | Alphabet.Protein | Enum to specify the type of sequences in the MSA (__Protein__, __RNA__, or __DNA__) |
+| check_validation | bool | No | True | Whether to check the validation of the MSA file before conversion |
 
 \anchor python_converter_example
 ### Example:
