@@ -179,7 +179,7 @@ import neffy
 
 def main():
     try:
-        output = neffy.compute_neff(file='./example/example.a2m', alphabet=neffy.Alphabet.HRD)
+        output = neffy.compute_neff(file='./example/example.a2m', alphabet=neffy.Alphabet.RNA)
         print(output)
     except RuntimeError as e:
         print(f"{e}")
