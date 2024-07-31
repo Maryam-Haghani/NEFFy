@@ -136,8 +136,16 @@ Table of Contents</h2>
 </ul>
 </li>
 <li><a class="el" href="#python">Python Library</a><ul>
-<li><a class="el" href="#python_neff">NEFF Computation</a></li>
-<li><a class="el" href="#python_converter">MSA File Conversion</a></li>
+<li><a class="el" href="#python_neff">NEFF Computation</a><ul>
+<li><a class="el" href="#python_neff_parameters">Parameters</a></li>
+<li><a class="el" href="#python_neff_example">Example</a></li>
+</ul>
+</li>
+<li><a class="el" href="#python_converter">MSA File Conversion</a><ul>
+<li><a class="el" href="#python_converter_parameters">Parameters</a></li>
+<li><a class="el" href="#python_converter_example">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -161,7 +169,7 @@ Parameters:</h3>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Flag   </th><th class="markdownTableHeadNone">Description   </th><th class="markdownTableHeadNone">Required   </th><th class="markdownTableHeadNone">Default Value   </th><th class="markdownTableHeadNone">Example    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>--file=&lt;filename&gt;</code>   </td><td class="markdownTableBodyNone">Input file containing multiple sequence alignment   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone"><code>--file=my_alignment.fasta</code>    </td></tr>
+<td class="markdownTableBodyNone"><code>--file=&lt;filename&gt;</code>   </td><td class="markdownTableBodyNone">Path to the input file containing the multiple sequence alignment (MSA) data   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone"><code>--file=my_alignment.fasta</code>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>--alphabet=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Alphabet of MSA <br  />
  <b>0</b>: Protein <br  />
@@ -170,14 +178,14 @@ Parameters:</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--check_validation=[true/false]</code>   </td><td class="markdownTableBodyNone">Validate the input MSA file based on alphabet or not   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--check_validation=true</code>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--threshold=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Threshold value of considering two sequences similar (between 0 and 1)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0.8   </td><td class="markdownTableBodyNone"><code>--threshold=0.7</code>    </td></tr>
+<td class="markdownTableBodyNone"><code>--threshold=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Similarity threshold for sequence weighting, must be between 0 and 1.   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0.8   </td><td class="markdownTableBodyNone"><code>--threshold=0.7</code>    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--norm=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Normalization option for NEFF <br  />
  <b>0</b>: Normalize by the square root of sequence length <br  />
  <b>1</b>: Normalize by the sequence length <br  />
  <b>2</b>: No Normalization   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--norm=2</code>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--omit_query_gaps=[true/false]</code>   </td><td class="markdownTableBodyNone">Omit gap positions of query sequence from entire sequences for NEFF computation   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">true   </td><td class="markdownTableBodyNone"><code>--omit_query_gaps=true</code>    </td></tr>
+<td class="markdownTableBodyNone"><code>--omit_query_gaps=[true/false]</code>   </td><td class="markdownTableBodyNone">Omit gap positions of query sequence from all sequences for NEFF computation   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">true   </td><td class="markdownTableBodyNone"><code>--omit_query_gaps=true</code>    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--is_symmetric =true/false]</code>   </td><td class="markdownTableBodyNone">Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">true   </td><td class="markdownTableBodyNone"><code>--is_symmetric=false</code>    </td></tr>
 <tr class="markdownTableRowEven">
@@ -186,14 +194,14 @@ Parameters:</h3>
  <b>1</b>: Consider them as gaps when computing similarity cutoff of sequences (only used in asymmetryc version) <br  />
  <b>2</b>: Consider them as gaps in computing similarity cutoff and checking position of match/mismatch   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--non_standard_option=1</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>--depth=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Depth of MSA to be used in NEFF computation (starting from the first sequence)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider all sequences)   </td><td class="markdownTableBodyNone"><code>--depth=10</code> <br  />
+<td class="markdownTableBodyNone"><code>--depth=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Depth of MSA to be used in NEFF computation (starting from the first sequence)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone"><code>--depth=10</code> <br  />
 (if given value is greater than original depth, it considers the original depth)    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>--gap_cutoff=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Threshold for considering a position as gappy and removing that (between 0 and 1)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">1 (no gappy position)   </td><td class="markdownTableBodyNone"><code>--gap_cutoff=0.7</code>    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--pos_start=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Start position of each sequence to be considered in NEFF (inclusive)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">1 (the first position)   </td><td class="markdownTableBodyNone"><code>--pos_start=10</code>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--pos_end=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider all sequence)   </td><td class="markdownTableBodyNone"><code>--pos_end=50</code> (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)    </td></tr>
+<td class="markdownTableBodyNone"><code>--pos_end=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone"><code>--pos_end=50</code> (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--only_weights=[true/false]</code>   </td><td class="markdownTableBodyNone">Return only sequence weights, rather than the final NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--only_weights=true</code>    </td></tr>
 <tr class="markdownTableRowEven">
@@ -203,7 +211,7 @@ Parameters:</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>--mask_count=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Number of masking iterations   </td><td class="markdownTableBodyNone">when <em>mask_enabled</em>=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--mask_count=0</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>--multimer_MSA=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--multimer_MSA=true</code>    </td></tr>
+<td class="markdownTableBodyNone"><code>--multimer_MSA=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of multiple monomers   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--multimer_MSA=true</code>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>--monomer_length=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Length of the monomers, which is used to obtain NEFF for both paired MSA and individual monomer MSA   </td><td class="markdownTableBodyNone">when <em>multimer_MSA</em>=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--monomer_length=17</code>    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -279,22 +287,67 @@ Python Library</h1>
 <p><a class="anchor" id="python_neff"></a></p>
 <h2><a class="anchor" id="autotoc_md76"></a>
 NEFF Computation</h2>
-<p>To compute the neff:</p>
-<div class="fragment"><div class="line">python compute_neff.py --file=./example/example.a2m</div>
+<h2><a class="anchor" id="autotoc_md77"></a>
+<code>compute_neff</code> Function</h2>
+<p><a class="anchor" id="python_neff_parameters"></a></p>
+<h3><a class="anchor" id="autotoc_md78"></a>
+Parameters:</h3>
+<p>The method accepts the following parameters:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Required   </th><th class="markdownTableHeadNone">Default Value   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>file</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone">Path to the input file containing the multiple sequence alignment (MSA)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>alphabet</code>   </td><td class="markdownTableBodyNone">Alphabet (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">Alphabet.Protein   </td><td class="markdownTableBodyNone">Enum to specify the type of sequences in the MSA (<b>Protein</b>, <b>RNA</b>, or <b>DNA</b>)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>check_validation</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">False   </td><td class="markdownTableBodyNone">Validate the input MSA file based on alphabet or not    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>threshold</code>   </td><td class="markdownTableBodyNone">float   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0.8   </td><td class="markdownTableBodyNone">Similarity threshold for sequence weighting, must be between 0 and 1    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>norm</code>   </td><td class="markdownTableBodyNone">Normalization (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">Normalization.Sqrt_Length   </td><td class="markdownTableBodyNone">Enum to specify normalization method for NEFF (<b>Sqrt_Length</b>, <b>Length</b>, or <b>No_Normalization</b>)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>omit_query_gaps</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Omit gap positions of query sequence from all sequences for NEFF computation    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>is_symmetric</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>non_standard_option</code>   </td><td class="markdownTableBodyNone">NonStandardOption (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">NonStandardOption.AsStandard   </td><td class="markdownTableBodyNone">Enum to handle non-standard residues of the specified alphabet (<b>AsStandard</b>, <b>ConsiderGapInCutoff</b>, <b>ConsiderGap</b>)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>depth</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Depth of MSA to be used in NEFF computation (starting from the first sequence)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>gap_cutoff</code>   </td><td class="markdownTableBodyNone">float   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">1 (no gappy position)   </td><td class="markdownTableBodyNone">Threshold for considering a position as gappy and removing that (between 0 and 1)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>pos_start</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">1 (the first position)   </td><td class="markdownTableBodyNone">Start position of each sequence to be considered in NEFF (inclusive)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>pos_end</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>only_weights</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">False   </td><td class="markdownTableBodyNone">Return only sequence weights, rather than the final NEFF    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>mask_enabled</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">False   </td><td class="markdownTableBodyNone">Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>mask_percent</code>   </td><td class="markdownTableBodyNone">float   </td><td class="markdownTableBodyNone">when mask_enabled=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Percentage of sequences to be masked in each masking iteration, must be between 0 and 1    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>mask_count</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">when mask_enabled=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Number of masking iterations    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>multimer_MSA</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">False   </td><td class="markdownTableBodyNone">Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of multiple monomers    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>monomer_length</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">when multimer_MSA=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Length of the monomers, which is used to obtain NEFF for both paired MSA and individual monomer MSA    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>column_neff</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">False   </td><td class="markdownTableBodyNone">Compute Column-wise NEFF   </td></tr>
+</table>
+<p><a class="anchor" id="python_neff_example"></a></p>
+<h3><a class="anchor" id="autotoc_md79"></a>
+Example:</h3>
+<p>To compute the neff using python library:</p>
+<div class="fragment"><div class="line">python compute_neff.py</div>
 </div><!-- fragment --><p>Where <code>compute_neff.py</code>:</p>
 <div class="fragment"><div class="line"><span class="keyword">import</span> sys</div>
 <div class="line"><span class="keyword">import</span> neffy</div>
 <div class="line"> </div>
+<div class="line"> </div>
 <div class="line"><span class="keyword">def </span><a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>():</div>
-<div class="line">    <span class="comment"># Get arguments from the command line</span></div>
-<div class="line">    args = sys.argv[1:]</div>
-<div class="line">    </div>
-<div class="line">    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args:</div>
-<div class="line">        print(<span class="stringliteral">&quot;Please provide arguments for the neff tool.&quot;</span>)</div>
-<div class="line">        <span class="keywordflow">return</span></div>
-<div class="line">    </div>
 <div class="line">    <span class="keywordflow">try</span>:</div>
-<div class="line">        output = neffy.compute_neff(args)</div>
+<div class="line">        output = neffy.compute_neff(file=<span class="stringliteral">&#39;./example/example.a2m&#39;</span>, alphabet=neffy.Alphabet.RNA)</div>
 <div class="line">        print(output)</div>
 <div class="line">    <span class="keywordflow">except</span> RuntimeError <span class="keyword">as</span> e:</div>
 <div class="line">        print(f<span class="stringliteral">&quot;{e}&quot;</span>)</div>
@@ -302,27 +355,39 @@ NEFF Computation</h2>
 <div class="line"><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
 <div class="line">    <a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>()</div>
 <div class="ttc" id="aconverter_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition</b> converter.cpp:144</div></div>
-</div><!-- fragment --><p><br  />
+</div><!-- fragment --><p> <br  />
 </p>
 <p><a class="anchor" id="python_converter"></a></p>
-<h2><a class="anchor" id="autotoc_md77"></a>
+<h2><a class="anchor" id="autotoc_md80"></a>
 MSA File Conversion</h2>
+<p><a class="anchor" id="python_converter_parameters"></a></p>
+<h3><a class="anchor" id="autotoc_md81"></a>
+Parameters:</h3>
+<p>The method accepts the following parameters:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Required   </th><th class="markdownTableHeadNone">Default Value   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">in_file   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone">Path to the input MSA file that needs to be converted    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">out_file   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone">Path where the converted MSA file will be saved    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">alphabet   </td><td class="markdownTableBodyNone">Alphabet (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">Alphabet.Protein   </td><td class="markdownTableBodyNone">Enum to specify the type of sequences in the MSA (<b>Protein</b>, <b>RNA</b>, or <b>DNA</b>)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">check_validation   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Whether to check the validation of the MSA file before conversion   </td></tr>
+</table>
+<p><a class="anchor" id="python_converter_example"></a></p>
+<h3><a class="anchor" id="autotoc_md82"></a>
+Example:</h3>
 <p>To convert MSA:</p>
-<div class="fragment"><div class="line">python convert_msa.py --in_file=./example/example.a2m --out_file=./example/example.fasta</div>
+<div class="fragment"><div class="line">python convert_msa.py</div>
 </div><!-- fragment --><p>Where <code>convert_msa.py</code>:</p>
 <div class="fragment"><div class="line"><span class="keyword">import</span> sys</div>
 <div class="line"><span class="keyword">import</span> neffy</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">def </span><a class="code hl_function" href="converter_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>():</div>
-<div class="line">    <span class="comment"># Get arguments from the command line</span></div>
-<div class="line">    args = sys.argv[1:]</div>
-<div class="line">    </div>
-<div class="line">    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args:</div>
-<div class="line">        print(<span class="stringliteral">&quot;Please provide arguments for the neff tool.&quot;</span>)</div>
-<div class="line">        <span class="keywordflow">return</span></div>
-<div class="line">    </div>
 <div class="line">    <span class="keywordflow">try</span>:</div>
-<div class="line">        output = neffy.convert_msa(args)</div>
+<div class="line">        output = neffy.convert_msa(in_file=<span class="stringliteral">&#39;./example/example.a2m&#39;</span>, out_file=<span class="stringliteral">&#39;./example/example.fasta&#39;</span>)</div>
 <div class="line">        print(output)</div>
 <div class="line">    <span class="keywordflow">except</span> RuntimeError <span class="keyword">as</span> e:</div>
 <div class="line">        print(f<span class="stringliteral">&quot;{e}&quot;</span>)</div>

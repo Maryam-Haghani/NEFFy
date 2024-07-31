@@ -1,7 +1,7 @@
 var searchData=
 [
   ['page_0',['Help Page',['../help.html',1,'']]],
-  ['parameters_3a_1',['Parameters:',['../usage_guide.html#autotoc_md68',1,'Parameters:'],['../usage_guide.html#autotoc_md72',1,'Parameters:']]],
+  ['parameters_3a_1',['Parameters:',['../usage_guide.html#autotoc_md68',1,'Parameters:'],['../usage_guide.html#autotoc_md72',1,'Parameters:'],['../usage_guide.html#autotoc_md78',1,'Parameters:'],['../usage_guide.html#autotoc_md81',1,'Parameters:']]],
   ['pfam_2',['PFAM',['../msa_formats.html#autotoc_md48',1,'']]],
   ['processflags_3',['processFlags',['../class_flag_handler.html#ac38f216e5616214e253a9e25c2e755e9',1,'FlagHandler']]],
   ['processsequences_4',['processSequences',['../neff_8cpp.html#a84c94adb8619073e4246b5a9ea90568e',1,'neff.cpp']]],

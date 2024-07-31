@@ -7,7 +7,7 @@ var searchData=
   ['makeuppercase_4',['makeUppercase',['../class_m_s_a_reader.html#a222aaf0fbad6cbff29342268000bfa50',1,'MSAReader']]],
   ['maskedindices_5',['maskedIndices',['../class_m_s_a_writer.html#a315032eda96d9201750ef19fa2b5fbc6',1,'MSAWriter']]],
   ['masksequences_6',['maskSequences',['../neff_8cpp.html#acebc223b8f6b4ec196cad196036b0b5f',1,'neff.cpp']]],
-  ['msa_20file_20conversion_7',['MSA File Conversion',['../index.html#autotoc_md26',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md70',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md77',1,'MSA File Conversion']]],
+  ['msa_20file_20conversion_7',['MSA File Conversion',['../index.html#autotoc_md26',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md70',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md80',1,'MSA File Conversion']]],
   ['msa_20file_20converter_8',['NEFFy: NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
   ['msa_20formats_9',['MSA Formats',['../msa_formats.html',1,'']]],
   ['msa_5fformats_2emd_10',['msa_formats.md',['../msa__formats_8md.html',1,'']]],
