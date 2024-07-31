@@ -3,3 +3,5 @@ build/lib/neffy/bin/converter
 build/lib/neffy/bin/neff
 code/.DS_Store
 neffy.egg-info/dependency_links.txt
+.DS_Store
+build/lib/neffy/neffy.py

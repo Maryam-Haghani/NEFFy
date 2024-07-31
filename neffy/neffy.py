@@ -45,7 +45,7 @@ def compute_neff(
     mask_frac: float = 0,
     mask_count: int = 0,
     multimer_MSA: bool = False,
-    first_monomer_length: int = 0,
+    monomer_length: int = 0,
     column_neff: bool = False
 ):
 
@@ -73,7 +73,7 @@ def compute_neff(
         f"--mask_frac={mask_frac}",
         f"--mask_count={mask_count}",
         f"--multimer_MSA={str(multimer_MSA).lower()}",
-        f"--first_monomer_length={first_monomer_length}",
+        f"--monomer_length={monomer_length}",
         f"--column_neff={str(column_neff).lower()}"
     ]
     
