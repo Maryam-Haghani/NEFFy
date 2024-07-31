@@ -1,0 +1,5 @@
+build/lib/neffy/__init__.py
+build/lib/neffy/bin/converter
+build/lib/neffy/bin/neff
+code/.DS_Store
+neffy.egg-info/dependency_links.txt

@@ -1,16 +1,10 @@
 import sys
 import neffy
 
+
 def main():
-    # Get arguments from the command line
-    args = sys.argv[1:]
-    
-    if not args:
-        print("Please provide arguments for the neff tool.")
-        return
-    
     try:
-        output = neffy.convert_msa(args)
+        output = neffy.convert_msa(in_file='./example/example.a2m', out_file='./example/example.fasta')
         print(output)
     except RuntimeError as e:
         print(f"{e}")
