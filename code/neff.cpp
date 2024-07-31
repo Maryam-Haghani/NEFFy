@@ -25,7 +25,7 @@
  *   --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: length of MSA sequence))\n"
  *   --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
  *   --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)\n"
- *   --mask_percent=<value>            Percentage of sequences to be masked in each masking iteration (default: 0)\n"
+ *   --mask_frac=<value>               Fraction of sequences to be masked in each masking iteration (default: 0)\n"
  *   --mask_count=<value>              Frequency of masking (default: 0)\n"
  *   --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)\n"
  *   --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)\n"
@@ -59,7 +59,7 @@ Options:
     --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))
     --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)
     --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)
-    --mask_percent=<value>            Percentage of sequences to be masked in each masking iteration (default: 0)
+    --mask_frac=<value>               Fraction of sequences to be masked in each masking iteration (default: 0)
     --mask_count=<value>              Frequency of masking (default: 0)
     --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)
     --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)
@@ -70,7 +70,7 @@ Options:
         ./neff --file=example.a3m --threshold=0.7 --norm=2 --is_symmetric=false --alphabet=1
 
     * Do random masking for 20% of sequences in the MSA for 10 times and compute NEFF:
-        ./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_percent=0.2
+        ./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_frac=0.2
 
     * Compute NEFF for paired MSA and individual MSAs of the given MSA of a protein dimer (example.sto is in the form of multimer MSA, and length of first monomer is 20)
         ./neff --file=example.sto --multimer_MSA=true --monomer_length=20
@@ -117,7 +117,7 @@ unordered_map<string, FlagInfo> Flags =
     {"pos_end", {false, "inf"}},            // Last position of each sequence to be considered in NEFF (inclusive)
     {"only_weights", {false, "false"}},     // Return sequence weights instead of final NEFF
     {"mask_enabled", {false, "false"}},     // Enable random  sequence masking for NEFF calculation
-    {"mask_percent", {false, "0"}},         // Percentage of sequences to be masked in each masking iteration
+    {"mask_frac", {false, "0"}},            // Fraction of sequences to be masked in each masking iteration
     {"mask_count", {false, "0"}},           // Frequency of masking
     {"multimer_MSA", {false, "false"}},     // Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts
     {"monomer_length", {false, "0"}},       // Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs.
@@ -352,11 +352,11 @@ vector<int> computeWeights(vector<vector<int>> sequences, float threshold, bool 
 
 /// @brief Randomly mask sequences in the MSA (except the first sequence)
 /// @param sequences 
-/// @param maskPercent 
+/// @param maskFrac 
 /// @return unmasked sequences, masked indices
-tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequences, double maskPercent) {
+tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequences, double maskFrac) {
     int totalSequences = sequences.size();
-    int numToMask = static_cast<int>(maskPercent * totalSequences);
+    int numToMask = static_cast<int>(maskFrac * totalSequences);
 
     // Create a vector of indices, starting from 1 to exclude the first sequence
     vector<int> indices(totalSequences - 1);
@@ -494,14 +494,14 @@ void checkFlags(FlagHandler& flagHandler)
             throw runtime_error("When 'mask_enabled' is true, 'mask_count' must be a positive number.");
         }
         
-        float maskPercent;
+        float maskFrac;
         try
         {
-            maskPercent = flagHandler.getFloatValue("mask_percent");
+            maskFrac = flagHandler.getFloatValue("mask_frac");
         }
         catch (const exception& e)
         {
-            throw runtime_error("When 'mask_enabled' is true, 'mask_percent' should be a number between 0 and 1");
+            throw runtime_error("When 'mask_enabled' is true, 'mask_frac' should be a number between 0 and 1");
         }
     }
     if (flagHandler.getFlagValue("multimer_MSA") == "true")
@@ -813,13 +813,13 @@ int main(int argc, char **argv)
             set<int> maskedIndices;
             float highestNeff = 0.0;
             
-            // Mask percent% of the sequences masked
-            float maskPercent = flagHandler.getFloatValue("mask_percent");
+            // Mask fraction of the sequences masked
+            float maskFrac = flagHandler.getFloatValue("mask_frac");
             int maskCount = flagHandler.getIntValue("mask_count");
 
             for (int i = 0; i < maskCount; ++i)
             {
-                auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskPercent);
+                auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskFrac);
 
                 sequenceWeights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
                 neff = computeNeff(sequenceWeights, norm, length);
