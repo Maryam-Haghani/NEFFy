@@ -18,13 +18,13 @@ class Normalization(Enum):
     No_Normalization = 2
 
 
-def _check_flags(threshold, gap_cutoff, mask_percent):
+def _check_flags(threshold, gap_cutoff, mask_frac):
     if not (0 <= threshold <= 1):
         raise ValueError("Threshold must be between 0 and 1")
     if not (0 <= gap_cutoff <= 1):
         raise ValueError("Gap cutoff must be between 0 and 1")
-    if not (0 <= mask_percent <= 100):
-        raise ValueError("Mask percent must be between 0 and 100")
+    if not (0 <= mask_frac <= 100):
+        raise ValueError("Mask Fraction must be between 0 and 100")
 
 
 def compute_neff(
@@ -32,24 +32,24 @@ def compute_neff(
     alphabet: Alphabet = Alphabet.Protein,
     check_validation: bool = False,
     threshold: float = 0.8,
-    norm: int = Normalization.Sqrt_Length,
+    norm: Normalization = Normalization.Sqrt_Length,
     omit_query_gaps: bool = True,
     is_symmetric: bool = True,
-    non_standard_option: int = NonStandardOption.AsStandard,
-    depth: float = float('inf'),
-    gap_cutoff: int = 1,
+    non_standard_option: NonStandardOption = NonStandardOption.AsStandard,
+    depth: int = 'inf',
+    gap_cutoff: float = 1,
     pos_start: int = 1,
-    pos_end: float = float('inf'),
+    pos_end: int = 'inf',
     only_weights: bool = False,
     mask_enabled: bool = False,
-    mask_percent: int = 0,
+    mask_frac: float = 0,
     mask_count: int = 0,
     multimer_MSA: bool = False,
     first_monomer_length: int = 0,
     column_neff: bool = False
 ):
 
-    _check_flags(threshold, gap_cutoff, mask_percent)
+    _check_flags(threshold, gap_cutoff, mask_frac)
 
     # Get the path to the executable within the package
     script_dir = os.path.abspath(os.path.dirname(__file__))
@@ -70,7 +70,7 @@ def compute_neff(
         f"--pos_end={pos_end}",
         f"--only_weights={str(only_weights).lower()}",
         f"--mask_enabled={str(mask_enabled).lower()}",
-        f"--mask_percent={mask_percent}",
+        f"--mask_frac={mask_frac}",
         f"--mask_count={mask_count}",
         f"--multimer_MSA={str(multimer_MSA).lower()}",
         f"--first_monomer_length={first_monomer_length}",
