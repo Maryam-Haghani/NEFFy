@@ -258,7 +258,8 @@ void MSAReader_sto::readFile(ifstream& inputFile)
 
         if (lineAfterStockholm && !line.empty())
         {
-            if (line.find("#=GS") != 0) // if first line after version is not GS, means there are no alignments in MSA
+            // if first line after version is not GF or GS, means there are no alignments in MSA
+            if ((line.find("#=GF") != 0) and (line.find("#=GS") != 0))
             {
                 noAlignmetnts = true;
                 Sequences.push_back({"", "", ""});
@@ -300,14 +301,21 @@ void MSAReader_sto::readFile(ifstream& inputFile)
                     continue;
                 }
 
-                // add the first sequence which do not have any GS remark
+                // add the first sequence which do not have any GS remark (if not added already)
                 if(lineNo == lastGS+2)
                 {
-                    iss >> id >> seq;
-                    Sequences.insert(Sequences.begin(), {id, seq, ""});
-                }
+                    auto it = std::find_if(Sequences.begin(), Sequences.end(), [&](const Sequence& sequence) {
+                        return sequence.id == id;
+                    });
 
-                if(lineNo > lastGS+2)
+                    if (it == Sequences.end())
+                    {
+                        iss >> id >> seq;
+                        Sequences.insert(Sequences.begin(), {id, seq, ""});
+                    }
+                }
+                
+                if(lineNo >= lastGS+2)
                 {
                     // Get sequences
                     iss >> id >> seq;

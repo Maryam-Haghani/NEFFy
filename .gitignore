@@ -1,3 +1,10 @@
 build/lib/neffy/bin/converter
 build/lib/neffy/bin/neff
 code/.DS_Store
+.DS_Store
+converter
+neff
+.vscode/launch.json
+.vscode/tasks.json
+code/neff.dSYM/Contents/Info.plist
+code/neff.dSYM/Contents/Resources/Relocations/aarch64/neff.yml
