@@ -12,7 +12,11 @@
       - [Example](#converter_example)
 - [Python Library](#python)
   - [NEFF Computation](#python_neff)
+      - [Parameters](#python_neff_parameters)
+      - [Example](#python_neff_example)
   - [MSA File Conversion](#python_converter)
+      - [Parameters](#python_converter_parameters)
+      - [Example](#python_converter_example)
 
 <br>
 
@@ -129,10 +133,41 @@ Please note that the conversion is performed based on the specified input and ou
 \anchor python_neff
 ## NEFF Computation
 
-To compute the neff:
+## `compute_neff` Function
+
+\anchor python_neff_parameters
+### Parameters:
+The method accepts the following parameters:
+
+| Parameter             | Type              | Default Value                | Description                                                                                   |
+|-----------------------|-------------------|------------------------------|-----------------------------------------------------------------------------------------------|
+| `file`                | string            | N/A                          | Path to the input file containing the multiple sequence alignment (MSA) data.                 |
+| `alphabet`            | Alphabet          | Alphabet.Protein             | Enum to specify the type of sequences in the MSA (Protein, RNA, or DNA).                      |
+| `check_validation`    | bool              | False                        | Whether to check the validation of the MSA file.                                              |
+| `threshold`           | float             | 0.8                          | Similarity threshold for sequence weighting, must be between 0 and 1.                         |
+| `norm`                | int               | Normalization.Sqrt_L         | Enum to specify normalization method (Sqrt_Length, Length, or No_Normalization).              |
+| `omit_query_gaps`     | bool              | True                         | Whether to omit gaps in the query sequence.                                                   |
+| `is_symmetric`        | bool              | True                         | Whether the calculation is symmetric.                                                         |
+| `non_standard_option` | int               | NonStandardOption.AsStandard | Enum to handle non-standard residues (AsStandard, ConsiderGapInCutoff, ConsiderGap).          |
+| `depth`               | float             | inf                          | Maximum depth (number of sequences) to consider.                                              |
+| `gap_cutoff`          | int               | 1                            | Cutoff value for gap percentage in sequences.                                                 |
+| `pos_start`           | int               | 1                            | Start position in the alignment for calculation.                                              |
+| `pos_end`             | float             | inf                          | End position in the alignment for calculation.                                                |
+| `only_weights`        | bool              | False                        | Whether to only calculate sequence weights without normalizing.                               |
+| `mask_enabled`        | bool              | False                        | Whether to apply a mask to the sequences.                                                     |
+| `mask_percent`        | int               | 0                            | Percentage of the sequence to be masked if `mask_enabled` is True.                            |
+| `mask_count`          | int               | 0                            | Number of sequences to mask if `mask_enabled` is True.                                        |
+| `multimer_MSA`        | bool              | False                        | Whether the MSA represents multimeric complexes.                                              |
+| `first_monomer_length`| int               | 0                            | Length of the first monomer in a multimeric MSA.                                              |
+| `column_neff`         | bool              | False                        | Whether to compute Neff for each column separately.                                           |
+| **Returns**           | float             | N/A                          | The computed Neff value for the given MSA.
+
+\anchor python_neff_example
+### Example:
+To compute the neff using python library:
 
 ```bash
-python compute_neff.py --file=./example/example.a2m
+python compute_neff.py
 ```
 
 Where `compute_neff.py`:
@@ -141,16 +176,10 @@ Where `compute_neff.py`:
 import sys
 import neffy
 
+
 def main():
-    # Get arguments from the command line
-    args = sys.argv[1:]
-    
-    if not args:
-        print("Please provide arguments for the neff tool.")
-        return
-    
     try:
-        output = neffy.compute_neff(args)
+        output = neffy.compute_neff(file='./example/example.a2m', alphabet=neffy.Alphabet.HRD)
         print(output)
     except RuntimeError as e:
         print(f"{e}")
@@ -158,16 +187,29 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
 <br>
 
 \anchor python_converter
 ## MSA File Conversion
 
+\anchor python_converter_parameters
+### Parameters:
+The method accepts the following parameters:
+
+| Parameter             | Type            | Default Value          | Description                                                                                   |
+|-----------------------|-----------------|------------------------|-----------------------------------------------------------------------------------------------|
+| in_file             | string            | N/A                    | Path to the input MSA file that needs to be converted.                                        |
+| out_file            | string            | N/A                    | Path where the converted MSA file will be saved.                                              |
+| alphabet            | Alphabet          | Alphabet.Protein       | Enum to specify the type of sequences in the MSA (Protein, RNA, or DNA).                      |
+| check_validation    | bool              | False                  | Whether to check the validation of the MSA file before conversion.                            |
+| **Returns**         | string            | N/A                    | Output message from the conversion process.
+
+\anchor python_converter_example
+### Example:
 To convert MSA:
 
 ```bash
-python convert_msa.py --in_file=./example/example.a2m --out_file=./example/example.fasta
+python convert_msa.py
 ```
 
 Where `convert_msa.py`:
@@ -177,15 +219,8 @@ import sys
 import neffy
 
 def main():
-    # Get arguments from the command line
-    args = sys.argv[1:]
-    
-    if not args:
-        print("Please provide arguments for the neff tool.")
-        return
-    
     try:
-        output = neffy.convert_msa(args)
+        output = neffy.convert_msa(in_file='./example/example.a2m', out_file='./example/example.fasta')
         print(output)
     except RuntimeError as e:
         print(f"{e}")
