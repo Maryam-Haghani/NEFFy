@@ -48,8 +48,6 @@ Options:
 
 Examples:
     ./converter --in_file=example.a3m --out_file=output.sto --alphabet=1
-    ./converter --in_file=example.fasta --out_file=output.clustal --check_validation=false
-    ./converter --in_file=example.aln --out_file=output.pfam --alphabet=2
 )";
 
 #include <iostream>

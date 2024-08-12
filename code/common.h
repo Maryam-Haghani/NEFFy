@@ -9,6 +9,8 @@
 #include <vector>
 #include <string>
 
+const std::vector<std::string> VALID_FORMATS = {"fasta", "afa", "fas", "fst", "fsa", "a2m", "a3m", "sto", "clustal", "aln", "pfam"};
+
 inline const std::vector<std::string> FASTA_FORMATS = {"fasta", "afa", "fas", "fst", "fsa"};
 
 const std::string STANDARD_AMINO_ACIDS = "ACDEFGHIKLMNPQRSTVWY";

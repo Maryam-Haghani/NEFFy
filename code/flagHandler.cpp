@@ -4,10 +4,12 @@
  */
 
 #include "flagHandler.h"
+#include "common.h"
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
 #include <climits>
+#include <filesystem>
 
 using namespace std;
 
@@ -97,6 +99,34 @@ float FlagHandler::getFloatValue(const string& name) const
         throw runtime_error("Invalid '" + name + "' value. It should be a number between 0 and 1.");
     }
     return value;
+}
+
+vector<string> FlagHandler::getFileArrayValue(const string& name) const
+{
+    vector<string> values;
+    string svalue = getFlagValue(name);
+
+    stringstream ss(svalue);
+    string item;
+    while (getline(ss, item, ','))
+    {
+        // check file format to be valid
+        if (!filesystem::exists(item))
+        {
+            throw runtime_error("Error: File '" + item + "' does not exist.");
+        }
+        string format = getFormat(item, "file");
+        bool isValidFormat = std::find(VALID_FORMATS.begin(), VALID_FORMATS.end(), format) != VALID_FORMATS.end();
+        if (!isValidFormat) {
+            throw runtime_error("Error: Unsupported file format '" + format + "'.");
+        }
+        values.push_back(item);
+    }
+
+    if (values.empty()) {
+        throw runtime_error("Invalid '" + name + "' value. It should contain at least one item");
+    }
+    return values;
 }
 
 vector<int> FlagHandler::getIntArrayValue(const string& name) const

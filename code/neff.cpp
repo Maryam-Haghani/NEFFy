@@ -65,18 +65,9 @@ Options:
     --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)
     --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
 
- Examples:
-    * Compute NEFF for RNA MSA:
-        ./neff --file=example.a3m --threshold=0.7 --norm=2 --is_symmetric=false --alphabet=1
-
-    * Do random masking for 20% of sequences in the MSA for 10 times and compute NEFF:
-        ./neff --file=example.fasta --mask_enabled=true --mask_count=10 --mask_frac=0.2
-
-    * Compute NEFF for paired MSA and individual MSAs of the given MSA of a protein dimer (example.sto is in the form of multimer MSA, and length of first monomer is 20)
-        ./neff --file=example.sto --multimer_MSA=true --monomer_length=20
-
-    * compute column-wise NEFF
-        ./neff --file=example.aln --column_neff=true
+ Example:
+    * Compute NEFF for protein MSA:
+        ./neff --file=example.a3m --threshold=0.7 --norm=2
 )";
 
 #include "flagHandler.h"
@@ -191,15 +182,14 @@ void removeGappyPositions(vector<vector<int>>& sequences, float gapCutoff)
     }
 }
 
-/// @brief Map chars to digits based on provided 'nonStandardOption' and omit gap positions of query sequence in all sequences if omitGapsInQuery=true
-/// and also remove gappy positions based on given 'gapCutoff'
+/// @brief Map chars to digits based on provided 'nonStandardOption' and also remove gappy positions based on given 'gapCutoff'
 /// @param omitGapsInQuery 
 /// @param alphabet 
 /// @param nonStandardOption 
 /// @param gapCutoff 
 /// @return 
-vector<vector<int>> processSequences(vector<Sequence> sequences, bool omitGapsInQuery,
-                                                    string standardLetters, string nonStandardLetters, NonStandardHandler nonStandardOption, float gapCutoff)
+vector<vector<int>> processSequences(vector<Sequence> sequences, string standardLetters,
+                                    string nonStandardLetters, NonStandardHandler nonStandardOption, float gapCutoff)
 {
     vector<vector<int>> sequences2num;
     if(sequences.size() == 0)
@@ -209,11 +199,6 @@ vector<vector<int>> processSequences(vector<Sequence> sequences, bool omitGapsIn
 
     string querySequence = sequences[0].sequence;
 
-    if (omitGapsInQuery &&  querySequence.find('-') != string::npos) // if query sequence contains any gaps and they meant to be omitted
-    { 
-        keepNonGapPositionsOfQuerySequence(sequences);
-        querySequence = sequences[0].sequence;
-    }
 
     // map letters to numbers
     vector<int> sequence2num;
@@ -531,12 +516,8 @@ void checkFlags(FlagHandler& flagHandler)
 /// @brief Set MSA depth based on 'depth' flag
 /// @param sequences 
 /// @param flagHandler 
-void setDepth(vector<Sequence>& sequences, FlagHandler flagHandler)
+void setDepth(vector<Sequence>& sequences,int depth)
 {
-    int depth;
-
-    depth = flagHandler.getIntValue("depth");
-
     // consider the original depth if the given value is greater than the original depth
     depth = min(depth, (int)sequences.size());
     sequences.resize(depth);   
@@ -638,6 +619,31 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
     }
 }
 
+/// @brief to merge sequences and remove redundant sequences
+/// @param integratedSequences 
+/// @param sequences 
+void integrateUniqueSequences(vector<Sequence>& integratedSequences, const vector<Sequence>& sequences) {
+
+    //length of sequences in all provided files should be the same    
+    if(integratedSequences.size() != 0 && sequences[0].sequence.size() != integratedSequences[0].sequence.size())
+    {
+        throw runtime_error("Length of sequences in provided files are not the same.");
+    }
+    
+    // Iterate over the new sequences
+    for (const auto& seq : sequences) {
+        // Check if the sequence is not already in integratedSequences
+        auto it = std::find_if(integratedSequences.begin(), integratedSequences.end(), 
+                               [&](const Sequence& integratedSeq) {
+                                   return integratedSeq.sequence == seq.sequence;
+                               });
+        // If the sequence is not found, add it to integratedSequences
+        if (it == integratedSequences.end()) {
+            integratedSequences.push_back(seq);
+        }
+    }
+}
+
 /// @brief Compute column-wise NEFF
 /// @param sequences 
 /// @param sequenceWeights
@@ -680,6 +686,7 @@ std::vector<double> computeColumnwiseNEFF
     return columnNEFF;
 }
 
+
 int main(int argc, char **argv)
 {
     /* Handling flags */
@@ -694,14 +701,16 @@ int main(int argc, char **argv)
         }
     }
 
+    vector<string> files;
     string file, format;
     float threshold, gapCutoff;
     bool checkValidation, omitGapsInQuery, isSymmetric;
+    int depth;
     Alphabet alphabet;
     NonStandardHandler nonStandardOption;
     Normalization norm;
     string standardLetters, nonStandardLetters;
-    vector<Sequence> sequences;
+    vector<Sequence> sequences, integratedSequences;
     vector<vector<int>> sequences2num;
     vector<int> sequenceWeights;
 
@@ -711,11 +720,7 @@ int main(int argc, char **argv)
         flagHandler.checkRequiredFlags();
 
         checkFlags(flagHandler);
-    
-        // file
-        file = flagHandler.getFlagValue("file");
-        format = getFormat(file, "file");
-        
+                
         // alphabet
         alphabet = getAlphabet(flagHandler);
 
@@ -725,27 +730,61 @@ int main(int argc, char **argv)
         // omit_query_gaps
         omitGapsInQuery = flagHandler.getFlagValue("omit_query_gaps") == "true";
 
+        //depth    
+        depth = flagHandler.getIntValue("depth");
+
+        // file
+        files = flagHandler.getFileArrayValue("file");
+
         MSAReader* msaReader;
-        if (format == "a2m")
-            msaReader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
-        else if(format == "a3m")
-            msaReader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
-        else if(format == "sto")
-            msaReader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
-        else if(format == "clustal")
-            msaReader = new MSAReader_clustal(file, alphabet, checkValidation, omitGapsInQuery);
-        else if (format == "aln")
-            msaReader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery);
-        else if (format == "pfam")
-            msaReader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
-        else if (find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
-            msaReader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
-        else
-            throw runtime_error("Not supported MSA file format (" + format + ")");
 
-        sequences = msaReader->read();
+        for(int f=0; f<files.size(); f++)
+        {
+            file = files[f];
 
-        setDepth(sequences, flagHandler);
+            format = getFormat(file, "file");
+
+            if (format == "a2m")
+                msaReader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
+            else if(format == "a3m")
+                msaReader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
+            else if(format == "sto")
+                msaReader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
+            else if(format == "clustal")
+                msaReader = new MSAReader_clustal(file, alphabet, checkValidation, omitGapsInQuery);
+            else if (format == "aln")
+                msaReader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery);
+            else if (format == "pfam")
+                msaReader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
+            else if (find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
+                msaReader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
+            sequences = msaReader->read();
+
+            if(sequences.size() == 0)
+            {
+                continue;
+            }
+
+            /// omit gap positions of query sequence in all sequences if omitGapsInQuery=true
+            if (omitGapsInQuery &&  sequences[0].sequence.find('-') != string::npos)
+            // if query sequence contains any gaps and they meant to be omitted
+            { 
+                keepNonGapPositionsOfQuerySequence(sequences);
+            }
+
+            // integrate unique sequences
+            integrateUniqueSequences(integratedSequences, sequences);
+
+            // no need to continue if the depth of sequences so far is more than the given depth
+            if (depth < integratedSequences.size())
+            {
+                break;
+            }
+        }
+
+        sequences = integratedSequences;
+
+        setDepth(sequences, depth);
 
         getPositions(sequences, flagHandler);
 
@@ -758,8 +797,7 @@ int main(int argc, char **argv)
         // gap_cutoff
         gapCutoff = flagHandler.getFloatValue("gap_cutoff");
 
-        sequences2num = processSequences(
-            sequences, omitGapsInQuery, standardLetters, nonStandardLetters, nonStandardOption, gapCutoff);
+        sequences2num = processSequences(sequences, standardLetters, nonStandardLetters, nonStandardOption, gapCutoff);
 
         // norm
         norm = getNormalization(flagHandler);

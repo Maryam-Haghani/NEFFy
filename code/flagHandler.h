@@ -58,6 +58,11 @@ public:
     /// @return 
     float getFloatValue(const std::string& name) const;
 
+    /// @brief Get list of files
+    /// @param name
+    /// @return 
+    std::vector<std::string> getFileArrayValue(const std::string& name) const;
+
     /// @brief Get given int option by user
     /// @param flagHandler 
     /// @param name

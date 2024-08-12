@@ -27,7 +27,7 @@ vector<Sequence> MSAReader::read()
     ifstream inputFile(file);
     if (!inputFile)
     {
-        throw runtime_error( "Failed to open the input file.");
+        throw runtime_error( "Failed to open the input file '"+ file + "'.");
     }
 
     readFile(inputFile);
@@ -304,14 +304,14 @@ void MSAReader_sto::readFile(ifstream& inputFile)
                 // add the first sequence which do not have any GS remark (if not added already)
                 if(lineNo == lastGS+2)
                 {
+                    iss >> id >> seq;
                     auto it = std::find_if(Sequences.begin(), Sequences.end(), [&](const Sequence& sequence) {
                         return sequence.id == id;
                     });
 
                     if (it == Sequences.end())
                     {
-                        iss >> id >> seq;
-                        Sequences.insert(Sequences.begin(), {id, seq, ""});
+                        Sequences.insert(Sequences.begin(), {id, "", ""});
                     }
                 }
                 

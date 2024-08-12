@@ -26,7 +26,7 @@ string getFormat(string file, string name)
     }
     else
     {
-        throw runtime_error("please specify a format for " + name);
+        throw runtime_error("Please specify a format for " + name);
     }
 }
 
