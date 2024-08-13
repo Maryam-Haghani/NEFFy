@@ -10,6 +10,7 @@
 #include <iostream>
 #include <climits>
 #include <filesystem>
+#include <algorithm>
 
 using namespace std;
 
