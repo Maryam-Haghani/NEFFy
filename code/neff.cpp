@@ -89,6 +89,11 @@ Options:
 #include <random>
 #include <fstream>
 #include <set>
+#include <thread>
+#include <future>
+#include <mutex>
+#include <chrono>
+#include <iostream>
 
 using namespace std;
 
@@ -345,9 +350,7 @@ tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequence
 
     // Create a vector of indices, starting from 1 to exclude the first sequence
     vector<int> indices(totalSequences - 1);
-    // for (int i = 1; i < totalSequences; ++i) {
-    //     indices[i - 1] = i;
-    // }
+
     iota(indices.begin(), indices.end(), 1);
 
     // Randomly shuffle the indices
@@ -686,6 +689,27 @@ std::vector<double> computeColumnwiseNEFF
     return columnNEFF;
 }
 
+/// @brief NEFF calculation for a masked MSA
+/// @param sequences2num 
+/// @param threshold 
+/// @param isSymmetric 
+/// @param standardLetters 
+/// @param nonStandardOption 
+/// @param maskFrac 
+/// @param norm 
+/// @param length 
+/// @param bestMaskedIndices 
+/// @return 
+float calculateMaskedNEFF(vector<vector<int>>& sequences2num, float threshold, bool isSymmetric,
+                          const string& standardLetters, NonStandardHandler nonStandardOption, 
+                          float maskFrac, Normalization norm, int length, set<int>& maskedIndices) {
+    auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskFrac);
+    vector<int> sequenceWeights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+    float neff = computeNeff(sequenceWeights, norm, length);
+    maskedIndices = currentmaskedIndices;
+    return neff;
+}
+
 
 int main(int argc, char **argv)
 {
@@ -844,57 +868,82 @@ int main(int argc, char **argv)
         }
 
         int length = sequences2num[0].size();
-        
-        if(flagHandler.getFlagValue("mask_enabled") == "true")
-        {
-            vector<float> neffValues;
-            set<int> maskedIndices;
-            float highestNeff = 0.0;
-            
-            // Mask fraction of the sequences masked
-            float maskFrac = flagHandler.getFloatValue("mask_frac");
-            int maskCount = flagHandler.getIntValue("mask_count");
 
-            for (int i = 0; i < maskCount; ++i)
-            {
-                auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskFrac);
-
-                sequenceWeights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = computeNeff(sequenceWeights, norm, length);
-                neffValues.push_back(neff);
-                if(neff > highestNeff)
-                {
-                    highestNeff = neff;
-                    maskedIndices = currentmaskedIndices;
-                }
-            }
-
-            string neffFile = "neff_values.txt";
-            ofstream outputFile(neffFile);
-            // write NEFF values corresponding to each mask in a file
-            if (outputFile.is_open())
-            {
-                outputFile << "NEFF Values for each mask iteration:\n"; 
-                for (int maskNo = 0; maskNo < neffValues.size(); ++maskNo)
-                {
-                    outputFile << "Mask " << maskNo + 1 << ": " << neffValues[maskNo] << "\n";
-                }
-                outputFile.close();
-                cout << "NEFF values for each mask iteration have been saved in " << neffFile << endl;
-            }
-
-            // Write the masked MSA with highest NEFF in a file
-            string msaFile = "MSA_with_highest_neff.fasta";
-            MSAWriter* msaWriter = new MSAWriter_fasta(sequences, msaFile, maskedIndices);
-            msaWriter->write();
-            cout << "Masked MSA file corresponding to the highest NEFF value among masking iterations has been saved in "<< msaFile << endl;
-            return 0;
-        }
-        
         cout << "MSA sequnce Length: "<< length << endl;
         cout << "MSA depth: " << sequences2num.size() << endl;
 
         sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+        
+        if (flagHandler.getFlagValue("mask_enabled") == "true")
+        {
+            neff = computeNeff(sequenceWeights, norm, length);
+            cout << "Initial NEFF: " << neff << endl;
+
+            // Mask fraction of the sequences masked
+            float maskFrac = flagHandler.getFloatValue("mask_frac");
+            int maskCount = flagHandler.getIntValue("mask_count");
+
+            vector<float> neffValues(maskCount);
+            set<int> maskedIndices;
+            float highestNeff = 0.0;
+            vector<set<int>> maskedIndicesList(maskCount); // To store masked indices for each iteration
+
+            // Vector to store futures for parallel execution
+            vector<future<float>> futures;
+
+            // Start timing the masking and NEFF computation process
+            auto start = chrono::high_resolution_clock::now();
+
+            for (int i = 0; i < maskCount; ++i) {
+                futures.push_back(async(launch::async, calculateMaskedNEFF, ref(sequences2num), threshold, 
+                                        isSymmetric, ref(standardLetters), nonStandardOption, maskFrac, norm, 
+                                        length, ref(maskedIndicesList[i])));
+            }
+
+            // Collect results
+            for (int i = 0; i < maskCount; ++i) {
+                neffValues[i] = futures[i].get();
+                if (neffValues[i] > highestNeff) {
+                    highestNeff = neffValues[i];
+                    maskedIndices = maskedIndicesList[i];
+                }
+            }
+
+            // End timing the process
+            auto end = chrono::high_resolution_clock::now();
+            chrono::duration<double> elapsed = end - start;
+
+            // Sort the NEFF values in descending order
+            sort(neffValues.begin(), neffValues.end(), greater<float>());
+
+            // Write NEFF values to a file
+            ostringstream filenameStream;
+            filenameStream << "neff_values-thr_" << threshold << "-maskfrac_" << maskFrac << ".txt";
+            string neffFile = filenameStream.str();
+
+            ofstream outputFile(neffFile);
+            if (outputFile.is_open()) {
+                // outputFile << "NEFF Values for each mask iteration:\n"; 
+                for (int maskNo = 0; maskNo < neffValues.size(); ++maskNo) {
+                    outputFile << neffValues[maskNo] << "\n";
+                }
+                outputFile.close();
+                cout << "NEFF values for each mask iteration have been saved in '"
+                     << neffFile <<  "' with highest value: " << neffValues[0] << endl;
+            }
+
+            // Write the masked MSA with the highest NEFF to a file
+            filenameStream.str("");
+            filenameStream.clear(); 
+            filenameStream << "MSA_with_highest_neff-thr_" << threshold << "-maskfrac_" << maskFrac << ".fasta";
+            string msaFile = filenameStream.str();
+
+            MSAWriter* msaWriter = new MSAWriter_fasta(sequences, msaFile, maskedIndices);
+            msaWriter->write();
+            cout << "Masked MSA file corresponding to the highest NEFF value has been saved in '" << msaFile << "'" << endl;
+            cout << "Time taken for masking and NEFF computation: " << elapsed.count() << " seconds." << endl;
+            return 0;
+        }
 
         if(flagHandler.getFlagValue("only_weights") == "true")
         {
