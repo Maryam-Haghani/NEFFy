@@ -40,7 +40,8 @@ The NEFFy repository is structured as follows:
 ### 1. NEFF Computation
 
 NEFF determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It accounts for sequence similarities and provides a measure of sequence diversity. <br/>
-To calculate NEFF, use the `neff` program, provide an MSA file, and specify the desired flags.
+To calculate NEFF, use the _neff_ script by providing one or more MSA files and specifying the appropriate flags for NEFF computation. If multiple files are provided, NEFFy will combine them and compute NEFF for the integrated version.
+
 
 #### Flags:
 The code accepts the following command-line flags:
