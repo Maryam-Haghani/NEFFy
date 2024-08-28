@@ -11,7 +11,7 @@
  *   ./neff --file=<input_file> [options]
  *
  * Options:
- *   --file=<input_file>               Path to the input MSA file (required)\n"
+ *   --file=<input_file>               Input files (comma-separated, no spaces) containing multiple sequence alignments (required)\n"
  *   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
  *   --check_validation=<true/false>   Perform validation on sequences (default: false)\n"
  *   --threshold=<value>               Threshold value of considering two sequences similar (default: 0.8)\n"
@@ -27,8 +27,9 @@
  *   --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)\n"
  *   --mask_frac=<value>               Fraction of sequences to be masked in each masking iteration (default: 0)\n"
  *   --mask_count=<value>              Frequency of masking (default: 0)\n"
- *   --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)\n"
- *   --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)\n"
+ *   --multimer_MSA=<true/false>       Compute NEFF for a multimer MSA (default: false)\n"
+ *   --stoichiom=<value>               Multimer stoichiometry (default: empty)
+ *   --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)\n"
  *   --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
 
  * In symmetric version, threshold for considering a pair of sequence as homolog simply depends on length of alignment, and it would be equal for all sequences and we see a symmetry in similarities
@@ -45,7 +46,7 @@ This program computes the Number of Effective Sequences (NEFF) for a multiple se
 NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA.
 
 Options:
-    --file=<input_file>               Path to the input MSA file (required)
+    --file=<list of filenames>        Input files (comma-separated, no spaces) containing multiple sequence alignments (required)
     --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
     --check_validation=<true/false>   Perform validation on sequences (default: false)
     --threshold=<value>               Threshold value of considering two sequences similar (default: 0.8)
@@ -61,19 +62,16 @@ Options:
     --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)
     --mask_frac=<value>               Fraction of sequences to be masked in each masking iteration (default: 0)
     --mask_count=<value>              Frequency of masking (default: 0)
-    --multimer_MSA=<true/false>       Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts (default: false)
-    --monomer_length=<list of values> Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs (default: 0)
+    --multimer_MSA=<true/false>       Compute NEFF for a multimer MSA (default: false)
+    --stoichiom=<value>               Multimer stoichiometry (default: empty)
+    --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)
     --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
-
- Example:
-    * Compute NEFF for protein MSA:
-        ./neff --file=example.a3m --threshold=0.7 --norm=2
 )";
 
 #include "flagHandler.h"
 #include "msaReader.h"
 #include "msaWriter.h"
-#include "msaSplitter.h"
+#include "multimerHandler.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -99,7 +97,7 @@ using namespace std;
 
 unordered_map<string, FlagInfo> Flags =
 {
-    {"file", {true, ""}},                   // MSA file path
+    {"file", {true, ""}},                   // Input files (comma-separated, no spaces) containing multiple sequence alignments
     {"alphabet", {false, "0"}},             // Alphabet of MSA
     {"check_validation", {false, "false"}}, // Perform validation on sequences to include only alphabet letters
     {"threshold", {false, "0.8"}},          // Threshold value for sequence similarity
@@ -115,8 +113,9 @@ unordered_map<string, FlagInfo> Flags =
     {"mask_enabled", {false, "false"}},     // Enable random  sequence masking for NEFF calculation
     {"mask_frac", {false, "0"}},            // Fraction of sequences to be masked in each masking iteration
     {"mask_count", {false, "0"}},           // Frequency of masking
-    {"multimer_MSA", {false, "false"}},     // Compute NEFF for both paired MSA and individual monomer MSAs when MSA is in the form of multimer MSA and composed of 3 parts
-    {"monomer_length", {false, "0"}},       // Length of the monomers, used to obtain NEFF for paired MSA and individual monomer MSAs.
+    {"multimer_MSA", {false, "false"}},     // Compute NEFF for a multimer MSA
+    {"stoichiom", {false, ""}},             // Multimer stoichiometry
+    {"chain_length", {false, "0"}},         // Length of the chains in heteromer multimer
     {"column_neff", {false, "false"}}       // Compute Column-wise NEFF
  };
 
@@ -239,14 +238,15 @@ vector<int> computeWeights(vector<vector<int>> sequences, float threshold, bool 
                      string standardLetters, NonStandardHandler nonStandardOption)
 {
     int msa_depth = sequences.size();
-    vector<int> querySequence = sequences[0];
-    int length = querySequence.size();
 
-    if(msa_depth == 0 || length ==0)
+    if(msa_depth == 0)
     {
         cerr << "There is no sequence to compute weights for." << endl;
         exit(0);
     }
+
+    vector<int> querySequence = sequences[0];
+    int length = querySequence.size();
 
     int position, i, j; // loop indexes    
     int non_gap_count;
@@ -494,15 +494,35 @@ void checkFlags(FlagHandler& flagHandler)
     }
     if (flagHandler.getFlagValue("multimer_MSA") == "true")
     {
-        vector<int> monomerLength;
-        try
+        string stoichiom = flagHandler.getFlagValue("stoichiom");
+
+        if(stoichiom == "")
         {
-            monomerLength = flagHandler.getIntArrayValue("monomer_length");
+            throw runtime_error("When 'multimer_MSA'=true, 'stoichiom' should have a value.");
         }
-        catch (const exception& e)
+        MultimerHandler handler(stoichiom);
+        bool isHomomer = handler.isHomomerFormat();
+
+        if (!isHomomer)
         {
-            throw runtime_error
-            ("When 'multimer_MSA' is true, 'monomer_length' should be a list of positive numbers");
+            bool isHeteromer = handler.isHeteromerFormat();
+
+            if (!isHeteromer)
+            {
+                throw runtime_error
+                ("Stoichiometry: " + stoichiom +  " is not in the correct format 'An' for homomers and 'AnBm...' for heteromers");
+            }
+            
+            vector<int> chainLength;
+            try
+            {
+                chainLength = flagHandler.getIntArrayValue("chain_length");
+            }
+            catch (const exception& e)
+            {
+                throw runtime_error
+                ("When multimer is heteromer, 'chain_length' should be a list of positive numbers");
+            }
         }
         
         if (!((flagHandler.getFlagValue("omit_query_gaps") == "true")
@@ -511,7 +531,7 @@ void checkFlags(FlagHandler& flagHandler)
         && (flagHandler.getFlagValue("pos_end") == "inf")))
         {
             throw runtime_error
-            ("When multimer_MSA is true, 'omit_query_gaps', 'pos_start', and 'pos_end' should remain at their default parameters.");
+            ("When 'multimer_MSA'=true, 'omit_query_gaps', 'pos_start', and 'pos_end' should remain at their default parameters.");
         }
     }
 }
@@ -796,7 +816,7 @@ int main(int argc, char **argv)
                 keepNonGapPositionsOfQuerySequence(sequences);
             }
 
-            // integrate unique sequences
+            // integrate unique sequences from files
             integrateUniqueSequences(integratedSequences, sequences);
 
             // no need to continue if the depth of sequences so far is more than the given depth
@@ -832,45 +852,66 @@ int main(int argc, char **argv)
         // is_symmetric
         isSymmetric = flagHandler.getFlagValue("is_symmetric") == "true";
 
-        float neff = 0.0;
-
-        if (flagHandler.getFlagValue("multimer_MSA") == "true")
-        {
-            vector<int> splitPosition = flagHandler.getIntArrayValue("monomer_length");
-            MSASplitter splitter(splitPosition);
-
-            if (splitter.hasBlockForm(sequences2num))
-            {
-                auto [pairedMSA, msa1, msa2] = splitter.returnSets();
-
-                // pairedMSA
-                sequenceWeights = computeWeights(pairedMSA, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = computeNeff(sequenceWeights, norm, pairedMSA[0].size());
-                cout << "NEFF of Paired MSA:" << neff << endl;
-
-                // MSA 1
-                sequenceWeights = computeWeights(msa1, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = computeNeff(sequenceWeights, norm, msa1[0].size());
-                cout << "NEFF of first monomer:" << neff << endl;
-
-                // MSA 2
-                sequenceWeights = computeWeights(msa2, threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = computeNeff(sequenceWeights, norm, msa2[0].size());
-                cout << "NEFF of second monomer:" << neff << endl;
-                return 0;
-            }
-            else
-            {
-                cerr << "Provided MSA is not in the form of a multimer MSA composed of "
-                     << splitPosition.size()+1 << " monomers" << endl;
-                return 1;
-            }
-        }
-
         int length = sequences2num[0].size();
 
         cout << "MSA sequnce Length: "<< length << endl;
         cout << "MSA depth: " << sequences2num.size() << endl;
+
+        float neff = 0.0;
+
+        if (flagHandler.getFlagValue("multimer_MSA") == "true")
+        {
+            MultimerHandler multimerHandler(flagHandler.getFlagValue("stoichiom"));
+
+            if(multimerHandler.isHomomerFormat())
+            {
+                // Entire MSA
+                sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, sequences2num[0].size());
+                cout << "NEFF of entire MSA:" << neff << endl;
+
+                // Individual MSA
+                vector<vector<int>> individualMSA = multimerHandler.getHomomerIndividualMSA(sequences2num);
+                sequenceWeights = computeWeights(individualMSA, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, individualMSA[0].size());
+                cout << "NEFF of individual MSA:" << neff << endl;
+            }
+            else //heteromer format
+            {
+                bool isHeteromer = multimerHandler.isHeteromerFormat();
+                vector<int> chainLengths = flagHandler.getIntArrayValue("chain_length");
+
+                vector<vector<vector<int>>> msas = multimerHandler.getHetoromerMSAs(sequences2num, chainLengths);
+
+                // Entire MSA
+                sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, sequences2num[0].size());
+                cout << "NEFF of entire MSA:" << neff << endl;
+
+                // Paired MSA
+                sequenceWeights = computeWeights(msas[0], threshold, isSymmetric, standardLetters, nonStandardOption);
+                neff = computeNeff(sequenceWeights, norm, msas[0].size());
+                cout << "NEFF of Paired MSA (depth=" << msas[0].size() << "): " << neff << endl;
+                            
+
+                // Individual MSAs
+                for (int i=1; i< msas.size(); i++)
+                {
+                    string chain = multimerHandler.chainIndexToStoichiomLetter(i-1);
+                    if(msas[i].size() == 0)
+                    {
+                        cout << "Chain (" + chain + ") does not have an individual MSA, skipping NEFF calculation..." << endl;
+                    }
+                    else
+                    {
+                        sequenceWeights = computeWeights(msas[i], threshold, isSymmetric, standardLetters, nonStandardOption);
+                        neff = computeNeff(sequenceWeights, norm, msas[i].size());
+                        cout << "NEFF of Individual MSA for Chain " << chain << " (depth=" << msas[i].size()-1 << "): " << neff << endl;
+                    }
+                }
+            }
+            return 0;
+        }
 
         sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
         

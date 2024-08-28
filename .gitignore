@@ -8,3 +8,4 @@ neff
 .vscode/tasks.json
 code/neff.dSYM/Contents/Info.plist
 code/neff.dSYM/Contents/Resources/Relocations/aarch64/neff.yml
+.vscode/settings.json
