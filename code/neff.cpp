@@ -1016,9 +1016,16 @@ int main(int argc, char **argv)
         
         return 0;
     }
-    catch (const exception& e)
+
+    catch (const runtime_error& e) 
     {
-        cerr << "Error: " << e.what() << endl;
+        cerr << "Handled Error: " << e.what() << endl << endl;
+        cerr << docstr;
+        return 1;
+    } 
+    catch (const exception& e) 
+    {
+        cerr << "Error: " << e.what() << "\nPlease review the provided MSA file." << endl << endl;
         cerr << docstr;
         return 1;
     }
