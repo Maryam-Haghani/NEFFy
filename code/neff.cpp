@@ -890,7 +890,7 @@ int main(int argc, char **argv)
 
                 // Paired MSA
                 sequenceWeights = computeWeights(msas[0], threshold, isSymmetric, standardLetters, nonStandardOption);
-                neff = computeNeff(sequenceWeights, norm, msas[0].size());
+                neff = computeNeff(sequenceWeights, norm, msas[0][0].size());
                 cout << "NEFF of Paired MSA (depth=" << msas[0].size() << "): " << neff << endl;
                             
 
@@ -905,7 +905,7 @@ int main(int argc, char **argv)
                     else
                     {
                         sequenceWeights = computeWeights(msas[i], threshold, isSymmetric, standardLetters, nonStandardOption);
-                        neff = computeNeff(sequenceWeights, norm, msas[i].size());
+                        neff = computeNeff(sequenceWeights, norm, msas[i][0].size());
                         cout << "NEFF of Individual MSA for Chain " << chain << " (depth=" << msas[i].size()-1 << "): " << neff << endl;
                     }
                 }
