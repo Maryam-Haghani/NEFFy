@@ -606,7 +606,7 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
 
     if (startPos >= lengthOfFirstAlignment)
     {
-        throw runtime_error("'pos_start' should be less than length of query sequnce.");
+        throw runtime_error("'pos_start' should be less than length of query sequence.");
     }
 
     // pos_end
@@ -616,7 +616,7 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
     {
         throw runtime_error("'pos_end' should be greater than 'pos_start'");
     }
-    // condider the last position if given value is greater than length of query sequnce
+    // condider the last position if given value is greater than length of query sequence
     endPos = min(endPos, lengthOfFirstAlignment);
     
     // is start and end positions are different from start and end positions of the quesry sequence
@@ -854,7 +854,7 @@ int main(int argc, char **argv)
 
         int length = sequences2num[0].size();
 
-        cout << "MSA sequnce length: "<< length << endl;
+        cout << "MSA sequence length: "<< length << endl;
         cout << "MSA depth: " << sequences2num.size() << endl;
 
         float neff = 0.0;
