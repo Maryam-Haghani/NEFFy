@@ -900,7 +900,7 @@ int main(int argc, char **argv)
                     string chain = multimerHandler.chainIndexToStoichiomLetter(i-1);
                     if(msas[i].size() == 0)
                     {
-                        cout << "Chain (" + chain + ") does not have an individual MSA, skipping NEFF calculation..." << endl;
+                        cout << "Chain " + chain + " does not have an individual MSA, skipping NEFF calculation..." << endl;
                     }
                     else
                     {
