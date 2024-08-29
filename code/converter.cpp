@@ -3,15 +3,7 @@
  * @brief MSA File Converter
  *
  * This program converts the format of an input Multiple Sequence Alignment (MSA) file
- * to the format of an output MSA file. It supports the following formats:
- *      -a2m (fasta-like format with additional annotations)
- *      -a3m (extended A2M format)
- *      -fasta (including subformats: afa, fas, fst, fsa)
- *      -sto (Stockholm format)
- *      -clustal
- *      -aln
- *      -pfam
-
+ * to the format of an output MSA file.
  *
  * Usage:
  *   ./converter --in_file=<input_file> --out_file=<output_file> [options]
@@ -22,32 +14,18 @@
  *   --alphabet=<value>               Valid alphabet of MSA;  alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
  *   --check_validation=<true/false>  Perform validation on sequences (default: true)
  *
- * The input MSA file is converted to the format specified by the output file. The converted
- * file is saved in the specified output file path.
+ * 
+ *  For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
  */
 
 const char* docstr = R"(
 
 This program converts the format of an input Multiple Sequence Alignment (MSA) file to the format of an output MSA file.
-It supports the following formats:
-    - a2m
-    - a3m
-    - fasta (including subformats: afa, fas, fst, fsa)
-    - sto
-    - clustal
-    - aln
-    - pfam
 
+Usage:
 ./converter --in_file=<input_file> --out_file=<output_file> [options]
 
-Options:
-   --in_file=<input_file>            Path to the input MSA file
-   --out_file=<output_file>          Path to the output MSA file
-   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
-   --check_validation=<true/false>   Perform validation on sequences (default: true)
-
-Examples:
-    ./converter --in_file=example.a3m --out_file=output.sto --alphabet=1
+For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
 )";
 
 #include <iostream>
@@ -175,9 +153,15 @@ int main(int argc, char **argv)
         
         return 0;
     }
-    catch (const exception& e)
+    catch (const runtime_error& e) 
     {
-        cerr << "Error: " << e.what() << endl;
+        cerr << "Handled Error: " << e.what() << endl << endl;
+        cerr << docstr;
+        return 1;
+    } 
+    catch (const exception& e) 
+    {
+        cerr << "Error: " << e.what() << "\nPlease review the provided MSA file." << endl << endl;
         cerr << docstr;
         return 1;
     }

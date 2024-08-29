@@ -1,0 +1,17 @@
+# STOCKHOLM 1.0
+
+#=GF ID T1152
+
+#=GS T1152                                                       
+#=GS MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 
+#=GS ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   
+#=GS tr|A0A235B7N0|A0A235B7N0_9BACL                               Uncharacterized protein OS=Paludifilum halophilum OX=1642702
+#=GS tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                               Uncharacterized protein OS=Bacillus solimangrovi OX=1305675
+
+T1152                                                       MY---TVKPGDT------MWKIAV---K--YQI---GI-----SEIIAANPQIKNPNLIYPGQKINIPNILEHHHHHH
+MTBAKSStandDraft_2_1061841.scaffolds.fasta_scaffold367497_1 TY---D-KDGYR------HYRTRV---Y--YTL---RR-----NEDNALIA-REVFSQVYKKEAL-CPIA--------
+ETNvirnome_2_130_1030620.scaffolds.fasta_scaffold104244_1   G----EREKGR---------HSKS---R--QEK---GF-----KEKK---P-TKKPSATNKPVNTAKPAA--------
+tr|A0A235B7N0|A0A235B7N0_9BACL                              EASAVDRITSDSILENFVQWIFSE---E--KEVEEKHT-----EESVQPTPAVKHSPDSSGSSKSSSSD---------
+tr|A0A1E5LFN5|A0A1E5LFN5_9BACI                              SA---KVKRGRT------FIPLRSATESFGYDV---IWKENENAVYLKSNPTIKPKDSTQ------------------
+
+// 

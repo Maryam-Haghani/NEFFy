@@ -31,41 +31,18 @@
  *   --stoichiom=<value>               Multimer stoichiometry (default: empty)
  *   --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)\n"
  *   --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
-
- * In symmetric version, threshold for considering a pair of sequence as homolog simply depends on length of alignment, and it would be equal for all sequences and we see a symmetry in similarities
- * While in asymmetric version, threshold depends on number of non-gap residues; therefore, cutoff tends to be different for sequences)
  *
- * NEFF is computed based on the given options.
+ * For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
  */
 
 const char* docstr = R"(
-
-./neff --file=<input_file> [options]
-
 This program computes the Number of Effective Sequences (NEFF) for a multiple sequence alignment (MSA) file.
 NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA.
 
-Options:
-    --file=<list of filenames>        Input files (comma-separated, no spaces) containing multiple sequence alignments (required)
-    --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)
-    --check_validation=<true/false>   Perform validation on sequences (default: false)
-    --threshold=<value>               Threshold value of considering two sequences similar (default: 0.8)
-    --norm=<value>                    NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)
-    --omit_query_gaps=<true/false>    Omit gap positions of query sequence from all sequences for NEFF computation (default: true)
-    --is_symmetric=<true/false>       Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)
-    --non_standard_option=<value>     Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)
-    --depth=<value>                   Depth of MSA to be cosidered in computation (default: depth of given MSA)
-    --gap_cutoff=<value>              Cutoff value for removing gappy positions, when #gaps in position >= gap_cutoff (default=1 : does not remove anything)
-    --pos_start=<value>               Start position of each sequence to be considered in neff (inclusive (default: 1))
-    --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: length of sequence in the MSA))
-    --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)
-    --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)
-    --mask_frac=<value>               Fraction of sequences to be masked in each masking iteration (default: 0)
-    --mask_count=<value>              Frequency of masking (default: 0)
-    --multimer_MSA=<true/false>       Compute NEFF for a multimer MSA (default: false)
-    --stoichiom=<value>               Multimer stoichiometry (default: empty)
-    --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)
-    --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
+Usage:
+./neff --file=<input_file> [options]
+
+For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
 )";
 
 #include "flagHandler.h"
@@ -1016,7 +993,6 @@ int main(int argc, char **argv)
         
         return 0;
     }
-
     catch (const runtime_error& e) 
     {
         cerr << "Handled Error: " << e.what() << endl << endl;

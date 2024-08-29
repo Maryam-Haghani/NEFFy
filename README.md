@@ -47,7 +47,7 @@ To calculate NEFF, use the _neff_ script by providing one or more MSA files and 
 The code accepts the following command-line flags:
 | Flag | Description | Required | Default Value | Example	| 
 |------|-------------|----------|---------------|---------|
-| `--file=<list of filenames>` | Input files (comma-separated, no spaces) containing multiple sequence alignments | Yes | N/A | `--file=my_alignment.fasta` |
+| `--file=<list of filenames>` | Input files (comma-separated, no spaces) containing multiple sequence alignments | Yes | N/A | `--file=example.fasta` |
 | `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | false | `--check_validation=true` |
 | `--threshold=<value>`	| Threshold value of considering two sequences similar (between 0 and 1) | No | 0.8 | `--threshold=0.7` |
@@ -71,7 +71,7 @@ The code accepts the following command-line flags:
 For more details about features, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/index.html#overview_neff_computation).
 
 #### Example:
-    neff --file=alignment.fasta --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
+    neff --file=./MSAs/example.a2m --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
   As output, it will print the final MSA length, depth and Neff to the console, based on the given options.
 
 For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/usage_guide.html#neff_computation).
@@ -84,7 +84,7 @@ All you need is to use the `converter` program and specify the input and output 
 The code accepts the following command-line flags:
 | Flag | Description | Required | Default Value | Example	| 
 |------|-------------|----------|---------------|---------|
-| `--in_file=<filename>` | Specifies the input MSA file to be converted.<br /> Replace `<filename>` with the path and name of the input file | Yes | N/A | `--in_file=input.fasta` |
+| `--in_file=<filename>` | Specifies the inputf MSA file to be converted.<br /> Replace `<filename>` with the path and name of the input file | Yes | N/A | `--in_file=input.fasta` |
 | `--out_file=<filename>`| Specifies the output file where the converted MSA will be saved.<br /> Replace `<filename>` with the desired path and name of the output file | Yes | N/A | `--out_file=output.a2m` |
 | `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
@@ -95,7 +95,7 @@ For more details about features, please refer to the [documentation](https://mar
 #### Example:
 Suppose you have an MSA file named "input.fasta" and you want to convert to the A2M format and save it as "output.a2m".
 
-    converter --in_file=input.fasta --out_file=output.a2m
+    converter --in_file=./MSAs/example.a2m --out_file=./MSAs/example.sto
     
 For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/usage_guide.html#converter).
 
