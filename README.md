@@ -63,7 +63,7 @@ The code accepts the following command-line flags:
 | `--mask_enabled=[true/false]` | Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF | No | false | `--mask_enabled=true`    |
 | `--mask_frac=<value>` | Fraction of sequences to be masked in each masking iteration | when _mask_enabled_=true | 0 | `--mask_frac=0.4`    |
 | `--mask_count=<value>` | Number of masking iterations | when _mask_enabled_=true | 0 | `--mask_count=0`    |
-| `--multimer_MSA=[true/false]` | Compute NEFF for  MSA os a multimer | No | false | `--multimer_MSA=true`    |
+| `--multimer_MSA=[true/false]` | Compute NEFF for  MSA of a multimer | No | false | `--multimer_MSA=true`    |
 | `--stoichiom=<value>` | Stochiometry of the multimer | when _multimer_MSA_=true |  | `--stoichiom=A2B1`    |
 | `--chain_length=<list of values>` | Length of the chains in a heteromer  | when _multimer_MSA_=true and multimer is a heteromer | 0 | `--chain_length=17 45`    |
 | `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
