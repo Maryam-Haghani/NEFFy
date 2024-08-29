@@ -874,7 +874,7 @@ int main(int argc, char **argv)
                 vector<vector<int>> individualMSA = multimerHandler.getHomomerIndividualMSA(sequences2num);
                 sequenceWeights = computeWeights(individualMSA, threshold, isSymmetric, standardLetters, nonStandardOption);
                 neff = computeNeff(sequenceWeights, norm, individualMSA[0].size());
-                cout << "NEFF of Individual MSA for Chain " << chain << " (depth=" << individualMSA.size() << "): " << neff << endl;
+                cout << "NEFF of Individual MSA" (depth=" << individualMSA.size() << "): " << neff << endl;
             }
             else //heteromer format
             {
