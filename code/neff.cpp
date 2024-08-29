@@ -854,7 +854,7 @@ int main(int argc, char **argv)
 
         int length = sequences2num[0].size();
 
-        cout << "MSA sequnce Length: "<< length << endl;
+        cout << "MSA sequnce length: "<< length << endl;
         cout << "MSA depth: " << sequences2num.size() << endl;
 
         float neff = 0.0;
