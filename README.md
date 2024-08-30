@@ -189,7 +189,7 @@ In the [documentation](https://maryam-haghani.github.io/NEFFy/msa_formats.html),
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br/>
 Please refer to the error message for troubleshooting or make necessary corrections to the input.
 
-## License
+# License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
 
 ----------------
