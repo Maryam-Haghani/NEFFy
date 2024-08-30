@@ -9,7 +9,7 @@ Additionally, NEFFy includes built-in support for format conversion, allowing us
   - [Usage](#usage)
     - [NEFF Computation](#1-neff-computation)
     - [MSA File Conversion](#2-msa-file-conversion)
-- [Python Library](python-library)
+- [Python Library](#python-library)
   - [Library Installation](#library-installation)
   - [Library Usage](#usage)
 - [Supported File Formats](#supported-file-formats)
