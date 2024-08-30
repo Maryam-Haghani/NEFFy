@@ -1,0 +1,104 @@
+\doxysection{msa\+Reader.\+h}
+\hypertarget{msa_reader_8h_source}{}\label{msa_reader_8h_source}\index{code/msaReader.h@{code/msaReader.h}}
+\mbox{\hyperlink{msa_reader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ MSAREADER\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MSAREADER\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ \mbox{\hyperlink{class_m_s_a_reader_a62ef473c45e89fa7f79e48f7677ed084}{alphabet}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_m_s_a_reader_a106c1e8996e7a0f8f8c76ec335cb2216}{checkValidation}};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_m_s_a_reader_a8a14f09f0127afc4cbe9705b1eae9315}{omitGaps}};}
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<Sequence>\ \mbox{\hyperlink{class_m_s_a_reader_a8d47973f8edb13b9fc89ab2a14720443}{Sequences}};\ \textcolor{comment}{//\ the\ sequences\ read\ from\ the\ file}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_m_s_a_reader_a5f5e6a4c8075e6f9c09816b8313df164}{isUnaligned}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::string\ \mbox{\hyperlink{class_m_s_a_reader_ac79629b6cce3127ccb303a0378ffe1eb}{containsInvalidLetters}}(\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ \mbox{\hyperlink{class_m_s_a_reader_a62ef473c45e89fa7f79e48f7677ed084}{alphabet}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader_a222aaf0fbad6cbff29342268000bfa50}{makeUppercase}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader_a4133a7ba29d17a4898531efc2b58cc5c}{validateSequences}}(\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ \mbox{\hyperlink{class_m_s_a_reader_a62ef473c45e89fa7f79e48f7677ed084}{alphabet}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader_a64e2867b03ae541903f3f088c8eb6ad6}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})=0;\ \ \textcolor{comment}{//??}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader}}(std::string\ \_file,\ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ \_alphabet,\ \textcolor{keywordtype}{bool}\ \_checkValidation,\ \textcolor{keywordtype}{bool}\ \_omitGaps\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::vector<Sequence>\ \mbox{\hyperlink{class_m_s_a_reader_a356034b6d0d5bd18a3ab260718dd48fb}{read}}();}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ a2m\ format}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__a2m}{MSAReader\_a2m}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__a2m_a3182f7d13b19a8575c4429cc1febf7b7}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ a3m\ format}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__a3m}{MSAReader\_a3m}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00071\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__a3m_ab2746ef0829dd87e4c6bcf0959336e94}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ stockholm\ format}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__sto}{MSAReader\_sto}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00080\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__sto_a8e2d7bbdfb1279cfe4c0bf23f0c8391a}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ fasta\ format}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__fasta}{MSAReader\_fasta}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00089\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__fasta_a149a10ed6f00a7c02bb4007a2308d03b}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ clustal\ format}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__clustal}{MSAReader\_clustal}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00098\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__clustal_ac99c5cd7f499beb7a524c320ad24e9fd}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ aln\ format}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__aln}{MSAReader\_aln}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00107\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__aln_a9069c7fa060788208800561c85ae47f2}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ Derived\ class\ for\ reading\ pfam\ format}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_reader__pfam}{MSAReader\_pfam}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader::MSAReader}};}
+\DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_reader__pfam_a3ac2c032b534905575aac69a5d3396cb}{readFile}}(std::ifstream\&\ \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

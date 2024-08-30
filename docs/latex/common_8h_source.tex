@@ -1,0 +1,66 @@
+\doxysection{common.\+h}
+\hypertarget{common_8h_source}{}\label{common_8h_source}\index{code/common.h@{code/common.h}}
+\mbox{\hyperlink{common_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ COMMON\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ COMMON\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{const}\ std::vector<std::string>\ \mbox{\hyperlink{common_8h_a4488ce7b244e618f5669e9d2d9d29e89}{VALID\_FORMATS}}\ =\ \{\textcolor{stringliteral}{"{}fasta"{}},\ \textcolor{stringliteral}{"{}afa"{}},\ \textcolor{stringliteral}{"{}fas"{}},\ \textcolor{stringliteral}{"{}fst"{}},\ \textcolor{stringliteral}{"{}fsa"{}},\ \textcolor{stringliteral}{"{}a2m"{}},\ \textcolor{stringliteral}{"{}a3m"{}},\ \textcolor{stringliteral}{"{}sto"{}},\ \textcolor{stringliteral}{"{}clustal"{}},\ \textcolor{stringliteral}{"{}aln"{}},\ \textcolor{stringliteral}{"{}pfam"{}}\};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::vector<std::string>\ \mbox{\hyperlink{common_8h_a60bc6bcc0d034fed50477b99a459dd84}{FASTA\_FORMATS}}\ =\ \{\textcolor{stringliteral}{"{}fasta"{}},\ \textcolor{stringliteral}{"{}afa"{}},\ \textcolor{stringliteral}{"{}fas"{}},\ \textcolor{stringliteral}{"{}fst"{}},\ \textcolor{stringliteral}{"{}fsa"{}}\};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{common_8h_acce6f36ae6d960b9d172c09f06357e44}{STANDARD\_AMINO\_ACIDS}}\ =\ \textcolor{stringliteral}{"{}ACDEFGHIKLMNPQRSTVWY"{}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{common_8h_a3290b454157a7312fdef5471899c9055}{NON\_STANDARD\_AMINO\_ACIDS}}\ =\ \textcolor{stringliteral}{"{}XOUBJZ"{}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{common_8h_ad38e8843145278cc7247126fe01fb91a}{STANDARD\_RNA\_NUCLEOTIDES}}\ =\ \textcolor{stringliteral}{"{}AUCG"{}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{common_8h_a43b11597b2f51799912662182567d3ee}{STANDARD\_DNA\_NUCLEOTIDES}}\ =\ \textcolor{stringliteral}{"{}ATCG"{}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{common_8h_a9ed74e137d15cecc717aa200adacb0e4}{NON\_STANDARD\_NUCLEOTIDES}}\ =\ \textcolor{stringliteral}{"{}N"{}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{common_8h_ae91e5b1a5c7ddf10dc93f01d4cd5bb89}{GAP}}\ =\ \textcolor{stringliteral}{"{}-\/."{}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Structure\ to\ represent\ a\ sequence}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_sequence}{Sequence}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_sequence_ada15617cd86fb267191924a63eccdec4}{id}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Sequence\ identifier}}
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_sequence_aceea1f464ac511c8d8ab7d10229c6e2e}{sequence}};\ \textcolor{comment}{//\ Sequence\ data}}
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_sequence_aa19c72c6fd8f6193aba7cdfcf5c1d64c}{remarks}};\ \ \textcolor{comment}{//\ Remarks\ associated\ with\ the\ sequence}}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ Enumeration\ for\ NEFF\ normalization\ options}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14ea9cf59750c46815a6671a352d5f75f0d0}{Sqrt\_L}}\ =\ 0,\ \textcolor{comment}{//\ Square\ root\ of\ the\ length}}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14eaef31cc6fe9479955961311ee18ac205f}{L}},\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Length}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14eac9d3e887722f2bc482bcca9d41c512af}{None}}\ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ normalization}}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Enumeration\ for\ MSA\ alphabet}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4a7eebac5ec8b6706eb00b1a2b17836d99}{protein}}\ =\ 0,}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4a92efc5f13441d2abd5e146e629196c7e}{RNA}},}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4acf4f4b33c0fa7b8f3cd37f44af0f5ce8}{DNA}}}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Enumeration\ for\ options\ we\ have\ for\ handling\ non-\/standard\ residues\ in\ neff\ computation}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{NonStandardHandler}}}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02aabb3fca5076f29805e098e7e3f2bf475a}{AsStandard}}\ =\ 0,\ \textcolor{comment}{//\ treat\ the\ the\ same\ as\ standard\ residues,\ default\ in\ deepMSA\ symmetric}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02aa5b3ed107d9c68833dec24ce92c7f03f0}{ConsiderGapInCutoff}},\ \textcolor{comment}{//\ consider\ them\ as\ gaps\ when\ computing\ cutoff\ of\ sequence\ (only\ used\ in\ asymmetryc\ version,\ default\ in\ deepMSA\ assymetric)}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02aa23d5a357eaa655ef082dde85433d2334}{ConsiderGap}}\ \textcolor{comment}{//\ consider\ them\ as\ gaps\ in\ computing\ similarity\ cutoff\ and\ checking\ position\ match/mismatch,\ default\ in\ Gremlin}}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ std::string\ \mbox{\hyperlink{common_8h_a20be35e73f527192e4908daf1aa27d46}{getFormat}}(std::string\ file,\ std::string\ name);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{common_8h_a7f89060b582fc435cc6a74bee0dc9d07}{keepNonGapPositionsOfQuerySequence}}(std::vector<Sequence>\&\ sequences);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ std::string\ \mbox{\hyperlink{common_8h_a5bb46d0b0f2c3d725c3a4c2b69acf9c7}{getAllowedLetters}}(\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ alphabet);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ std::string\ \mbox{\hyperlink{common_8h_a1bfa6753319e14bc5bb85df568644fae}{getStandardLetters}}(\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ alphabet);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ std::string\ \mbox{\hyperlink{common_8h_a8e99f7b53ad61ae175ebd91ecac5d359}{getNonStandardLetters}}(\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}\ alphabet);}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,121 @@
+\chapter{Installation Guide}
+\hypertarget{installation_guide}{}\label{installation_guide}\index{Installation Guide@{Installation Guide}}
+\hypertarget{installation_guide_autotoc_md10}{}\doxysubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{installation_guide_autotoc_md10}
+
+\begin{DoxyItemize}
+\item \doxylink{installation_guide_executable_install}{C++ Executable File}
+\item \doxylink{installation_guide_python_install}{Python Library}
+\begin{DoxyItemize}
+\item \doxylink{installation_guide_python_source}{Installation from Source}
+\item \doxylink{installation_guide_python_pypi}{Installation From Py\+PI (upcoming)}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+
+
+\label{installation_guide_executable_install}%
+\Hypertarget{installation_guide_executable_install}%
+\hypertarget{installation_guide_autotoc_md11}{}\doxysection{\texorpdfstring{C++ Executable File}{C++ Executable File}}\label{installation_guide_autotoc_md11}
+To install the executable version of NEFFy\+:
+\begin{DoxyEnumerate}
+\item Clone the repository\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/Maryam-\/Haghani/Neffy.git}
+
+\end{DoxyCode}
+
+\item Navigate to the project directory\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ Neffy}
+
+\end{DoxyCode}
+
+\item Compile the code using a C++ compiler that supports C++17 or a newer version, through the provided \href{https://github.com/Maryam-Haghani/Neffy/blob/main/Makefile}{\texttt{ Makefile}} in the repository. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\bfseries{If the {\ttfamily make} command is not available on your operating system, refer to the \doxysectlink{help}{Help}{0} page.}}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Once the compilation is complete, you can run the program via the command line. ~\newline
+ This package is cross-\/platform and works on Linux, Windows, and mac\+OS without requiring additional compilation.
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{installation_guide_python_install}%
+\Hypertarget{installation_guide_python_install}%
+\hypertarget{installation_guide_autotoc_md13}{}\doxysection{\texorpdfstring{Python Library}{Python Library}}\label{installation_guide_autotoc_md13}
+\label{installation_guide_python_source}%
+\Hypertarget{installation_guide_python_source}%
+\hypertarget{installation_guide_autotoc_md14}{}\doxysubsection{\texorpdfstring{Installation from Source}{Installation from Source}}\label{installation_guide_autotoc_md14}
+To install the library from the source\+:
+
+
+\begin{DoxyEnumerate}
+\item Clone the repository\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/Maryam-\/Haghani/Neffy.git}
+
+\end{DoxyCode}
+
+\item Checkout the specific branch\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ checkout\ python-\/lib}
+
+\end{DoxyCode}
+
+\item Navigate to the project directory\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ Neffy}
+
+\end{DoxyCode}
+
+\item Ensure you have {\ttfamily setuptools} and {\ttfamily wheel} installed\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ setuptools\ wheel}
+
+\end{DoxyCode}
+
+\item Build the source distribution and wheel\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ setup.py\ sdist\ bdist\_wheel}
+
+\end{DoxyCode}
+
+\item Install the package from the root directory of the project\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ .}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item Alternatively, you can install the package directly from the built wheel file (in the {\ttfamily dist} directory)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ dist/neffy-\/0.1-\/py3-\/none-\/any.whl}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\label{installation_guide_python_pypi}%
+\Hypertarget{installation_guide_python_pypi}%
+\hypertarget{installation_guide_autotoc_md15}{}\doxysubsection{\texorpdfstring{Installation from Py\+PI (upcoming)}{Installation from Py\+PI (upcoming)}}\label{installation_guide_autotoc_md15}
+Our Python library will soon be available on Py\+PI. This will make it easier for you to install and manage the library using pip. ~\newline
+ To install the package from Py\+PI\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ neffy}
+
+\end{DoxyCode}
+ ~\newline
+
+
+\DoxyHorRuler{0}
+ For further assistance or inquiries, please \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} or create an \href{https://github.com/Maryam-Haghani/Neffy/issues}{\texttt{ issue}} in the Git\+Hub repository. 

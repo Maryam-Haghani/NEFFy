@@ -33,7 +33,7 @@ This tutorial will first explain the structure of the NEFFy repository, followed
 ### Project Outline
 The NEFFy repository is structured as follows:
 
-![outline](docs/figs/outline.png)
+![outline](outline.png)
 
 
 ### Usage

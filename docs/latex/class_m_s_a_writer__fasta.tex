@@ -1,0 +1,89 @@
+\doxysection{MSAWriter\+\_\+fasta Class Reference}
+\hypertarget{class_m_s_a_writer__fasta}{}\label{class_m_s_a_writer__fasta}\index{MSAWriter\_fasta@{MSAWriter\_fasta}}
+
+
+{\ttfamily \#include $<$msa\+Writer.\+h$>$}
+
+Inheritance diagram for MSAWriter\+\_\+fasta\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_s_a_writer__fasta}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_s_a_writer__fasta_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter}} (std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ sequences, std\+::string \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}}, std\+::set$<$ int $>$ \mbox{\hyperlink{class_m_s_a_writer_a315032eda96d9201750ef19fa2b5fbc6}{masked\+Indices}}=\{\})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter}} (std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ sequences, std\+::string \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}}, std\+::set$<$ int $>$ \mbox{\hyperlink{class_m_s_a_writer_a315032eda96d9201750ef19fa2b5fbc6}{masked\+Indices}}=\{\})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_s_a_writer_ac775d5a398728b6cb16c1cfd69c217a4}{write}} ()
+\begin{DoxyCompactList}\small\item\em Write sequences in the MSA file, based on the format of the output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_m_s_a_writer__fasta_ab69b0130ad7dc20c0848b1e63f22bb03}{write\+File}} (std\+::ofstream \&\mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}}) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_m_s_a_writer_afd9f95f814690c5ebe8ec2eb4061abe0}{generate\+Id\+For\+Sequences}} ()
+\begin{DoxyCompactList}\small\item\em Generate IDs for sequences that do not have any ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}}
+\item 
+std\+::string \mbox{\hyperlink{class_m_s_a_writer_a254757e1376a7b02e598a10d3fcc39cc}{file\+Name}}
+\item 
+std\+::string \mbox{\hyperlink{class_m_s_a_writer_af795d5c8ef092fff52191dd8c75af32b}{format}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \mbox{\hyperlink{class_m_s_a_writer_a79650331bf37ebbbc5f0eb4ce1ef2785}{Sequences}}
+\item 
+std\+::set$<$ int $>$ \mbox{\hyperlink{class_m_s_a_writer_a315032eda96d9201750ef19fa2b5fbc6}{masked\+Indices}}
+\item 
+int \mbox{\hyperlink{class_m_s_a_writer_a146648f051b2cbda84f31d3bf71b8abd}{IDspace}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_m_s_a_writer__fasta_ae0a8000b4be2b3354cc53dbe417996fb}\index{MSAWriter\_fasta@{MSAWriter\_fasta}!MSAWriter@{MSAWriter}}
+\index{MSAWriter@{MSAWriter}!MSAWriter\_fasta@{MSAWriter\_fasta}}
+\doxysubsubsection{\texorpdfstring{MSAWriter()}{MSAWriter()}}
+{\footnotesize\ttfamily \label{class_m_s_a_writer__fasta_ae0a8000b4be2b3354cc53dbe417996fb} 
+MSAWriter\+::\+MSAWriter (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$}]{sequences}{, }\item[{std\+::string}]{file}{, }\item[{std\+::set$<$ int $>$}]{masked\+Indices}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequences} & \\
+\hline
+{\em file} & \\
+\hline
+{\em masked\+Indices} & ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_m_s_a_writer__fasta_ab69b0130ad7dc20c0848b1e63f22bb03}\index{MSAWriter\_fasta@{MSAWriter\_fasta}!writeFile@{writeFile}}
+\index{writeFile@{writeFile}!MSAWriter\_fasta@{MSAWriter\_fasta}}
+\doxysubsubsection{\texorpdfstring{writeFile()}{writeFile()}}
+{\footnotesize\ttfamily \label{class_m_s_a_writer__fasta_ab69b0130ad7dc20c0848b1e63f22bb03} 
+void MSAWriter\+\_\+fasta\+::write\+File (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_m_s_a_writer_a6cdd74b0a9b7320b3968b019d630adab}{MSAWriter}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/\mbox{\hyperlink{msa_writer_8h}{msa\+Writer.\+h}}\item 
+code/\mbox{\hyperlink{msa_writer_8cpp}{msa\+Writer.\+cpp}}\end{DoxyCompactItemize}

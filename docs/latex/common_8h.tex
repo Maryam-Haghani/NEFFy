@@ -1,0 +1,311 @@
+\doxysection{code/common.h File Reference}
+\hypertarget{common_8h}{}\label{common_8h}\index{code/common.h@{code/common.h}}
+
+
+This file contains declaration of common utility functions used in the MSA project.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_sequence}{Sequence}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} \{ \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14ea9cf59750c46815a6671a352d5f75f0d0}{Sqrt\+\_\+L}} = 0
+, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14eaef31cc6fe9479955961311ee18ac205f}{L}}
+, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14eac9d3e887722f2bc482bcca9d41c512af}{None}}
+ \}
+\item 
+enum \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \{ \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4a7eebac5ec8b6706eb00b1a2b17836d99}{protein}} = 0
+, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4a92efc5f13441d2abd5e146e629196c7e}{RNA}}
+, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4acf4f4b33c0fa7b8f3cd37f44af0f5ce8}{DNA}}
+ \}
+\item 
+enum \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard\+Handler}} \{ \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02aabb3fca5076f29805e098e7e3f2bf475a}{As\+Standard}} = 0
+, \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02aa5b3ed107d9c68833dec24ce92c7f03f0}{Consider\+Gap\+In\+Cutoff}}
+, \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02aa23d5a357eaa655ef082dde85433d2334}{Consider\+Gap}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{common_8h_a20be35e73f527192e4908daf1aa27d46}{get\+Format}} (std\+::string file, std\+::string name)
+\begin{DoxyCompactList}\small\item\em Get the format from a file path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{common_8h_a7f89060b582fc435cc6a74bee0dc9d07}{keep\+Non\+Gap\+Positions\+Of\+Query\+Sequence}} (std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&sequences)
+\begin{DoxyCompactList}\small\item\em Keep only the positions of non-\/gap residues of the query sequence for all sequences. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{common_8h_a5bb46d0b0f2c3d725c3a4c2b69acf9c7}{get\+Allowed\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em gets the list of allowed letters for the provided input alphabet \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{common_8h_a1bfa6753319e14bc5bb85df568644fae}{get\+Standard\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em gets the list of standard letters for the provided input alphabet \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{common_8h_a8e99f7b53ad61ae175ebd91ecac5d359}{get\+Non\+Standard\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em gets the list of non-\/standard letters for the provided input alphabet \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8h_a4488ce7b244e618f5669e9d2d9d29e89}{VALID\+\_\+\+FORMATS}} = \{"{}fasta"{}, "{}afa"{}, "{}fas"{}, "{}fst"{}, "{}fsa"{}, "{}a2m"{}, "{}a3m"{}, "{}sto"{}, "{}clustal"{}, "{}aln"{}, "{}pfam"{}\}
+\item 
+const std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8h_a60bc6bcc0d034fed50477b99a459dd84}{FASTA\+\_\+\+FORMATS}} = \{"{}fasta"{}, "{}afa"{}, "{}fas"{}, "{}fst"{}, "{}fsa"{}\}
+\item 
+const std\+::string \mbox{\hyperlink{common_8h_acce6f36ae6d960b9d172c09f06357e44}{STANDARD\+\_\+\+AMINO\+\_\+\+ACIDS}} = "{}ACDEFGHIKLMNPQRSTVWY"{}
+\item 
+const std\+::string \mbox{\hyperlink{common_8h_a3290b454157a7312fdef5471899c9055}{NON\+\_\+\+STANDARD\+\_\+\+AMINO\+\_\+\+ACIDS}} = "{}XOUBJZ"{}
+\item 
+const std\+::string \mbox{\hyperlink{common_8h_ad38e8843145278cc7247126fe01fb91a}{STANDARD\+\_\+\+RNA\+\_\+\+NUCLEOTIDES}} = "{}AUCG"{}
+\item 
+const std\+::string \mbox{\hyperlink{common_8h_a43b11597b2f51799912662182567d3ee}{STANDARD\+\_\+\+DNA\+\_\+\+NUCLEOTIDES}} = "{}ATCG"{}
+\item 
+const std\+::string \mbox{\hyperlink{common_8h_a9ed74e137d15cecc717aa200adacb0e4}{NON\+\_\+\+STANDARD\+\_\+\+NUCLEOTIDES}} = "{}N"{}
+\item 
+const std\+::string \mbox{\hyperlink{common_8h_ae91e5b1a5c7ddf10dc93f01d4cd5bb89}{GAP}} = "{}-\/."{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains declaration of common utility functions used in the MSA project. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{common_8h_ad321c418983642eb2b4360826d489ec4}\index{common.h@{common.h}!Alphabet@{Alphabet}}
+\index{Alphabet@{Alphabet}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{Alphabet}{Alphabet}}
+{\footnotesize\ttfamily \label{common_8h_ad321c418983642eb2b4360826d489ec4} 
+enum \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{protein@{protein}!common.h@{common.h}}\index{common.h@{common.h}!protein@{protein}}}\Hypertarget{common_8h_ad321c418983642eb2b4360826d489ec4a7eebac5ec8b6706eb00b1a2b17836d99}\label{common_8h_ad321c418983642eb2b4360826d489ec4} 
+protein&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RNA@{RNA}!common.h@{common.h}}\index{common.h@{common.h}!RNA@{RNA}}}\Hypertarget{common_8h_ad321c418983642eb2b4360826d489ec4a92efc5f13441d2abd5e146e629196c7e}\label{common_8h_ad321c418983642eb2b4360826d489ec4} 
+RNA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DNA@{DNA}!common.h@{common.h}}\index{common.h@{common.h}!DNA@{DNA}}}\Hypertarget{common_8h_ad321c418983642eb2b4360826d489ec4acf4f4b33c0fa7b8f3cd37f44af0f5ce8}\label{common_8h_ad321c418983642eb2b4360826d489ec4} 
+DNA&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{common_8h_a1105b29855665d3017b4a2b889b3f02a}\index{common.h@{common.h}!NonStandardHandler@{NonStandardHandler}}
+\index{NonStandardHandler@{NonStandardHandler}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{NonStandardHandler}{NonStandardHandler}}
+{\footnotesize\ttfamily \label{common_8h_a1105b29855665d3017b4a2b889b3f02a} 
+enum \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard\+Handler}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AsStandard@{AsStandard}!common.h@{common.h}}\index{common.h@{common.h}!AsStandard@{AsStandard}}}\Hypertarget{common_8h_a1105b29855665d3017b4a2b889b3f02aabb3fca5076f29805e098e7e3f2bf475a}\label{common_8h_a1105b29855665d3017b4a2b889b3f02a} 
+As\+Standard&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ConsiderGapInCutoff@{ConsiderGapInCutoff}!common.h@{common.h}}\index{common.h@{common.h}!ConsiderGapInCutoff@{ConsiderGapInCutoff}}}\Hypertarget{common_8h_a1105b29855665d3017b4a2b889b3f02aa5b3ed107d9c68833dec24ce92c7f03f0}\label{common_8h_a1105b29855665d3017b4a2b889b3f02a} 
+Consider\+Gap\+In\+Cutoff&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ConsiderGap@{ConsiderGap}!common.h@{common.h}}\index{common.h@{common.h}!ConsiderGap@{ConsiderGap}}}\Hypertarget{common_8h_a1105b29855665d3017b4a2b889b3f02aa23d5a357eaa655ef082dde85433d2334}\label{common_8h_a1105b29855665d3017b4a2b889b3f02a} 
+Consider\+Gap&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{common_8h_a268aac553a187f781fad176cf0ada14e}\index{common.h@{common.h}!Normalization@{Normalization}}
+\index{Normalization@{Normalization}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{Normalization}{Normalization}}
+{\footnotesize\ttfamily \label{common_8h_a268aac553a187f781fad176cf0ada14e} 
+enum \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sqrt\_L@{Sqrt\_L}!common.h@{common.h}}\index{common.h@{common.h}!Sqrt\_L@{Sqrt\_L}}}\Hypertarget{common_8h_a268aac553a187f781fad176cf0ada14ea9cf59750c46815a6671a352d5f75f0d0}\label{common_8h_a268aac553a187f781fad176cf0ada14e} 
+Sqrt\+\_\+L&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L@{L}!common.h@{common.h}}\index{common.h@{common.h}!L@{L}}}\Hypertarget{common_8h_a268aac553a187f781fad176cf0ada14eaef31cc6fe9479955961311ee18ac205f}\label{common_8h_a268aac553a187f781fad176cf0ada14e} 
+L&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!common.h@{common.h}}\index{common.h@{common.h}!None@{None}}}\Hypertarget{common_8h_a268aac553a187f781fad176cf0ada14eac9d3e887722f2bc482bcca9d41c512af}\label{common_8h_a268aac553a187f781fad176cf0ada14e} 
+None&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{common_8h_a5bb46d0b0f2c3d725c3a4c2b69acf9c7}\index{common.h@{common.h}!getAllowedLetters@{getAllowedLetters}}
+\index{getAllowedLetters@{getAllowedLetters}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{getAllowedLetters()}{getAllowedLetters()}}
+{\footnotesize\ttfamily \label{common_8h_a5bb46d0b0f2c3d725c3a4c2b69acf9c7} 
+std\+::string get\+Allowed\+Letters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+gets the list of allowed letters for the provided input alphabet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of allowed letters ~\newline
+
+\end{DoxyReturn}
+gets the list of allowed letters for the provided input alphabet
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8h_a20be35e73f527192e4908daf1aa27d46}\index{common.h@{common.h}!getFormat@{getFormat}}
+\index{getFormat@{getFormat}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{getFormat()}{getFormat()}}
+{\footnotesize\ttfamily \label{common_8h_a20be35e73f527192e4908daf1aa27d46} 
+std\+::string get\+Format (\begin{DoxyParamCaption}\item[{std\+::string}]{file}{, }\item[{std\+::string}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Get the format from a file path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & file path. \\
+\hline
+{\em name} & name of the file (for error messages). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The format string. 
+\end{DoxyReturn}
+\Hypertarget{common_8h_a8e99f7b53ad61ae175ebd91ecac5d359}\index{common.h@{common.h}!getNonStandardLetters@{getNonStandardLetters}}
+\index{getNonStandardLetters@{getNonStandardLetters}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{getNonStandardLetters()}{getNonStandardLetters()}}
+{\footnotesize\ttfamily \label{common_8h_a8e99f7b53ad61ae175ebd91ecac5d359} 
+std\+::string get\+Non\+Standard\+Letters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+gets the list of non-\/standard letters for the provided input alphabet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of non-\/standard letters ~\newline
+
+\end{DoxyReturn}
+gets the list of non-\/standard letters for the provided input alphabet
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8h_a1bfa6753319e14bc5bb85df568644fae}\index{common.h@{common.h}!getStandardLetters@{getStandardLetters}}
+\index{getStandardLetters@{getStandardLetters}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{getStandardLetters()}{getStandardLetters()}}
+{\footnotesize\ttfamily \label{common_8h_a1bfa6753319e14bc5bb85df568644fae} 
+std\+::string get\+Standard\+Letters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+gets the list of standard letters for the provided input alphabet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of standard letters ~\newline
+
+\end{DoxyReturn}
+gets the list of standard letters for the provided input alphabet
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8h_a7f89060b582fc435cc6a74bee0dc9d07}\index{common.h@{common.h}!keepNonGapPositionsOfQuerySequence@{keepNonGapPositionsOfQuerySequence}}
+\index{keepNonGapPositionsOfQuerySequence@{keepNonGapPositionsOfQuerySequence}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{keepNonGapPositionsOfQuerySequence()}{keepNonGapPositionsOfQuerySequence()}}
+{\footnotesize\ttfamily \label{common_8h_a7f89060b582fc435cc6a74bee0dc9d07} 
+void keep\+Non\+Gap\+Positions\+Of\+Query\+Sequence (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&}]{sequences}{}\end{DoxyParamCaption})}
+
+
+
+Keep only the positions of non-\/gap residues of the query sequence for all sequences. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequences} & The vector of sequences to process. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{common_8h_a60bc6bcc0d034fed50477b99a459dd84}\index{common.h@{common.h}!FASTA\_FORMATS@{FASTA\_FORMATS}}
+\index{FASTA\_FORMATS@{FASTA\_FORMATS}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{FASTA\_FORMATS}{FASTA\_FORMATS}}
+{\footnotesize\ttfamily \label{common_8h_a60bc6bcc0d034fed50477b99a459dd84} 
+const std\+::vector$<$std\+::string$>$ FASTA\+\_\+\+FORMATS = \{"{}fasta"{}, "{}afa"{}, "{}fas"{}, "{}fst"{}, "{}fsa"{}\}\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{common_8h_ae91e5b1a5c7ddf10dc93f01d4cd5bb89}\index{common.h@{common.h}!GAP@{GAP}}
+\index{GAP@{GAP}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{GAP}{GAP}}
+{\footnotesize\ttfamily \label{common_8h_ae91e5b1a5c7ddf10dc93f01d4cd5bb89} 
+const std\+::string GAP = "{}-\/."{}}
+
+\Hypertarget{common_8h_a3290b454157a7312fdef5471899c9055}\index{common.h@{common.h}!NON\_STANDARD\_AMINO\_ACIDS@{NON\_STANDARD\_AMINO\_ACIDS}}
+\index{NON\_STANDARD\_AMINO\_ACIDS@{NON\_STANDARD\_AMINO\_ACIDS}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{NON\_STANDARD\_AMINO\_ACIDS}{NON\_STANDARD\_AMINO\_ACIDS}}
+{\footnotesize\ttfamily \label{common_8h_a3290b454157a7312fdef5471899c9055} 
+const std\+::string NON\+\_\+\+STANDARD\+\_\+\+AMINO\+\_\+\+ACIDS = "{}XOUBJZ"{}}
+
+\Hypertarget{common_8h_a9ed74e137d15cecc717aa200adacb0e4}\index{common.h@{common.h}!NON\_STANDARD\_NUCLEOTIDES@{NON\_STANDARD\_NUCLEOTIDES}}
+\index{NON\_STANDARD\_NUCLEOTIDES@{NON\_STANDARD\_NUCLEOTIDES}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{NON\_STANDARD\_NUCLEOTIDES}{NON\_STANDARD\_NUCLEOTIDES}}
+{\footnotesize\ttfamily \label{common_8h_a9ed74e137d15cecc717aa200adacb0e4} 
+const std\+::string NON\+\_\+\+STANDARD\+\_\+\+NUCLEOTIDES = "{}N"{}}
+
+\Hypertarget{common_8h_acce6f36ae6d960b9d172c09f06357e44}\index{common.h@{common.h}!STANDARD\_AMINO\_ACIDS@{STANDARD\_AMINO\_ACIDS}}
+\index{STANDARD\_AMINO\_ACIDS@{STANDARD\_AMINO\_ACIDS}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_AMINO\_ACIDS}{STANDARD\_AMINO\_ACIDS}}
+{\footnotesize\ttfamily \label{common_8h_acce6f36ae6d960b9d172c09f06357e44} 
+const std\+::string STANDARD\+\_\+\+AMINO\+\_\+\+ACIDS = "{}ACDEFGHIKLMNPQRSTVWY"{}}
+
+\Hypertarget{common_8h_a43b11597b2f51799912662182567d3ee}\index{common.h@{common.h}!STANDARD\_DNA\_NUCLEOTIDES@{STANDARD\_DNA\_NUCLEOTIDES}}
+\index{STANDARD\_DNA\_NUCLEOTIDES@{STANDARD\_DNA\_NUCLEOTIDES}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_DNA\_NUCLEOTIDES}{STANDARD\_DNA\_NUCLEOTIDES}}
+{\footnotesize\ttfamily \label{common_8h_a43b11597b2f51799912662182567d3ee} 
+const std\+::string STANDARD\+\_\+\+DNA\+\_\+\+NUCLEOTIDES = "{}ATCG"{}}
+
+\Hypertarget{common_8h_ad38e8843145278cc7247126fe01fb91a}\index{common.h@{common.h}!STANDARD\_RNA\_NUCLEOTIDES@{STANDARD\_RNA\_NUCLEOTIDES}}
+\index{STANDARD\_RNA\_NUCLEOTIDES@{STANDARD\_RNA\_NUCLEOTIDES}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_RNA\_NUCLEOTIDES}{STANDARD\_RNA\_NUCLEOTIDES}}
+{\footnotesize\ttfamily \label{common_8h_ad38e8843145278cc7247126fe01fb91a} 
+const std\+::string STANDARD\+\_\+\+RNA\+\_\+\+NUCLEOTIDES = "{}AUCG"{}}
+
+\Hypertarget{common_8h_a4488ce7b244e618f5669e9d2d9d29e89}\index{common.h@{common.h}!VALID\_FORMATS@{VALID\_FORMATS}}
+\index{VALID\_FORMATS@{VALID\_FORMATS}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{VALID\_FORMATS}{VALID\_FORMATS}}
+{\footnotesize\ttfamily \label{common_8h_a4488ce7b244e618f5669e9d2d9d29e89} 
+const std\+::vector$<$std\+::string$>$ VALID\+\_\+\+FORMATS = \{"{}fasta"{}, "{}afa"{}, "{}fas"{}, "{}fst"{}, "{}fsa"{}, "{}a2m"{}, "{}a3m"{}, "{}sto"{}, "{}clustal"{}, "{}aln"{}, "{}pfam"{}\}}
+

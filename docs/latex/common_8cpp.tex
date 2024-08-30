@@ -1,0 +1,133 @@
+\doxysection{code/common.cpp File Reference}
+\hypertarget{common_8cpp}{}\label{common_8cpp}\index{code/common.cpp@{code/common.cpp}}
+
+
+This file contains common utility functions used in the MSA project.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include "{}common.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{common_8cpp_a4f4c5e272fc14bc0efba0dd1fff85e82}{get\+Format}} (string file, string name)
+\begin{DoxyCompactList}\small\item\em Get format of the given file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{common_8cpp_a2f59bd7f829ff2896e1cda4d41dce065}{keep\+Non\+Gap\+Positions\+Of\+Query\+Sequence}} (vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&sequences)
+\begin{DoxyCompactList}\small\item\em Remove gap positions of the query sequence from all sequences. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{common_8cpp_a385c0c6dfe2df6df23d011a229c93b9e}{get\+Allowed\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em Return all standard + non-\/standard + gap letters for the given alphabet. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{common_8cpp_a95b0b6a008c315f0ad222494ffbc5a2e}{get\+Standard\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em Return standard letters of the given alphabet. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{common_8cpp_a10f035dda401f103dd3b269746aab8a5}{get\+Non\+Standard\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em Return non-\/standard letters of the given alphabet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains common utility functions used in the MSA project. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{common_8cpp_a385c0c6dfe2df6df23d011a229c93b9e}\index{common.cpp@{common.cpp}!getAllowedLetters@{getAllowedLetters}}
+\index{getAllowedLetters@{getAllowedLetters}!common.cpp@{common.cpp}}
+\doxysubsubsection{\texorpdfstring{getAllowedLetters()}{getAllowedLetters()}}
+{\footnotesize\ttfamily \label{common_8cpp_a385c0c6dfe2df6df23d011a229c93b9e} 
+string get\+Allowed\+Letters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+Return all standard + non-\/standard + gap letters for the given alphabet. 
+
+gets the list of allowed letters for the provided input alphabet
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8cpp_a4f4c5e272fc14bc0efba0dd1fff85e82}\index{common.cpp@{common.cpp}!getFormat@{getFormat}}
+\index{getFormat@{getFormat}!common.cpp@{common.cpp}}
+\doxysubsubsection{\texorpdfstring{getFormat()}{getFormat()}}
+{\footnotesize\ttfamily \label{common_8cpp_a4f4c5e272fc14bc0efba0dd1fff85e82} 
+string get\+Format (\begin{DoxyParamCaption}\item[{string}]{file}{, }\item[{string}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Get format of the given file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & \\
+\hline
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8cpp_a10f035dda401f103dd3b269746aab8a5}\index{common.cpp@{common.cpp}!getNonStandardLetters@{getNonStandardLetters}}
+\index{getNonStandardLetters@{getNonStandardLetters}!common.cpp@{common.cpp}}
+\doxysubsubsection{\texorpdfstring{getNonStandardLetters()}{getNonStandardLetters()}}
+{\footnotesize\ttfamily \label{common_8cpp_a10f035dda401f103dd3b269746aab8a5} 
+string get\+Non\+Standard\+Letters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+Return non-\/standard letters of the given alphabet. 
+
+gets the list of non-\/standard letters for the provided input alphabet
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8cpp_a95b0b6a008c315f0ad222494ffbc5a2e}\index{common.cpp@{common.cpp}!getStandardLetters@{getStandardLetters}}
+\index{getStandardLetters@{getStandardLetters}!common.cpp@{common.cpp}}
+\doxysubsubsection{\texorpdfstring{getStandardLetters()}{getStandardLetters()}}
+{\footnotesize\ttfamily \label{common_8cpp_a95b0b6a008c315f0ad222494ffbc5a2e} 
+string get\+Standard\+Letters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+Return standard letters of the given alphabet. 
+
+gets the list of standard letters for the provided input alphabet
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{common_8cpp_a2f59bd7f829ff2896e1cda4d41dce065}\index{common.cpp@{common.cpp}!keepNonGapPositionsOfQuerySequence@{keepNonGapPositionsOfQuerySequence}}
+\index{keepNonGapPositionsOfQuerySequence@{keepNonGapPositionsOfQuerySequence}!common.cpp@{common.cpp}}
+\doxysubsubsection{\texorpdfstring{keepNonGapPositionsOfQuerySequence()}{keepNonGapPositionsOfQuerySequence()}}
+{\footnotesize\ttfamily \label{common_8cpp_a2f59bd7f829ff2896e1cda4d41dce065} 
+void keep\+Non\+Gap\+Positions\+Of\+Query\+Sequence (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&}]{sequences}{}\end{DoxyParamCaption})}
+
+
+
+Remove gap positions of the query sequence from all sequences. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequences} & ~\newline
+ \\
+\hline
+\end{DoxyParams}

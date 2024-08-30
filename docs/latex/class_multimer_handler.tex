@@ -1,0 +1,302 @@
+\doxysection{Multimer\+Handler Class Reference}
+\hypertarget{class_multimer_handler}{}\label{class_multimer_handler}\index{MultimerHandler@{MultimerHandler}}
+
+
+{\ttfamily \#include $<$multimer\+Handler.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_multimer_handler_a867f3b50064d6c61245f57e4bdf98a3a}{Multimer\+Handler}} (std\+::string \+\_\+stoichiom)
+\begin{DoxyCompactList}\small\item\em // Constructor to initialize the stoichiometry \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_multimer_handler_a7abc10c4d4746ec29669995c7418ce1d}{chain\+Index\+To\+Stoichiom\+Letter}} (int index)
+\begin{DoxyCompactList}\small\item\em Map chain index to stoichiometry letter. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_multimer_handler_a78fe1240a658ff90559d151b1e25910b}{get\+Heteromer\+MSAs}} (const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&vectors)
+\begin{DoxyCompactList}\small\item\em Verify if the MSA is in the form of a paired MSA (sequences followed by the MSA of each chain) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_multimer_handler_a8737084fceec9217e0d7f9ad2cde713d}{is\+Heteromer\+Format}} ()
+\begin{DoxyCompactList}\small\item\em Check if stoichiometry follows the pattern of a heteromer (e.\+g., A2\+B2\+C1) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_multimer_handler_a7f66a56c5a17b00723e3a2f80350b352}{is\+Homomer\+Format}} ()
+\begin{DoxyCompactList}\small\item\em Check if the stoichiometry is in homomer format (e.\+g., A3) \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{class_multimer_handler_a3fb7a5462ca641db1a8221e5de59a972}{get\+Homomer\+Individual\+MSA}} (const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&sequences2num)
+\begin{DoxyCompactList}\small\item\em Get individual MSA for homomer format. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::vector$<$ int $>$ $>$ $>$ \mbox{\hyperlink{class_multimer_handler_a7526be7711365d85c69cd29103ec09aa}{get\+Hetoromer\+MSAs}} (const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&sequences2num, const std\+::vector$<$ int $>$ \&chain\+Lengths)
+\begin{DoxyCompactList}\small\item\em Get individual MSA for heteromer format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_multimer_handler_a3bc185a6d83aa0be07654abfb47b772c}{get\+Sequence\+Segment}} (const std\+::vector$<$ int $>$ \&row, int chain\+Index, int repeat=1) const
+\begin{DoxyCompactList}\small\item\em // Extract the sequence segment from the row that corresponds to the chain specified by the given chain\+Index. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_multimer_handler_a11ec957927b236ed52449d7f61751a5c}{check\+Repeated\+Chain\+And\+Return\+One\+Segment}} (const std\+::vector$<$ int $>$ \&row, int row\+Index, int chain\+Index)
+\begin{DoxyCompactList}\small\item\em Verify if all segments of the repeated chains in the given row are identical, and if so, return a single segment. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_multimer_handler_aa5f161b00349d681cca4828311ea922a}{includes\+In\+Paired\+MSA}} (const std\+::vector$<$ int $>$ \&row)
+\begin{DoxyCompactList}\small\item\em Check if the row is for the paired MSA, i.\+e, it includes at least two sequence segements corresponding to two chains with non-\/gap elements. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_multimer_handler_a02d436c824014e1bb0db8836430d3d74}{check\+Row\+Corresponds\+Only\+To\+One\+Chain\+And\+Return\+Chain\+Index}} (const std\+::vector$<$ int $>$ \&row, int row\+\_\+index)
+\begin{DoxyCompactList}\small\item\em // Find index of the chain corrsponding to given row; it should correspond exactly to one chain \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_multimer_handler_aa605598fb1ce8cce2a9ba2a17921f08f}{check\+MSAFormat\+And\+Return\+Row\+Index\+Intervals\+Corresponding\+To\+Chains}} (const std\+::vector$<$ int $>$ \&chain\+Index\+Of\+Rows)
+\begin{DoxyCompactList}\small\item\em Check MSA format and return MSA row index intervals corresponding to each chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_multimer_handler_ab9c541f4062654e6f626db418e94ff9f}{stoichiom}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_multimer_handler_a97da37e07e6387ddd31bece997a60eeb}{numbers}}
+\item 
+int \mbox{\hyperlink{class_multimer_handler_af8a206d5eb25a1f7f76faef5b45339f1}{chains\+Count}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_multimer_handler_a8fe35664d07284d8b62ee11f0362ded2}{chain\+Intervals}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_multimer_handler_a867f3b50064d6c61245f57e4bdf98a3a}\index{MultimerHandler@{MultimerHandler}!MultimerHandler@{MultimerHandler}}
+\index{MultimerHandler@{MultimerHandler}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{MultimerHandler()}{MultimerHandler()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a867f3b50064d6c61245f57e4bdf98a3a} 
+Multimer\+Handler\+::\+Multimer\+Handler (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+stoichiom}{}\end{DoxyParamCaption})}
+
+
+
+// Constructor to initialize the stoichiometry 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+stoichiom} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_multimer_handler_a7abc10c4d4746ec29669995c7418ce1d}\index{MultimerHandler@{MultimerHandler}!chainIndexToStoichiomLetter@{chainIndexToStoichiomLetter}}
+\index{chainIndexToStoichiomLetter@{chainIndexToStoichiomLetter}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{chainIndexToStoichiomLetter()}{chainIndexToStoichiomLetter()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a7abc10c4d4746ec29669995c7418ce1d} 
+string Multimer\+Handler\+::chain\+Index\+To\+Stoichiom\+Letter (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Map chain index to stoichiometry letter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stoichiometry letter 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_aa605598fb1ce8cce2a9ba2a17921f08f}\index{MultimerHandler@{MultimerHandler}!checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains@{checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains}}
+\index{checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains@{checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains()}{checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_aa605598fb1ce8cce2a9ba2a17921f08f} 
+vector$<$ int $>$ Multimer\+Handler\+::check\+MSAFormat\+And\+Return\+Row\+Index\+Intervals\+Corresponding\+To\+Chains (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{chain\+Index\+Of\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check MSA format and return MSA row index intervals corresponding to each chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chain\+Index\+Of\+Rows} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a11ec957927b236ed52449d7f61751a5c}\index{MultimerHandler@{MultimerHandler}!checkRepeatedChainAndReturnOneSegment@{checkRepeatedChainAndReturnOneSegment}}
+\index{checkRepeatedChainAndReturnOneSegment@{checkRepeatedChainAndReturnOneSegment}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{checkRepeatedChainAndReturnOneSegment()}{checkRepeatedChainAndReturnOneSegment()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a11ec957927b236ed52449d7f61751a5c} 
+vector$<$ int $>$ Multimer\+Handler\+::check\+Repeated\+Chain\+And\+Return\+One\+Segment (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{row}{, }\item[{int}]{row\+Index}{, }\item[{int}]{chain\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verify if all segments of the repeated chains in the given row are identical, and if so, return a single segment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em row\+Index} & \\
+\hline
+{\em chain\+Index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+chain\+Segment 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a02d436c824014e1bb0db8836430d3d74}\index{MultimerHandler@{MultimerHandler}!checkRowCorrespondsOnlyToOneChainAndReturnChainIndex@{checkRowCorrespondsOnlyToOneChainAndReturnChainIndex}}
+\index{checkRowCorrespondsOnlyToOneChainAndReturnChainIndex@{checkRowCorrespondsOnlyToOneChainAndReturnChainIndex}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{checkRowCorrespondsOnlyToOneChainAndReturnChainIndex()}{checkRowCorrespondsOnlyToOneChainAndReturnChainIndex()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a02d436c824014e1bb0db8836430d3d74} 
+int Multimer\+Handler\+::check\+Row\+Corresponds\+Only\+To\+One\+Chain\+And\+Return\+Chain\+Index (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{row}{, }\item[{int}]{row\+\_\+index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+// Find index of the chain corrsponding to given row; it should correspond exactly to one chain 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em row\+\_\+index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a78fe1240a658ff90559d151b1e25910b}\index{MultimerHandler@{MultimerHandler}!getHeteromerMSAs@{getHeteromerMSAs}}
+\index{getHeteromerMSAs@{getHeteromerMSAs}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{getHeteromerMSAs()}{getHeteromerMSAs()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a78fe1240a658ff90559d151b1e25910b} 
+bool Multimer\+Handler\+::get\+Heteromer\+MSAs (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{vectors}{}\end{DoxyParamCaption})}
+
+
+
+Verify if the MSA is in the form of a paired MSA (sequences followed by the MSA of each chain) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msa} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a7526be7711365d85c69cd29103ec09aa}\index{MultimerHandler@{MultimerHandler}!getHetoromerMSAs@{getHetoromerMSAs}}
+\index{getHetoromerMSAs@{getHetoromerMSAs}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{getHetoromerMSAs()}{getHetoromerMSAs()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a7526be7711365d85c69cd29103ec09aa} 
+vector$<$ vector$<$ vector$<$ int $>$ $>$ $>$ Multimer\+Handler\+::get\+Hetoromer\+MSAs (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{sequences2num}{, }\item[{const std\+::vector$<$ int $>$ \&}]{chain\+Lengths}{}\end{DoxyParamCaption})}
+
+
+
+Get individual MSA for heteromer format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequences2num} & \\
+\hline
+{\em chain\+\_\+lengths} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+individual MSAs 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a3fb7a5462ca641db1a8221e5de59a972}\index{MultimerHandler@{MultimerHandler}!getHomomerIndividualMSA@{getHomomerIndividualMSA}}
+\index{getHomomerIndividualMSA@{getHomomerIndividualMSA}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{getHomomerIndividualMSA()}{getHomomerIndividualMSA()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a3fb7a5462ca641db1a8221e5de59a972} 
+vector$<$ vector$<$ int $>$ $>$ Multimer\+Handler\+::get\+Homomer\+Individual\+MSA (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{sequences2num}{}\end{DoxyParamCaption})}
+
+
+
+Get individual MSA for homomer format. 
+
+\begin{DoxyReturn}{Returns}
+individual MSA 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a3bc185a6d83aa0be07654abfb47b772c}\index{MultimerHandler@{MultimerHandler}!getSequenceSegment@{getSequenceSegment}}
+\index{getSequenceSegment@{getSequenceSegment}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{getSequenceSegment()}{getSequenceSegment()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a3bc185a6d83aa0be07654abfb47b772c} 
+vector$<$ int $>$ Multimer\+Handler\+::get\+Sequence\+Segment (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{row}{, }\item[{int}]{chain\+Index}{, }\item[{int}]{repeat}{ = {\ttfamily 1}}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+// Extract the sequence segment from the row that corresponds to the chain specified by the given chain\+Index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em chain\+Index} & \\
+\hline
+{\em repeat} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_aa5f161b00349d681cca4828311ea922a}\index{MultimerHandler@{MultimerHandler}!includesInPairedMSA@{includesInPairedMSA}}
+\index{includesInPairedMSA@{includesInPairedMSA}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{includesInPairedMSA()}{includesInPairedMSA()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_aa5f161b00349d681cca4828311ea922a} 
+bool Multimer\+Handler\+::includes\+In\+Paired\+MSA (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{row}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check if the row is for the paired MSA, i.\+e, it includes at least two sequence segements corresponding to two chains with non-\/gap elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a8737084fceec9217e0d7f9ad2cde713d}\index{MultimerHandler@{MultimerHandler}!isHeteromerFormat@{isHeteromerFormat}}
+\index{isHeteromerFormat@{isHeteromerFormat}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{isHeteromerFormat()}{isHeteromerFormat()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a8737084fceec9217e0d7f9ad2cde713d} 
+bool Multimer\+Handler\+::is\+Heteromer\+Format (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Check if stoichiometry follows the pattern of a heteromer (e.\+g., A2\+B2\+C1) 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_multimer_handler_a7f66a56c5a17b00723e3a2f80350b352}\index{MultimerHandler@{MultimerHandler}!isHomomerFormat@{isHomomerFormat}}
+\index{isHomomerFormat@{isHomomerFormat}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{isHomomerFormat()}{isHomomerFormat()}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a7f66a56c5a17b00723e3a2f80350b352} 
+bool Multimer\+Handler\+::is\+Homomer\+Format (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Check if the stoichiometry is in homomer format (e.\+g., A3) 
+
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_multimer_handler_a8fe35664d07284d8b62ee11f0362ded2}\index{MultimerHandler@{MultimerHandler}!chainIntervals@{chainIntervals}}
+\index{chainIntervals@{chainIntervals}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{chainIntervals}{chainIntervals}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a8fe35664d07284d8b62ee11f0362ded2} 
+std\+::vector$<$int$>$ Multimer\+Handler\+::chain\+Intervals\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_multimer_handler_af8a206d5eb25a1f7f76faef5b45339f1}\index{MultimerHandler@{MultimerHandler}!chainsCount@{chainsCount}}
+\index{chainsCount@{chainsCount}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{chainsCount}{chainsCount}}
+{\footnotesize\ttfamily \label{class_multimer_handler_af8a206d5eb25a1f7f76faef5b45339f1} 
+int Multimer\+Handler\+::chains\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_multimer_handler_a97da37e07e6387ddd31bece997a60eeb}\index{MultimerHandler@{MultimerHandler}!numbers@{numbers}}
+\index{numbers@{numbers}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{numbers}{numbers}}
+{\footnotesize\ttfamily \label{class_multimer_handler_a97da37e07e6387ddd31bece997a60eeb} 
+std\+::vector$<$int$>$ Multimer\+Handler\+::numbers\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_multimer_handler_ab9c541f4062654e6f626db418e94ff9f}\index{MultimerHandler@{MultimerHandler}!stoichiom@{stoichiom}}
+\index{stoichiom@{stoichiom}!MultimerHandler@{MultimerHandler}}
+\doxysubsubsection{\texorpdfstring{stoichiom}{stoichiom}}
+{\footnotesize\ttfamily \label{class_multimer_handler_ab9c541f4062654e6f626db418e94ff9f} 
+std\+::string Multimer\+Handler\+::stoichiom\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/\mbox{\hyperlink{multimer_handler_8h}{multimer\+Handler.\+h}}\item 
+code/\mbox{\hyperlink{multimer_handler_8cpp}{multimer\+Handler.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,47 @@
+\doxysection{flag\+Handler.\+h}
+\hypertarget{flag_handler_8h_source}{}\label{flag_handler_8h_source}\index{code/flagHandler.h@{code/flagHandler.h}}
+\mbox{\hyperlink{flag_handler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ FLAGHANDLER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ FLAGHANDLER\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_flag_info}{FlagInfo}}}
+\DoxyCodeLine{00016\ \{\ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_flag_info_a71576d3da60bed92d6d70b15f3a4ec8a}{required}};}
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_flag_info_a43fc7c94dc89f5c51a666b943946d5f8}{value}};}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_flag_handler}{FlagHandler}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ std::unordered\_map<std::string,\ FlagInfo>\ \mbox{\hyperlink{class_flag_handler_a8ff7ce622dc9fc60f7cb50bc1b94c4ed}{flags}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_flag_handler_a5663335dbbb71c82ff46646f892171db}{FlagHandler}}(\textcolor{keyword}{const}\ std::unordered\_map<std::string,\ FlagInfo>\&\ \_flags);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flag_handler_ac38f216e5616214e253a9e25c2e755e9}{processFlags}}(\textcolor{keyword}{const}\ std::vector<std::string>\&\ args);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \ \ \ \ std::string\ \mbox{\hyperlink{class_flag_handler_ac232b97a1f6f2659f09a663ad7cbf715}{getFlagValue}}(\textcolor{keyword}{const}\ std::string\&\ flagName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flag_handler_aa1e1b7401c7d94431ac7e3bd815392f7}{checkRequiredFlags}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_flag_handler_a491e996c3926acc288e6aff711fee80a}{getFloatValue}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f}{getFileArrayValue}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_flag_handler_ac9eae02a4df585d43bd80a2315760c98}{getIntArrayValue}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_flag_handler_af3219d2de0154fb4c143bc0b3a51acd6}{getIntValue}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

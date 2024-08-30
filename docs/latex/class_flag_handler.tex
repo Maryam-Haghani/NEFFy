@@ -1,0 +1,204 @@
+\doxysection{Flag\+Handler Class Reference}
+\hypertarget{class_flag_handler}{}\label{class_flag_handler}\index{FlagHandler@{FlagHandler}}
+
+
+{\ttfamily \#include $<$flag\+Handler.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_flag_handler_a5663335dbbb71c82ff46646f892171db}{Flag\+Handler}} (const std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}} $>$ \&\+\_\+flags)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_flag_handler}{Flag\+Handler}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_flag_handler_ac38f216e5616214e253a9e25c2e755e9}{process\+Flags}} (const std\+::vector$<$ std\+::string $>$ \&args)
+\begin{DoxyCompactList}\small\item\em Processes the command-\/line arguments and updates the flag values. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_flag_handler_ac232b97a1f6f2659f09a663ad7cbf715}{get\+Flag\+Value}} (const std\+::string \&flag\+Name) const
+\begin{DoxyCompactList}\small\item\em Retrieves the value of a flag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_flag_handler_aa1e1b7401c7d94431ac7e3bd815392f7}{check\+Required\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em Checks if all required flags have values. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_flag_handler_a491e996c3926acc288e6aff711fee80a}{get\+Float\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get given float option by user. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f}{get\+File\+Array\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get list of files. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_flag_handler_ac9eae02a4df585d43bd80a2315760c98}{get\+Int\+Array\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get given int option by user. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_flag_handler_af3219d2de0154fb4c143bc0b3a51acd6}{get\+Int\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get given int option by user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}} $>$ \mbox{\hyperlink{class_flag_handler_a8ff7ce622dc9fc60f7cb50bc1b94c4ed}{flags}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_flag_handler_a5663335dbbb71c82ff46646f892171db}\index{FlagHandler@{FlagHandler}!FlagHandler@{FlagHandler}}
+\index{FlagHandler@{FlagHandler}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{FlagHandler()}{FlagHandler()}}
+{\footnotesize\ttfamily \label{class_flag_handler_a5663335dbbb71c82ff46646f892171db} 
+Flag\+Handler\+::\+Flag\+Handler (\begin{DoxyParamCaption}\item[{const std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}} $>$ \&}]{\+\_\+flags}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{class_flag_handler}{Flag\+Handler}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+flags} & The map of flags to be handled. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_flag_handler_aa1e1b7401c7d94431ac7e3bd815392f7}\index{FlagHandler@{FlagHandler}!checkRequiredFlags@{checkRequiredFlags}}
+\index{checkRequiredFlags@{checkRequiredFlags}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{checkRequiredFlags()}{checkRequiredFlags()}}
+{\footnotesize\ttfamily \label{class_flag_handler_aa1e1b7401c7d94431ac7e3bd815392f7} 
+void Flag\+Handler\+::check\+Required\+Flags (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if all required flags have values. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if a required flag is missing a value. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f}\index{FlagHandler@{FlagHandler}!getFileArrayValue@{getFileArrayValue}}
+\index{getFileArrayValue@{getFileArrayValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getFileArrayValue()}{getFileArrayValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f} 
+vector$<$ string $>$ Flag\+Handler\+::get\+File\+Array\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get list of files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_flag_handler_ac232b97a1f6f2659f09a663ad7cbf715}\index{FlagHandler@{FlagHandler}!getFlagValue@{getFlagValue}}
+\index{getFlagValue@{getFlagValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getFlagValue()}{getFlagValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_ac232b97a1f6f2659f09a663ad7cbf715} 
+string Flag\+Handler\+::get\+Flag\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{flag\+Name}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the value of a flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Name} & The name of the flag. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the flag. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the flag is unknown. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_flag_handler_a491e996c3926acc288e6aff711fee80a}\index{FlagHandler@{FlagHandler}!getFloatValue@{getFloatValue}}
+\index{getFloatValue@{getFloatValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getFloatValue()}{getFloatValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_a491e996c3926acc288e6aff711fee80a} 
+float Flag\+Handler\+::get\+Float\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get given float option by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Handler} & \\
+\hline
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_flag_handler_ac9eae02a4df585d43bd80a2315760c98}\index{FlagHandler@{FlagHandler}!getIntArrayValue@{getIntArrayValue}}
+\index{getIntArrayValue@{getIntArrayValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getIntArrayValue()}{getIntArrayValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_ac9eae02a4df585d43bd80a2315760c98} 
+vector$<$ int $>$ Flag\+Handler\+::get\+Int\+Array\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get given int option by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Handler} & \\
+\hline
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_flag_handler_af3219d2de0154fb4c143bc0b3a51acd6}\index{FlagHandler@{FlagHandler}!getIntValue@{getIntValue}}
+\index{getIntValue@{getIntValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getIntValue()}{getIntValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_af3219d2de0154fb4c143bc0b3a51acd6} 
+int Flag\+Handler\+::get\+Int\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get given int option by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_flag_handler_ac38f216e5616214e253a9e25c2e755e9}\index{FlagHandler@{FlagHandler}!processFlags@{processFlags}}
+\index{processFlags@{processFlags}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{processFlags()}{processFlags()}}
+{\footnotesize\ttfamily \label{class_flag_handler_ac38f216e5616214e253a9e25c2e755e9} 
+void Flag\+Handler\+::process\+Flags (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Processes the command-\/line arguments and updates the flag values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if a flag is unknown, missing a value, or if a required flag is missing. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_flag_handler_a8ff7ce622dc9fc60f7cb50bc1b94c4ed}\index{FlagHandler@{FlagHandler}!flags@{flags}}
+\index{flags@{flags}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily \label{class_flag_handler_a8ff7ce622dc9fc60f7cb50bc1b94c4ed} 
+std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}}$>$ Flag\+Handler\+::flags\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/\mbox{\hyperlink{flag_handler_8h}{flag\+Handler.\+h}}\item 
+code/\mbox{\hyperlink{flag_handler_8cpp}{flag\+Handler.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+\page installation_guide Installation Guide
+
+## Table of Contents
+- [C++ Executable File](#executable_install)
+- [Python Library](#python_install)
+  - [Installation from Source](#python_source)
+  - [Installation From PyPI (upcoming)](#python_pypi)
+
+<br>
+
+\anchor executable_install
+# C++ Executable File
+To install the executable version of NEFFy:
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Maryam-Haghani/Neffy.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd Neffy
+    ```
+3. Compile the code using a C++ compiler that supports C++17 or a newer version, through the provided [Makefile](https://github.com/Maryam-Haghani/Neffy/blob/main/Makefile) in the repository.
+    ```
+    make
+    ```
+  - **If the `make` command is not available on your operating system, refer to the [Help](\ref help) page.**
+
+Once the compilation is complete, you can run the program via the command line. <br/>
+This package is cross-platform and works on Linux, Windows, and macOS without requiring additional compilation.
+
+<br>
+
+---
+\anchor python_install
+# Python Library
+
+\anchor python_source
+## Installation from Source
+
+To install the library from the source:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Maryam-Haghani/Neffy.git
+    ```
+2. Checkout the specific branch:
+    ```bash
+    git checkout python-lib
+    ```
+3. Navigate to the project directory:
+    ```bash
+    cd Neffy
+    ```
+4. Ensure you have `setuptools` and `wheel` installed:
+    ```bash
+    pip install setuptools wheel
+    ```
+5. Build the source distribution and wheel:
+    ```bash
+    python setup.py sdist bdist_wheel
+    ```
+6. Install the package from the root directory of the project:
+    ```bash
+    pip install .
+    ```
+  - Alternatively, you can install the package directly from the built wheel file (in the `dist` directory):
+    ```bash
+    pip install dist/neffy-0.1-py3-none-any.whl
+    ```
+
+\anchor python_pypi
+## Installation from PyPI (upcoming)
+Our Python library will soon be available on PyPI. This will make it easier for you to install and manage the library using pip. <br>
+To install the package from PyPI:
+```bash
+    pip install neffy
+    ```
+<br>
+
+----------------
+For further assistance or inquiries, please [contact the developer](mailto:haghani@vt.edu) or create an [issue](https://github.com/Maryam-Haghani/Neffy/issues) in the GitHub repository.

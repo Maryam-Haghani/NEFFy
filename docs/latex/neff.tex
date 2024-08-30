@@ -1,0 +1,41 @@
+\chapter{Number of EFFective sequences (NEFF)}
+\hypertarget{neff}{}\label{neff}\index{Number of EFFective sequences (NEFF)@{Number of EFFective sequences (NEFF)}}
+NEFF measures sequence diversity within MSAs, which are crucial for extracting correlated mutation information and essential for biological investigations like contact map and structure prediction. NEFF has shown a strong correlation with prediction accuracy in models such as Alpha\+Fold. ~\newline
+
+
+For an MSA, NEFF can be formulated as\+:
+
+\[
+\left( \frac{1}{\sqrt{L}} \right) \sum_{n=1}^{N} \frac{1}{1 + \sum_{m=1, m \neq n}^{N} I[S_{m,n} \geq thr]}
+\]
+
+~\newline
+
+
+where $L$ is the number of residues in the sequence, $N$ is the number of sequences in an MSA, $S_{m,n}$ is the sequence identity between $m$-\/th and $n$-\/th sequences, $thr$ is the threshold cutoff to determine whether two sequences are similar or not, and $I$ is the inversion bracket, meaning that $I[S_{m,n} \geq thr]$ equals 1 if $S_{m,n} \geq thr$ and 0 otherwise.
+
+Note that $\frac{1}{\sqrt{L}}$ is used as a normalization factor here.
+
+Generally, one can see NEFF simply as a normalized summation of sequence weights for all sequences in an MSA. If the number of sequences (including itself) similar to sequence $i$ is $n_i$, then its sequence weight is $\frac{1}{n_i}$. This approach for calculating NEFF has been widely used in various contact and structure prediction tools, as demonstrated in references \mbox{[}1-\/6\mbox{]}.
+
+~\newline
+~\newline
+~\newline
+~\newline
+~\newline
+\hypertarget{neff_autotoc_md50}{}\doxysubsubsubsection{\texorpdfstring{References}{References}}\label{neff_autotoc_md50}
+
+\footnotesize 
+\begin{DoxyEnumerate}
+\item Morcos, F., et al. "{}\+Direct-\/coupling analysis of residue coevolution captures native contacts across many protein families."{} Proceedings of the National Academy of Sciences 108.\+49 (2011)\+: E1293-\/\+E1301.
+\item Simkovic, F., et al. "{}\+Con\+Kit\+: a Python interface to contact predictions."{} Bioinformatics 33.\+14 (2017)\+: 2209-\/2211.
+\item Wu, Q., et al. "{}\+Analysis of several key factors affecting DCA-\/based contact prediction in metagenome coevolution."{} Bioinformatics 35.\+14 (2019)\+: 2497-\/2503.
+\item Zhang, J., et al. "{}\+Deep\+MSA\+: constructing deep multiple sequence alignment to improve contact prediction and fold-\/recognition for distant-\/homology proteins."{} Bioinformatics 36.\+5 (2020).
+\item Liu, Y., et al. "{}\+Protein contact prediction using metagenome sequence data improves fold recognition."{} Bioinformatics 37.\+12 (2021)\+: 1770-\/1776.
+\item Li, Y., et al. "{}\+Triplet\+Res\+: fragment-\/free protein structure prediction using triplet transformers."{} Bioinformatics 37.\+22-\/23 (2021)\+: 4101-\/4107. 
+\end{DoxyEnumerate}
+\normalsize  ~\newline
+
+
+\DoxyHorRuler{0}
+ For further assistance or inquiries, please \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} or create an \href{https://github.com/Maryam-Haghani/Neffy/issues}{\texttt{ issue}} in the Git\+Hub repository. 

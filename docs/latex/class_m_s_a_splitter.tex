@@ -1,0 +1,66 @@
+\doxysection{MSASplitter Class Reference}
+\hypertarget{class_m_s_a_splitter}{}\label{class_m_s_a_splitter}\index{MSASplitter@{MSASplitter}}
+
+
+{\ttfamily \#include $<$msa\+Splitter.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_s_a_splitter_aa31ff1e20facfeaa9221bb1fe4c2a0c8}{MSASplitter}} (int \+\_\+split\+Position)
+\item 
+bool \mbox{\hyperlink{class_m_s_a_splitter_ae8404bd58178ab8ecc5dba762fe79147}{has\+Block\+Form}} (const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&vectors)
+\begin{DoxyCompactList}\small\item\em Verify if the MSA is in the form of a paired MSA (sequences followed by the MSA of the first monomer, followed by the MSA of the second monomer) \end{DoxyCompactList}\item 
+std\+::tuple$<$ std\+::vector$<$ std\+::vector$<$ int $>$ $>$, std\+::vector$<$ std\+::vector$<$ int $>$ $>$, std\+::vector$<$ std\+::vector$<$ int $>$ $>$ $>$ \mbox{\hyperlink{class_m_s_a_splitter_ae1347634d7169861f8d2ad5c852d86ca}{return\+Sets}} ()
+\begin{DoxyCompactList}\small\item\em Return paired MSA, MSA of the first monomer, and MSA of the second monomer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_m_s_a_splitter_aa31ff1e20facfeaa9221bb1fe4c2a0c8}\index{MSASplitter@{MSASplitter}!MSASplitter@{MSASplitter}}
+\index{MSASplitter@{MSASplitter}!MSASplitter@{MSASplitter}}
+\doxysubsubsection{\texorpdfstring{MSASplitter()}{MSASplitter()}}
+{\footnotesize\ttfamily \label{class_m_s_a_splitter_aa31ff1e20facfeaa9221bb1fe4c2a0c8} 
+MSASplitter\+::\+MSASplitter (\begin{DoxyParamCaption}\item[{int}]{\+\_\+split\+Position}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_m_s_a_splitter_ae8404bd58178ab8ecc5dba762fe79147}\index{MSASplitter@{MSASplitter}!hasBlockForm@{hasBlockForm}}
+\index{hasBlockForm@{hasBlockForm}!MSASplitter@{MSASplitter}}
+\doxysubsubsection{\texorpdfstring{hasBlockForm()}{hasBlockForm()}}
+{\footnotesize\ttfamily \label{class_m_s_a_splitter_ae8404bd58178ab8ecc5dba762fe79147} 
+bool MSASplitter\+::has\+Block\+Form (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{vectors}{}\end{DoxyParamCaption})}
+
+
+
+Verify if the MSA is in the form of a paired MSA (sequences followed by the MSA of the first monomer, followed by the MSA of the second monomer) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msa} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_m_s_a_splitter_ae1347634d7169861f8d2ad5c852d86ca}\index{MSASplitter@{MSASplitter}!returnSets@{returnSets}}
+\index{returnSets@{returnSets}!MSASplitter@{MSASplitter}}
+\doxysubsubsection{\texorpdfstring{returnSets()}{returnSets()}}
+{\footnotesize\ttfamily \label{class_m_s_a_splitter_ae1347634d7169861f8d2ad5c852d86ca} 
+tuple$<$ vector$<$ vector$<$ int $>$ $>$, vector$<$ vector$<$ int $>$ $>$, vector$<$ vector$<$ int $>$ $>$ $>$ MSASplitter\+::return\+Sets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return paired MSA, MSA of the first monomer, and MSA of the second monomer. 
+
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/\mbox{\hyperlink{msa_splitter_8h}{msa\+Splitter.\+h}}\item 
+code/\mbox{\hyperlink{msa_splitter_8cpp}{msa\+Splitter.\+cpp}}\end{DoxyCompactItemize}

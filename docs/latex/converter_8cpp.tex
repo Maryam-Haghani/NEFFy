@@ -1,0 +1,133 @@
+\doxysection{code/converter.cpp File Reference}
+\hypertarget{converter_8cpp}{}\label{converter_8cpp}\index{code/converter.cpp@{code/converter.cpp}}
+
+
+MSA File Converter.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include "{}flag\+Handler.\+h"{}}\newline
+{\ttfamily \#include "{}msa\+Reader.\+h"{}}\newline
+{\ttfamily \#include "{}msa\+Writer.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{converter_8cpp_ac78d42ddaf55e89ff6e10ffed0aca5ac}{convert}} (string in\+File, string out\+File, bool check\+Validation, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+\begin{DoxyCompactList}\small\item\em Convert the format of the input MSA file to the format of the output MSA file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \mbox{\hyperlink{converter_8cpp_a0fb06c3f546be5708d4b522bc60400aa}{get\+Alphabet}} (\mbox{\hyperlink{class_flag_handler}{Flag\+Handler}} \&flag\+Handler)
+\begin{DoxyCompactList}\small\item\em Get given alphabet by user. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{converter_8cpp_af733a28ff1678d1d21721d9f4fe468af}{docstr}}
+\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}} $>$ \mbox{\hyperlink{converter_8cpp_aa3988cde601d3238b612f5d752a56e8b}{Flags}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+MSA File Converter. 
+
+This program converts the format of an input Multiple \doxylink{struct_sequence}{Sequence} Alignment (MSA) file to the format of an output MSA file.
+
+Usage\+: ./converter --in\+\_\+file=$<$input\+\_\+file$>$ --out\+\_\+file=$<$output\+\_\+file$>$ \mbox{[}options\mbox{]}
+
+Options\+: --in\+\_\+file=$<$input\+\_\+file$>$ Path to the input MSA file --out\+\_\+file=$<$output\+\_\+file$>$ Path to the output MSA file --alphabet=
+
+Valid alphabet of MSA; alphabet option (0\+: Protein, 1\+: RNA, 2\+: DNA) (default\+: 0) --check\+\_\+validation=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Perform validation on sequences (default\+: true)
+
+For detailed instructions, please refer to the documentation at \href{https://maryam-haghani.github.io/NEFFy}{\texttt{ https\+://maryam-\/haghani.\+github.\+io/\+NEFFy}}. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{converter_8cpp_ac78d42ddaf55e89ff6e10ffed0aca5ac}\index{converter.cpp@{converter.cpp}!convert@{convert}}
+\index{convert@{convert}!converter.cpp@{converter.cpp}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily \label{converter_8cpp_ac78d42ddaf55e89ff6e10ffed0aca5ac} 
+void convert (\begin{DoxyParamCaption}\item[{string}]{in\+File}{, }\item[{string}]{out\+File}{, }\item[{bool}]{check\+Validation}{, }\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+
+
+
+Convert the format of the input MSA file to the format of the output MSA file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+File} & \\
+\hline
+{\em out\+File} & \\
+\hline
+{\em check\+Validation} & \\
+\hline
+{\em alphabet} & ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{converter_8cpp_a0fb06c3f546be5708d4b522bc60400aa}\index{converter.cpp@{converter.cpp}!getAlphabet@{getAlphabet}}
+\index{getAlphabet@{getAlphabet}!converter.cpp@{converter.cpp}}
+\doxysubsubsection{\texorpdfstring{getAlphabet()}{getAlphabet()}}
+{\footnotesize\ttfamily \label{converter_8cpp_a0fb06c3f546be5708d4b522bc60400aa} 
+\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} get\+Alphabet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_flag_handler}{Flag\+Handler}} \&}]{flag\+Handler}{}\end{DoxyParamCaption})}
+
+
+
+Get given alphabet by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\index{converter.cpp@{converter.cpp}!main@{main}}
+\index{main@{main}!converter.cpp@{converter.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{converter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{converter_8cpp_af733a28ff1678d1d21721d9f4fe468af}\index{converter.cpp@{converter.cpp}!docstr@{docstr}}
+\index{docstr@{docstr}!converter.cpp@{converter.cpp}}
+\doxysubsubsection{\texorpdfstring{docstr}{docstr}}
+{\footnotesize\ttfamily \label{converter_8cpp_af733a28ff1678d1d21721d9f4fe468af} 
+const char\texorpdfstring{$\ast$}{*} docstr}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{This\ program\ converts\ the\ format\ of\ an\ input\ Multiple\ Sequence\ Alignment\ (MSA)\ file\ to\ the\ format\ of\ an\ output\ MSA\ file.}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{Usage:}}
+\DoxyCodeLine{\textcolor{stringliteral}{./converter\ -\/-\/in\_file=<input\_file>\ -\/-\/out\_file=<output\_file>\ [options]}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{For\ detailed\ instructions,\ please\ refer\ to\ the\ documentation\ at\ https://maryam-\/haghani.github.io/NEFFy.}}
+\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
+
+\end{DoxyCode}
+\Hypertarget{converter_8cpp_aa3988cde601d3238b612f5d752a56e8b}\index{converter.cpp@{converter.cpp}!Flags@{Flags}}
+\index{Flags@{Flags}!converter.cpp@{converter.cpp}}
+\doxysubsubsection{\texorpdfstring{Flags}{Flags}}
+{\footnotesize\ttfamily \label{converter_8cpp_aa3988cde601d3238b612f5d752a56e8b} 
+unordered\+\_\+map$<$string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}}$>$ Flags}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}in\_file"{}},\ \{\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}out\_file"{}},\ \{\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}alphabet"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}check\_validation"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}true"{}}\}\},\ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

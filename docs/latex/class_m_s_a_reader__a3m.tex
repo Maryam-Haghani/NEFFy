@@ -1,0 +1,95 @@
+\doxysection{MSAReader\+\_\+a3m Class Reference}
+\hypertarget{class_m_s_a_reader__a3m}{}\label{class_m_s_a_reader__a3m}\index{MSAReader\_a3m@{MSAReader\_a3m}}
+
+
+{\ttfamily \#include $<$msa\+Reader.\+h$>$}
+
+Inheritance diagram for MSAReader\+\_\+a3m\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_s_a_reader__a3m}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_s_a_reader__a3m_ab6f0ca7c3caf181af504967e3f127369}{MSAReader}} (std\+::string \+\_\+file, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \+\_\+alphabet, bool \+\_\+check\+Validation, bool \+\_\+omit\+Gaps=false)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_s_a_reader_ab6f0ca7c3caf181af504967e3f127369}{MSAReader}} (std\+::string \+\_\+file, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \+\_\+alphabet, bool \+\_\+check\+Validation, bool \+\_\+omit\+Gaps=false)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \mbox{\hyperlink{class_m_s_a_reader_a356034b6d0d5bd18a3ab260718dd48fb}{read}} ()
+\begin{DoxyCompactList}\small\item\em Read the MSA file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_m_s_a_reader__a3m_ab2746ef0829dd87e4c6bcf0959336e94}{read\+File}} (std\+::ifstream \&\mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}}) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_m_s_a_reader_a5f5e6a4c8075e6f9c09816b8313df164}{is\+Unaligned}} ()
+\begin{DoxyCompactList}\small\item\em Check if the MSA sequences are aligned. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_m_s_a_reader_ac79629b6cce3127ccb303a0378ffe1eb}{contains\+Invalid\+Letters}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \mbox{\hyperlink{class_m_s_a_reader_a62ef473c45e89fa7f79e48f7677ed084}{alphabet}})
+\begin{DoxyCompactList}\small\item\em Check if the sequences contain any invalid characters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_s_a_reader_a222aaf0fbad6cbff29342268000bfa50}{make\+Uppercase}} ()
+\begin{DoxyCompactList}\small\item\em Convert all lowercase letters to uppercase in the sequences. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_s_a_reader_a4133a7ba29d17a4898531efc2b58cc5c}{validate\+Sequences}} (\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \mbox{\hyperlink{class_m_s_a_reader_a62ef473c45e89fa7f79e48f7677ed084}{alphabet}})
+\begin{DoxyCompactList}\small\item\em Validate the sequences for any invalid characters or unaligned sequences. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_m_s_a_reader}{MSAReader}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_m_s_a_reader_aa801f0bef6f371e98002e1ee51fe6a23}{file}}
+\item 
+\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \mbox{\hyperlink{class_m_s_a_reader_a62ef473c45e89fa7f79e48f7677ed084}{alphabet}}
+\item 
+bool \mbox{\hyperlink{class_m_s_a_reader_a106c1e8996e7a0f8f8c76ec335cb2216}{check\+Validation}}
+\item 
+bool \mbox{\hyperlink{class_m_s_a_reader_a8a14f09f0127afc4cbe9705b1eae9315}{omit\+Gaps}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \mbox{\hyperlink{class_m_s_a_reader_a8d47973f8edb13b9fc89ab2a14720443}{Sequences}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_m_s_a_reader__a3m_ab6f0ca7c3caf181af504967e3f127369}\index{MSAReader\_a3m@{MSAReader\_a3m}!MSAReader@{MSAReader}}
+\index{MSAReader@{MSAReader}!MSAReader\_a3m@{MSAReader\_a3m}}
+\doxysubsubsection{\texorpdfstring{MSAReader()}{MSAReader()}}
+{\footnotesize\ttfamily \label{class_m_s_a_reader__a3m_ab6f0ca7c3caf181af504967e3f127369} 
+MSAReader\+::\+MSAReader (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+file}{, }\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{\+\_\+alphabet}{, }\item[{bool}]{\+\_\+check\+Validation}{, }\item[{bool}]{\+\_\+omit\+Gaps}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & \\
+\hline
+{\em \+\_\+alphabet} & \\
+\hline
+{\em \+\_\+check\+Validation} & \\
+\hline
+{\em \+\_\+omit\+Gaps} & ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_m_s_a_reader__a3m_ab2746ef0829dd87e4c6bcf0959336e94}\index{MSAReader\_a3m@{MSAReader\_a3m}!readFile@{readFile}}
+\index{readFile@{readFile}!MSAReader\_a3m@{MSAReader\_a3m}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily \label{class_m_s_a_reader__a3m_ab2746ef0829dd87e4c6bcf0959336e94} 
+void MSAReader\+\_\+a3m\+::read\+File (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_m_s_a_reader_a64e2867b03ae541903f3f088c8eb6ad6}{MSAReader}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/\mbox{\hyperlink{msa_reader_8h}{msa\+Reader.\+h}}\item 
+code/\mbox{\hyperlink{msa_reader_8cpp}{msa\+Reader.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+\doxysection{code/msa\+Splitter.cpp File Reference}
+\hypertarget{msa_splitter_8cpp}{}\label{msa_splitter_8cpp}\index{code/msaSplitter.cpp@{code/msaSplitter.cpp}}
+
+
+This file contains the implementation of the \doxylink{class_m_s_a_splitter}{MSASplitter} class to manage and manipulate MSAs.  
+
+
+{\ttfamily \#include "{}msa\+Splitter.\+h"{}}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the \doxylink{class_m_s_a_splitter}{MSASplitter} class to manage and manipulate MSAs. 
+
+The \doxylink{class_m_s_a_splitter}{MSASplitter} class provides methods to\+:
+\begin{DoxyItemize}
+\item Verify if the MSA is in a paired form, where sequences are followed by the MSA of the first monomer, followed by the MSA of the second monomer.
+\item Split the MSA into three sets\+: paired MSA, MSA of the first monomer, and MSA of the second monomer.
+\end{DoxyItemize}
+
+The implementation includes\+:
+\begin{DoxyItemize}
+\item Constructor to initialize the split position.
+\item Method to verify the structure of the MSA.
+\item Method to return the split sets.
+\item Private helper functions to determine set membership and extract non-\/zero parts of the MSA rows. 
+\end{DoxyItemize}

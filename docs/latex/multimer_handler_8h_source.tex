@@ -1,0 +1,59 @@
+\doxysection{multimer\+Handler.\+h}
+\hypertarget{multimer_handler_8h_source}{}\label{multimer_handler_8h_source}\index{code/multimerHandler.h@{code/multimerHandler.h}}
+\mbox{\hyperlink{multimer_handler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ MULTIMER\_HANDLER}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MULTIMER\_HANDLER}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_multimer_handler}{MultimerHandler}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_multimer_handler_a867f3b50064d6c61245f57e4bdf98a3a}{MultimerHandler}}(std::string\ \_stoichiom);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ \mbox{\hyperlink{class_multimer_handler_a7abc10c4d4746ec29669995c7418ce1d}{chainIndexToStoichiomLetter}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multimer_handler_a78fe1240a658ff90559d151b1e25910b}{getHeteromerMSAs}}(\textcolor{keyword}{const}\ std::vector<std::vector<int>>\&\ vectors);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ The\ letters\ must\ appear\ in\ the\ correct\ alphabetical\ order\ (e.g.,\ A\ before\ B,\ B\ before\ C,\ etc.).}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ If\ a\ letter\ appears,\ all\ preceding\ letters\ in\ the\ alphabet\ must\ also\ appear.}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Each\ letter\ is\ followed\ by\ a\ number\ greater\ than\ 0.}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multimer_handler_a8737084fceec9217e0d7f9ad2cde713d}{isHeteromerFormat}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multimer_handler_a7f66a56c5a17b00723e3a2f80350b352}{isHomomerFormat}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00052\ \ \ \ \ std::vector<std::vector<int>>\ \mbox{\hyperlink{class_multimer_handler_a3fb7a5462ca641db1a8221e5de59a972}{getHomomerIndividualMSA}}(\textcolor{keyword}{const}\ std::vector<std::vector<int>>\&\ sequences2num)\ ;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ std::vector<std::vector<std::vector<int>>>\ \mbox{\hyperlink{class_multimer_handler_a7526be7711365d85c69cd29103ec09aa}{getHetoromerMSAs}}(\textcolor{keyword}{const}\ std::vector<std::vector<int>>\&\ sequences2num,\ \textcolor{keyword}{const}\ std::vector<int>\&\ chainLengths);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//stoichiometry}}
+\DoxyCodeLine{00062\ \ \ \ \ std::string\ \mbox{\hyperlink{class_multimer_handler_ab9c541f4062654e6f626db418e94ff9f}{stoichiom}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ repeatition\ of\ each\ chain\ in\ the\ multimer}}
+\DoxyCodeLine{00065\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_multimer_handler_a97da37e07e6387ddd31bece997a60eeb}{numbers}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ distinct\ chains\ for\ a\ heteromer}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multimer_handler_af8a206d5eb25a1f7f76faef5b45339f1}{chainsCount}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Indexes\ of\ start\ and\ end\ of\ each\ chain}}
+\DoxyCodeLine{00071\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_multimer_handler_a8fe35664d07284d8b62ee11f0362ded2}{chainIntervals}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_multimer_handler_a3bc185a6d83aa0be07654abfb47b772c}{getSequenceSegment}}(\textcolor{keyword}{const}\ std::vector<int>\&\ row,\ \textcolor{keywordtype}{int}\ chainIndex,\ \textcolor{keywordtype}{int}\ repeat=1)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_multimer_handler_a11ec957927b236ed52449d7f61751a5c}{checkRepeatedChainAndReturnOneSegment}}(\textcolor{keyword}{const}\ std::vector<int>\&\ row,\ \textcolor{keywordtype}{int}\ rowIndex,\ \textcolor{keywordtype}{int}\ chainIndex);}
+\DoxyCodeLine{00086\ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multimer_handler_aa5f161b00349d681cca4828311ea922a}{includesInPairedMSA}}(\textcolor{keyword}{const}\ std::vector<int>\&\ row);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multimer_handler_a02d436c824014e1bb0db8836430d3d74}{checkRowCorrespondsOnlyToOneChainAndReturnChainIndex}}(\textcolor{keyword}{const}\ std::vector<int>\&\ row,\ \textcolor{keywordtype}{int}\ row\_index);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00101\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_multimer_handler_aa605598fb1ce8cce2a9ba2a17921f08f}{checkMSAFormatAndReturnRowIndexIntervalsCorrespondingToChains}}(\textcolor{keyword}{const}\ std::vector<int>\&\ chainIndexOfRows);}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MULTIMER\_HANDLER}}
+
+\end{DoxyCode}

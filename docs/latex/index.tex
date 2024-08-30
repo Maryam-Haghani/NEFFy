@@ -1,0 +1,156 @@
+\chapter{NEFFy\+: NEFF Calculator and MSA File Converter}
+\hypertarget{index}{}\label{index}\index{NEFFy: NEFF Calculator and MSA File Converter@{NEFFy: NEFF Calculator and MSA File Converter}}
+\label{index_md_wiki_2main}%
+\Hypertarget{index_md_wiki_2main}%
+ \hypertarget{index_autotoc_md23}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{index_autotoc_md23}
+
+\begin{DoxyItemize}
+\item \doxylink{index_overview}{Overview}
+\begin{DoxyItemize}
+\item \doxylink{index_overview_neff_computation}{NEFF Computation}
+\item \doxylink{index_overview_converter}{MSA File Conversion}
+\end{DoxyItemize}
+\item \doxylink{index_installation}{Installation Guide}
+\item \doxylink{index_how-use-neffy}{How to Use NEFFy}
+\begin{DoxyItemize}
+\item \doxylink{index_use_executable}{Executable File}
+\item \doxylink{index_use_lib}{Python Library}
+\end{DoxyItemize}
+\item \doxylink{index_error_handling}{Error Handling}
+\item \doxylink{index_feedback}{Feedback and Collaboration}
+\end{DoxyItemize}
+
+~\newline
+
+
+\label{index_overview}%
+\Hypertarget{index_overview}%
+\hypertarget{index_autotoc_md24}{}\doxysection{\texorpdfstring{Overview}{Overview}}\label{index_autotoc_md24}
+NEFFy is a versatile, efficient, and comprehensive tool for bioinformatics research, offering advanced features for calculating \doxysectlink{neff}{NEFF}{0} (Normalized Effective Number of Sequences) for Multiple Sequence Alignments (MSA)s of any biological sequences, including {\ttfamily protein}, {\ttfamily RNA}, and {\ttfamily DNA} across various \doxysectlink{msa_formats}{MSA formats}{0}. It surpasses \doxysectlink{other_tools}{existing tools}{0} in efficiency and functionality. ~\newline
+ Additionally, NEFFy includes built-\/in support for format conversion, allowing users to seamlessly convert between different \doxysectlink{msa_formats}{MSA formats}{0}.~\newline
+
+
+\label{index_overview_neff_computation}%
+\Hypertarget{index_overview_neff_computation}%
+\hypertarget{index_autotoc_md25}{}\doxysubsection{\texorpdfstring{NEFF Computation}{NEFF Computation}}\label{index_autotoc_md25}
+The NEFF computation tool provides versatile options for analyzing the diversity of sequences in an MSA. It caters to various needs in bioinformatics and structural biology, ensuring a comprehensive assessment of sequence alignments. Here are its features\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Symmetric NEFF}}\+: \doxysectlink{neff}{NEFF}{0} uses similatiy of each pair of sequences for determining sequence weights. Symmetry in similarity indicates that the threshold for considering a pair of sequences as similar are consistent for all sequences, leading to symmetry in their similarity assessment. ,  and  exclusively endorse the symmetric version.~\newline
+ ~\newline
+
+\item {\bfseries{Asymmetric NEFF}}\+: In asymmetric version, when determining sequence weights, the threshold of seuence similarity for a pair of sequence, depends on the number of non-\/gap residues. It makes the cutoff different for each sequence, thus rendering the similarity between a pair of sequences asymmetric. This method provides a more detailed and accurate representation of sequence diversity. While  exclusively supports the asymmetric version,  and NEFFy uniquely stand out as the only tools capable of handling both symmetric and asymmetric versions.~\newline
+ ~\newline
+
+\item {\bfseries{Handeling Gaps in Query}}\+: In certain MSA formats, such as the  format, gaps may appear in the query sequence (first sequences in the alignment), signifying ’gaps aligned to insertions’. When performing NEFF computation, some users might prefer to retain these gaps. While other tools adhere to the original MSA file, regardless of whether it includes gaps in the query sequence, NEFFy provides the versatility to handle these gaps. It can either filter them out, along with any corresponding positions in the aligned sequences, or retain them.~\newline
+ ~\newline
+
+\item {\bfseries{Handeling Gappy positions}}\+: Adopted from , the idea is to identify and remove positions in a sequence alignment that surpass a certain gap frequency threshold prior to NEFF computation. Essentially, these positions in the sequence alignment display a higher-\/than-\/desired frequency of gaps. By filtering out such positions, NEFF computation can focus on more informative and conserved regionsof the sequences.~\newline
+ ~\newline
+
+\item {\bfseries{Handeling Non-\/standard Residues}}\+: Non-\/standard residues refer to those residues that lie outside the conventional residue set of biological sequences, typically extending beyond the 20 canonical amino acids for proteins and undefined nucleotides for {\ttfamily RNA}s and {\ttfamily DNA}s. For further clarification, additional information can be found in the  page.~\newline
+ ~\newline
+
+\item {\bfseries{Handeling of Various Biological Sequences}}\+: Each biological sequence utilizes a distinct collection of symbols to represent its sequence, known as an alphabet. The  page provides a reference to these alphabets for {\ttfamily protein}s, {\ttfamily RNA}s and {\ttfamily DNA}s.~\newline
+ ~\newline
+
+\item {\bfseries{Column-\/wise NEFF (Per-\/\+Residue NEFF)}}\+: This method computes NEFF for each position in the alignment. It is used by tools like {\ttfamily Alpha\+Fold} for more precise per-\/residue sequence diversity assessment. Per-\/residue NEFF values for each position in the MSA were calculated by summing the weights of the sequences that have a residue (i.\+e., non-\/gap characters) at that specific position.~\newline
+ ~\newline
+
+\item {\bfseries{Multimer MSA NEFF}}\+: The tool can calculate NEFF for MSAs of a multimeric protein. Tools like Alpha\+Fold-\/\+Multimer generate these multimeric MSAs, where, for homomers (assemblies comprising multiple copies of the same chain), the MSA consists of multiple copies of the same sequence alignment. For heteromers (assemblies comprising two or more different chains), the MSA includes paired sequence alignments followed by individual MSAs for each chain in a block-\/diagonal arrangement. It\textquotesingle{}s possible that some chains may not have an individual MSA, but a paired MSA is always present. ~\newline
+ The tool can identify the multiple sequence alignment (MSA) format for both heteromers and homomers based on the provided stoichiometry of the complex. As described by the \href{https://www.rcsb.org/docs/general-help/symmetry-resources-in-the-pdb}{\texttt{ Protein Data Bank}}, "{}\+Stoichiometry indicates the number of chains participating in the assembly and whether the assembly is a homomer or a heteromer."{} ~\newline
+ NEFFy computes NEFF values for such MSAs by using the stoichiometry and the lengths of the chains within the complex for heteromers. It identifies sequences that are either paired or unpaired across the chains, with the unpaired MSA sequences arranged in a block-\/diagonal pattern after the paired sequences. The tool then calculates NEFF for each of these components. For homomers, NEFF is calculated based on the individual MSA.~\newline
+ ~\newline
+
+\item {\bfseries{Random Masking for MSA Denoising}}\+: ~\newline
+ NEFFy enables MSA masking by systematically applying a user-\/defined percentage of sequence masking across multiple iterations. For each iteration, NEFFy calculates the NEFF value and selects the iteration that yields the highest NEFF. The goal of this masking process is to denoise the MSA using the NEFF metric. If the highest NEFF value exceeds the initial NEFF, it indicates that the masking process has successfully removed less informative or redundant sequences, resulting in a more diverse and refined MSA, even with a reduced number of sequences. This refined MSA can then be utilized for downstream applications.~\newline
+ ~\newline
+
+\item {\bfseries{Multiple Format Support\+:}} Various \doxysectlink{msa_formats}{formats}{0} are available for representing aligned sequences within an MSA. NEFFy stands as the exclusive tool capable of handling all these formats for NEFF computation.~\newline
+ ~\newline
+
+\item {\bfseries{NEFF Computation for an Integration of MSAs\+:}} In all versions of NEFF calculation, except for the NEFF of multimer MSA, NEFFy can accept multiple input files as long as all sequences are of the same length. It combines the sequences, removing any duplicates, and then computes the NEFF for the integrated MSA.
+\end{DoxyItemize}
+
+~\newline
+~\newline
+
+
+\label{index_overview_converter}%
+\Hypertarget{index_overview_converter}%
+\hypertarget{index_autotoc_md26}{}\doxysubsection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{index_autotoc_md26}
+The MSA File Conversion tool is designed to handle the conversion of MSA files from one format to another with minimal user intervention. By specifying the input and output files along with their formats, users can effortlessly convert MSA files while preserving sequence integrity and annotations. This tool supports a wide range of \doxysectlink{msa_formats}{MSA formats}{0}, making it an essential utility for researchers working with sequence alignment data.~\newline
+ ~\newline
+
+\begin{DoxyItemize}
+\item {\bfseries{Easy Conversion Process\+:}} Users only need to specify the input and output files along with their desired formats. The tool handles the rest, including reading the input file, performing the conversion, and writing the output file.~\newline
+ ~\newline
+
+\item {\bfseries{Alphabet Specification\+:}} Each biological sequence utilizes a distinct collection of symbols to represent its sequence, known as an alphabet. The  page provides a reference to these alphabets for various biological sequences. The tool allows users to specify the alphabet of the MSA ({\ttfamily protein}, {\ttfamily RNA}, {\ttfamily DNA}) to ensure proper handling and validation of sequences.~\newline
+ ~\newline
+
+\item {\bfseries{Validation Option\+:}} Users can choose whether to perform validation on sequences, ensuring data integrity and consistency.~\newline
+ ~\newline
+
+\item {\bfseries{Multiple Format Support\+:}} Various formats are available for representing aligned sequences within an MSA. The NEFFy converter can handle conversions between all these \doxysectlink{msa_formats}{formats}{0}.
+\end{DoxyItemize}
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{index_installation}%
+\Hypertarget{index_installation}%
+\hypertarget{index_autotoc_md28}{}\doxysection{\texorpdfstring{Installation Guide}{Installation Guide}}\label{index_autotoc_md28}
+NEFFy is designed to be flexible and user-\/friendly, offering two main versions to cater to different user needs\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{Executable File}}\+: Use NEFFy as a command-\/line interface for seamless integration into automated workflows.
+\item {\bfseries{Python Library}}\+: This version acts as a wrapper for NEFFy’s C++ executable files, making it accessible for any user with limited coding experience.
+\end{DoxyEnumerate}
+
+For detailed installation instructions about each version, please visit \doxysectlink{installation_guide}{Installation Guide}{0} page.
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{index_how-use-neffy}%
+\Hypertarget{index_how-use-neffy}%
+\hypertarget{index_autotoc_md30}{}\doxysection{\texorpdfstring{How to Use NEFFy}{How to Use NEFFy}}\label{index_autotoc_md30}
+NEFFy is designed to be flexible and user-\/friendly, offering two main versions to cater to different user needs\+: \label{index_use_executable}%
+\Hypertarget{index_use_executable}%
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Executable File}}\+: Use NEFFy as a command-\/line interface for seamless integration into automated workflows. \label{index_use_lib}%
+\Hypertarget{index_use_lib}%
+
+\item {\bfseries{Python Library}}\+: This version acts as a wrapper for NEFFy’s C++ executable files, making it accessible for any user with limited coding experience.
+\end{DoxyEnumerate}
+
+Whether you prefer the command-\/line interface or the simplicity of a Python library, NEFFy ensures smooth and efficient usage for all.~\newline
+ For detailed instructions on using each version, please visit \doxysectlink{usage_guide}{How to Use}{0} page.
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{index_error_handling}%
+\Hypertarget{index_error_handling}%
+\hypertarget{index_autotoc_md32}{}\doxysection{\texorpdfstring{Error Handling}{Error Handling}}\label{index_autotoc_md32}
+If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. Please refer to the error message for troubleshooting or make necessary corrections to the input.
+
+~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{index_feedback}%
+\Hypertarget{index_feedback}%
+\hypertarget{index_autotoc_md34}{}\doxysection{\texorpdfstring{Feedback and Collaboration}{Feedback and Collaboration}}\label{index_autotoc_md34}
+We highly value the input and collaboration from our community. You can share your feedback, report issues, and collaborate with us via\+:
+\begin{DoxyItemize}
+\item {\bfseries{Email}}\+: You can reach us directly \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} for any inquiries, suggestions, or issues you encounter. We strive to respond to all emails promptly.
+\item {\bfseries{Git\+Hub Issues}}\+: For more technical feedback, bug reports, and feature requests, please use our \href{https://github.com/Maryam-Haghani/Neffy/issues}{\texttt{ Git\+Hub Issues page}}. 
+\end{DoxyItemize}

@@ -1,0 +1,34 @@
+\doxysection{msa\+Splitter.\+h}
+\hypertarget{msa_splitter_8h_source}{}\label{msa_splitter_8h_source}\index{code/msaSplitter.h@{code/msaSplitter.h}}
+\mbox{\hyperlink{msa_splitter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ MSA\_SPLITTER\_H}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MSA\_SPLITTER\_H}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_splitter}{MSASplitter}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_m_s_a_splitter_aa31ff1e20facfeaa9221bb1fe4c2a0c8}{MSASplitter}}(\textcolor{keywordtype}{int}\ \_splitPosition);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_m_s_a_splitter_ae8404bd58178ab8ecc5dba762fe79147}{hasBlockForm}}(\textcolor{keyword}{const}\ std::vector<std::vector<int>>\&\ vectors);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::tuple<std::vector<std::vector<int>>,\ std::vector<std::vector<int>>,\ std::vector<std::vector<int>>>\ \mbox{\hyperlink{class_m_s_a_splitter_ae1347634d7169861f8d2ad5c852d86ca}{returnSets}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ std::vector<std::vector<int>>\ set1;}
+\DoxyCodeLine{00040\ \ \ \ \ std::vector<std::vector<int>>\ set2;}
+\DoxyCodeLine{00041\ \ \ \ \ std::vector<std::vector<int>>\ set3;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ splitPosition;\ \textcolor{comment}{//\ Split\ position}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSet2(\textcolor{keyword}{const}\ std::vector<int>\&\ row)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSet3(\textcolor{keyword}{const}\ std::vector<int>\&\ row)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<int>\ getNonZeroPart(\textcolor{keyword}{const}\ std::vector<int>\&\ row,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keywordtype}{int}\ end)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MSA\_SPLITTER\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,110 @@
+\chapter{Help Page}
+\hypertarget{help}{}\label{help}\index{Help Page@{Help Page}}
+\hypertarget{help_autotoc_md0}{}\doxysubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{help_autotoc_md0}
+
+\begin{DoxyItemize}
+\item \doxylink{help_alphabet}{Alphabet}
+\item \doxylink{help_non_standard}{Non-\/standard Residues}
+\item \doxylink{help_make_installation}{make Installation}
+\end{DoxyItemize}
+
+~\newline
+
+
+\label{help_alphabet}%
+\Hypertarget{help_alphabet}%
+\hypertarget{help_autotoc_md1}{}\doxysection{\texorpdfstring{Alphabet}{Alphabet}}\label{help_autotoc_md1}
+Each biological sequence is encoded using a valid set of characters to represent its composition. In the case of {\ttfamily protein}, this set consists of 20 canonical amino acids, with each amino acid being represented by a specific letter. The list includes\+: {\ttfamily A}, {\ttfamily C}, {\ttfamily D}, {\ttfamily E}, {\ttfamily F}, {\ttfamily G}, {\ttfamily H}, {\ttfamily I}, {\ttfamily K}, {\ttfamily L}, {\ttfamily M}, {\ttfamily N}, {\ttfamily P}, {\ttfamily Q}, {\ttfamily R}, {\ttfamily S}, {\ttfamily T}, {\ttfamily V}, {\ttfamily W}, {\ttfamily Y}. Additionally, six non-\/standard amino acids, as detailed in \doxylink{help_non_standard}{Non-\/standard Residues} section, also are included within the protein alphabet. ~\newline
+ For {\ttfamily DNA} sequences, the alphabet comprises {\ttfamily A}, {\ttfamily U}, {\ttfamily C}, {\ttfamily G} along with non-\/standard nucleic acid, {\ttfamily N}. Similarly, in the case of {\ttfamily RNA} sequences, the alphabet consists of {\ttfamily A}, {\ttfamily U}, {\ttfamily C}, {\ttfamily G} along with non-\/standard nucleic acid, {\ttfamily N}. ~\newline
+ Among the \doxysectlink{other_tools}{available tools}{0} for NEFF computation, while  and  do not explicitly specify an alphabet,  and  operate within the {\ttfamily protein} alphabet. In contrast,  provides support for both {\ttfamily protein} and {\ttfamily RNA} (implicitly including {\ttfamily DNA}). Similarly, {\ttfamily NEFFy} covers a broad spectrum of biological sequences, encompassing proteins and nucleic acids, much like .
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{help_non_standard}%
+\Hypertarget{help_non_standard}%
+\hypertarget{help_autotoc_md3}{}\doxysection{\texorpdfstring{Non-\/standard Residues}{Non-\/standard Residues}}\label{help_autotoc_md3}
+Non-\/standard residues are those that fall outside the standard set of residues, which typically includes {\ttfamily N} for DNAs and RNAs and {\ttfamily X}, {\ttfamily B}, {\ttfamily J}, {\ttfamily O}, {\ttfamily U} and {\ttfamily Z} for proteins. When it comes to NEFF computation and comparing the positions of a pair of sequences for similarity, there are various strategies available for handling these non-\/standard residues. One approach is to treat them as if they were standard amino acids, akin to the behavior exhibited by \textquotesingle{}s symmetric version. Alternatively, they can be designated as gaps only when determining the permissible number of mismatches for each sequence, resembling the approach taken by \textquotesingle{}s asymmetric option. Another option, similar to the practices of  and , involves categorizing them as gaps both in the calculation of number of allowable mismatches and in aligning corresponding positions for a pair of sequences. Among the tools,  and  do not handle these residues. NEFFy is the only tool capable of handling these residues based on user preference,and its default option is to treat them as standard residues.
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ \label{help_make_installation}%
+\Hypertarget{help_make_installation}%
+\hypertarget{help_autotoc_md5}{}\doxysection{\texorpdfstring{{\ttfamily make} Installation}{{\ttfamily make} Installation}}\label{help_autotoc_md5}
+To use the {\ttfamily make} command, follow the steps below according to your operating system\+:\hypertarget{help_autotoc_md6}{}\doxysubsection{\texorpdfstring{mac\+OS}{mac\+OS}}\label{help_autotoc_md6}
+The {\ttfamily make} command is not available by default on mac\+OS. However, it can be easily installed by installing the Xcode Command Line Tools. You can do this by running the following command in the Terminal\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{xcode-\/select\ -\/-\/install}
+
+\end{DoxyCode}
+\hypertarget{help_autotoc_md7}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{help_autotoc_md7}
+The {\ttfamily make} command is commonly available by default on many Linux distributions. If it\textquotesingle{}s not installed, it can be easily added using the package manager of your distribution. For example\+:
+\begin{DoxyItemize}
+\item On Debian-\/based systems (e.\+g., Ubuntu)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt-\/get\ install\ make}
+
+\end{DoxyCode}
+
+\item On Red Hat-\/based systems (e.\+g., Fedora)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ dnf\ install\ make}
+
+\end{DoxyCode}
+
+\item On Arch-\/based systems\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ pacman\ -\/S\ make}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{help_autotoc_md8}{}\doxysubsection{\texorpdfstring{Windows}{Windows}}\label{help_autotoc_md8}
+The {\ttfamily make} command is not available by default on Windows. However, it can be installed through several methods\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Using Cygwin}}\+:
+\begin{DoxyItemize}
+\item Install Cygwin from the \href{https://www.cygwin.com/}{\texttt{ Cygwin website}}.
+\item During the installation, select {\ttfamily make} from the package list.
+\end{DoxyItemize}
+\item {\bfseries{Using Gnu\+Win}}\+:
+\begin{DoxyItemize}
+\item Go to the \href{http://gnuwin32.sourceforge.net/packages/make.htm}{\texttt{ Gnu\+Win website}}.
+\item Download the {\ttfamily make} package setup executable (e.\+g., {\ttfamily make-\/3.\+81.\+exe}).
+\item Run the installer and follow the instructions to install {\ttfamily make}.
+\end{DoxyItemize}
+\item {\bfseries{Using WSL (Windows Subsystem for Linux)}}\+:
+\begin{DoxyItemize}
+\item Install WSL and a Linux distribution from the Microsoft Store (e.\+g., Ubuntu).
+\item Once the distribution is set up, you can use the package manager to install {\ttfamily make} as you would on a native Linux system.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+{\bfseries{Set Up Environment Variables}}\+:
+\begin{DoxyItemize}
+\item After installing, add the {\ttfamily make} binary to your system’s PATH.
+\item Open the Start Menu, search for "{}\+Environment Variables,"{} and select "{}\+Edit the system environment variables."{}
+\item In the System Properties window, click on the "{}\+Environment Variables"{} button.
+\item In the Environment Variables window, find the "{}\+Path"{} variable in the "{}\+System variables"{} section, select it, and click "{}\+Edit."{}
+\item Click "{}\+New"{} and add the path to the directory where {\ttfamily make.\+exe} was installed (e.\+g., {\ttfamily C\+:\textbackslash{}Program Files (x86)\textbackslash{}Gnu\+Win32\textbackslash{}bin}).
+\item Click "{}\+OK"{} to close all the windows.
+\end{DoxyItemize}
+
+{\bfseries{Verify the Installation}}\+:
+\begin{DoxyItemize}
+\item Open a new Command Prompt window.
+\item Type {\ttfamily make -\/-\/version} and press Enter.
+\item You should see the version information for {\ttfamily make}, confirming that it has been installed correctly.
+\end{DoxyItemize}
+
+By following these steps, you can have the {\ttfamily make} command available on mac\+OS, Linux, and Windows, ensuring a consistent development environment across different operating systems.
+
+~\newline
+
+
+\DoxyHorRuler{0}
+ For further assistance or inquiries, please \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} or create an \href{https://github.com/Maryam-Haghani/Neffy/issues}{\texttt{ issue}} in the Git\+Hub repository. 

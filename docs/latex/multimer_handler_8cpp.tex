@@ -1,0 +1,28 @@
+\doxysection{code/multimer\+Handler.cpp File Reference}
+\hypertarget{multimer_handler_8cpp}{}\label{multimer_handler_8cpp}\index{code/multimerHandler.cpp@{code/multimerHandler.cpp}}
+
+
+This file contains the implementation of the \doxylink{class_multimer_handler}{Multimer\+Handler} class to manage and manipulate MSA of a multimer.  
+
+
+{\ttfamily \#include "{}multimer\+Handler.\+h"{}}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the \doxylink{class_multimer_handler}{Multimer\+Handler} class to manage and manipulate MSA of a multimer. 
+
+
+\begin{DoxyItemize}
+\item Verify if the MSA is in the format of the given stoichiometry, When multimer is a heteromer(with more than one distinct chain), MSA starts from paired\+MSA, followed by the MSA of the chains in the multimer. When multimer is a homomer, MSA is a concatenation of MSAs of the chain.
+\end{DoxyItemize}
+
+The implementation includes\+:
+\begin{DoxyItemize}
+\item Constructor to initialize the split position.
+\item Method to verify the structure of the MSA with the given stochiometry.
+\item Method to return the MSA sets. 
+\end{DoxyItemize}
