@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: neffy
-Version: 0.1
-Summary: A Python interface of NEFFy C++ tool
-Home-page: https://github.com/Maryam-Haghani/NEFFy
-Author: Maryam Haghani
-Author-email: haghani@vt.edu
-License-File: LICENSE.txt
