@@ -74,7 +74,7 @@ For more details about features, please refer to the [documentation](https://mar
     neff --file=./MSAs/example.a2m --threshold=0.6 --norm=2 --is_symmetric=false --check_validation=true
   As output, it will print the final MSA length, depth and Neff to the console, based on the given options.
 
-For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/usage_guide.html#neff_computation).
+For more examples on using NEFFy for NEFF calculations with various options and features, please refer to the documentation [usage guide](https://maryam-haghani.github.io/NEFFy/usage_guide.html#neff_computation).
 
 ### 2. MSA File Conversion
 The MSA file conversion allows you to convert MSA files between different supported formats. <br/>
@@ -96,8 +96,9 @@ For more details about features, please refer to the [documentation](https://mar
 Suppose you have an MSA file named "input.fasta" and you want to convert to the A2M format and save it as "output.a2m".
 
     converter --in_file=./MSAs/example.a2m --out_file=./MSAs/example.sto
-    
-For detailed instructions on usage, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/usage_guide.html#converter).
+
+For more examples on using NEFFy for MSA conversion, please refer to the documentation [usage guide](https://maryam-haghani.github.io/NEFFy/usage_guide.html#converter).
+
 
 ### Supported File Formats
 - __A2M__ (aligned FASTA-like format)
