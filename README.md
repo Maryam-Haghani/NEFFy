@@ -3,15 +3,20 @@ NEFFy is a versatile and efficient tool for bioinformatics research, offering ad
 Additionally, NEFFy includes built-in support for format conversion, allowing users to seamlessly convert between different MSA formats.
 
 ## Table of Contents
-- [Installation](#installation)
-- [Tutorial](#tutorial)
+- [C++ Executable](#cpp-executable)
+  - [Installation](#installation)
   - [Project Outline](#project-outline)
   - [Usage](#usage)
     - [NEFF Computation](#1-neff-computation)
     - [MSA File Conversion](#2-msa-file-conversion)
+- [Python Library](python-library)
+  - [Library Installation](#library-installation)
+  - [Library Usage](#usage)
 - [Supported File Formats](#supported-file-formats)
 - [Error Handling](#error-handling)
 - [License](#license)
+
+# C++ Executable
 
 ## Installation
 To install the NEFFy tool, clone the repository and compile the code using a C++ compiler that supports C++17 or a newer version. You can use the provided [Makefile](Makefile) in the repository for this purpose. Navigate to the repository directory and enter the following command in the terminal:
@@ -27,16 +32,13 @@ This package is cross-platform and works on Linux, Windows, and macOS without re
 
 For more information on installing the executable, please refer to the [documentation](https://maryam-haghani.github.io/NEFFy/installation_guide.html#executable_install).
 
-## Tutorial
-This tutorial will first explain the structure of the NEFFy repository, followed by a guide on how to use it.
-
-### Project Outline
+## Project Outline
 The NEFFy repository is structured as follows:
 
 ![outline](outline.png)
 
 
-### Usage
+## Usage
 ### 1. NEFF Computation
 
 NEFF determines the effective number of homologous sequences within a Multiple Sequence Alignment (MSA). It accounts for sequence similarities and provides a measure of sequence diversity. <br/>
@@ -99,8 +101,78 @@ Suppose you have an MSA file named "input.fasta" and you want to convert to the 
 
 For more examples on using NEFFy for MSA conversion, please refer to the documentation [usage guide](https://maryam-haghani.github.io/NEFFy/usage_guide.html#converter).
 
+<br>
 
-### Supported File Formats
+
+# Python Library
+
+Neffy also provides a python library as an interface of the executable files.
+
+## Library Installation
+
+### From Source
+
+To install the library from the source:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Maryam-Haghani/Neffy.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd Neffy
+    ```
+3. Checkout the specific branch:
+    ```bash
+    git checkout python-lib
+    ```
+4. Ensure you have `setuptools` and `wheel` installed:
+    ```bash
+    pip install setuptools wheel
+    ```
+5. Build the source distribution and wheel:
+    ```bash
+    python setup.py sdist bdist_wheel
+    ```
+6. Install the package from the root directory of the project:
+    ```bash
+    pip install .
+    ```
+
+    Alternatively, you can install the package directly from the built wheel file (in the `dist` directory):
+    ```bash
+    pip install dist/neffy-0.1-py3-none-any.whl
+    ```
+
+### From PyPI (will be distributed at a later date):
+
+To install the package from PyPI:
+
+```bash
+pip install neffy
+```
+
+## Library Usage
+### An example of neff computation:
+```bash
+cd example
+python compute_neff.py
+```
+
+You can find more examples of using the Python library's various methods for NEFF calculations in the examples directory. For method parameters and detailed explanations, please refer to the documentation [usage guide](https://maryam-haghani.github.io/NEFFy/usage_guide.html#python_neff_main).
+
+
+### An example of MSA conversion:
+```bash
+cd example
+python convert_msa.py
+```
+
+Additional examples of using NEFFy for MSA conversion can be found in the example directory. For further detailed explanations, please refer to the documentation [usage guide](https://maryam-haghani.github.io/NEFFy/usage_guide.html#python_converter).
+
+<br>
+
+# Supported File Formats
 - __A2M__ (aligned FASTA-like format)
 - __A3M__ (compressed aligned FASTA-like format with lowercase letters for insertions)
 - __FASTA__, __AFA__, __FAS__, __FST__, __FSA__ (FASTA format)
@@ -111,7 +183,9 @@ For more examples on using NEFFy for MSA conversion, please refer to the documen
 
 In the [documentation](https://maryam-haghani.github.io/NEFFy/msa_formats.html), you will find a brief explanation of each format, along with an illustrative alignment example for each one.
 
-### Error Handling
+<br>
+
+# Error Handling
 If any errors occur during the execution of the MSA Processor, an error message will be displayed, describing the issue encountered. <br/>
 Please refer to the error message for troubleshooting or make necessary corrections to the input.
 

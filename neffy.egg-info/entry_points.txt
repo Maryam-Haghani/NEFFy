@@ -1,0 +1,3 @@
+[console_scripts]
+compute_neff = neffy.neffy:compute_neff
+convert_msa = neffy.neffy:convert_msa

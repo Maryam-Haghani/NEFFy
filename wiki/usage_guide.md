@@ -121,9 +121,13 @@ Result:
     ./neff --file=../MSAs/uniref90_hits.sto,../MSAs/bfd_uniclust_hits.a3m,../MSAs/mgnify_hits.sto --depth=2048 --is_symmetric=false
     
 ```
-The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to a depth of 2048. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.
-This process is similar to how AlphaFold2.3 generates MSAs for monomers.<br>
-<br><br><br>
+Result:
+> MSA length: 338<br>
+> MSA depth: 2048<br>
+> NEFF: 106.067
+The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to a depth of 2048. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.<br>
+This process is akin to how AlphaFold2.3 produces the final MSA for a protein by combining three distinct MSAs.<br>
+<br><br>
 
 
 - __Compute NEFF for MSA of a Homomer (Default Normalization):__
@@ -155,16 +159,16 @@ The tool will identify paired MSA sequences and the sequences for each individua
 
 - __Random Masking:__
 ```sh
-  ./neff --file=../MSAs/T1127.sto --mask_enabled=true --mask_frac=0.2 --mask_count=100 –norm=2 –threshold=0.6
+  ./neff --file=../MSAs/T1127.sto --mask_enabled=true --mask_frac=0.2 --mask_count=10 –norm=2 –threshold=0.6
 ```
 Result:
 > MSA sequence length: 211<br>
 > MSA depth: 9949<br>
-> Initial NEFF: 37.7624
-> NEFF values for each mask iteration have been saved in 'neff_values-thr_0.6-maskfrac_0.2.txt' with highest value: 38.7935
-> Masked MSA file corresponding to the highest NEFF value has been saved in 'MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta'
+> Initial NEFF: 37.7624<br>
+> NEFF values for each mask iteration have been saved in 'neff_values-thr_0.6-maskfrac_0.2.txt' with highest value: 38.7015<br>
+> Masked MSA file corresponding to the highest NEFF value has been saved in 'MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta'<br>
 > Time taken for masking and NEFF computation: 63.027 seconds.
-The tool will mask 20% of sequences in 'T1127.sto' MSA file and repeat this process 100 times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.
+The tool will mask 20% of sequences in 'T1127.sto' MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.
 
 <br>
 
@@ -327,7 +331,8 @@ def main():
     try:
         msa_length, msa_depth, neff = neffy.compute_neff(
             file=['../MSAs/uniref90_hits.sto', '../MSAs/bfd_uniclust_hits.a3m', '../MSAs/mgnify_hits.sto'],
-            is_symmetric = False)
+            is_symmetric = False,
+            depth=2048)
 
         print(f"MSA length: {msa_length}")
         print(f"MSA depth: {msa_depth}")
@@ -340,9 +345,14 @@ if __name__ == "__main__":
     main()
     
 ```
+Result:
+> MSA length: 338<br>
+> MSA depth: 2048<br>
+> NEFF: 106.067
+
 The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to the gievn depth. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.<br>
-This process is similar to how AlphaFold2.3 generates MSAs for monomers.<br>
-<br><br><br>
+This process is akin to how AlphaFold2.3 produces the final MSA for a protein by combining three distinct MSAs.<br>
+<br><br>
 
 \anchor python_neff_multimer
 ## `compute_multimer_neff`
@@ -521,7 +531,7 @@ def main():
             = neffy.compute_neff_masking(
               file='../MSAs/T1127.sto',
               threshold=0.6,
-              mask_count=100,
+              mask_count=10,
               mask_frac=0.2,
               norm=neffy.Normalization.No_Normalization)
 
@@ -543,7 +553,7 @@ Result:
 > MSA length: 211<br>
 > MSA depth: 9949<br>
 > Initial NEFF: 37.7624<br>
-> Highest NEFF among maskings: 38.7935<br>
+> Highest NEFF among maskings: 38.7015<br>
 > Result file: neff_values-thr_0.6-maskfrac_0.2.txt<br>
 > Masked MSA with highest NEFF: MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta<br>
 > Time taken: 73.5736 seconds

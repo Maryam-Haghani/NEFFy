@@ -200,11 +200,21 @@ MSA sequence length\+: 56~\newline
 \DoxyCodeLine{./neff\ -\/-\/file=../MSAs/uniref90\_hits.sto,../MSAs/bfd\_uniclust\_hits.a3m,../MSAs/mgnify\_hits.sto\ -\/-\/depth=2048\ -\/-\/is\_symmetric=false}
 
 \end{DoxyCode}
- The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to a depth of 2048. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files. This process is similar to how Alpha\+Fold2.\+3 generates MSAs for monomers.~\newline
+ Result\+: \begin{quote}
+MSA length\+: 338~\newline
+ MSA depth\+: 2048~\newline
+ NEFF\+: 106.\+067 \end{quote}
+
+\end{DoxyItemize}
+
+The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to a depth of 2048. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.~\newline
+ This process is akin to how Alpha\+Fold2.\+3 produces the final MSA for a protein by combining three distinct MSAs.~\newline
  ~\newline
 ~\newline
-~\newline
 
+
+
+\begin{DoxyItemize}
 \item {\bfseries{Compute NEFF for MSA of a Homomer (Default Normalization)\+:}} 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{./neff\ -\/-\/file=../MSAs/homomer.aln\ -\/-\/multimer\_MSA=true\ -\/-\/stoichiom=A2}
@@ -248,17 +258,20 @@ The tool will identify paired MSA sequences and the sequences for each individua
 \begin{DoxyItemize}
 \item {\bfseries{Random Masking\+:}} 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{./neff\ -\/-\/file=../MSAs/T1127.sto\ -\/-\/mask\_enabled=true\ -\/-\/mask\_frac=0.2\ -\/-\/mask\_count=100\ –norm=2\ –threshold=0.6}
+\DoxyCodeLine{./neff\ -\/-\/file=../MSAs/T1127.sto\ -\/-\/mask\_enabled=true\ -\/-\/mask\_frac=0.2\ -\/-\/mask\_count=10\ –norm=2\ –threshold=0.6}
 
 \end{DoxyCode}
  Result\+: \begin{quote}
 MSA sequence length\+: 211~\newline
  MSA depth\+: 9949~\newline
- Initial NEFF\+: 37.\+7624 NEFF values for each mask iteration have been saved in \textquotesingle{}neff\+\_\+values-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+txt\textquotesingle{} with highest value\+: 38.\+7935 Masked MSA file corresponding to the highest NEFF value has been saved in \textquotesingle{}MSA\+\_\+with\+\_\+highest\+\_\+neff-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+fasta\textquotesingle{} Time taken for masking and NEFF computation\+: 63.\+027 seconds. \end{quote}
+ Initial NEFF\+: 37.\+7624~\newline
+ NEFF values for each mask iteration have been saved in \textquotesingle{}neff\+\_\+values-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+txt\textquotesingle{} with highest value\+: 38.\+7015~\newline
+ Masked MSA file corresponding to the highest NEFF value has been saved in \textquotesingle{}MSA\+\_\+with\+\_\+highest\+\_\+neff-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+fasta\textquotesingle{}~\newline
+ Time taken for masking and NEFF computation\+: 63.\+027 seconds. \end{quote}
 
 \end{DoxyItemize}
 
-The tool will mask 20\% of sequences in \textquotesingle{}T1127.\+sto\textquotesingle{} MSA file and repeat this process 100 times. The NEFF values from each iteration will be saved in a \textquotesingle{}txt\textquotesingle{} file. The masked MSA corresponding to the highest NEFF value will also be saved in a \textquotesingle{}fasta\textquotesingle{} file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-\/quality MSA.
+The tool will mask 20\% of sequences in \textquotesingle{}T1127.\+sto\textquotesingle{} MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in a \textquotesingle{}txt\textquotesingle{} file. The masked MSA corresponding to the highest NEFF value will also be saved in a \textquotesingle{}fasta\textquotesingle{} file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-\/quality MSA.
 
 ~\newline
 
@@ -488,7 +501,8 @@ MSA length\+: 56~\newline
 \DoxyCodeLine{\ \ \ \ try:}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ msa\_length,\ msa\_depth,\ neff\ =\ neffy.compute\_neff(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ file=['../MSAs/uniref90\_hits.sto',\ '../MSAs/bfd\_uniclust\_hits.a3m',\ '../MSAs/mgnify\_hits.sto'],}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ is\_symmetric\ =\ False)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ is\_symmetric\ =\ False,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ depth=2048)}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}MSA\ length:\ \{msa\_length\}"{})}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}MSA\ depth:\ \{msa\_depth\}"{})}
@@ -501,13 +515,18 @@ MSA length\+: 56~\newline
 \DoxyCodeLine{\ \ \ \ main()}
 
 \end{DoxyCode}
- The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to the gievn depth. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.~\newline
- This process is similar to how Alpha\+Fold2.\+3 generates MSAs for monomers.~\newline
- ~\newline
-~\newline
-~\newline
+ Result\+: \begin{quote}
+MSA length\+: 338~\newline
+ MSA depth\+: 2048~\newline
+ NEFF\+: 106.\+067 \end{quote}
 
 \end{DoxyItemize}
+
+The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to the gievn depth. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.~\newline
+ This process is akin to how Alpha\+Fold2.\+3 produces the final MSA for a protein by combining three distinct MSAs.~\newline
+ ~\newline
+~\newline
+
 
 \label{usage_guide_python_neff_multimer}%
 \Hypertarget{usage_guide_python_neff_multimer}%
@@ -746,7 +765,7 @@ The method accepts the following parameters\+:
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ =\ neffy.compute\_neff\_masking(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ file='../MSAs/T1127.sto',}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ threshold=0.6,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ mask\_count=100,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ mask\_count=10,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ mask\_frac=0.2,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ norm=neffy.Normalization.No\_Normalization)}
 \DoxyCodeLine{}
@@ -769,7 +788,7 @@ The method accepts the following parameters\+:
 MSA length\+: 211~\newline
  MSA depth\+: 9949~\newline
  Initial NEFF\+: 37.\+7624~\newline
- Highest NEFF among maskings\+: 38.\+7935~\newline
+ Highest NEFF among maskings\+: 38.\+7015~\newline
  Result file\+: neff\+\_\+values-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+txt~\newline
  Masked MSA with highest NEFF\+: MSA\+\_\+with\+\_\+highest\+\_\+neff-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+fasta~\newline
  Time taken\+: 73.\+5736 seconds \end{quote}

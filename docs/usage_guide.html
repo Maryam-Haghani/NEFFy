@@ -290,11 +290,19 @@ Examples:</h3>
 </p>
 <ul>
 <li><b>Compute Asymmetric NEFF for an Integration of MSAs with Default Normalization (sqrt(L)):</b> <div class="fragment"><div class="line">./neff --file=../MSAs/uniref90_hits.sto,../MSAs/bfd_uniclust_hits.a3m,../MSAs/mgnify_hits.sto --depth=2048 --is_symmetric=false</div>
-</div><!-- fragment --> The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to a depth of 2048. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files. This process is similar to how AlphaFold2.3 generates MSAs for monomers.<br  />
+</div><!-- fragment --> Result: <blockquote class="doxtable">
+<p>&zwj;MSA length: 338<br  />
+ MSA depth: 2048<br  />
+ NEFF: 106.067 </p>
+</blockquote>
+</li>
+</ul>
+<p>The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to a depth of 2048. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.<br  />
+ This process is akin to how AlphaFold2.3 produces the final MSA for a protein by combining three distinct MSAs.<br  />
  <br  />
 <br  />
-<br  />
-</li>
+</p>
+<ul>
 <li><b>Compute NEFF for MSA of a Homomer (Default Normalization):</b> <div class="fragment"><div class="line">./neff --file=../MSAs/homomer.aln --multimer_MSA=true --stoichiom=A2</div>
 </div><!-- fragment --> Result: <blockquote class="doxtable">
 <p>&zwj;MSA sequence length: 102<br  />
@@ -324,15 +332,18 @@ Examples:</h3>
 <br  />
 </p>
 <ul>
-<li><b>Random Masking:</b> <div class="fragment"><div class="line">./neff --file=../MSAs/T1127.sto --mask_enabled=true --mask_frac=0.2 --mask_count=100 –norm=2 –threshold=0.6</div>
+<li><b>Random Masking:</b> <div class="fragment"><div class="line">./neff --file=../MSAs/T1127.sto --mask_enabled=true --mask_frac=0.2 --mask_count=10 –norm=2 –threshold=0.6</div>
 </div><!-- fragment --> Result: <blockquote class="doxtable">
 <p>&zwj;MSA sequence length: 211<br  />
  MSA depth: 9949<br  />
- Initial NEFF: 37.7624 NEFF values for each mask iteration have been saved in 'neff_values-thr_0.6-maskfrac_0.2.txt' with highest value: 38.7935 Masked MSA file corresponding to the highest NEFF value has been saved in 'MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta' Time taken for masking and NEFF computation: 63.027 seconds. </p>
+ Initial NEFF: 37.7624<br  />
+ NEFF values for each mask iteration have been saved in 'neff_values-thr_0.6-maskfrac_0.2.txt' with highest value: 38.7015<br  />
+ Masked MSA file corresponding to the highest NEFF value has been saved in 'MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta'<br  />
+ Time taken for masking and NEFF computation: 63.027 seconds. </p>
 </blockquote>
 </li>
 </ul>
-<p>The tool will mask 20% of sequences in 'T1127.sto' MSA file and repeat this process 100 times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.</p>
+<p>The tool will mask 20% of sequences in 'T1127.sto' MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.</p>
 <p><br  />
 </p>
 <p><a class="anchor" id="converter"></a></p>
@@ -516,7 +527,8 @@ Examples:</h3>
 <div class="line">    try:</div>
 <div class="line">        msa_length, msa_depth, neff = neffy.compute_neff(</div>
 <div class="line">            file=[&#39;../MSAs/uniref90_hits.sto&#39;, &#39;../MSAs/bfd_uniclust_hits.a3m&#39;, &#39;../MSAs/mgnify_hits.sto&#39;],</div>
-<div class="line">            is_symmetric = False)</div>
+<div class="line">            is_symmetric = False,</div>
+<div class="line">            depth=2048)</div>
 <div class="line"> </div>
 <div class="line">        print(f&quot;MSA length: {msa_length}&quot;)</div>
 <div class="line">        print(f&quot;MSA depth: {msa_depth}&quot;)</div>
@@ -527,13 +539,18 @@ Examples:</h3>
 <div class="line"> </div>
 <div class="line">if __name__ == &quot;__main__&quot;:</div>
 <div class="line">    main()</div>
-</div><!-- fragment --> The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to the gievn depth. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.<br  />
- This process is similar to how AlphaFold2.3 generates MSAs for monomers.<br  />
- <br  />
-<br  />
-<br  />
+</div><!-- fragment --> Result: <blockquote class="doxtable">
+<p>&zwj;MSA length: 338<br  />
+ MSA depth: 2048<br  />
+ NEFF: 106.067 </p>
+</blockquote>
 </li>
 </ul>
+<p>The tool will integrate MSAs from the list of files in the specified order and compute the NEFF value for the integrated MSA up to the gievn depth. If the tool reaches the specified depth before all files are integrated, it will stop processing the remaining files.<br  />
+ This process is akin to how AlphaFold2.3 produces the final MSA for a protein by combining three distinct MSAs.<br  />
+ <br  />
+<br  />
+</p>
 <p><a class="anchor" id="python_neff_multimer"></a></p>
 <h2><a class="anchor" id="autotoc_md80"></a>
 <code>compute_multimer_neff</code></h2>
@@ -760,7 +777,7 @@ Examples:</h3>
 <div class="line">            = neffy.compute_neff_masking(</div>
 <div class="line">              file=&#39;../MSAs/T1127.sto&#39;,</div>
 <div class="line">              threshold=0.6,</div>
-<div class="line">              mask_count=100,</div>
+<div class="line">              mask_count=10,</div>
 <div class="line">              mask_frac=0.2,</div>
 <div class="line">              norm=neffy.Normalization.No_Normalization)</div>
 <div class="line"> </div>
@@ -781,7 +798,7 @@ Examples:</h3>
 <p>&zwj;MSA length: 211<br  />
  MSA depth: 9949<br  />
  Initial NEFF: 37.7624<br  />
- Highest NEFF among maskings: 38.7935<br  />
+ Highest NEFF among maskings: 38.7015<br  />
  Result file: neff_values-thr_0.6-maskfrac_0.2.txt<br  />
  Masked MSA with highest NEFF: MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta<br  />
  Time taken: 73.5736 seconds </p>
