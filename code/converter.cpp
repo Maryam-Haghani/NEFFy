@@ -52,7 +52,8 @@ unordered_map<string, FlagInfo> Flags =
 /// @param outFile 
 /// @param checkValidation 
 /// @param alphabet 
-void convert(string inFile, string outFile, bool checkValidation, Alphabet alphabet)
+/// @return size
+int convert(string inFile, string outFile, bool checkValidation, Alphabet alphabet)
 {
     string inFormat = getFormat(inFile, "in_file");
     string outFormat = getFormat(outFile, "out_file");
@@ -98,6 +99,8 @@ void convert(string inFile, string outFile, bool checkValidation, Alphabet alpha
     }
 
     msaWriter->write();
+
+    return sequences.size();
 }
 
 /// @brief Get given alphabet by user
@@ -149,7 +152,10 @@ int main(int argc, char **argv)
         // check_validation
         bool checkValidation = flagHandler.getFlagValue("check_validation") == "true";
 
-        convert(inFile, outFile, checkValidation, alphabet);
+        int msaDepth = convert(inFile, outFile, checkValidation, alphabet);
+
+        cout << "Converted " << inFile << " with " <<  msaDepth << " sequences from " << getFormat(inFile, "in_file")
+        << " to " << getFormat(outFile, "out_file") << " and saved the output as " << outFile << "." << endl;
         
         return 0;
     }
