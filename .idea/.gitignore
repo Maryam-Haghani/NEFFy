@@ -6,3 +6,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+build
+dist
+neffy/bin
+neffy/cpp-source
+neffy.egg-info
