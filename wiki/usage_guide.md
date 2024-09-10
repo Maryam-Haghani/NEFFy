@@ -18,7 +18,7 @@
     - [__compute_multimer_neff__: NEFF Computation for Multimer MSA](#python_neff_multimer)
       - [Parameters](#python_neff_multimer_params)
       - [Example](#python_neff_multimer_example)
-    - [__compute_residue_neff__: Per-Residue (column-Wise) NEFF Computation](#python_neff_residue)
+    - [__compute_residue_neff__: Per-Residue (Column-Wise) NEFF Computation](#python_neff_residue)
       - [Parameters](#python_neff_residue_params)
       - [Example](#python_neff_residue_example)
     - [__compute_neff_masking__: MSA Masking](#python_neff_masking)
