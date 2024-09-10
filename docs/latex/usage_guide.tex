@@ -32,10 +32,10 @@
 \item \doxylink{usage_guide_python_neff_multimer_params}{Parameters}
 \item \doxylink{usage_guide_python_neff_multimer_example}{Example}
 \end{DoxyItemize}
-\item \doxylink{usage_guide_python_neff_column}{\+\_\+\+\_\+compute\+\_\+column\+\_\+wise\+\_\+neff\+\_\+\+\_\+\+: Column-\/\+Wise (Pre-\/\+Residue) NEFF Computation}
+\item \doxylink{usage_guide_python_neff_residue}{\+\_\+\+\_\+compute\+\_\+residue\+\_\+neff\+\_\+\+\_\+\+: Per-\/\+Residue (column-\/\+Wise) NEFF Computation}
 \begin{DoxyItemize}
-\item \doxylink{usage_guide_python_neff_column_params}{Parameters}
-\item \doxylink{usage_guide_python_neff_column_example}{Example}
+\item \doxylink{usage_guide_python_neff_residue_params}{Parameters}
+\item \doxylink{usage_guide_python_neff_residue_example}{Example}
 \end{DoxyItemize}
 \item \doxylink{usage_guide_python_neff_masking}{\+\_\+\+\_\+compute\+\_\+neff\+\_\+masking\+\_\+\+\_\+\+: MSA Masking}
 \begin{DoxyItemize}
@@ -114,7 +114,7 @@ The code accepts the following command-\/line flags\+: \tabulinesep=1mm
 {\ttfamily -\/-\/multimer\+\_\+\+MSA=\mbox{[}true/false\mbox{]}}   &Compute NEFF for MSA of a multimer   &No   &false   &{\ttfamily -\/-\/multimer\+\_\+\+MSA=true}    \\\cline{1-5}
 {\ttfamily -\/-\/stoichiom=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Stochiometry of the multimer   &when {\itshape multimer\+\_\+\+MSA}=true   &&{\ttfamily -\/-\/stoichiom=A2\+B1}    \\\cline{1-5}
 {\ttfamily -\/-\/chain\+\_\+length=\texorpdfstring{$<$}{<}list of values\texorpdfstring{$>$}{>}}   &Length of the chains in a heteromer   &when {\itshape multimer\+\_\+\+MSA}=true and multimer is a heteromer   &0   &{\ttfamily -\/-\/chain\+\_\+length=17 45}    \\\cline{1-5}
-{\ttfamily -\/-\/column\+\_\+neff=\mbox{[}true/false\mbox{]}}   &Compute Column-\/wise NEFF   &No   &false   &{\ttfamily -\/-\/column\+\_\+neff=true}   \\\cline{1-5}
+{\ttfamily -\/-\/residue\+\_\+neff=\mbox{[}true/false\mbox{]}}   &Compute per-\/residue (column-\/wise) NEFF   &No   &false   &{\ttfamily -\/-\/residue\+\_\+neff=true}   \\\cline{1-5}
 \end{longtabu}
 
 
@@ -176,17 +176,17 @@ MSA sequence length\+: 56~\newline
 
 
 \begin{DoxyItemize}
-\item {\bfseries{Compute Column-\/wise NEFF\+:}} 
+\item {\bfseries{Compute per-\/residue (column-\/wise) NEFF\+:}} 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{./neff\ -\/-\/file=../MSAs/example.a2m\ -\/-\/check\_validation=true\ -\/-\/column\_neff=true}
+\DoxyCodeLine{./neff\ -\/-\/file=../MSAs/example.a2m\ -\/-\/check\_validation=true\ -\/-\/residue\_neff=true}
 
 \end{DoxyCode}
  Result\+: \begin{quote}
 MSA sequence length\+: 56~\newline
  MSA depth\+: 5~\newline
- Column-\/wise NEFF\+:~\newline
+ Per-\/residue (column-\/wise) NEFF\+:~\newline
  0.\+668153 0.\+534522 0.\+668153 0.\+534522 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+534522 0.\+534522 0.\+534522 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+534522 0.\+534522 0.\+534522 0.\+668153 0.\+400892 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+668153 0.\+534522 0.\+534522 0.\+534522 0.\+534522 0.\+534522 0.\+400892 0.\+534522 0.\+534522 0.\+534522 0.\+400892 0.\+133631 0.\+133631 0.\+133631 0.\+133631 0.\+133631 0.\+133631 0.\+133631 0.\+133631~\newline
- Average of Column-\/wise NEFF\+: 0.\+539295 \end{quote}
+ Median of per-\/residue (column-\/wise) NEFF\+: 0.\+668153 \end{quote}
 
 \end{DoxyItemize}
 
@@ -642,11 +642,11 @@ The tool will identify paired MSA sequences and the sequences for each individua
 ~\newline
 
 
-\label{usage_guide_python_neff_column}%
-\Hypertarget{usage_guide_python_neff_column}%
-\hypertarget{usage_guide_autotoc_md83}{}\doxysubsection{\texorpdfstring{{\ttfamily compute\+\_\+column\+\_\+wise\+\_\+neff}}{{\ttfamily compute\+\_\+column\+\_\+wise\+\_\+neff}}}\label{usage_guide_autotoc_md83}
-\label{usage_guide_python_neff_column_params}%
-\Hypertarget{usage_guide_python_neff_column_params}%
+\label{usage_guide_python_neff_residue}%
+\Hypertarget{usage_guide_python_neff_residue}%
+\hypertarget{usage_guide_autotoc_md83}{}\doxysubsection{\texorpdfstring{{\ttfamily compute\+\_\+residue\+\_\+neff}}{{\ttfamily compute\+\_\+residue\+\_\+neff}}}\label{usage_guide_autotoc_md83}
+\label{usage_guide_python_neff_residue_params}%
+\Hypertarget{usage_guide_python_neff_residue_params}%
 \hypertarget{usage_guide_autotoc_md84}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{usage_guide_autotoc_md84}
 The method accepts the following parameters\+:
 
@@ -675,25 +675,25 @@ The method accepts the following parameters\+:
 \end{longtabu}
 
 
-\label{usage_guide_python_neff_column_example}%
-\Hypertarget{usage_guide_python_neff_column_example}%
+\label{usage_guide_python_neff_residue_example}%
+\Hypertarget{usage_guide_python_neff_residue_example}%
 \hypertarget{usage_guide_autotoc_md85}{}\doxysubsubsection{\texorpdfstring{Examples\+:}{Examples\+:}}\label{usage_guide_autotoc_md85}
 
 \begin{DoxyItemize}
-\item {\bfseries{Compute Column-\/wise NEFF\+:}} 
+\item {\bfseries{Compute per-\/residue (column-\/wise) NEFF\+:}} 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{import\ neffy}
 \DoxyCodeLine{}
 \DoxyCodeLine{def\ main():}
 \DoxyCodeLine{\ \ \ \ try:}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ msa\_length,\ msa\_depth,\ column\_wise\_neffs,\ avg\ =\ neffy.compute\_column\_wise\_neff(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ msa\_length,\ msa\_depth,\ residue\_neffs,\ median\ =\ neffy.compute\_residue\_neff(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ file='../MSAs/example.a2m',}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ check\_validation=True)}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}MSA\ length:\ \{msa\_length\}"{})}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}MSA\ depth:\ \{msa\_depth\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print("{}Column-\/wise\ NEFF:"{},\ column\_wise\_neffs)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print("{}Average\ of\ Column-\/wise\ NEFF:"{},\ avg)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print("{}Per-\/residue\ (column-\/wise)\ NEFF:\(\backslash\)n"{},\ residue\_neffs)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print("{}Median\ of\ per-\/residue\ (column-\/wise)\ NEFF:"{},\ median)}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ except\ RuntimeError\ as\ e:}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ print(e)}
@@ -705,8 +705,9 @@ The method accepts the following parameters\+:
  Result\+: \begin{quote}
 MSA length\+: 56~\newline
  MSA depth\+: 5~\newline
- Column-\/wise NEFF\+: \mbox{[}0.\+668153, 0.\+534522, 0.\+668153, 0.\+534522, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+668153, 0.\+400892, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+400892, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+400892, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631\mbox{]}~\newline
- Average of Column-\/wise NEFF\+: 0.\+539295 \end{quote}
+ Per-\/residue (column-\/wise) NEFF\+:~\newline
+ \mbox{[}0.\+668153, 0.\+534522, 0.\+668153, 0.\+534522, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+668153, 0.\+400892, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+668153, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+400892, 0.\+534522, 0.\+534522, 0.\+534522, 0.\+400892, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631, 0.\+133631\mbox{]}~\newline
+ Median of per-\/residue (column-\/wise) NEFF\+: 0.\+668153 \end{quote}
 
 \end{DoxyItemize}
 

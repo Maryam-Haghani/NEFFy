@@ -18,9 +18,9 @@
     - [__compute_multimer_neff__: NEFF Computation for Multimer MSA](#python_neff_multimer)
       - [Parameters](#python_neff_multimer_params)
       - [Example](#python_neff_multimer_example)
-    - [__compute_column_wise_neff__: Column-Wise (Pre-Residue) NEFF Computation](#python_neff_column)
-      - [Parameters](#python_neff_column_params)
-      - [Example](#python_neff_column_example)
+    - [__compute_residue_neff__: Per-Residue (column-Wise) NEFF Computation](#python_neff_residue)
+      - [Parameters](#python_neff_residue_params)
+      - [Example](#python_neff_residue_example)
     - [__compute_neff_masking__: MSA Masking](#python_neff_masking)
       - [Parameters](#python_neff_masking_params)
       - [Example](#python_neff_masking_example)
@@ -67,7 +67,7 @@ The code accepts the following command-line flags:
 | `--multimer_MSA=[true/false]` | Compute NEFF for  MSA of a multimer | No | false | `--multimer_MSA=true`    |
 | `--stoichiom=<value>` | Stochiometry of the multimer | when _multimer_MSA_=true |  | `--stoichiom=A2B1`    |
 | `--chain_length=<list of values>` | Length of the chains in a heteromer  | when _multimer_MSA_=true and multimer is a heteromer | 0 | `--chain_length=17 45`    |
-| `--column_neff=[true/false]` | Compute Column-wise NEFF | No | false | `--column_neff=true`    |
+| `--residue_neff=[true/false]` | Compute per-residue (column-wise) NEFF | No | false | `--residue_neff=true`    |
 
 
 \anchor neff_example
@@ -104,16 +104,16 @@ Result:
 > 1 0.333333 0.25 0.333333 0.25
 <br>
 
-- __Compute Column-wise NEFF:__
+- __Compute per-residue (column-wise) NEFF:__
 ```sh
-  ./neff --file=../MSAs/example.a2m --check_validation=true --column_neff=true
+  ./neff --file=../MSAs/example.a2m --check_validation=true --residue_neff=true
 ```
 Result:
 > MSA sequence length: 56<br>
 > MSA depth: 5<br>
-> Column-wise NEFF:<br>
+> Per-residue (column-wise) NEFF:<br>
 > 0.668153 0.534522 0.668153 0.534522 0.668153 0.668153 0.668153 0.668153 0.534522 0.534522 0.534522 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.534522 0.534522 0.534522 0.668153 0.400892 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.534522 0.534522 0.534522 0.534522 0.534522 0.400892 0.534522 0.534522 0.534522 0.400892 0.133631 0.133631 0.133631 0.133631 0.133631 0.133631 0.133631 0.133631<br>
-> Average of Column-wise NEFF: 0.539295
+> Median of per-residue (column-wise) NEFF: 0.668153
 <br>
 
 - __Compute Asymmetric NEFF for an Integration of MSAs with Default Normalization (sqrt(L)):__
@@ -442,9 +442,9 @@ Result:
 The tool will identify paired MSA sequences and the sequences for each individual MSA of chains in the given MSA file, based on the given lengths in 'chain_length'. It will report NEFF values for the paired MSA as well as for the MSAs corresponding to unpaired sequences. If the provided MSA is not in the format of a multimer MSA of a heteromer, the tool will raise an error.
 <br><br>
 
-\anchor python_neff_column
-## `compute_column_wise_neff`
-\anchor python_neff_column_params
+\anchor python_neff_residue
+## `compute_residue_neff`
+\anchor python_neff_residue_params
 ### Parameters:
 The method accepts the following parameters:
 
@@ -463,22 +463,22 @@ The method accepts the following parameters:
 | `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
 
-\anchor python_neff_column_example
+\anchor python_neff_residue_example
 ### Examples:
-- __Compute Column-wise NEFF:__
+- __Compute per-residue (column-wise) NEFF:__
 ```sh
 import neffy
 
 def main():
     try:
-        msa_length, msa_depth, column_wise_neffs, avg = neffy.compute_column_wise_neff(
+        msa_length, msa_depth, residue_neffs, median = neffy.compute_residue_neff(
           file='../MSAs/example.a2m',
           check_validation=True)
 
         print(f"MSA length: {msa_length}")
         print(f"MSA depth: {msa_depth}")
-        print("Column-wise NEFF:", column_wise_neffs)
-        print("Average of Column-wise NEFF:", avg)
+        print("Per-residue (column-wise) NEFF:\n", residue_neffs)
+        print("Median of per-residue (column-wise) NEFF:", median)
 
     except RuntimeError as e:
         print(e)
@@ -489,8 +489,9 @@ if __name__ == "__main__":
 Result:
 > MSA length: 56<br>
 > MSA depth: 5<br>
-> Column-wise NEFF: [0.668153, 0.534522, 0.668153, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.400892, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.534522, 0.534522, 0.400892, 0.534522, 0.534522, 0.534522, 0.400892, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631]<br>
-> Average of Column-wise NEFF: 0.539295
+> Per-residue (column-wise) NEFF:<br>
+> [0.668153, 0.534522, 0.668153, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.400892, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.534522, 0.534522, 0.400892, 0.534522, 0.534522, 0.534522, 0.400892, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631]<br>
+> Median of per-residue (column-wise) NEFF: 0.668153
 <br>
 
 \anchor python_neff_masking

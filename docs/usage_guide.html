@@ -147,9 +147,9 @@ Table of Contents</h2>
 <li><a class="el" href="#python_neff_multimer_example">Example</a></li>
 </ul>
 </li>
-<li><a class="el" href="#python_neff_column">__compute_column_wise_neff__: Column-Wise (Pre-Residue) NEFF Computation</a><ul>
-<li><a class="el" href="#python_neff_column_params">Parameters</a></li>
-<li><a class="el" href="#python_neff_column_example">Example</a></li>
+<li><a class="el" href="#python_neff_residue">__compute_residue_neff__: Per-Residue (column-Wise) NEFF Computation</a><ul>
+<li><a class="el" href="#python_neff_residue_params">Parameters</a></li>
+<li><a class="el" href="#python_neff_residue_example">Example</a></li>
 </ul>
 </li>
 <li><a class="el" href="#python_neff_masking">__compute_neff_masking__: MSA Masking</a><ul>
@@ -235,7 +235,7 @@ Parameters:</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--chain_length=&lt;list of values&gt;</code>   </td><td class="markdownTableBodyNone">Length of the chains in a heteromer   </td><td class="markdownTableBodyNone">when <em>multimer_MSA</em>=true and multimer is a heteromer   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--chain_length=17 45</code>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--column_neff=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute Column-wise NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--column_neff=true</code>   </td></tr>
+<td class="markdownTableBodyNone"><code>--residue_neff=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute per-residue (column-wise) NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--residue_neff=true</code>   </td></tr>
 </table>
 <p><a class="anchor" id="neff_example"></a></p>
 <h3><a class="anchor" id="autotoc_md69"></a>
@@ -276,13 +276,13 @@ Examples:</h3>
 <p><br  />
 </p>
 <ul>
-<li><b>Compute Column-wise NEFF:</b> <div class="fragment"><div class="line">./neff --file=../MSAs/example.a2m --check_validation=true --column_neff=true</div>
+<li><b>Compute per-residue (column-wise) NEFF:</b> <div class="fragment"><div class="line">./neff --file=../MSAs/example.a2m --check_validation=true --residue_neff=true</div>
 </div><!-- fragment --> Result: <blockquote class="doxtable">
 <p>&zwj;MSA sequence length: 56<br  />
  MSA depth: 5<br  />
- Column-wise NEFF:<br  />
+ Per-residue (column-wise) NEFF:<br  />
  0.668153 0.534522 0.668153 0.534522 0.668153 0.668153 0.668153 0.668153 0.534522 0.534522 0.534522 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.534522 0.534522 0.534522 0.668153 0.400892 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.668153 0.534522 0.534522 0.534522 0.534522 0.534522 0.400892 0.534522 0.534522 0.534522 0.400892 0.133631 0.133631 0.133631 0.133631 0.133631 0.133631 0.133631 0.133631<br  />
- Average of Column-wise NEFF: 0.539295 </p>
+ Median of per-residue (column-wise) NEFF: 0.668153 </p>
 </blockquote>
 </li>
 </ul>
@@ -657,10 +657,10 @@ Examples:</h3>
 <p>The tool will identify paired MSA sequences and the sequences for each individual MSA of chains in the given MSA file, based on the given lengths in 'chain_length'. It will report NEFF values for the paired MSA as well as for the MSAs corresponding to unpaired sequences. If the provided MSA is not in the format of a multimer MSA of a heteromer, the tool will raise an error. <br  />
 <br  />
 </p>
-<p><a class="anchor" id="python_neff_column"></a></p>
+<p><a class="anchor" id="python_neff_residue"></a></p>
 <h2><a class="anchor" id="autotoc_md83"></a>
-<code>compute_column_wise_neff</code></h2>
-<p><a class="anchor" id="python_neff_column_params"></a></p>
+<code>compute_residue_neff</code></h2>
+<p><a class="anchor" id="python_neff_residue_params"></a></p>
 <h3><a class="anchor" id="autotoc_md84"></a>
 Parameters:</h3>
 <p>The method accepts the following parameters:</p>
@@ -692,22 +692,22 @@ Parameters:</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>pos_end</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td></tr>
 </table>
-<p><a class="anchor" id="python_neff_column_example"></a></p>
+<p><a class="anchor" id="python_neff_residue_example"></a></p>
 <h3><a class="anchor" id="autotoc_md85"></a>
 Examples:</h3>
 <ul>
-<li><b>Compute Column-wise NEFF:</b> <div class="fragment"><div class="line">import neffy</div>
+<li><b>Compute per-residue (column-wise) NEFF:</b> <div class="fragment"><div class="line">import neffy</div>
 <div class="line"> </div>
 <div class="line">def main():</div>
 <div class="line">    try:</div>
-<div class="line">        msa_length, msa_depth, column_wise_neffs, avg = neffy.compute_column_wise_neff(</div>
+<div class="line">        msa_length, msa_depth, residue_neffs, median = neffy.compute_residue_neff(</div>
 <div class="line">          file=&#39;../MSAs/example.a2m&#39;,</div>
 <div class="line">          check_validation=True)</div>
 <div class="line"> </div>
 <div class="line">        print(f&quot;MSA length: {msa_length}&quot;)</div>
 <div class="line">        print(f&quot;MSA depth: {msa_depth}&quot;)</div>
-<div class="line">        print(&quot;Column-wise NEFF:&quot;, column_wise_neffs)</div>
-<div class="line">        print(&quot;Average of Column-wise NEFF:&quot;, avg)</div>
+<div class="line">        print(&quot;Per-residue (column-wise) NEFF:\n&quot;, residue_neffs)</div>
+<div class="line">        print(&quot;Median of per-residue (column-wise) NEFF:&quot;, median)</div>
 <div class="line"> </div>
 <div class="line">    except RuntimeError as e:</div>
 <div class="line">        print(e)</div>
@@ -717,8 +717,9 @@ Examples:</h3>
 </div><!-- fragment --> Result: <blockquote class="doxtable">
 <p>&zwj;MSA length: 56<br  />
  MSA depth: 5<br  />
- Column-wise NEFF: [0.668153, 0.534522, 0.668153, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.400892, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.534522, 0.534522, 0.400892, 0.534522, 0.534522, 0.534522, 0.400892, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631]<br  />
- Average of Column-wise NEFF: 0.539295 </p>
+ Per-residue (column-wise) NEFF:<br  />
+ [0.668153, 0.534522, 0.668153, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.400892, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.534522, 0.534522, 0.400892, 0.534522, 0.534522, 0.534522, 0.400892, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631]<br  />
+ Median of per-residue (column-wise) NEFF: 0.668153 </p>
 </blockquote>
 </li>
 </ul>

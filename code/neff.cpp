@@ -30,7 +30,7 @@
  *   --multimer_MSA=<true/false>       Compute NEFF for a multimer MSA (default: false)\n"
  *   --stoichiom=<value>               Multimer stoichiometry (default: empty)
  *   --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)\n"
- *   --column_neff=<true/false>        Compute Column-wise NEFF (default: false)
+ *   --residue_neff=<true/false>       Compute per-resiue (column-wise) NEFF (default: false)
  *
  * For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
  */
@@ -93,8 +93,8 @@ unordered_map<string, FlagInfo> Flags =
     {"multimer_MSA", {false, "false"}},     // Compute NEFF for a multimer MSA
     {"stoichiom", {false, ""}},             // Multimer stoichiometry
     {"chain_length", {false, "0"}},         // Length of the chains in heteromer multimer
-    {"column_neff", {false, "false"}}       // Compute Column-wise NEFF
- };
+    {"residue_neff", {false, "false"}}      // Compute per-resiue (column-wise) NEFF
+};
 
 /// @brief Map char residues to digit based on given 'nonStandardOption'
 /// @param c input letter
@@ -437,11 +437,11 @@ void checkFlags(FlagHandler& flagHandler)
     if (flagHandler.getFlagValue("mask_enabled") == "true") trueCount++;
     if (flagHandler.getFlagValue("only_weights") == "true") trueCount++;
     if (flagHandler.getFlagValue("multimer_MSA") == "true") trueCount++;
-    if (flagHandler.getFlagValue("column_neff") == "true") trueCount++;
+    if (flagHandler.getFlagValue("residue_neff") == "true") trueCount++;
     if (trueCount > 1)
     {
         throw runtime_error(
-            "Only one of 'mask_enabled', 'only_weights', 'column_neff', or 'multimer_MSA' can be true at a time.");
+            "Only one of 'mask_enabled', 'only_weights', 'residue_neff', or 'multimer_MSA' can be true at a time.");
     }
     if (flagHandler.getFlagValue("mask_enabled") == "true")
     {
@@ -644,12 +644,12 @@ void integrateUniqueSequences(vector<Sequence>& integratedSequences, const vecto
     }
 }
 
-/// @brief Compute column-wise NEFF
+/// @brief Compute per-residue (column-wise) NEFF
 /// @param sequences 
 /// @param sequenceWeights
 /// @param norm 
 /// @return 
-std::vector<double> computeColumnwiseNEFF
+std::vector<double> computeResidueNEFF
 (const vector<vector<int>>& sequences, const vector<int>& sequenceWeights, Normalization norm) {
     int numSequences = sequences.size();
     if (numSequences == 0) {
@@ -657,12 +657,12 @@ std::vector<double> computeColumnwiseNEFF
     }
     int sequenceLength = sequences[0].size();
     
-    vector<double> columnNEFF(sequenceLength, 0.0);
+    vector<double> residueNEFF(sequenceLength, 0.0);
     
     for (int col = 0; col < sequenceLength; ++col) {
         double sumWeights = 0.0;
         for (int row = 0; row < numSequences; ++row) {
-            // include sequence weight of the current seqeunce in the column NEFF, if column is not corresponding to a gap position
+            // include sequence weight of the current seqeunce in the residue NEFF, if residue is not corresponding to a gap position
             if (sequences[row][col] != 0)
             {
                 sumWeights += 1./ sequenceWeights[row];
@@ -672,18 +672,18 @@ std::vector<double> computeColumnwiseNEFF
         switch(norm) // normalizing Nf
         {
             case Sqrt_L:
-                columnNEFF[col] = sumWeights/sqrt(sequenceLength);
+                residueNEFF[col] = sumWeights/sqrt(sequenceLength);
                 break;
             case L:
-                columnNEFF[col] = sumWeights/sequenceLength;
+                residueNEFF[col] = sumWeights/sequenceLength;
                 break;
             default:
-                columnNEFF[col] = sumWeights;
+                residueNEFF[col] = sumWeights;
                 break;
         }
     }
     
-    return columnNEFF;
+    return residueNEFF;
 }
 
 /// @brief NEFF calculation for a masked MSA
@@ -974,17 +974,21 @@ int main(int argc, char **argv)
             return 0;
         }
 
-        if(flagHandler.getFlagValue("column_neff") == "true")
+        if(flagHandler.getFlagValue("residue_neff") == "true")
         {
-            vector<double> columnNEFF = computeColumnwiseNEFF(sequences2num, sequenceWeights, norm);
-            cout << "Column-wise NEFF:" << endl;
-            for (int col=0; col < columnNEFF.size(); col++)
+            vector<double> residueNEFF = computeResidueNEFF(sequences2num, sequenceWeights, norm);
+            cout << "Per-residue (column-wise) NEFF:" << endl;
+            for (int col=0; col < residueNEFF.size(); col++)
             {
-                cout << columnNEFF[col] << ' ';
+                cout << residueNEFF[col] << ' ';
             }
-            // Compute the mean of columnNEFF
-            double meanColumnNEFF = accumulate(columnNEFF.begin(), columnNEFF.end(), 0.0) / length;
-            cout << "\nAverage of Column-wise NEFF: " << meanColumnNEFF <<endl << flush;
+            // Compute the median of residueNEFF
+            sort(residueNEFF.begin(), residueNEFF.end());
+            double median = residueNEFF.size() % 2 == 0 
+                    ? (residueNEFF[residueNEFF.size()/2 - 1] + residueNEFF[residueNEFF.size()/2]) / 2.0 
+                    : residueNEFF[residueNEFF.size()/2];
+
+            cout << "\nMedian of per-residue (column-wise) NEFF: " << median <<endl << flush;
             return 0;
         }
 

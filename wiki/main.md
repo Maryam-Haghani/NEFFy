@@ -35,7 +35,7 @@ The NEFF computation tool provides versatile options for analyzing the diversity
 <br>
 * __Handeling of Various Biological Sequences__: Each biological sequence utilizes a distinct collection of symbols to represent its sequence, known as an alphabet. The \htmlonly<a href="help.html#alphabet">Help</a>\endhtmlonly page provides a reference to these alphabets for `protein`s, `RNA`s and `DNA`s.<br>
 <br>
-* __Column-wise NEFF (Per-Residue NEFF)__: This method computes NEFF for each position in the alignment. It is used by tools like `AlphaFold` for more precise per-residue sequence diversity assessment. Per-residue NEFF values for each position in the MSA were calculated by summing the weights of the sequences that have a residue (i.e., non-gap characters) at that specific position.<br>
+* __Per-Residue NEFF (column-wise NEFF)__: This method computes NEFF for each position in the alignment. Per-residue NEFF values for each position in the MSA are calculated by summing the weights of the sequences that have a residue (i.e., non-gap characters) at that specific position. It is used by tools like `AlphaFold` for more precise per-residue sequence diversity assessment.<br>
 <br>
 * __Multimer MSA NEFF__: 
 The tool can calculate NEFF for MSAs of a multimeric protein. Tools like AlphaFold-Multimer generate these multimeric MSAs, where, for homomers (assemblies comprising multiple copies of the same chain), the MSA consists of multiple copies of the same sequence alignment. For heteromers (assemblies comprising two or more different chains), the MSA includes paired sequence alignments followed by individual MSAs for each chain in a block-diagonal arrangement. It's possible that some chains may not have an individual MSA, but a paired MSA is always present.

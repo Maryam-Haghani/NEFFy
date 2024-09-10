@@ -140,8 +140,8 @@ def parse_neff_masking(output):
     )
 
 
-# Parse column-wise NEFF results
-def parse_column_wise_neff(output):
+# Parse per-residue (column-wise) NEFF results
+def parse_residue_neff(output):
     msa_length, msa_depth = parse_result(output)
 
     lines = output.strip().splitlines()
@@ -268,8 +268,8 @@ def compute_neff_masking(
         raise RuntimeError(f"Error in 'compute_neff_masking': {str(e)}")
 
 
-# Function to compute column-wise NEFF
-def compute_column_wise_neff(
+# Function to compute per-residue (column-wise) NEFF
+def compute_residue_neff(
         file: Union[str, List[str]],
         alphabet: Alphabet = Alphabet.Protein,
         check_validation: bool = False,
@@ -286,16 +286,16 @@ def compute_column_wise_neff(
     try:
         params = locals()
         params['file'] = file if isinstance(file, str) else ",".join(file)
-        params['column_neff'] = True
+        params['residue_neff'] = True
 
         _check_flags(params)
         args = build_args(params)
 
         # Run neff executable
         output = run_exe(args, 'neff')
-        return parse_column_wise_neff(output)
+        return parse_residue_neff(output)
     except Exception as e:
-        raise RuntimeError(f"Error in 'compute_column_wise_neff': {str(e)}")
+        raise RuntimeError(f"Error in 'compute_residue_neff': {str(e)}")
 
 
 # Function to compute NEFF for multimeric structures

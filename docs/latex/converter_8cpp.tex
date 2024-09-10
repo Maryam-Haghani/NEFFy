@@ -16,7 +16,7 @@ MSA File Converter.
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{converter_8cpp_ac78d42ddaf55e89ff6e10ffed0aca5ac}{convert}} (string in\+File, string out\+File, bool check\+Validation, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
+int \mbox{\hyperlink{converter_8cpp_a061625e1e49b7a50a37874acc9d32a4d}{convert}} (string in\+File, string out\+File, bool check\+Validation, \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} alphabet)
 \begin{DoxyCompactList}\small\item\em Convert the format of the input MSA file to the format of the output MSA file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \mbox{\hyperlink{converter_8cpp_a0fb06c3f546be5708d4b522bc60400aa}{get\+Alphabet}} (\mbox{\hyperlink{class_flag_handler}{Flag\+Handler}} \&flag\+Handler)
 \begin{DoxyCompactList}\small\item\em Get given alphabet by user. \end{DoxyCompactList}\item 
@@ -45,11 +45,11 @@ Valid alphabet of MSA; alphabet option (0\+: Protein, 1\+: RNA, 2\+: DNA) (defau
 For detailed instructions, please refer to the documentation at \href{https://maryam-haghani.github.io/NEFFy}{\texttt{ https\+://maryam-\/haghani.\+github.\+io/\+NEFFy}}. 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{converter_8cpp_ac78d42ddaf55e89ff6e10ffed0aca5ac}\index{converter.cpp@{converter.cpp}!convert@{convert}}
+\Hypertarget{converter_8cpp_a061625e1e49b7a50a37874acc9d32a4d}\index{converter.cpp@{converter.cpp}!convert@{convert}}
 \index{convert@{convert}!converter.cpp@{converter.cpp}}
 \doxysubsubsection{\texorpdfstring{convert()}{convert()}}
-{\footnotesize\ttfamily \label{converter_8cpp_ac78d42ddaf55e89ff6e10ffed0aca5ac} 
-void convert (\begin{DoxyParamCaption}\item[{string}]{in\+File}{, }\item[{string}]{out\+File}{, }\item[{bool}]{check\+Validation}{, }\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{converter_8cpp_a061625e1e49b7a50a37874acc9d32a4d} 
+int convert (\begin{DoxyParamCaption}\item[{string}]{in\+File}{, }\item[{string}]{out\+File}{, }\item[{bool}]{check\+Validation}{, }\item[{\mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}}}]{alphabet}{}\end{DoxyParamCaption})}
 
 
 
@@ -63,10 +63,12 @@ Convert the format of the input MSA file to the format of the output MSA file.
 \hline
 {\em check\+Validation} & \\
 \hline
-{\em alphabet} & ~\newline
- \\
+{\em alphabet} & \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size 
+\end{DoxyReturn}
 \Hypertarget{converter_8cpp_a0fb06c3f546be5708d4b522bc60400aa}\index{converter.cpp@{converter.cpp}!getAlphabet@{getAlphabet}}
 \index{getAlphabet@{getAlphabet}!converter.cpp@{converter.cpp}}
 \doxysubsubsection{\texorpdfstring{getAlphabet()}{getAlphabet()}}

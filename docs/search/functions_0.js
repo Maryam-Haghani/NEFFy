@@ -8,9 +8,9 @@ var searchData=
   ['checkrepeatedchainandreturnonesegment_5',['checkRepeatedChainAndReturnOneSegment',['../class_multimer_handler.html#a11ec957927b236ed52449d7f61751a5c',1,'MultimerHandler']]],
   ['checkrequiredflags_6',['checkRequiredFlags',['../class_flag_handler.html#aa1e1b7401c7d94431ac7e3bd815392f7',1,'FlagHandler']]],
   ['checkrowcorrespondsonlytoonechainandreturnchainindex_7',['checkRowCorrespondsOnlyToOneChainAndReturnChainIndex',['../class_multimer_handler.html#a02d436c824014e1bb0db8836430d3d74',1,'MultimerHandler']]],
-  ['computecolumnwiseneff_8',['computeColumnwiseNEFF',['../neff_8cpp.html#a34c5c5af59f85462b69de4c060883efb',1,'neff.cpp']]],
-  ['computeneff_9',['computeNeff',['../neff_8cpp.html#ab62e2d4b3843e404e7b7cf478a7bfcb9',1,'neff.cpp']]],
+  ['computeneff_8',['computeNeff',['../neff_8cpp.html#ab62e2d4b3843e404e7b7cf478a7bfcb9',1,'neff.cpp']]],
+  ['computeresidueneff_9',['computeResidueNEFF',['../neff_8cpp.html#a33d5a6a7eeeacfa9602e7bc5606b379f',1,'neff.cpp']]],
   ['computeweights_10',['computeWeights',['../neff_8cpp.html#a326f49375aa69b197b475af4407af8ce',1,'neff.cpp']]],
   ['containsinvalidletters_11',['containsInvalidLetters',['../class_m_s_a_reader.html#ac79629b6cce3127ccb303a0378ffe1eb',1,'MSAReader']]],
-  ['convert_12',['convert',['../converter_8cpp.html#ac78d42ddaf55e89ff6e10ffed0aca5ac',1,'converter.cpp']]]
+  ['convert_12',['convert',['../converter_8cpp.html#a061625e1e49b7a50a37874acc9d32a4d',1,'converter.cpp']]]
 ];

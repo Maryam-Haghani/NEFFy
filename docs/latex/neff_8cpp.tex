@@ -60,8 +60,8 @@ void \mbox{\hyperlink{neff_8cpp_a5db795718fa6d1ed9054f10acd9fcaf0}{get\+Position
 \begin{DoxyCompactList}\small\item\em Set desired positiones to compute NEFF for based on given \textquotesingle{}pos\+\_\+start\textquotesingle{} and \textquotesingle{}pos\+\_\+end\textquotesingle{} flags. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{neff_8cpp_a56021411152a788bc005d74f38ef3c72}{integrate\+Unique\+Sequences}} (vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&integrated\+Sequences, const vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&sequences)
 \begin{DoxyCompactList}\small\item\em to merge sequences and remove redundant sequences \end{DoxyCompactList}\item 
-std\+::vector$<$ double $>$ \mbox{\hyperlink{neff_8cpp_a34c5c5af59f85462b69de4c060883efb}{compute\+Columnwise\+NEFF}} (const vector$<$ vector$<$ int $>$ $>$ \&sequences, const vector$<$ int $>$ \&sequence\+Weights, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm)
-\begin{DoxyCompactList}\small\item\em Compute column-\/wise NEFF. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f}{compute\+Residue\+NEFF}} (const vector$<$ vector$<$ int $>$ $>$ \&sequences, const vector$<$ int $>$ \&sequence\+Weights, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm)
+\begin{DoxyCompactList}\small\item\em Compute per-\/residue (column-\/wise) NEFF. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{neff_8cpp_ad86c7646b3246abb685f572599f8589f}{calculate\+Masked\+NEFF}} (vector$<$ vector$<$ int $>$ $>$ \&sequences2num, float threshold, bool is\+Symmetric, const string \&standard\+Letters, \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard\+Handler}} non\+Standard\+Option, float mask\+Frac, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm, int length, set$<$ int $>$ \&masked\+Indices)
 \begin{DoxyCompactList}\small\item\em NEFF calculation for a masked MSA. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{neff_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
@@ -99,7 +99,7 @@ Start position of each sequence to be considered in neff (inclusive (default\+: 
 
 Fraction of sequences to be masked in each masking iteration (default\+: 0)~\newline
 "{}   -\/-\/mask\+\_\+count=$<$value$>$              Frequency of masking (default\+: 0)\textbackslash{}n"{} --multimer\+\_\+\+MSA=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute NEFF for a multimer MSA (default\+: false)~\newline
-"{}   --stoichiom=$<$value$>$               Multimer stoichiometry (default\+: empty)   --chain\+\_\+length=$<$list of values$>$   Length of the chains in heteromer multimer (default\+: 0)\textbackslash{}n"{} --column\+\_\+neff=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute Column-\/wise NEFF (default\+: false)
+"{}   --stoichiom=$<$value$>$               Multimer stoichiometry (default\+: empty)   --chain\+\_\+length=$<$list of values$>$   Length of the chains in heteromer multimer (default\+: 0)\textbackslash{}n"{} --residue\+\_\+neff=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute per-\/resiue (column-\/wise) NEFF (default\+: false)
 
 For detailed instructions, please refer to the documentation at \href{https://maryam-haghani.github.io/NEFFy}{\texttt{ https\+://maryam-\/haghani.\+github.\+io/\+NEFFy}}. 
 
@@ -181,29 +181,6 @@ Check flags ~\newline
  \\
 \hline
 \end{DoxyParams}
-\Hypertarget{neff_8cpp_a34c5c5af59f85462b69de4c060883efb}\index{neff.cpp@{neff.cpp}!computeColumnwiseNEFF@{computeColumnwiseNEFF}}
-\index{computeColumnwiseNEFF@{computeColumnwiseNEFF}!neff.cpp@{neff.cpp}}
-\doxysubsubsection{\texorpdfstring{computeColumnwiseNEFF()}{computeColumnwiseNEFF()}}
-{\footnotesize\ttfamily \label{neff_8cpp_a34c5c5af59f85462b69de4c060883efb} 
-std\+::vector$<$ double $>$ compute\+Columnwise\+NEFF (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ int $>$ $>$ \&}]{sequences}{, }\item[{const vector$<$ int $>$ \&}]{sequence\+Weights}{, }\item[{\mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}]{norm}{}\end{DoxyParamCaption})}
-
-
-
-Compute column-\/wise NEFF. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em sequences} & \\
-\hline
-{\em sequence\+Weights} & \\
-\hline
-{\em norm} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-~\newline
- 
-\end{DoxyReturn}
 \Hypertarget{neff_8cpp_ab62e2d4b3843e404e7b7cf478a7bfcb9}\index{neff.cpp@{neff.cpp}!computeNeff@{computeNeff}}
 \index{computeNeff@{computeNeff}!neff.cpp@{neff.cpp}}
 \doxysubsubsection{\texorpdfstring{computeNeff()}{computeNeff()}}
@@ -221,6 +198,29 @@ Cumpote NEFF values based on sequence weights and given normalization.
 {\em norm} & \\
 \hline
 {\em sequence\+Length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f}\index{neff.cpp@{neff.cpp}!computeResidueNEFF@{computeResidueNEFF}}
+\index{computeResidueNEFF@{computeResidueNEFF}!neff.cpp@{neff.cpp}}
+\doxysubsubsection{\texorpdfstring{computeResidueNEFF()}{computeResidueNEFF()}}
+{\footnotesize\ttfamily \label{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f} 
+std\+::vector$<$ double $>$ compute\+Residue\+NEFF (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ int $>$ $>$ \&}]{sequences}{, }\item[{const vector$<$ int $>$ \&}]{sequence\+Weights}{, }\item[{\mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}]{norm}{}\end{DoxyParamCaption})}
+
+
+
+Compute per-\/residue (column-\/wise) NEFF. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequences} & \\
+\hline
+{\em sequence\+Weights} & \\
+\hline
+{\em norm} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -526,7 +526,7 @@ unordered\+\_\+map$<$string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}}$>$ 
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}multimer\_MSA"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\},\ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}stoichiom"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}chain\_length"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0"{}}\}\},\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}column\_neff"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\}\ \ \ \ \ \ \ }
-\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}residue\_neff"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\}\ \ \ \ \ \ }
+\DoxyCodeLine{\}}
 
 \end{DoxyCode}
