@@ -64,8 +64,8 @@ void MSAReader::validateSequences(Alphabet alphabet)
     int unaligned = isUnaligned();
     if (unaligned != -1)
     {
-        throw runtime_error("MSA file expected to be aligned...\n sequence "
-                            + to_string(unaligned) + " makes unalignement.");    
+        throw runtime_error("MSA file expected to be aligned...\nSequence "
+                            + to_string(unaligned) + " causes misalignment.");    
     }
 }
 
