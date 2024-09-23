@@ -24,9 +24,6 @@
  *   --pos_start=<value>               Start position of each sequence to be considered in neff (inclusive (default: 1))\n"
  *   --pos_end=<value>                 Last position of each sequence to be considered in neff (inclusive (default: length of MSA sequence))\n"
  *   --only_weights=<true/false>       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n"
- *   --mask_enabled=<true/false>       Enable random sequence masking for NEFF calculation (default: false)\n"
- *   --mask_frac=<value>               Fraction of sequences to be masked in each masking iteration (default: 0)\n"
- *   --mask_count=<value>              Frequency of masking (default: 0)\n"
  *   --multimer_MSA=<true/false>       Compute NEFF for a multimer MSA (default: false)\n"
  *   --stoichiom=<value>               Multimer stoichiometry (default: empty)
  *   --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)\n"
@@ -87,9 +84,6 @@ unordered_map<string, FlagInfo> Flags =
     {"pos_start", {false, "1"}},            // Start position of each sequence to be considered in NEFF (inclusive)
     {"pos_end", {false, "inf"}},            // Last position of each sequence to be considered in NEFF (inclusive)
     {"only_weights", {false, "false"}},     // Return sequence weights instead of final NEFF
-    {"mask_enabled", {false, "false"}},     // Enable random  sequence masking for NEFF calculation
-    {"mask_frac", {false, "0"}},            // Fraction of sequences to be masked in each masking iteration
-    {"mask_count", {false, "0"}},           // Frequency of masking
     {"multimer_MSA", {false, "false"}},     // Compute NEFF for a multimer MSA
     {"stoichiom", {false, ""}},             // Multimer stoichiometry
     {"chain_length", {false, "0"}},         // Length of the chains in heteromer multimer
@@ -229,7 +223,7 @@ vector<int> computeWeights(vector<vector<int>> sequences, float threshold, bool 
     int non_gap_count;
     vector <bool> non_gap_seq; // keeps positions of residues in a sequence
     vector<vector<bool>> non_gap_msa; // keeps positions of non-gap residues in all sequences
-    vector<int> cutoff; // kepps max num of mismatches for a sequence to be considered homolog
+    vector<int> cutoff; // keeps max num of mismatches for a sequence to be considered homolog
     non_gap_seq.assign(length, 0);
 
     // computeing cutoff for each sequence
@@ -317,41 +311,6 @@ vector<int> computeWeights(vector<vector<int>> sequences, float threshold, bool 
     return sequence_weight;
 }
 
-/// @brief Randomly mask sequences in the MSA (except the first sequence)
-/// @param sequences 
-/// @param maskFrac 
-/// @return unmasked sequences, masked indices
-tuple<vector<vector<int>>, set<int>> maskSequences(vector<vector<int>>& sequences, double maskFrac) {
-    int totalSequences = sequences.size();
-    int numToMask = static_cast<int>(maskFrac * totalSequences);
-
-    // Create a vector of indices, starting from 1 to exclude the first sequence
-    vector<int> indices(totalSequences - 1);
-
-    iota(indices.begin(), indices.end(), 1);
-
-    // Randomly shuffle the indices
-    random_device rd;
-    mt19937 gen(rd());
-    shuffle(indices.begin(), indices.end(), gen);
-
-    // Select the first numToMask indices to be masked
-    set<int> maskIndices(indices.begin(), indices.begin() + numToMask);
-
-    // Add the first sequence to the selected sequences
-    vector<vector<int>> selectedSequences;
-    selectedSequences.push_back(sequences[0]);
-
-    // Add the remaining sequences that are not masked
-    for (int i = 1; i < totalSequences; ++i) {
-        if (maskIndices.find(i) == maskIndices.end()) {
-            selectedSequences.push_back(sequences[i]);
-        }
-    }
-
-    return make_tuple(selectedSequences, maskIndices);
-}
-
 /// @brief Cumpote NEFF values based on sequence weights and given normalization
 /// @param sequenceWeights 
 /// @param norm 
@@ -432,42 +391,15 @@ NonStandardHandler getNonStandardOption(FlagHandler& flagHandler) {
 /// @param flagHandler 
 void checkFlags(FlagHandler& flagHandler)
 {
-    // Only one of mask_enabled, only_weights, or multimer_MSA can be true at a time.
+    // Only one of only_weights, multimer_MSA, or residue_neff can be true at a time.
     int trueCount = 0;
-    if (flagHandler.getFlagValue("mask_enabled") == "true") trueCount++;
     if (flagHandler.getFlagValue("only_weights") == "true") trueCount++;
     if (flagHandler.getFlagValue("multimer_MSA") == "true") trueCount++;
     if (flagHandler.getFlagValue("residue_neff") == "true") trueCount++;
     if (trueCount > 1)
     {
         throw runtime_error(
-            "Only one of 'mask_enabled', 'only_weights', 'residue_neff', or 'multimer_MSA' can be true at a time.");
-    }
-    if (flagHandler.getFlagValue("mask_enabled") == "true")
-    {
-        int maskCount;
-        try
-        {
-            maskCount = flagHandler.getIntValue("mask_count");
-            if(maskCount == 0)
-            {
-                throw runtime_error("");
-            }
-        }
-        catch (const exception& e)
-        {
-            throw runtime_error("When 'mask_enabled' is true, 'mask_count' must be a positive number.");
-        }
-        
-        float maskFrac;
-        try
-        {
-            maskFrac = flagHandler.getFloatValue("mask_frac");
-        }
-        catch (const exception& e)
-        {
-            throw runtime_error("When 'mask_enabled' is true, 'mask_frac' should be a number between 0 and 1");
-        }
+            "Only one of 'only_weights', 'residue_neff', or 'multimer_MSA' can be true at a time.");
     }
     if (flagHandler.getFlagValue("multimer_MSA") == "true")
     {
@@ -686,27 +618,6 @@ std::vector<double> computeResidueNEFF
     return residueNEFF;
 }
 
-/// @brief NEFF calculation for a masked MSA
-/// @param sequences2num 
-/// @param threshold 
-/// @param isSymmetric 
-/// @param standardLetters 
-/// @param nonStandardOption 
-/// @param maskFrac 
-/// @param norm 
-/// @param length 
-/// @param bestMaskedIndices 
-/// @return 
-float calculateMaskedNEFF(vector<vector<int>>& sequences2num, float threshold, bool isSymmetric,
-                          const string& standardLetters, NonStandardHandler nonStandardOption, 
-                          float maskFrac, Normalization norm, int length, set<int>& maskedIndices) {
-    auto [maskedSequences2num, currentmaskedIndices] = maskSequences(sequences2num, maskFrac);
-    vector<int> sequenceWeights = computeWeights(maskedSequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
-    float neff = computeNeff(sequenceWeights, norm, length);
-    maskedIndices = currentmaskedIndices;
-    return neff;
-}
-
 
 int main(int argc, char **argv)
 {
@@ -891,77 +802,6 @@ int main(int argc, char **argv)
         }
 
         sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
-        
-        if (flagHandler.getFlagValue("mask_enabled") == "true")
-        {
-            neff = computeNeff(sequenceWeights, norm, length);
-            cout << "Initial NEFF: " << neff << endl;
-
-            // Mask fraction of the sequences masked
-            float maskFrac = flagHandler.getFloatValue("mask_frac");
-            int maskCount = flagHandler.getIntValue("mask_count");
-
-            vector<float> neffValues(maskCount);
-            set<int> maskedIndices;
-            float highestNeff = 0.0;
-            vector<set<int>> maskedIndicesList(maskCount); // To store masked indices for each iteration
-
-            // Vector to store futures for parallel execution
-            vector<future<float>> futures;
-
-            // Start timing the masking and NEFF computation process
-            auto start = chrono::high_resolution_clock::now();
-
-            for (int i = 0; i < maskCount; ++i) {
-                futures.push_back(async(launch::async, calculateMaskedNEFF, ref(sequences2num), threshold, 
-                                        isSymmetric, ref(standardLetters), nonStandardOption, maskFrac, norm, 
-                                        length, ref(maskedIndicesList[i])));
-            }
-
-            // Collect results
-            for (int i = 0; i < maskCount; ++i) {
-                neffValues[i] = futures[i].get();
-                if (neffValues[i] > highestNeff) {
-                    highestNeff = neffValues[i];
-                    maskedIndices = maskedIndicesList[i];
-                }
-            }
-
-            // End timing the process
-            auto end = chrono::high_resolution_clock::now();
-            chrono::duration<double> elapsed = end - start;
-
-            // Sort the NEFF values in descending order
-            sort(neffValues.begin(), neffValues.end(), greater<float>());
-
-            // Write NEFF values to a file
-            ostringstream filenameStream;
-            filenameStream << "neff_values-thr_" << threshold << "-maskfrac_" << maskFrac << ".txt";
-            string neffFile = filenameStream.str();
-
-            ofstream outputFile(neffFile);
-            if (outputFile.is_open()) {
-                // outputFile << "NEFF Values for each mask iteration:\n"; 
-                for (int maskNo = 0; maskNo < neffValues.size(); ++maskNo) {
-                    outputFile << neffValues[maskNo] << "\n";
-                }
-                outputFile.close();
-                cout << "NEFF values for each mask iteration have been saved in '"
-                     << neffFile <<  "' with highest value: " << neffValues[0] << endl;
-            }
-
-            // Write the masked MSA with the highest NEFF to a file
-            filenameStream.str("");
-            filenameStream.clear(); 
-            filenameStream << "MSA_with_highest_neff-thr_" << threshold << "-maskfrac_" << maskFrac << ".fasta";
-            string msaFile = filenameStream.str();
-
-            MSAWriter* msaWriter = new MSAWriter_fasta(sequences, msaFile, maskedIndices);
-            msaWriter->write();
-            cout << "Masked MSA file corresponding to the highest NEFF value has been saved in '" << msaFile << "'" << endl;
-            cout << "Time taken for masking and NEFF computation: " << elapsed.count() << " seconds." << endl;
-            return 0;
-        }
 
         if(flagHandler.getFlagValue("only_weights") == "true")
         {

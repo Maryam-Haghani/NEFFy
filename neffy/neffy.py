@@ -73,15 +73,6 @@ def _check_flags(params):
         raise ValueError("Gap cutoff must be between 0 and 1")
 
 
-# To validate masking-related parameters
-def _check_masking(mask_count, mask_frac):
-    # Ensure 'mask_count' is positive and 'mask_frac' is between 0 and 1
-    if mask_count == 0:
-        raise ValueError("When masking, 'mask_count' must be a positive number.")
-    if not 0 < mask_frac < 1:
-        raise ValueError("When masking, 'mask_frac' should be a number between 0 and 1")
-
-
 # To validate stoichiometry and determine if it's a homomer
 def _check_stoichiometry(stoichiom, chainLength):
     # Regex pattern to match stoichiometry format
@@ -124,20 +115,6 @@ def parse_neff(output, only_weights):
         value = float(re.search(r'NEFF:\s*([\d.]+)', output).group(1))
 
     return msa_length, msa_depth, value
-
-# Parse NEFF masking results
-def parse_neff_masking(output):
-    msa_length, msa_depth = parse_result(output)
-
-    return (
-        msa_length, msa_depth,
-        float(re.search(r'Initial NEFF:\s*([\d.eE+-]+)', output).group(1)),
-        float(re.search(r'highest value:\s*([\d.eE+-]+)', output).group(1)),
-        re.search(r"NEFF values for each mask iteration have been saved in '(.*?)'", output).group(1),
-        re.search(r"Masked MSA file corresponding to the highest NEFF value has been saved in '(.*?)'", output).group(
-            1),
-        float(re.search(r'NEFF computation:\s*([\d.eE+-]+)', output).group(1))
-    )
 
 
 # Parse per-residue (column-wise) NEFF results
@@ -232,40 +209,6 @@ def compute_neff(
     except Exception as e:
         raise RuntimeError(f"Error in 'compute_neff': {str(e)}")
 
-
-# Function to compute NEFF with masking options enabled
-def compute_neff_masking(
-        file: Union[str, List[str]],
-        mask_frac: float = 0,
-        mask_count: int = 0,
-        alphabet: Alphabet = Alphabet.Protein,
-        check_validation: bool = False,
-        threshold: float = 0.8,
-        norm: Normalization = Normalization.Sqrt_Length,
-        omit_query_gaps: bool = True,
-        is_symmetric: bool = True,
-        non_standard_option: NonStandardOption = NonStandardOption.AsStandard,
-        depth: int = 'inf',
-        gap_cutoff: float = 1,
-        pos_start: int = 1,
-        pos_end: int = 'inf'
-):
-    try:
-        params = locals()
-        params['file'] = file if isinstance(file, str) else ",".join(file)
-        params['mask_enabled'] = True
-        params['mask_count'] = mask_count
-        params['mask_frac'] = mask_frac
-
-        _check_flags(params)
-        args = build_args(params)
-        _check_masking(mask_count, mask_frac)
-
-        # Run neff executable
-        output = run_exe(args, 'neff')
-        return parse_neff_masking(output)
-    except Exception as e:
-        raise RuntimeError(f"Error in 'compute_neff_masking': {str(e)}")
 
 
 # Function to compute per-residue (column-wise) NEFF

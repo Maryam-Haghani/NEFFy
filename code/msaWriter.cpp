@@ -18,8 +18,8 @@
 
 using namespace std;
 
-MSAWriter::MSAWriter(std::vector<Sequence> _sequences, std::string _file, std::set<int> _maskedIndices)
-    : Sequences(_sequences), file(_file), maskedIndices(_maskedIndices) {}
+MSAWriter::MSAWriter(std::vector<Sequence> _sequences, std::string _file)
+    : Sequences(_sequences), file(_file) {}
 
 void MSAWriter::generateIdForSequences()
 {
@@ -161,11 +161,8 @@ void MSAWriter_fasta::writeFile(ofstream& outputFile)
 {
     for (int index = 0; index < Sequences.size(); ++index)
     {
-        if (maskedIndices.find(index) == maskedIndices.end())
-        {
-            outputFile << '>' << Sequences[index].id << Sequences[index].remarks << endl; // Writing identifier and remarks
-            outputFile << Sequences[index].sequence << endl;
-        }
+        outputFile << '>' << Sequences[index].id << Sequences[index].remarks << endl; // Writing identifier and remarks
+        outputFile << Sequences[index].sequence << endl;
     }
 }
 

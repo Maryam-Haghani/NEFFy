@@ -21,9 +21,6 @@
     - [compute_residue_neff: Per-Residue (Column-Wise) NEFF Computation](#python_neff_residue)
       - [Parameters](#python_neff_residue_params)
       - [Example](#python_neff_residue_example)
-    - [compute_neff_masking: MSA Masking](#python_neff_masking)
-      - [Parameters](#python_neff_masking_params)
-      - [Example](#python_neff_masking_example)
   - [convert_msa: MSA File Conversion](#python_converter)
       - [Parameters](#python_convert_msa_params)
       - [Example](#python_convert_msa_example)
@@ -61,9 +58,6 @@ The code accepts the following command-line flags:
 | `--pos_start=<value>`| Start position of each sequence to be considered in NEFF (inclusive) | No | 1 (the first position) | `--pos_start=10` |
 | `--pos_end=<value>`| Last position of each sequence to be considered in NEFF (inclusive) | No | inf (consider the whole sequence) | `--pos_end=50` (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)|
 | `--only_weights=[true/false]` | Return only sequence weights, rather than the final NEFF | No | false | `--only_weights=true`    |
-| `--mask_enabled=[true/false]` | Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF | No | false | `--mask_enabled=true`    |
-| `--mask_frac=<value>` | Fraction of sequences to be masked in each masking iteration | when _mask_enabled_=true | 0 | `--mask_frac=0.4` |
-| `--mask_count=<value>` | Number of masking iterations | when _mask_enabled_=true | 0 | `--mask_count=0`    |
 | `--multimer_MSA=[true/false]` | Compute NEFF for  MSA of a multimer | No | false | `--multimer_MSA=true`    |
 | `--stoichiom=<value>` | Stochiometry of the multimer | when _multimer_MSA_=true |  | `--stoichiom=A2B1`    |
 | `--chain_length=<list of values>` | Length of the chains in a heteromer  | when _multimer_MSA_=true and multimer is a heteromer | 0 | `--chain_length=17 45`    |
@@ -156,22 +150,6 @@ Result:
 > NEFF of Individual MSA for Chain B (depth=1024): 3.0194
 The tool will identify paired MSA sequences and the sequences for each individual MSA of chains in the given MSA file, assuming the first monomer has a length of 51 residues and the second has a length of 73. It will report NEFF values for the paired MSA as well as for the MSAs corresponding to unpaired sequences. If the provided MSA is not in the format of a multimer MSA of a heteromer, the tool will raise an error.
 <br><br>
-
-- __Random Masking:__
-```sh
-  ./neff --file=../MSAs/T1127.sto --mask_enabled=true --mask_frac=0.2 --mask_count=10 –norm=2 –threshold=0.6
-```
-Result:
-> MSA sequence length: 211<br>
-> MSA depth: 9949<br>
-> Initial NEFF: 37.7624<br>
-> NEFF values for each mask iteration have been saved in 'neff_values-thr_0.6-maskfrac_0.2.txt' with highest value: 38.7015<br>
-> Masked MSA file corresponding to the highest NEFF value has been saved in 'MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta'<br>
-> Time taken for masking and NEFF computation: 63.027 seconds.
-The tool will mask 20% of sequences in 'T1127.sto' MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.
-
-<br>
-
 
 \anchor converter
 ## MSA File Conversion
@@ -492,74 +470,6 @@ Result:
 > Per-residue (column-wise) NEFF:<br>
 > [0.668153, 0.534522, 0.668153, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.668153, 0.400892, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.668153, 0.534522, 0.534522, 0.534522, 0.534522, 0.534522, 0.400892, 0.534522, 0.534522, 0.534522, 0.400892, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631, 0.133631]<br>
 > Median of per-residue (column-wise) NEFF: 0.668153
-<br>
-
-\anchor python_neff_masking
-## `compute_neff_masking`
-
-\anchor python_neff_masking_params
-### Parameters:
-The method accepts the following parameters:
-
-| Parameter             | Type              | Required | Default Value                | Description                                                                         |
-|-----------------------|-------------------|----------|------------------------------|-------------------------------------------------------------------------------------|
-| `file`                | list [string]  | Yes      | N/A                          | Path to the input file containing the multiple sequence alignment (MSA) |
-| `mask_frac`           | float    | Yes | 0        | Fraction of sequences to be masked in each masking iteration, must be between 0 and 1 |
-| `mask_count`          | int      | Yes | 0        | Number of masking iterations    
-| `alphabet`            | Alphabet (Enum)| No       | Alphabet.Protein             | Enum to specify the type of sequences in the MSA (__Protein__, __RNA__, or __DNA__) |
-| `check_validation`    | bool           | No       | False                        | Validate the input MSA file based on alphabet or not                                |
-| `threshold`           | float          | No       | 0.8                          | Similarity threshold for sequence weighting, must be between 0 and 1               |
-| `norm` | Normalization (Enum) | No | Normalization.Sqrt_Length | Enum to specify normalization method for NEFF (__Sqrt_Length__, __Length__, or __No_Normalization__)|
-| `omit_query_gaps`     | bool              | No    | True                         | Omit gap positions of query sequence from all sequences for NEFF computation     |
-| `is_symmetric` | bool | No | True | Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric) |
-| `non_standard_option` | NonStandardOption (Enum) | No | NonStandardOption.AsStandard | Enum to handle non-standard residues of the specified alphabet (__AsStandard__, __ConsiderGapInCutoff__, __ConsiderGap__) |
-| `depth`               | int             | No       | inf (consider the whole sequence) | Depth of MSA to be used in NEFF computation (starting from the first sequence) |
-| `gap_cutoff`          | float               | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
-| `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
-| `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            | 
-
-\anchor python_neff_masking_example
-### Examples:
-- __Random Masking:__
-```sh
-import sys
-import neffy
-
-
-def main():
-    try:
-        msa_length, msa_depth, initial_neff, highest_neff, result_file, masked_msa_with_highest_neff, time\
-            = neffy.compute_neff_masking(
-              file='../MSAs/T1127.sto',
-              threshold=0.6,
-              mask_count=10,
-              mask_frac=0.2,
-              norm=neffy.Normalization.No_Normalization)
-
-        print(f"MSA length: {msa_length}")
-        print(f"MSA depth: {msa_depth}")
-        print(f"Initial NEFF: {initial_neff}")
-        print(f"Highest NEFF among maskings: {highest_neff}")
-        print(f"Result file: {result_file}")
-        print(f"Masked MSA with highest NEFF: {masked_msa_with_highest_neff}")
-        print(f"Time taken: {time} seconds")
-
-    except RuntimeError as e:
-        print(e)
-
-if __name__ == "__main__":
-    main()
-```
-Result:
-> MSA length: 211<br>
-> MSA depth: 9949<br>
-> Initial NEFF: 37.7624<br>
-> Highest NEFF among maskings: 38.7015<br>
-> Result file: neff_values-thr_0.6-maskfrac_0.2.txt<br>
-> Masked MSA with highest NEFF: MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta<br>
-> Time taken: 73.5736 seconds
-The tool will mask 'mask_frac' of sequences in MSA file and repeat this process 'mask-count' times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.
-
 <br>
 
 \anchor python_converter

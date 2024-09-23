@@ -44,9 +44,6 @@ The tool can identify the multiple sequence alignment (MSA) format for both hete
 <br>
 NEFFy computes NEFF values for such MSAs by using the stoichiometry and the lengths of the chains within the complex for heteromers. It identifies sequences that are either paired or unpaired across the chains, with the unpaired MSA sequences arranged in a block-diagonal pattern after the paired sequences. The tool then calculates NEFF for each of these components. For homomers, NEFF is calculated based on the individual MSA.<br>
 <br>
-* __Random Masking for MSA Denoising__: <br>
-NEFFy enables MSA masking by systematically applying a user-defined percentage of sequence masking across multiple iterations. For each iteration, NEFFy calculates the NEFF value and selects the iteration that yields the highest NEFF. The goal of this masking process is to denoise the MSA using the NEFF metric. If the highest NEFF value exceeds the initial NEFF, it indicates that the masking process has successfully removed less informative or redundant sequences, resulting in a more diverse and refined MSA, even with a reduced number of sequences. This refined MSA can then be utilized for downstream applications.<br>
-<br>
 * __Multiple Format Support:__ Various [formats](\ref msa_formats) are available for representing aligned sequences within an MSA. NEFFy stands as the exclusive tool capable of handling all these formats for NEFF computation.<br>
 <br>
 * __NEFF Computation for an Integration of MSAs:__ In all versions of NEFF calculation, except for the NEFF of multimer MSA, NEFFy can accept multiple input files as long as all sequences are of the same length. It combines the sequences, removing any duplicates, and then computes the NEFF for the integrated MSA.
