@@ -19,83 +19,82 @@
 \DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_m_s_a_writer_a254757e1376a7b02e598a10d3fcc39cc}{fileName}};}
 \DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_m_s_a_writer_af795d5c8ef092fff52191dd8c75af32b}{format}};}
 \DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::vector<Sequence>\ \mbox{\hyperlink{class_m_s_a_writer_a79650331bf37ebbbc5f0eb4ce1ef2785}{Sequences}};}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::set<int>\ \mbox{\hyperlink{class_m_s_a_writer_a315032eda96d9201750ef19fa2b5fbc6}{maskedIndices}};}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_m_s_a_writer_a146648f051b2cbda84f31d3bf71b8abd}{IDspace}};\ \textcolor{comment}{//\ the\ max\ space\ needed\ to\ write\ ID,\ in\ order\ to\ all\ sequences\ be\ aligned\ in\ output\ file}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer_a6cdd74b0a9b7320b3968b019d630adab}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ =\ 0;}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer_afd9f95f814690c5ebe8ec2eb4061abe0}{generateIdForSequences}}();}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter}}(std::vector<Sequence>\ sequences,\ std::string\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}},\ std::set<int>\ \mbox{\hyperlink{class_m_s_a_writer_a315032eda96d9201750ef19fa2b5fbc6}{maskedIndices}}=\{\});}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer_ac775d5a398728b6cb16c1cfd69c217a4}{write}}();\ }
-\DoxyCodeLine{00049\ \};}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ a2m\ format}}
-\DoxyCodeLine{00052\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__a2m}{MSAWriter\_a2m}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00053\ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__a2m_a83c2615da5c73c14c462f46aeae33a54}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00058\ \};}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ a3m\ format}}
-\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__a3m}{MSAWriter\_a3m}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00062\ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__a3m_acf4079bbf1b1bc4065d185d1ae2ba909}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00067\ \};}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ stockholm\ format}}
-\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__sto}{MSAWriter\_sto}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00071\ \{}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ \ \ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__sto_a272f579d3ca2fa594a09270860cae5d2}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00076\ \};}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ fasta\ format}}
-\DoxyCodeLine{00079\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__fasta}{MSAWriter\_fasta}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00080\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__fasta_ab69b0130ad7dc20c0848b1e63f22bb03}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00085\ \};}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ clustal\ format}}
-\DoxyCodeLine{00088\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__clustal}{MSAWriter\_clustal}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00089\ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__clustal_a6d2ba8dcaac0954894ba32f7d9100b03}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00094\ \};}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ aln\ format}}
-\DoxyCodeLine{00097\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__aln}{MSAWriter\_aln}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00098\ \{}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ \ \ \ }
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__aln_ae850c13d349ebc7fc8a529bbec00074d}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00103\ \};}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ pfam\ format}}
-\DoxyCodeLine{00106\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__pfam}{MSAWriter\_pfam}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
-\DoxyCodeLine{00107\ \{}
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_ae0a8000b4be2b3354cc53dbe417996fb}{MSAWriter::MSAWriter}};}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ \ \ \ }
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__pfam_aff2cff9fcf7ef182ab1007088736c7c9}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00112\ \};}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_m_s_a_writer_a146648f051b2cbda84f31d3bf71b8abd}{IDspace}};\ \textcolor{comment}{//\ the\ max\ space\ needed\ to\ write\ ID,\ in\ order\ to\ all\ sequences\ be\ aligned\ in\ output\ file}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer_a6cdd74b0a9b7320b3968b019d630adab}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ =\ 0;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer_afd9f95f814690c5ebe8ec2eb4061abe0}{generateIdForSequences}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter}}(std::vector<Sequence>\ sequences,\ std::string\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer_ac775d5a398728b6cb16c1cfd69c217a4}{write}}();\ }
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ a2m\ format}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__a2m}{MSAWriter\_a2m}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__a2m_a83c2615da5c73c14c462f46aeae33a54}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ a3m\ format}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__a3m}{MSAWriter\_a3m}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__a3m_acf4079bbf1b1bc4065d185d1ae2ba909}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ stockholm\ format}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__sto}{MSAWriter\_sto}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__sto_a272f579d3ca2fa594a09270860cae5d2}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ fasta\ format}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__fasta}{MSAWriter\_fasta}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__fasta_ab69b0130ad7dc20c0848b1e63f22bb03}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ clustal\ format}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__clustal}{MSAWriter\_clustal}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__clustal_a6d2ba8dcaac0954894ba32f7d9100b03}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ aln\ format}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__aln}{MSAWriter\_aln}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__aln_ae850c13d349ebc7fc8a529bbec00074d}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ Derived\ class\ for\ writing\ in\ pfam\ format}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_s_a_writer__pfam}{MSAWriter\_pfam}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_s_a_writer}{MSAWriter}}}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_m_s_a_writer_aa7e243456ad9b0fba520babf0b98dd96}{MSAWriter::MSAWriter}};}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{private}:\ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_s_a_writer__pfam_aff2cff9fcf7ef182ab1007088736c7c9}{writeFile}}(std::ofstream\&\ \mbox{\hyperlink{class_m_s_a_writer_a47d0783df7472d4282c3d9c952f7b727}{file}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

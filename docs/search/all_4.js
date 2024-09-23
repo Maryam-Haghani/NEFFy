@@ -5,7 +5,7 @@ var searchData=
   ['feedback_20and_20collaboration_2',['Feedback and Collaboration',['../index.html#autotoc_md34',1,'']]],
   ['file_3',['File',['../installation_guide.html#autotoc_md11',1,'C++ Executable File'],['../usage_guide.html#autotoc_md65',1,'C++ Executable File']]],
   ['file_4',['file',['../class_m_s_a_reader.html#aa801f0bef6f371e98002e1ee51fe6a23',1,'MSAReader::file'],['../class_m_s_a_writer.html#a47d0783df7472d4282c3d9c952f7b727',1,'MSAWriter::file']]],
-  ['file_20conversion_5',['File Conversion',['../index.html#autotoc_md26',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md70',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md89',1,'MSA File Conversion']]],
+  ['file_20conversion_5',['File Conversion',['../index.html#autotoc_md26',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md70',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md86',1,'MSA File Conversion']]],
   ['file_20converter_6',['NEFFy: NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
   ['filename_7',['fileName',['../class_m_s_a_writer.html#a254757e1376a7b02e598a10d3fcc39cc',1,'MSAWriter']]],
   ['flaghandler_8',['FlagHandler',['../class_flag_handler.html',1,'FlagHandler'],['../class_flag_handler.html#a5663335dbbb71c82ff46646f892171db',1,'FlagHandler::FlagHandler()']]],

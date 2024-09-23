@@ -152,11 +152,6 @@ Table of Contents</h2>
 <li><a class="el" href="#python_neff_residue_example">Example</a></li>
 </ul>
 </li>
-<li><a class="el" href="#python_neff_masking">compute_neff_masking: MSA Masking</a><ul>
-<li><a class="el" href="#python_neff_masking_params">Parameters</a></li>
-<li><a class="el" href="#python_neff_masking_example">Example</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a class="el" href="#python_converter">convert_msa: MSA File Conversion</a><ul>
@@ -223,18 +218,12 @@ Parameters:</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--only_weights=[true/false]</code>   </td><td class="markdownTableBodyNone">Return only sequence weights, rather than the final NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--only_weights=true</code>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--mask_enabled=[true/false]</code>   </td><td class="markdownTableBodyNone">Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--mask_enabled=true</code>    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>--mask_frac=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Fraction of sequences to be masked in each masking iteration   </td><td class="markdownTableBodyNone">when <em>mask_enabled</em>=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--mask_frac=0.4</code>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--mask_count=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Number of masking iterations   </td><td class="markdownTableBodyNone">when <em>mask_enabled</em>=true   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--mask_count=0</code>    </td></tr>
-<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--multimer_MSA=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute NEFF for MSA of a multimer   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--multimer_MSA=true</code>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>--stoichiom=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Stochiometry of the multimer   </td><td class="markdownTableBodyNone">when <em>multimer_MSA</em>=true   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><code>--stoichiom=A2B1</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>--chain_length=&lt;list of values&gt;</code>   </td><td class="markdownTableBodyNone">Length of the chains in a heteromer   </td><td class="markdownTableBodyNone">when <em>multimer_MSA</em>=true and multimer is a heteromer   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--chain_length=17 45</code>    </td></tr>
+<td class="markdownTableBodyNone"><code>--stoichiom=&lt;value&gt;</code>   </td><td class="markdownTableBodyNone">Stochiometry of the multimer   </td><td class="markdownTableBodyNone">when <em>multimer_MSA</em>=true   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><code>--stoichiom=A2B1</code>    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>--chain_length=&lt;list of values&gt;</code>   </td><td class="markdownTableBodyNone">Length of the chains in a heteromer   </td><td class="markdownTableBodyNone">when <em>multimer_MSA</em>=true and multimer is a heteromer   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone"><code>--chain_length=17 45</code>    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>--residue_neff=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute per-residue (column-wise) NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--residue_neff=true</code>   </td></tr>
 </table>
 <p><a class="anchor" id="neff_example"></a></p>
@@ -330,21 +319,6 @@ Examples:</h3>
 </ul>
 <p>The tool will identify paired MSA sequences and the sequences for each individual MSA of chains in the given MSA file, assuming the first monomer has a length of 51 residues and the second has a length of 73. It will report NEFF values for the paired MSA as well as for the MSAs corresponding to unpaired sequences. If the provided MSA is not in the format of a multimer MSA of a heteromer, the tool will raise an error. <br  />
 <br  />
-</p>
-<ul>
-<li><b>Random Masking:</b> <div class="fragment"><div class="line">./neff --file=../MSAs/T1127.sto --mask_enabled=true --mask_frac=0.2 --mask_count=10 –norm=2 –threshold=0.6</div>
-</div><!-- fragment --> Result: <blockquote class="doxtable">
-<p>&zwj;MSA sequence length: 211<br  />
- MSA depth: 9949<br  />
- Initial NEFF: 37.7624<br  />
- NEFF values for each mask iteration have been saved in 'neff_values-thr_0.6-maskfrac_0.2.txt' with highest value: 38.7015<br  />
- Masked MSA file corresponding to the highest NEFF value has been saved in 'MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta'<br  />
- Time taken for masking and NEFF computation: 63.027 seconds. </p>
-</blockquote>
-</li>
-</ul>
-<p>The tool will mask 20% of sequences in 'T1127.sto' MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.</p>
-<p><br  />
 </p>
 <p><a class="anchor" id="converter"></a></p>
 <h2><a class="anchor" id="autotoc_md70"></a>
@@ -725,97 +699,13 @@ Examples:</h3>
 </ul>
 <p><br  />
 </p>
-<p><a class="anchor" id="python_neff_masking"></a></p>
-<h2><a class="anchor" id="autotoc_md86"></a>
-<code>compute_neff_masking</code></h2>
-<p><a class="anchor" id="python_neff_masking_params"></a></p>
-<h3><a class="anchor" id="autotoc_md87"></a>
-Parameters:</h3>
-<p>The method accepts the following parameters:</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Required   </th><th class="markdownTableHeadNone">Default Value   </th><th class="markdownTableHeadNone">Description    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>file</code>   </td><td class="markdownTableBodyNone">list [string]   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">N/A   </td><td class="markdownTableBodyNone">Path to the input file containing the multiple sequence alignment (MSA)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>mask_frac</code>   </td><td class="markdownTableBodyNone">float   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Fraction of sequences to be masked in each masking iteration, must be between 0 and 1    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>mask_count</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">Yes   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Number of masking iterations    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>alphabet</code>   </td><td class="markdownTableBodyNone">Alphabet (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">Alphabet.Protein   </td><td class="markdownTableBodyNone">Enum to specify the type of sequences in the MSA (<b>Protein</b>, <b>RNA</b>, or <b>DNA</b>)    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>check_validation</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">False   </td><td class="markdownTableBodyNone">Validate the input MSA file based on alphabet or not    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>threshold</code>   </td><td class="markdownTableBodyNone">float   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">0.8   </td><td class="markdownTableBodyNone">Similarity threshold for sequence weighting, must be between 0 and 1    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>norm</code>   </td><td class="markdownTableBodyNone">Normalization (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">Normalization.Sqrt_Length   </td><td class="markdownTableBodyNone">Enum to specify normalization method for NEFF (<b>Sqrt_Length</b>, <b>Length</b>, or <b>No_Normalization</b>)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>omit_query_gaps</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Omit gap positions of query sequence from all sequences for NEFF computation    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>is_symmetric</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>non_standard_option</code>   </td><td class="markdownTableBodyNone">NonStandardOption (Enum)   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">NonStandardOption.AsStandard   </td><td class="markdownTableBodyNone">Enum to handle non-standard residues of the specified alphabet (<b>AsStandard</b>, <b>ConsiderGapInCutoff</b>, <b>ConsiderGap</b>)    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>depth</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Depth of MSA to be used in NEFF computation (starting from the first sequence)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>gap_cutoff</code>   </td><td class="markdownTableBodyNone">float   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">1 (no gappy position)   </td><td class="markdownTableBodyNone">Threshold for considering a position as gappy and removing that (between 0 and 1)    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>pos_start</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">1 (the first position)   </td><td class="markdownTableBodyNone">Start position of each sequence to be considered in NEFF (inclusive)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>pos_end</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td></tr>
-</table>
-<p><a class="anchor" id="python_neff_masking_example"></a></p>
-<h3><a class="anchor" id="autotoc_md88"></a>
-Examples:</h3>
-<ul>
-<li><b>Random Masking:</b> <div class="fragment"><div class="line">import sys</div>
-<div class="line">import neffy</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">def main():</div>
-<div class="line">    try:</div>
-<div class="line">        msa_length, msa_depth, initial_neff, highest_neff, result_file, masked_msa_with_highest_neff, time\</div>
-<div class="line">            = neffy.compute_neff_masking(</div>
-<div class="line">              file=&#39;../MSAs/T1127.sto&#39;,</div>
-<div class="line">              threshold=0.6,</div>
-<div class="line">              mask_count=10,</div>
-<div class="line">              mask_frac=0.2,</div>
-<div class="line">              norm=neffy.Normalization.No_Normalization)</div>
-<div class="line"> </div>
-<div class="line">        print(f&quot;MSA length: {msa_length}&quot;)</div>
-<div class="line">        print(f&quot;MSA depth: {msa_depth}&quot;)</div>
-<div class="line">        print(f&quot;Initial NEFF: {initial_neff}&quot;)</div>
-<div class="line">        print(f&quot;Highest NEFF among maskings: {highest_neff}&quot;)</div>
-<div class="line">        print(f&quot;Result file: {result_file}&quot;)</div>
-<div class="line">        print(f&quot;Masked MSA with highest NEFF: {masked_msa_with_highest_neff}&quot;)</div>
-<div class="line">        print(f&quot;Time taken: {time} seconds&quot;)</div>
-<div class="line"> </div>
-<div class="line">    except RuntimeError as e:</div>
-<div class="line">        print(e)</div>
-<div class="line"> </div>
-<div class="line">if __name__ == &quot;__main__&quot;:</div>
-<div class="line">    main()</div>
-</div><!-- fragment --> Result: <blockquote class="doxtable">
-<p>&zwj;MSA length: 211<br  />
- MSA depth: 9949<br  />
- Initial NEFF: 37.7624<br  />
- Highest NEFF among maskings: 38.7015<br  />
- Result file: neff_values-thr_0.6-maskfrac_0.2.txt<br  />
- Masked MSA with highest NEFF: MSA_with_highest_neff-thr_0.6-maskfrac_0.2.fasta<br  />
- Time taken: 73.5736 seconds </p>
-</blockquote>
-</li>
-</ul>
-<p>The tool will mask 'mask_frac' of sequences in MSA file and repeat this process 'mask-count' times. The NEFF values from each iteration will be saved in a 'txt' file. The masked MSA corresponding to the highest NEFF value will also be saved in a 'fasta' file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-quality MSA.</p>
-<p><br  />
-</p>
 <p><a class="anchor" id="python_converter"></a></p>
-<h2><a class="anchor" id="autotoc_md89"></a>
+<h2><a class="anchor" id="autotoc_md86"></a>
 MSA File Conversion</h2>
-<h2><a class="anchor" id="autotoc_md90"></a>
+<h2><a class="anchor" id="autotoc_md87"></a>
 <code>convert_msa</code></h2>
 <p><a class="anchor" id="python_convert_msa_params"></a></p>
-<h3><a class="anchor" id="autotoc_md91"></a>
+<h3><a class="anchor" id="autotoc_md88"></a>
 Parameters:</h3>
 <p>The method accepts the following parameters:</p>
 <table class="markdownTable">
@@ -831,7 +721,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone">check_validation   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Whether to check the validation of the MSA file before conversion   </td></tr>
 </table>
 <p><a class="anchor" id="python_convert_msa_example"></a></p>
-<h3><a class="anchor" id="autotoc_md92"></a>
+<h3><a class="anchor" id="autotoc_md89"></a>
 Example:</h3>
 <div class="fragment"><div class="line">import sys</div>
 <div class="line">import neffy</div>

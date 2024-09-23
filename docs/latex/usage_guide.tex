@@ -37,11 +37,6 @@
 \item \doxylink{usage_guide_python_neff_residue_params}{Parameters}
 \item \doxylink{usage_guide_python_neff_residue_example}{Example}
 \end{DoxyItemize}
-\item \doxylink{usage_guide_python_neff_masking}{compute\+\_\+neff\+\_\+masking\+: MSA Masking}
-\begin{DoxyItemize}
-\item \doxylink{usage_guide_python_neff_masking_params}{Parameters}
-\item \doxylink{usage_guide_python_neff_masking_example}{Example}
-\end{DoxyItemize}
 \end{DoxyItemize}
 \item \doxylink{usage_guide_python_converter}{convert\+\_\+msa\+: MSA File Conversion}
 \begin{DoxyItemize}
@@ -108,9 +103,6 @@ The code accepts the following command-\/line flags\+: \tabulinesep=1mm
 {\ttfamily -\/-\/pos\+\_\+start=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Start position of each sequence to be considered in NEFF (inclusive)   &No   &1 (the first position)   &{\ttfamily -\/-\/pos\+\_\+start=10}    \\\cline{1-5}
 {\ttfamily -\/-\/pos\+\_\+end=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Last position of each sequence to be considered in NEFF (inclusive)   &No   &inf (consider the whole sequence)   &{\ttfamily -\/-\/pos\+\_\+end=50} (if given value is greater than the length of the MSA sequences, consider length of sequences in the MSA)    \\\cline{1-5}
 {\ttfamily -\/-\/only\+\_\+weights=\mbox{[}true/false\mbox{]}}   &Return only sequence weights, rather than the final NEFF   &No   &false   &{\ttfamily -\/-\/only\+\_\+weights=true}    \\\cline{1-5}
-{\ttfamily -\/-\/mask\+\_\+enabled=\mbox{[}true/false\mbox{]}}   &Enable random sequence masking for NEFF calculation and return the masking with the highest NEFF   &No   &false   &{\ttfamily -\/-\/mask\+\_\+enabled=true}    \\\cline{1-5}
-{\ttfamily -\/-\/mask\+\_\+frac=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Fraction of sequences to be masked in each masking iteration   &when {\itshape mask\+\_\+enabled}=true   &0   &{\ttfamily -\/-\/mask\+\_\+frac=0.\+4}    \\\cline{1-5}
-{\ttfamily -\/-\/mask\+\_\+count=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Number of masking iterations   &when {\itshape mask\+\_\+enabled}=true   &0   &{\ttfamily -\/-\/mask\+\_\+count=0}    \\\cline{1-5}
 {\ttfamily -\/-\/multimer\+\_\+\+MSA=\mbox{[}true/false\mbox{]}}   &Compute NEFF for MSA of a multimer   &No   &false   &{\ttfamily -\/-\/multimer\+\_\+\+MSA=true}    \\\cline{1-5}
 {\ttfamily -\/-\/stoichiom=\texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}}   &Stochiometry of the multimer   &when {\itshape multimer\+\_\+\+MSA}=true   &&{\ttfamily -\/-\/stoichiom=A2\+B1}    \\\cline{1-5}
 {\ttfamily -\/-\/chain\+\_\+length=\texorpdfstring{$<$}{<}list of values\texorpdfstring{$>$}{>}}   &Length of the chains in a heteromer   &when {\itshape multimer\+\_\+\+MSA}=true and multimer is a heteromer   &0   &{\ttfamily -\/-\/chain\+\_\+length=17 45}    \\\cline{1-5}
@@ -251,28 +243,6 @@ MSA sequence length\+: 175~\newline
 \end{DoxyItemize}
 
 The tool will identify paired MSA sequences and the sequences for each individual MSA of chains in the given MSA file, assuming the first monomer has a length of 51 residues and the second has a length of 73. It will report NEFF values for the paired MSA as well as for the MSAs corresponding to unpaired sequences. If the provided MSA is not in the format of a multimer MSA of a heteromer, the tool will raise an error. ~\newline
-~\newline
-
-
-
-\begin{DoxyItemize}
-\item {\bfseries{Random Masking\+:}} 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{./neff\ -\/-\/file=../MSAs/T1127.sto\ -\/-\/mask\_enabled=true\ -\/-\/mask\_frac=0.2\ -\/-\/mask\_count=10\ –norm=2\ –threshold=0.6}
-
-\end{DoxyCode}
- Result\+: \begin{quote}
-MSA sequence length\+: 211~\newline
- MSA depth\+: 9949~\newline
- Initial NEFF\+: 37.\+7624~\newline
- NEFF values for each mask iteration have been saved in \textquotesingle{}neff\+\_\+values-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+txt\textquotesingle{} with highest value\+: 38.\+7015~\newline
- Masked MSA file corresponding to the highest NEFF value has been saved in \textquotesingle{}MSA\+\_\+with\+\_\+highest\+\_\+neff-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+fasta\textquotesingle{}~\newline
- Time taken for masking and NEFF computation\+: 63.\+027 seconds. \end{quote}
-
-\end{DoxyItemize}
-
-The tool will mask 20\% of sequences in \textquotesingle{}T1127.\+sto\textquotesingle{} MSA file and repeat this process 10 times. The NEFF values from each iteration will be saved in a \textquotesingle{}txt\textquotesingle{} file. The masked MSA corresponding to the highest NEFF value will also be saved in a \textquotesingle{}fasta\textquotesingle{} file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-\/quality MSA.
-
 ~\newline
 
 
@@ -714,100 +684,13 @@ MSA length\+: 56~\newline
 ~\newline
 
 
-\label{usage_guide_python_neff_masking}%
-\Hypertarget{usage_guide_python_neff_masking}%
-\hypertarget{usage_guide_autotoc_md86}{}\doxysubsection{\texorpdfstring{{\ttfamily compute\+\_\+neff\+\_\+masking}}{{\ttfamily compute\+\_\+neff\+\_\+masking}}}\label{usage_guide_autotoc_md86}
-\label{usage_guide_python_neff_masking_params}%
-\Hypertarget{usage_guide_python_neff_masking_params}%
-\hypertarget{usage_guide_autotoc_md87}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{usage_guide_autotoc_md87}
-The method accepts the following parameters\+:
-
-\tabulinesep=1mm
-\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-5}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-5}
-\endhead
-{\ttfamily file}   &list \mbox{[}string\mbox{]}   &Yes   &N/A   &Path to the input file containing the multiple sequence alignment (MSA)    \\\cline{1-5}
-{\ttfamily mask\+\_\+frac}   &float   &Yes   &0   &Fraction of sequences to be masked in each masking iteration, must be between 0 and 1    \\\cline{1-5}
-{\ttfamily mask\+\_\+count}   &int   &Yes   &0   &Number of masking iterations    \\\cline{1-5}
-{\ttfamily alphabet}   &Alphabet (Enum)   &No   &Alphabet.\+Protein   &Enum to specify the type of sequences in the MSA ({\bfseries{Protein}}, {\bfseries{RNA}}, or {\bfseries{DNA}})    \\\cline{1-5}
-{\ttfamily check\+\_\+validation}   &bool   &No   &False   &Validate the input MSA file based on alphabet or not    \\\cline{1-5}
-{\ttfamily threshold}   &float   &No   &0.\+8   &Similarity threshold for sequence weighting, must be between 0 and 1    \\\cline{1-5}
-{\ttfamily norm}   &Normalization (Enum)   &No   &Normalization.\+Sqrt\+\_\+\+Length   &Enum to specify normalization method for NEFF ({\bfseries{Sqrt\+\_\+\+Length}}, {\bfseries{Length}}, or {\bfseries{No\+\_\+\+Normalization}})    \\\cline{1-5}
-{\ttfamily omit\+\_\+query\+\_\+gaps}   &bool   &No   &True   &Omit gap positions of query sequence from all sequences for NEFF computation    \\\cline{1-5}
-{\ttfamily is\+\_\+symmetric}   &bool   &No   &True   &Consider gaps in number of differences when computing sequence similarity cutoff (asymmetric) or not (symmetric)    \\\cline{1-5}
-{\ttfamily non\+\_\+standard\+\_\+option}   &Non\+Standard\+Option (Enum)   &No   &Non\+Standard\+Option.\+As\+Standard   &Enum to handle non-\/standard residues of the specified alphabet ({\bfseries{As\+Standard}}, {\bfseries{Consider\+Gap\+In\+Cutoff}}, {\bfseries{Consider\+Gap}})    \\\cline{1-5}
-{\ttfamily depth}   &int   &No   &inf (consider the whole sequence)   &Depth of MSA to be used in NEFF computation (starting from the first sequence)    \\\cline{1-5}
-{\ttfamily gap\+\_\+cutoff}   &float   &No   &1 (no gappy position)   &Threshold for considering a position as gappy and removing that (between 0 and 1)    \\\cline{1-5}
-{\ttfamily pos\+\_\+start}   &int   &No   &1 (the first position)   &Start position of each sequence to be considered in NEFF (inclusive)    \\\cline{1-5}
-{\ttfamily pos\+\_\+end}   &int   &No   &inf (consider the whole sequence)   &Last position of each sequence to be considered in NEFF (inclusive)   \\\cline{1-5}
-\end{longtabu}
-
-
-\label{usage_guide_python_neff_masking_example}%
-\Hypertarget{usage_guide_python_neff_masking_example}%
-\hypertarget{usage_guide_autotoc_md88}{}\doxysubsubsection{\texorpdfstring{Examples\+:}{Examples\+:}}\label{usage_guide_autotoc_md88}
-
-\begin{DoxyItemize}
-\item {\bfseries{Random Masking\+:}} 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{import\ sys}
-\DoxyCodeLine{import\ neffy}
-\DoxyCodeLine{}
-\DoxyCodeLine{}
-\DoxyCodeLine{def\ main():}
-\DoxyCodeLine{\ \ \ \ try:}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ msa\_length,\ msa\_depth,\ initial\_neff,\ highest\_neff,\ result\_file,\ masked\_msa\_with\_highest\_neff,\ time\(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ =\ neffy.compute\_neff\_masking(}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ file='../MSAs/T1127.sto',}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ threshold=0.6,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ mask\_count=10,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ mask\_frac=0.2,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ norm=neffy.Normalization.No\_Normalization)}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}MSA\ length:\ \{msa\_length\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}MSA\ depth:\ \{msa\_depth\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}Initial\ NEFF:\ \{initial\_neff\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}Highest\ NEFF\ among\ maskings:\ \{highest\_neff\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}Result\ file:\ \{result\_file\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}Masked\ MSA\ with\ highest\ NEFF:\ \{masked\_msa\_with\_highest\_neff\}"{})}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f"{}Time\ taken:\ \{time\}\ seconds"{})}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \ \ except\ RuntimeError\ as\ e:}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ print(e)}
-\DoxyCodeLine{}
-\DoxyCodeLine{if\ \_\_name\_\_\ ==\ "{}\_\_main\_\_"{}:}
-\DoxyCodeLine{\ \ \ \ main()}
-
-\end{DoxyCode}
- Result\+: \begin{quote}
-MSA length\+: 211~\newline
- MSA depth\+: 9949~\newline
- Initial NEFF\+: 37.\+7624~\newline
- Highest NEFF among maskings\+: 38.\+7015~\newline
- Result file\+: neff\+\_\+values-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+txt~\newline
- Masked MSA with highest NEFF\+: MSA\+\_\+with\+\_\+highest\+\_\+neff-\/thr\+\_\+0.\+6-\/maskfrac\+\_\+0.\+2.\+fasta~\newline
- Time taken\+: 73.\+5736 seconds \end{quote}
-
-\end{DoxyItemize}
-
-The tool will mask \textquotesingle{}mask\+\_\+frac\textquotesingle{} of sequences in MSA file and repeat this process \textquotesingle{}mask-\/count\textquotesingle{} times. The NEFF values from each iteration will be saved in a \textquotesingle{}txt\textquotesingle{} file. The masked MSA corresponding to the highest NEFF value will also be saved in a \textquotesingle{}fasta\textquotesingle{} file, representing the denoised MSA of the given MSA, which can be used for downstream tasks requiring a high-\/quality MSA.
-
-~\newline
-
-
 \label{usage_guide_python_converter}%
 \Hypertarget{usage_guide_python_converter}%
-\hypertarget{usage_guide_autotoc_md89}{}\doxysubsection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{usage_guide_autotoc_md89}
-\hypertarget{usage_guide_autotoc_md90}{}\doxysubsection{\texorpdfstring{{\ttfamily convert\+\_\+msa}}{{\ttfamily convert\+\_\+msa}}}\label{usage_guide_autotoc_md90}
+\hypertarget{usage_guide_autotoc_md86}{}\doxysubsection{\texorpdfstring{MSA File Conversion}{MSA File Conversion}}\label{usage_guide_autotoc_md86}
+\hypertarget{usage_guide_autotoc_md87}{}\doxysubsection{\texorpdfstring{{\ttfamily convert\+\_\+msa}}{{\ttfamily convert\+\_\+msa}}}\label{usage_guide_autotoc_md87}
 \label{usage_guide_python_convert_msa_params}%
 \Hypertarget{usage_guide_python_convert_msa_params}%
-\hypertarget{usage_guide_autotoc_md91}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{usage_guide_autotoc_md91}
+\hypertarget{usage_guide_autotoc_md88}{}\doxysubsubsection{\texorpdfstring{Parameters\+:}{Parameters\+:}}\label{usage_guide_autotoc_md88}
 The method accepts the following parameters\+:
 
 \tabulinesep=1mm
@@ -829,7 +712,7 @@ check\+\_\+validation   &bool   &No   &True   &Whether to check the validation o
 
 \label{usage_guide_python_convert_msa_example}%
 \Hypertarget{usage_guide_python_convert_msa_example}%
-\hypertarget{usage_guide_autotoc_md92}{}\doxysubsubsection{\texorpdfstring{Example\+:}{Example\+:}}\label{usage_guide_autotoc_md92}
+\hypertarget{usage_guide_autotoc_md89}{}\doxysubsubsection{\texorpdfstring{Example\+:}{Example\+:}}\label{usage_guide_autotoc_md89}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{import\ sys}

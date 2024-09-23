@@ -163,9 +163,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a326f49375aa69b197b475af4407af8ce" id="r_a326f49375aa69b197b475af4407af8ce"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a326f49375aa69b197b475af4407af8ce">computeWeights</a> (vector&lt; vector&lt; int &gt; &gt; sequences, float threshold, bool isSymmetric, string standardLetters, <a class="el" href="common_8h.html#a1105b29855665d3017b4a2b889b3f02a">NonStandardHandler</a> nonStandardOption)</td></tr>
 <tr class="memdesc:a326f49375aa69b197b475af4407af8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute sequence weights based on given options.  <br /></td></tr>
 <tr class="separator:a326f49375aa69b197b475af4407af8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1eb5e647abd7823ca9dbf4558f1a7be2" id="r_a1eb5e647abd7823ca9dbf4558f1a7be2"><td class="memItemLeft" align="right" valign="top">tuple&lt; vector&lt; vector&lt; int &gt; &gt;, set&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eb5e647abd7823ca9dbf4558f1a7be2">maskSequences</a> (vector&lt; vector&lt; int &gt; &gt; &amp;sequences, double maskFrac)</td></tr>
-<tr class="memdesc:a1eb5e647abd7823ca9dbf4558f1a7be2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly mask sequences in the MSA (except the first sequence)  <br /></td></tr>
-<tr class="separator:a1eb5e647abd7823ca9dbf4558f1a7be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab62e2d4b3843e404e7b7cf478a7bfcb9" id="r_ab62e2d4b3843e404e7b7cf478a7bfcb9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab62e2d4b3843e404e7b7cf478a7bfcb9">computeNeff</a> (vector&lt; int &gt; sequenceWeights, <a class="el" href="common_8h.html#a268aac553a187f781fad176cf0ada14e">Normalization</a> norm, int length)</td></tr>
 <tr class="memdesc:ab62e2d4b3843e404e7b7cf478a7bfcb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cumpote NEFF values based on sequence weights and given normalization.  <br /></td></tr>
 <tr class="separator:ab62e2d4b3843e404e7b7cf478a7bfcb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,9 +197,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a33d5a6a7eeeacfa9602e7bc5606b379f" id="r_a33d5a6a7eeeacfa9602e7bc5606b379f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33d5a6a7eeeacfa9602e7bc5606b379f">computeResidueNEFF</a> (const vector&lt; vector&lt; int &gt; &gt; &amp;sequences, const vector&lt; int &gt; &amp;sequenceWeights, <a class="el" href="common_8h.html#a268aac553a187f781fad176cf0ada14e">Normalization</a> norm)</td></tr>
 <tr class="memdesc:a33d5a6a7eeeacfa9602e7bc5606b379f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute per-residue (column-wise) NEFF.  <br /></td></tr>
 <tr class="separator:a33d5a6a7eeeacfa9602e7bc5606b379f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad86c7646b3246abb685f572599f8589f" id="r_ad86c7646b3246abb685f572599f8589f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad86c7646b3246abb685f572599f8589f">calculateMaskedNEFF</a> (vector&lt; vector&lt; int &gt; &gt; &amp;sequences2num, float threshold, bool isSymmetric, const string &amp;standardLetters, <a class="el" href="common_8h.html#a1105b29855665d3017b4a2b889b3f02a">NonStandardHandler</a> nonStandardOption, float maskFrac, <a class="el" href="common_8h.html#a268aac553a187f781fad176cf0ada14e">Normalization</a> norm, int length, set&lt; int &gt; &amp;maskedIndices)</td></tr>
-<tr class="memdesc:ad86c7646b3246abb685f572599f8589f"><td class="mdescLeft">&#160;</td><td class="mdescRight">NEFF calculation for a masked MSA.  <br /></td></tr>
-<tr class="separator:ad86c7646b3246abb685f572599f8589f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627" id="r_a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -234,89 +228,13 @@ Variables</h2></td></tr>
 "
   --pos_end=&lt;value&gt;                 Last position of each sequence to be considered in neff (inclusive (default: length of MSA sequence))\n" &ndash;only_weights=&lt;true/false&gt; Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)<br  />
 "
-  --mask_enabled=&lt;true/false&gt;       Enable random sequence masking for NEFF calculation (default: false)\n" &ndash;mask_frac=</p>
-<p>Fraction of sequences to be masked in each masking iteration (default: 0)<br  />
-"
-  --mask_count=&lt;value&gt;              Frequency of masking (default: 0)\n" &ndash;multimer_MSA=&lt;true/false&gt; Compute NEFF for a multimer MSA (default: false)<br  />
-"
-  &amp;ndash;stoichiom=&lt;value&gt;               Multimer stoichiometry (default: empty)
-  &amp;ndash;chain_length=&lt;list of values&gt;   Length of the chains in heteromer multimer (default: 0)\n" &ndash;residue_neff=&lt;true/false&gt; Compute per-resiue (column-wise) NEFF (default: false)</p>
+  --multimer_MSA=&lt;true/false&gt;       Compute NEFF for a multimer MSA (default: false)\n" &ndash;stoichiom=</p>
+<p>Multimer stoichiometry (default: empty) &ndash;chain_length=</p><ul>
+</ul>
+<p>of the chains in heteromer multimer (default: 0)<br  />
+" &ndash;residue_neff=&lt;true/false&gt; Compute per-resiue (column-wise) NEFF (default: false)</p>
 <p>For detailed instructions, please refer to the documentation at <a href="https://maryam-haghani.github.io/NEFFy">https://maryam-haghani.github.io/NEFFy</a>. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ad86c7646b3246abb685f572599f8589f" name="ad86c7646b3246abb685f572599f8589f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad86c7646b3246abb685f572599f8589f">&#9670;&#160;</a></span>calculateMaskedNEFF()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float calculateMaskedNEFF </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sequences2num</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>threshold</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isSymmetric</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const string &amp;</td>          <td class="paramname"><span class="paramname"><em>standardLetters</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="common_8h.html#a1105b29855665d3017b4a2b889b3f02a">NonStandardHandler</a></td>          <td class="paramname"><span class="paramname"><em>nonStandardOption</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>maskFrac</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="common_8h.html#a268aac553a187f781fad176cf0ada14e">Normalization</a></td>          <td class="paramname"><span class="paramname"><em>norm</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">set&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>maskedIndices</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>NEFF calculation for a masked MSA. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sequences2num</td><td></td></tr>
-    <tr><td class="paramname">threshold</td><td></td></tr>
-    <tr><td class="paramname">isSymmetric</td><td></td></tr>
-    <tr><td class="paramname">standardLetters</td><td></td></tr>
-    <tr><td class="paramname">nonStandardOption</td><td></td></tr>
-    <tr><td class="paramname">maskFrac</td><td></td></tr>
-    <tr><td class="paramname">norm</td><td></td></tr>
-    <tr><td class="paramname">length</td><td></td></tr>
-    <tr><td class="paramname">bestMaskedIndices</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><br  />
- </dd></dl>
-
-</div>
-</div>
 <a id="a0aad7c0a3babadf0f62647fea7f86e38" name="a0aad7c0a3babadf0f62647fea7f86e38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0aad7c0a3babadf0f62647fea7f86e38">&#9670;&#160;</a></span>char2num()</h2>
 
@@ -746,37 +664,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1eb5e647abd7823ca9dbf4558f1a7be2" name="a1eb5e647abd7823ca9dbf4558f1a7be2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1eb5e647abd7823ca9dbf4558f1a7be2">&#9670;&#160;</a></span>maskSequences()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">tuple&lt; vector&lt; vector&lt; int &gt; &gt;, set&lt; int &gt; &gt; maskSequences </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sequences</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>maskFrac</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Randomly mask sequences in the MSA (except the first sequence) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sequences</td><td></td></tr>
-    <tr><td class="paramname">maskFrac</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>unmasked sequences, masked indices </dd></dl>
-
-</div>
-</div>
 <a id="a8ef182365fedce2fa110da176eff76c5" name="a8ef182365fedce2fa110da176eff76c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ef182365fedce2fa110da176eff76c5">&#9670;&#160;</a></span>processSequences()</h2>
 
@@ -938,9 +825,6 @@ Variables</h2></td></tr>
 <div class="line">    {<span class="stringliteral">&quot;pos_start&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;1&quot;</span>}},            </div>
 <div class="line">    {<span class="stringliteral">&quot;pos_end&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;inf&quot;</span>}},            </div>
 <div class="line">    {<span class="stringliteral">&quot;only_weights&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;false&quot;</span>}},     </div>
-<div class="line">    {<span class="stringliteral">&quot;mask_enabled&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;false&quot;</span>}},     </div>
-<div class="line">    {<span class="stringliteral">&quot;mask_frac&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;0&quot;</span>}},            </div>
-<div class="line">    {<span class="stringliteral">&quot;mask_count&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;0&quot;</span>}},           </div>
 <div class="line">    {<span class="stringliteral">&quot;multimer_MSA&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;false&quot;</span>}},     </div>
 <div class="line">    {<span class="stringliteral">&quot;stoichiom&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;&quot;</span>}},             </div>
 <div class="line">    {<span class="stringliteral">&quot;chain_length&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;0&quot;</span>}},         </div>

@@ -37,8 +37,6 @@ vector$<$ vector$<$ int $>$ $>$ \mbox{\hyperlink{neff_8cpp_a8ef182365fedce2fa110
 \begin{DoxyCompactList}\small\item\em Map chars to digits based on provided \textquotesingle{}non\+Standard\+Option\textquotesingle{} and also remove gappy positions based on given \textquotesingle{}gap\+Cutoff\textquotesingle{}. \end{DoxyCompactList}\item 
 vector$<$ int $>$ \mbox{\hyperlink{neff_8cpp_a326f49375aa69b197b475af4407af8ce}{compute\+Weights}} (vector$<$ vector$<$ int $>$ $>$ sequences, float threshold, bool is\+Symmetric, string standard\+Letters, \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard\+Handler}} non\+Standard\+Option)
 \begin{DoxyCompactList}\small\item\em Compute sequence weights based on given options. \end{DoxyCompactList}\item 
-tuple$<$ vector$<$ vector$<$ int $>$ $>$, set$<$ int $>$ $>$ \mbox{\hyperlink{neff_8cpp_a1eb5e647abd7823ca9dbf4558f1a7be2}{mask\+Sequences}} (vector$<$ vector$<$ int $>$ $>$ \&sequences, double mask\+Frac)
-\begin{DoxyCompactList}\small\item\em Randomly mask sequences in the MSA (except the first sequence) \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{neff_8cpp_ab62e2d4b3843e404e7b7cf478a7bfcb9}{compute\+Neff}} (vector$<$ int $>$ sequence\+Weights, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm, int length)
 \begin{DoxyCompactList}\small\item\em Cumpote NEFF values based on sequence weights and given normalization. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{common_8h_ad321c418983642eb2b4360826d489ec4}{Alphabet}} \mbox{\hyperlink{neff_8cpp_a0fb06c3f546be5708d4b522bc60400aa}{get\+Alphabet}} (\mbox{\hyperlink{class_flag_handler}{Flag\+Handler}} \&flag\+Handler)
@@ -62,8 +60,6 @@ void \mbox{\hyperlink{neff_8cpp_a56021411152a788bc005d74f38ef3c72}{integrate\+Un
 \begin{DoxyCompactList}\small\item\em to merge sequences and remove redundant sequences \end{DoxyCompactList}\item 
 std\+::vector$<$ double $>$ \mbox{\hyperlink{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f}{compute\+Residue\+NEFF}} (const vector$<$ vector$<$ int $>$ $>$ \&sequences, const vector$<$ int $>$ \&sequence\+Weights, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm)
 \begin{DoxyCompactList}\small\item\em Compute per-\/residue (column-\/wise) NEFF. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{neff_8cpp_ad86c7646b3246abb685f572599f8589f}{calculate\+Masked\+NEFF}} (vector$<$ vector$<$ int $>$ $>$ \&sequences2num, float threshold, bool is\+Symmetric, const string \&standard\+Letters, \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard\+Handler}} non\+Standard\+Option, float mask\+Frac, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm, int length, set$<$ int $>$ \&masked\+Indices)
-\begin{DoxyCompactList}\small\item\em NEFF calculation for a masked MSA. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{neff_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
@@ -95,50 +91,16 @@ Depth of MSA to be cosidered in computation (default\+: depth of given MSA)~\new
 
 Start position of each sequence to be considered in neff (inclusive (default\+: 1))~\newline
 "{}   -\/-\/pos\+\_\+end=$<$value$>$                 Last position of each sequence to be considered in neff (inclusive (default\+: length of MSA sequence))\textbackslash{}n"{} --only\+\_\+weights=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Return only sequence weights, as \# similar sequence, rather than the final NEFF (default\+: false)~\newline
-"{}   -\/-\/mask\+\_\+enabled=$<$true/false$>$       Enable random sequence masking for NEFF calculation (default\+: false)\textbackslash{}n"{} --mask\+\_\+frac=
+"{}   -\/-\/multimer\+\_\+\+MSA=$<$true/false$>$       Compute NEFF for a multimer MSA (default\+: false)\textbackslash{}n"{} --stoichiom=
 
-Fraction of sequences to be masked in each masking iteration (default\+: 0)~\newline
-"{}   -\/-\/mask\+\_\+count=$<$value$>$              Frequency of masking (default\+: 0)\textbackslash{}n"{} --multimer\+\_\+\+MSA=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute NEFF for a multimer MSA (default\+: false)~\newline
-"{}   --stoichiom=$<$value$>$               Multimer stoichiometry (default\+: empty)   --chain\+\_\+length=$<$list of values$>$   Length of the chains in heteromer multimer (default\+: 0)\textbackslash{}n"{} --residue\+\_\+neff=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute per-\/resiue (column-\/wise) NEFF (default\+: false)
+Multimer stoichiometry (default\+: empty) --chain\+\_\+length=
+\begin{DoxyItemize}
+\end{DoxyItemize}of the chains in heteromer multimer (default\+: 0)~\newline
+"{} --residue\+\_\+neff=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute per-\/resiue (column-\/wise) NEFF (default\+: false)
 
 For detailed instructions, please refer to the documentation at \href{https://maryam-haghani.github.io/NEFFy}{\texttt{ https\+://maryam-\/haghani.\+github.\+io/\+NEFFy}}. 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{neff_8cpp_ad86c7646b3246abb685f572599f8589f}\index{neff.cpp@{neff.cpp}!calculateMaskedNEFF@{calculateMaskedNEFF}}
-\index{calculateMaskedNEFF@{calculateMaskedNEFF}!neff.cpp@{neff.cpp}}
-\doxysubsubsection{\texorpdfstring{calculateMaskedNEFF()}{calculateMaskedNEFF()}}
-{\footnotesize\ttfamily \label{neff_8cpp_ad86c7646b3246abb685f572599f8589f} 
-float calculate\+Masked\+NEFF (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ int $>$ $>$ \&}]{sequences2num}{, }\item[{float}]{threshold}{, }\item[{bool}]{is\+Symmetric}{, }\item[{const string \&}]{standard\+Letters}{, }\item[{\mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard\+Handler}}}]{non\+Standard\+Option}{, }\item[{float}]{mask\+Frac}{, }\item[{\mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}]{norm}{, }\item[{int}]{length}{, }\item[{set$<$ int $>$ \&}]{masked\+Indices}{}\end{DoxyParamCaption})}
-
-
-
-NEFF calculation for a masked MSA. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em sequences2num} & \\
-\hline
-{\em threshold} & \\
-\hline
-{\em is\+Symmetric} & \\
-\hline
-{\em standard\+Letters} & \\
-\hline
-{\em non\+Standard\+Option} & \\
-\hline
-{\em mask\+Frac} & \\
-\hline
-{\em norm} & \\
-\hline
-{\em length} & \\
-\hline
-{\em best\+Masked\+Indices} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-~\newline
- 
-\end{DoxyReturn}
 \Hypertarget{neff_8cpp_a0aad7c0a3babadf0f62647fea7f86e38}\index{neff.cpp@{neff.cpp}!char2num@{char2num}}
 \index{char2num@{char2num}!neff.cpp@{neff.cpp}}
 \doxysubsubsection{\texorpdfstring{char2num()}{char2num()}}
@@ -394,27 +356,7 @@ to merge sequences and remove redundant sequences
 {\footnotesize\ttfamily \label{neff_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
 int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
 
-omit gap positions of query sequence in all sequences if omit\+Gaps\+In\+Query=true\Hypertarget{neff_8cpp_a1eb5e647abd7823ca9dbf4558f1a7be2}\index{neff.cpp@{neff.cpp}!maskSequences@{maskSequences}}
-\index{maskSequences@{maskSequences}!neff.cpp@{neff.cpp}}
-\doxysubsubsection{\texorpdfstring{maskSequences()}{maskSequences()}}
-{\footnotesize\ttfamily \label{neff_8cpp_a1eb5e647abd7823ca9dbf4558f1a7be2} 
-tuple$<$ vector$<$ vector$<$ int $>$ $>$, set$<$ int $>$ $>$ mask\+Sequences (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ int $>$ $>$ \&}]{sequences}{, }\item[{double}]{mask\+Frac}{}\end{DoxyParamCaption})}
-
-
-
-Randomly mask sequences in the MSA (except the first sequence) 
-
-
-\begin{DoxyParams}{Parameters}
-{\em sequences} & \\
-\hline
-{\em mask\+Frac} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-unmasked sequences, masked indices 
-\end{DoxyReturn}
-\Hypertarget{neff_8cpp_a8ef182365fedce2fa110da176eff76c5}\index{neff.cpp@{neff.cpp}!processSequences@{processSequences}}
+omit gap positions of query sequence in all sequences if omit\+Gaps\+In\+Query=true\Hypertarget{neff_8cpp_a8ef182365fedce2fa110da176eff76c5}\index{neff.cpp@{neff.cpp}!processSequences@{processSequences}}
 \index{processSequences@{processSequences}!neff.cpp@{neff.cpp}}
 \doxysubsubsection{\texorpdfstring{processSequences()}{processSequences()}}
 {\footnotesize\ttfamily \label{neff_8cpp_a8ef182365fedce2fa110da176eff76c5} 
@@ -520,9 +462,6 @@ unordered\+\_\+map$<$string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}}$>$ 
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}pos\_start"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}1"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}pos\_end"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}inf"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}only\_weights"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\},\ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}mask\_enabled"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\},\ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}mask\_frac"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}mask\_count"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}multimer\_MSA"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\},\ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}stoichiom"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}chain\_length"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0"{}}\}\},\ \ \ \ \ \ \ \ \ }
