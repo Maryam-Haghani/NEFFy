@@ -258,12 +258,12 @@ void MSAReader_sto::readFile(ifstream& inputFile)
 
         if (lineAfterStockholm && !line.empty())
         {
-            // if first line after version is not GF or GS, means there are no alignments in MSA
-            if ((line.find("#=GF") != 0) and (line.find("#=GS") != 0))
-            {
-                noAlignmetnts = true;
-                Sequences.push_back({"", "", ""});
-            }
+            // // if first line after version is not GF or GS, means there are no alignments in MSA
+            // if ((line.find("#=GF") != 0) and (line.find("#=GS") != 0))
+            // {
+            //     noAlignmetnts = true;
+            //     Sequences.push_back({"", "", ""});
+            // }
             lineAfterStockholm = false;
             goForward = true;
         }
