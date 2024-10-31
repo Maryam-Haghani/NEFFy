@@ -578,7 +578,7 @@ void integrateUniqueSequences(vector<Sequence>& integratedSequences, const vecto
 /// @param sequenceWeights
 /// @param norm 
 /// @return 
-std::vector<double> computeResidueNEFF
+vector<float> computeResidueNEFF
 (const vector<vector<int>>& sequences, const vector<int>& sequenceWeights, Normalization norm) {
     int numSequences = sequences.size();
     if (numSequences == 0) {
@@ -586,10 +586,10 @@ std::vector<double> computeResidueNEFF
     }
     int sequenceLength = sequences[0].size();
     
-    vector<double> residueNEFF(sequenceLength, 0.0);
+    vector<float> residueNEFF(sequenceLength, 0.0);
     
     for (int col = 0; col < sequenceLength; ++col) {
-        double sumWeights = 0.0;
+        float sumWeights = 0.0;
         for (int row = 0; row < numSequences; ++row) {
             // include sequence weight of the current seqeunce in the residue NEFF, if residue is not corresponding to a gap position
             if (sequences[row][col] != 0)
@@ -813,7 +813,7 @@ int main(int argc, char **argv)
 
         if(flagHandler.getBooleanValue("residue_neff"))
         {
-            vector<double> residueNEFF = computeResidueNEFF(sequences2num, sequenceWeights, norm);
+            vector<float> residueNEFF = computeResidueNEFF(sequences2num, sequenceWeights, norm);
             cout << "Per-residue (column-wise) NEFF:" << endl;
             for (int col=0; col < residueNEFF.size(); col++)
             {
@@ -821,7 +821,7 @@ int main(int argc, char **argv)
             }
             // Compute the median of residueNEFF
             sort(residueNEFF.begin(), residueNEFF.end());
-            double median = residueNEFF.size() % 2 == 0 
+            float median = residueNEFF.size() % 2 == 0 
                     ? (residueNEFF[residueNEFF.size()/2 - 1] + residueNEFF[residueNEFF.size()/2]) / 2.0 
                     : residueNEFF[residueNEFF.size()/2];
 
