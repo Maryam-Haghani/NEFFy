@@ -58,6 +58,12 @@ public:
     /// @return 
     float getFloatValue(const std::string& name) const;
 
+    /// @brief Get given boolean option by user
+    /// @param flagHandler 
+    /// @param name 
+    /// @return 
+    float getBooleanValue(const std::string& name) const;
+
     /// @brief Get list of files
     /// @param name
     /// @return 
@@ -73,6 +79,11 @@ public:
     /// @param name 
     /// @return 
     int getIntValue(const std::string& name) const;
+
+    /// @brief Get given non-zero int option by user
+    /// @param name 
+    /// @return 
+    int getNonZeroIntValue(const std::string& name) const;
 };
 
 #endif

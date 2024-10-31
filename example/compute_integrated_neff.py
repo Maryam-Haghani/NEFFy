@@ -8,7 +8,7 @@ def main():
             depth=2048)
 
         print(f"MSA length: {msa_length}")
-        print(f"MSA depth: {msa_depth}")
+        print(f"MSA depth (#unique sequences): {msa_depth}")
         print(f"NEFF: {neff}")
 
     except RuntimeError as e:

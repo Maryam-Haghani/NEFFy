@@ -88,16 +88,34 @@ void FlagHandler::checkRequiredFlags() const
     }
 }
 
+float FlagHandler::getBooleanValue(const string& name) const
+{
+    string value;
+    try {
+        value = getFlagValue(name);
+
+        if (value == "true") {
+            return true;
+        } else if (value == "false") {
+            return false;
+        } else {
+            throw runtime_error("");
+        }
+    } catch (const exception& e) {
+        throw runtime_error("Invalid boolean '" + name + "' value. It should be either 'true' or 'false'.");
+    }
+}
+
 float FlagHandler::getFloatValue(const string& name) const
 {
     float value;
     try {
         value = stof(getFlagValue(name));
         if (value <= 0.0 || value > 1.0) {
-            throw runtime_error("Invalid '" + name + "' value. It should be a number between 0 and 1.");
+            throw runtime_error("");
         }
     } catch (const exception& e) {
-        throw runtime_error("Invalid '" + name + "' value. It should be a number between 0 and 1.");
+        throw runtime_error("Invalid '" + name + "' value. It should be a number between 0 and 1 (excluding 0).");
     }
     return value;
 }
@@ -133,43 +151,52 @@ vector<string> FlagHandler::getFileArrayValue(const string& name) const
 vector<int> FlagHandler::getIntArrayValue(const string& name) const
 {
     vector<int> values;
-    try {
-        string svalue = getFlagValue(name);
 
-        stringstream ss(svalue);
-        string item;
-        while (getline(ss, item, ',')) {
-            int value = stoi(item);
-            if (value <= 0) {
-                throw runtime_error("Invalid '" + name + "' value. Each value should be a positive number");
-            }
-            values.push_back(value);
-        }
+    string svalue = getFlagValue(name);
 
-        if (values.empty()) {
-            throw runtime_error("Invalid '" + name + "' value. It should contain at least one positive number");
+    stringstream ss(svalue);
+    string item;
+    while (getline(ss, item, ',')) {
+        int value = stoi(item);
+        if (value <= 0) {
+            throw runtime_error("Invalid '" + name + "' value. Each value should be a positive number");
         }
-    } catch (const exception& e) {
-        throw runtime_error("Invalid '" + name + "' value. Each value should be an array of positive numbers");
+        values.push_back(value);
+    }
+
+    if (values.empty()) {
+        throw runtime_error("Invalid '" + name + "' value. It should contain at least one positive number");
     }
     return values;
 }
 
 int FlagHandler::getIntValue(const string& name) const
 {
-    int value;
-    try {
-        string svalue = getFlagValue(name);
+    string svalue = getFlagValue(name);
 
-        if (svalue == "inf")
-            return INT_MAX;
+    if (svalue == "inf")
+        return INT_MAX;
 
-        value = stoi(svalue);
+    size_t pos;
+    int value = stoi(svalue, &pos);
 
-        if (value <= 0) {
-            throw runtime_error("Invalid '" + name + "' value. It should be a positive number");
-        }
-    } catch (const exception& e) {
+    // given value is an integer
+    if (pos != svalue.length()) {
+        throw invalid_argument("Invalid '" + name + "' value. It must be an integer.");
+    }
+
+    // given value is positive
+    if (value < 0) {
+        throw runtime_error("Invalid '" + name + "' value. It cannot be a negative number");
+    }
+    return value;
+}
+
+int FlagHandler::getNonZeroIntValue(const string& name) const
+{
+    int value = getIntValue(name);
+
+    if (value == 0) {
         throw runtime_error("Invalid '" + name + "' value. It should be a positive number");
     }
     return value;

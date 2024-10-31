@@ -7,7 +7,7 @@ def main():
                                                                                        check_validation=True)
 
         print(f"MSA length: {msa_length}")
-        print(f"MSA depth: {msa_depth}")
+        print(f"MSA depth (#unique sequences): {msa_depth}")
         print("Per-residue (column-wise) NEFF:\n", residue_neffs)
         print("Median of per-residue (column-wise) NEFF:", median)
 

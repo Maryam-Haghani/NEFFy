@@ -108,15 +108,14 @@ int convert(string inFile, string outFile, bool checkValidation, Alphabet alphab
 /// @return 
 Alphabet getAlphabet(FlagHandler& flagHandler)
 {
-    Alphabet alphabet;
-    try {
-        alphabet = static_cast<Alphabet>(stoi(flagHandler.getFlagValue("alphabet")));
-        if (alphabet < Alphabet::protein || alphabet > Alphabet::DNA) {
-            throw runtime_error("");
-        }
-    } catch (const exception& e) {
-       throw runtime_error("Invalid 'alphabet' value. It is outside the valid enum range.");
+    int intValue = flagHandler.getIntValue("alphabet");
+    Alphabet alphabet = static_cast<Alphabet>(intValue);
+
+    // value is within the valid range of the enum
+    if (alphabet < Alphabet::protein || alphabet > Alphabet::DNA) {
+        throw runtime_error("Invalid 'alphabet' value. It is outside the valid enum range.");
     }
+
     return alphabet;
 }
 
@@ -150,7 +149,7 @@ int main(int argc, char **argv)
         alphabet = getAlphabet(flagHandler);
 
         // check_validation
-        bool checkValidation = flagHandler.getFlagValue("check_validation") == "true";
+        bool checkValidation = flagHandler.getBooleanValue("check_validation");
 
         int msaDepth = convert(inFile, outFile, checkValidation, alphabet);
 
@@ -167,7 +166,7 @@ int main(int argc, char **argv)
     } 
     catch (const exception& e) 
     {
-        cerr << "Error: " << e.what() << "\nPlease review the provided MSA file." << endl << endl;
+        cerr << "Error: " << e.what() << endl << endl;
         cerr << docstr;
         return 1;
     }

@@ -343,29 +343,28 @@ float computeNeff(vector<int> sequenceWeights, Normalization norm, int length)
 /// @return 
 Alphabet getAlphabet(FlagHandler& flagHandler)
 {
-    Alphabet alphabet;
-    try {
-        alphabet = static_cast<Alphabet>(stoi(flagHandler.getFlagValue("alphabet")));
-        if (alphabet < Alphabet::protein || alphabet > Alphabet::DNA) {
-            throw runtime_error("");
-        }
-    } catch (const exception& e) {
-       throw runtime_error("Invalid 'alphabet' value. It is outside the valid enum range.");
+    int intValue = flagHandler.getIntValue("alphabet");
+    Alphabet alphabet = static_cast<Alphabet>(intValue);
+
+    // value is within the valid range of the enum
+    if (alphabet < Alphabet::protein || alphabet > Alphabet::DNA) {
+        throw runtime_error("Invalid 'alphabet' value. It is outside the valid enum range.");
     }
+
     return alphabet;
 }
+
 
 /// @brief Get given normalization option by user
 /// @param flagHandler 
 /// @return 
-Normalization getNormalization(FlagHandler& flagHandler) {
-    Normalization norm;
-    try {
-        norm = static_cast<Normalization>(stoi(flagHandler.getFlagValue("norm")));
-        if (norm < Normalization::Sqrt_L || norm > Normalization::None) {
-            throw runtime_error("");
-        } 
-    } catch (const exception& e) {
+Normalization getNormalization(FlagHandler& flagHandler)
+{
+    int intValue = flagHandler.getIntValue("norm");
+    Normalization norm = static_cast<Normalization>(intValue);
+
+    // value is within the valid range of the enum
+    if (norm < Normalization::Sqrt_L || norm > Normalization::None) {
         throw runtime_error("Invalid 'norm' value. It is outside the valid enum range.");
     }
     return norm;
@@ -374,14 +373,12 @@ Normalization getNormalization(FlagHandler& flagHandler) {
 /// @brief Get given non_standard_option option by user
 /// @param flagHandler 
 /// @return 
-NonStandardHandler getNonStandardOption(FlagHandler& flagHandler) {
-    NonStandardHandler nonStandardOption;
-    try {
-        nonStandardOption = static_cast<NonStandardHandler>(stoi(flagHandler.getFlagValue("non_standard_option")));
-        if (nonStandardOption < NonStandardHandler::AsStandard || nonStandardOption > NonStandardHandler::ConsiderGap) {
-            throw runtime_error("");
-        }
-    } catch (const exception& e) {
+NonStandardHandler getNonStandardOption(FlagHandler& flagHandler)
+{
+    int intValue = flagHandler.getIntValue("non_standard_option");
+    NonStandardHandler nonStandardOption = static_cast<NonStandardHandler>(intValue);
+
+    if (nonStandardOption < NonStandardHandler::AsStandard || nonStandardOption > NonStandardHandler::ConsiderGap) {
         throw runtime_error("Invalid 'non_standard_option' value. It is outside the valid enum range.");
     }
     return nonStandardOption;
@@ -393,15 +390,15 @@ void checkFlags(FlagHandler& flagHandler)
 {
     // Only one of only_weights, multimer_MSA, or residue_neff can be true at a time.
     int trueCount = 0;
-    if (flagHandler.getFlagValue("only_weights") == "true") trueCount++;
-    if (flagHandler.getFlagValue("multimer_MSA") == "true") trueCount++;
-    if (flagHandler.getFlagValue("residue_neff") == "true") trueCount++;
+    if (flagHandler.getBooleanValue("only_weights")) trueCount++;
+    if (flagHandler.getBooleanValue("multimer_MSA")) trueCount++;
+    if (flagHandler.getBooleanValue("residue_neff")) trueCount++;
     if (trueCount > 1)
     {
         throw runtime_error(
             "Only one of 'only_weights', 'residue_neff', or 'multimer_MSA' can be true at a time.");
     }
-    if (flagHandler.getFlagValue("multimer_MSA") == "true")
+    if (flagHandler.getBooleanValue("multimer_MSA"))
     {
         string stoichiom = flagHandler.getFlagValue("stoichiom");
 
@@ -434,7 +431,7 @@ void checkFlags(FlagHandler& flagHandler)
             }
         }
         
-        if (!((flagHandler.getFlagValue("omit_query_gaps") == "true")
+        if (!((flagHandler.getBooleanValue("omit_query_gaps"))
         && (flagHandler.getFlagValue("gap_cutoff") == "1")
         && (flagHandler.getFlagValue("pos_start") == "1")
         && (flagHandler.getFlagValue("pos_end") == "inf")))
@@ -511,15 +508,15 @@ void getPositions(vector<Sequence>& sequences, FlagHandler flagHandler)
     int lengthOfQuerySeq = lengthOfFirstAlignment - coutOfGapPositions;
 
     // pos_start
-    startPos = flagHandler.getIntValue("pos_start");
+    startPos = flagHandler.getNonZeroIntValue("pos_start");
 
     if (startPos >= lengthOfFirstAlignment)
     {
-        throw runtime_error("'pos_start' should be less than length of query sequence.");
+        throw runtime_error("'pos_start' should be less than the length of query sequence (" + to_string(lengthOfFirstAlignment) + ").");
     }
 
     // pos_end
-    endPos = flagHandler.getIntValue("pos_end");
+    endPos = flagHandler.getNonZeroIntValue("pos_end");
 
     if (endPos <= startPos)
     {
@@ -657,13 +654,13 @@ int main(int argc, char **argv)
         alphabet = getAlphabet(flagHandler);
 
         // check_validation
-        checkValidation = flagHandler.getFlagValue("check_validation") == "true";
+        checkValidation = flagHandler.getBooleanValue("check_validation");
 
         // omit_query_gaps
-        omitGapsInQuery = flagHandler.getFlagValue("omit_query_gaps") == "true";
+        omitGapsInQuery = flagHandler.getBooleanValue("omit_query_gaps");
 
         //depth    
-        depth = flagHandler.getIntValue("depth");
+        depth = flagHandler.getNonZeroIntValue("depth");
 
         // file
         files = flagHandler.getFileArrayValue("file");
@@ -738,16 +735,16 @@ int main(int argc, char **argv)
         threshold = flagHandler.getFloatValue("threshold");
         
         // is_symmetric
-        isSymmetric = flagHandler.getFlagValue("is_symmetric") == "true";
+        isSymmetric = flagHandler.getBooleanValue("is_symmetric");
 
         int length = sequences2num[0].size();
 
         cout << "MSA sequence length: "<< length << endl;
-        cout << "MSA depth: " << sequences2num.size() << endl;
+        cout << "MSA depth (#unique sequences): " << sequences2num.size() << endl;
 
         float neff = 0.0;
 
-        if (flagHandler.getFlagValue("multimer_MSA") == "true")
+        if (flagHandler.getBooleanValue("multimer_MSA"))
         {
             MultimerHandler multimerHandler(flagHandler.getFlagValue("stoichiom"));
 
@@ -803,7 +800,7 @@ int main(int argc, char **argv)
 
         sequenceWeights = computeWeights(sequences2num, threshold, isSymmetric, standardLetters, nonStandardOption);
 
-        if(flagHandler.getFlagValue("only_weights") == "true")
+        if(flagHandler.getBooleanValue("only_weights"))
         {
             cout << "Sequence weights:" << endl;
             for (int i=0; i < sequenceWeights.size(); i++)
@@ -814,7 +811,7 @@ int main(int argc, char **argv)
             return 0;
         }
 
-        if(flagHandler.getFlagValue("residue_neff") == "true")
+        if(flagHandler.getBooleanValue("residue_neff"))
         {
             vector<double> residueNEFF = computeResidueNEFF(sequences2num, sequenceWeights, norm);
             cout << "Per-residue (column-wise) NEFF:" << endl;

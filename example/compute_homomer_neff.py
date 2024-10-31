@@ -8,7 +8,7 @@ def main():
                                         ))
 
         print(f"MSA length: {msa_length}")
-        print(f"MSA depth: {msa_depth}")
+        print(f"MSA depth (#unique sequences): {msa_depth}")
         print(f"NEff of entire MSA: {entire_neff}")
         print(f"neff of individual MSA: {neff_values}")
 

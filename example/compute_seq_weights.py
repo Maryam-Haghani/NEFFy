@@ -6,7 +6,7 @@ def main():
         msa_length, msa_depth, weights = neffy.compute_neff(file='../MSAs/example.a2m', only_weights=True, threshold=0.2)
 
         print(f"MSA length: {msa_length}")
-        print(f"MSA depth: {msa_depth}")
+        print(f"MSA depth (#unique sequences): {msa_depth}")
         print(f"Sequence weights: {weights}")
 
     except RuntimeError as e:
