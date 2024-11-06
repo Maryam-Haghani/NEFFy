@@ -101,7 +101,7 @@ def _check_stoichiometry(stoichiom, chainLength):
 def parse_result(output):
     return (
         int(re.search(r'MSA sequence length:\s*(\d+)', output).group(1)),
-        int(re.search(r'MSA depth \(#unique sequences\):\s*(\d+)', output).group(1))
+        int(re.search(r'MSA depth:\s*(\d+)', output).group(1))
     )
 
 # Parse NEFF value and optionally sequence weights

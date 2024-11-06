@@ -701,10 +701,17 @@ int main(int argc, char **argv)
                 keepNonGapPositionsOfQuerySequence(sequences);
             }
 
-            // integrate unique sequences from files
-            integrateUniqueSequences(integratedSequences, sequences);
+            
+            if (files.size() == 1)
+            {
+                integratedSequences = sequences;
+                break;
+            }
+            
+            // integrate unique sequences from files when more than one file exists
+            integrateUniqueSequences(integratedSequences, sequences);         
 
-            // no need to continue if the depth of sequences so far is more than the given depth
+            // no need to integrate if the depth of sequences so far is more than the given depth
             if (depth < integratedSequences.size())
             {
                 break;
@@ -740,7 +747,7 @@ int main(int argc, char **argv)
         int length = sequences2num[0].size();
 
         cout << "MSA sequence length: "<< length << endl;
-        cout << "MSA depth (#unique sequences): " << sequences2num.size() << endl;
+        cout << "MSA depth:" << sequences2num.size() << endl;
 
         float neff = 0.0;
 
