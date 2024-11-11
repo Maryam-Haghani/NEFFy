@@ -17,12 +17,16 @@ void \mbox{\hyperlink{class_flag_handler_aa1e1b7401c7d94431ac7e3bd815392f7}{chec
 \begin{DoxyCompactList}\small\item\em Checks if all required flags have values. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_flag_handler_a491e996c3926acc288e6aff711fee80a}{get\+Float\+Value}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get given float option by user. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_flag_handler_a50017c17a737b0ef4fc894328923aec1}{get\+Boolean\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get given boolean option by user. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f}{get\+File\+Array\+Value}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get list of files. \end{DoxyCompactList}\item 
 std\+::vector$<$ int $>$ \mbox{\hyperlink{class_flag_handler_ac9eae02a4df585d43bd80a2315760c98}{get\+Int\+Array\+Value}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get given int option by user. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_flag_handler_af3219d2de0154fb4c143bc0b3a51acd6}{get\+Int\+Value}} (const std\+::string \&name) const
-\begin{DoxyCompactList}\small\item\em Get given int option by user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get given int option by user. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_flag_handler_ab15276062154dd2e8e2e804ceb50fb1b}{get\+Non\+Zero\+Int\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get given non-\/zero int option by user. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -64,6 +68,27 @@ Checks if all required flags have values.
 {\em std\+::runtime\+\_\+error} & if a required flag is missing a value. \\
 \hline
 \end{DoxyExceptions}
+\Hypertarget{class_flag_handler_a50017c17a737b0ef4fc894328923aec1}\index{FlagHandler@{FlagHandler}!getBooleanValue@{getBooleanValue}}
+\index{getBooleanValue@{getBooleanValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getBooleanValue()}{getBooleanValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_a50017c17a737b0ef4fc894328923aec1} 
+float Flag\+Handler\+::get\+Boolean\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get given boolean option by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Handler} & \\
+\hline
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
 \Hypertarget{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f}\index{FlagHandler@{FlagHandler}!getFileArrayValue@{getFileArrayValue}}
 \index{getFileArrayValue@{getFileArrayValue}!FlagHandler@{FlagHandler}}
 \doxysubsubsection{\texorpdfstring{getFileArrayValue()}{getFileArrayValue()}}
@@ -157,6 +182,25 @@ int Flag\+Handler\+::get\+Int\+Value (\begin{DoxyParamCaption}\item[{const std\+
 
 
 Get given int option by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_flag_handler_ab15276062154dd2e8e2e804ceb50fb1b}\index{FlagHandler@{FlagHandler}!getNonZeroIntValue@{getNonZeroIntValue}}
+\index{getNonZeroIntValue@{getNonZeroIntValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getNonZeroIntValue()}{getNonZeroIntValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_ab15276062154dd2e8e2e804ceb50fb1b} 
+int Flag\+Handler\+::get\+Non\+Zero\+Int\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get given non-\/zero int option by user. 
 
 
 \begin{DoxyParams}{Parameters}

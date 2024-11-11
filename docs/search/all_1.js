@@ -22,7 +22,7 @@ var searchData=
   ['compute_5fneff_20tt_19',['&lt;tt&gt;compute_neff&lt;/tt&gt;',['../usage_guide.html#autotoc_md77',1,'']]],
   ['compute_5fresidue_5fneff_20tt_20',['&lt;tt&gt;compute_residue_neff&lt;/tt&gt;',['../usage_guide.html#autotoc_md83',1,'']]],
   ['computeneff_21',['computeNeff',['../neff_8cpp.html#ab62e2d4b3843e404e7b7cf478a7bfcb9',1,'neff.cpp']]],
-  ['computeresidueneff_22',['computeResidueNEFF',['../neff_8cpp.html#a33d5a6a7eeeacfa9602e7bc5606b379f',1,'neff.cpp']]],
+  ['computeresidueneff_22',['computeResidueNEFF',['../neff_8cpp.html#af8b4c4177810a49fe02386e08b06269f',1,'neff.cpp']]],
   ['computeweights_23',['computeWeights',['../neff_8cpp.html#a326f49375aa69b197b475af4407af8ce',1,'neff.cpp']]],
   ['conkit_24',['Conkit',['../other.html#autotoc_md20',1,'']]],
   ['conkit_20tt_25',['&lt;tt&gt;Conkit&lt;/tt&gt;',['../other_tools.html#autotoc_md55',1,'']]],

@@ -58,7 +58,7 @@ void \mbox{\hyperlink{neff_8cpp_a5db795718fa6d1ed9054f10acd9fcaf0}{get\+Position
 \begin{DoxyCompactList}\small\item\em Set desired positiones to compute NEFF for based on given \textquotesingle{}pos\+\_\+start\textquotesingle{} and \textquotesingle{}pos\+\_\+end\textquotesingle{} flags. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{neff_8cpp_a56021411152a788bc005d74f38ef3c72}{integrate\+Unique\+Sequences}} (vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&integrated\+Sequences, const vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&sequences)
 \begin{DoxyCompactList}\small\item\em to merge sequences and remove redundant sequences \end{DoxyCompactList}\item 
-std\+::vector$<$ double $>$ \mbox{\hyperlink{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f}{compute\+Residue\+NEFF}} (const vector$<$ vector$<$ int $>$ $>$ \&sequences, const vector$<$ int $>$ \&sequence\+Weights, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm)
+vector$<$ float $>$ \mbox{\hyperlink{neff_8cpp_af8b4c4177810a49fe02386e08b06269f}{compute\+Residue\+NEFF}} (const vector$<$ vector$<$ int $>$ $>$ \&sequences, const vector$<$ int $>$ \&sequence\+Weights, \mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}} norm)
 \begin{DoxyCompactList}\small\item\em Compute per-\/residue (column-\/wise) NEFF. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{neff_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
 \end{DoxyCompactItemize}
@@ -166,11 +166,11 @@ Cumpote NEFF values based on sequence weights and given normalization.
 ~\newline
  
 \end{DoxyReturn}
-\Hypertarget{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f}\index{neff.cpp@{neff.cpp}!computeResidueNEFF@{computeResidueNEFF}}
+\Hypertarget{neff_8cpp_af8b4c4177810a49fe02386e08b06269f}\index{neff.cpp@{neff.cpp}!computeResidueNEFF@{computeResidueNEFF}}
 \index{computeResidueNEFF@{computeResidueNEFF}!neff.cpp@{neff.cpp}}
 \doxysubsubsection{\texorpdfstring{computeResidueNEFF()}{computeResidueNEFF()}}
-{\footnotesize\ttfamily \label{neff_8cpp_a33d5a6a7eeeacfa9602e7bc5606b379f} 
-std\+::vector$<$ double $>$ compute\+Residue\+NEFF (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ int $>$ $>$ \&}]{sequences}{, }\item[{const vector$<$ int $>$ \&}]{sequence\+Weights}{, }\item[{\mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}]{norm}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{neff_8cpp_af8b4c4177810a49fe02386e08b06269f} 
+vector$<$ float $>$ compute\+Residue\+NEFF (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ int $>$ $>$ \&}]{sequences}{, }\item[{const vector$<$ int $>$ \&}]{sequence\+Weights}{, }\item[{\mbox{\hyperlink{common_8h_a268aac553a187f781fad176cf0ada14e}{Normalization}}}]{norm}{}\end{DoxyParamCaption})}
 
 
 
