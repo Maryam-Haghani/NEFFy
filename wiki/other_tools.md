@@ -15,7 +15,7 @@ Here, we provide an exploration of the tools which have integrated NEFF calculat
 
 \anchor raptorX
 ## `RaptorX`
-`RaptorX`, a well-established protein structure prediction method developed since 2012, specializes in predicting protein tertiary and contact structures, particularly for sequences lacking close homologs in the Protein Data Bank [1]. `RaptorX` includes an integrated Python helper function for NEFF calculation, which is specifically designed for computing asymmetric NEFF. This tool is primarily designed for handling aligned `a2m` and `a3m` formats, without the specification of biological sequence alphabets. The code is available on [GitHub](https://github.com/j3xugit/RaptorX-3DModeling/tree/master/BuildFeatures/Helpers).
+`RaptorX`, a well-established protein structure prediction method developed since 2012, specializes in predicting protein tertiary and contact structures, particularly for sequences lacking close homologs in the Protein Data Bank [1]. `RaptorX` includes an integrated Python helper function for NEFF calculation, which is specifically designed for computing asymmetric NEFF. This tool is primarily designed for handling aligned `a2m` and `a3m` formats, without the specification of biological sequence alphabets. The code is available on [GitHub](https://github.com/j3xugit/RaptorX-3DModeling/tree/master/BuildFeatures/Helpers/CalcMeff.py).
 
 <br>
 
