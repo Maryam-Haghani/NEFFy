@@ -120,7 +120,7 @@ float FlagHandler::getFloatValue(const string& name) const
     return value;
 }
 
-vector<string> FlagHandler::getFileArrayValue(const string& name) const
+vector<string> FlagHandler::getArrayValues(const string& name) const
 {
     vector<string> values;
     string svalue = getFlagValue(name);
@@ -129,24 +129,41 @@ vector<string> FlagHandler::getFileArrayValue(const string& name) const
     string item;
     while (getline(ss, item, ','))
     {
-        // check file format to be valid
-        if (!filesystem::exists(item))
-        {
-            throw runtime_error("Error: File '" + item + "' does not exist.");
-        }
-        string format = getFormat(item, "file");
-        bool isValidFormat = std::find(VALID_FORMATS.begin(), VALID_FORMATS.end(), format) != VALID_FORMATS.end();
-        if (!isValidFormat) {
-            throw runtime_error("Error: Unsupported file format '" + format + "'.");
-        }
         values.push_back(item);
     }
 
-    if (values.empty()) {
-        throw runtime_error("Invalid '" + name + "' value. It should contain at least one item");
-    }
     return values;
 }
+
+string FlagHandler::getFileValue(const string& name) const
+{
+    string file = getFlagValue(name);
+    
+    // Check if file exists
+    if (!filesystem::exists(file)) {
+        throw runtime_error("Error: File '" + file + "' does not exist.");
+    }
+    
+    return file;
+}
+
+vector<string> FlagHandler::getFileArrayValue(const string& name) const
+{
+    vector<string> files = getArrayValues(name);
+
+    for (const string& file : files) {
+        // Check if file exists
+        if (!filesystem::exists(file)) {
+            throw runtime_error("Error: File '" + file + "' does not exist.");
+        }
+    }
+
+    if (files.empty()) {
+        throw runtime_error("Invalid '" + name + "' value. It should contain at least one item");
+    }
+    return files;
+}
+
 
 vector<int> FlagHandler::getIntArrayValue(const string& name) const
 {

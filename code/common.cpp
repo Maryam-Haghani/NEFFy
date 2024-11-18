@@ -12,23 +12,53 @@
 using namespace std;
 
 /// @brief Get format of the given file
-/// @param file 
+/// @param file
+/// @param format
 /// @param name 
-/// @return 
-string getFormat(string file, string name)
+/// @return finalFormat
+string getFormat(const string& file, const string& format, const string& name)
 {
-    size_t index = file.find_last_of('.');
-    string format;
+    string fileExtension;
+    string finalFormat;
 
+    size_t index = file.find_last_of('.');
     if (index != string::npos)
     {
-        return file.substr(index + 1);
+        fileExtension = file.substr(index + 1);
+    }
+
+    // Check consistency when both format and file extension are non-empty
+    if (!format.empty() && !fileExtension.empty() && fileExtension != format)
+    {
+        throw runtime_error("Specified format '" + format + "' does not match the file extension '"
+                            + fileExtension + "' for '" + name + "'.");
+    }
+
+    // Determine the final format
+    if (!fileExtension.empty())
+    {
+        finalFormat = fileExtension;
     }
     else
     {
-        throw runtime_error("Please specify a format for " + name);
+        finalFormat = format;
     }
+
+    // Check if format is empty
+    if (finalFormat.empty())
+    {
+        throw runtime_error("A format must be specified for '" + name + "' (using the file extension or format flag).");
+    }
+
+    // Validate the format
+    if (std::find(VALID_FORMATS.begin(), VALID_FORMATS.end(), finalFormat) == VALID_FORMATS.end())
+    {
+        throw runtime_error("Unsupported file format '" + finalFormat + "' for '" + name + "'.");
+    }
+
+    return finalFormat;
 }
+
 
 /// @brief Remove gap positions of the query sequence from all sequences
 /// @param sequences 

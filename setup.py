@@ -27,7 +27,7 @@ class CustomInstallCommand(install):
         print(f"Cloning C++ code from {repo_url}...")
         if os.path.exists(clone_path):
             shutil.rmtree(clone_path)
-        subprocess.check_call(["git", "clone", repo_url, clone_path])
+        subprocess.check_call(["git", "clone", "-b format-issue2", repo_url, clone_path])
         print(f"Cloned C++ code to {clone_path}...")
 
     def build_cpp_code(self, cpp_clone_path):
