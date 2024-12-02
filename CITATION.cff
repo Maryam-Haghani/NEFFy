@@ -1,10 +1,14 @@
 cff-version: 1.0.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "Haghani"
-  given-names: "Maryam"
-  orcid: "https://orcid.org/0009-0006-3377-0417"
-title: "A Versatile Tool for Computing the Number of Effective Sequences (NEFF) and Converting Fromat of MSA"
+  - family-names: "Haghani"
+    given-names: "Maryam"
+  - family-names: "Bhattacharya"
+    given-names: "Debswapna"
+  - family-names: "Murali"
+    given-names: "T M"
+title: "NEFFy: A Versatile Tool for Computing the Number of Effective Sequences"
 version: 1.0.0
-date-released: 2024-10
+date-released: 2024-12
 url: "https://github.com/Maryam-Haghani/Neffy"
+doi: "10.1101/2024.12.01.625733"
