@@ -181,6 +181,7 @@ def build_args(params):
 # Main function to compute NEFF for a given MSA
 def compute_neff(
         file: Union[str, List[str]],
+        format: Union[str, List[str]],
         alphabet: Alphabet = Alphabet.Protein,
         check_validation: bool = False,
         threshold: float = 0.8,
@@ -214,6 +215,7 @@ def compute_neff(
 # Function to compute per-residue (column-wise) NEFF
 def compute_residue_neff(
         file: Union[str, List[str]],
+        format: Union[str, List[str]],
         alphabet: Alphabet = Alphabet.Protein,
         check_validation: bool = False,
         threshold: float = 0.8,
@@ -244,6 +246,7 @@ def compute_residue_neff(
 # Function to compute NEFF for multimeric structures
 def compute_multimer_neff(
         file: str,
+        format: str,
         stoichiom: str,
         chain_length: List[int] = [0],
         alphabet: Alphabet = Alphabet.Protein,
@@ -276,7 +279,9 @@ def compute_multimer_neff(
 # Function to convert MSA file formats
 def convert_msa(
         in_file: str,
+        in_format: str,
         out_file: str,
+        out_format: str,
         alphabet: Alphabet = Alphabet.Protein,
         check_validation: bool = False
 ):
@@ -287,7 +292,9 @@ def convert_msa(
 
         args = [
             f"--in_file={in_file}",
+            f"--in_format={in_format}",
             f"--out_file={out_file}",
+            f"--out_format={out_format}",
             f"--alphabet={alphabet.value}",
             f"--check_validation={str(check_validation).lower()}"
         ]

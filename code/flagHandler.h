@@ -64,10 +64,21 @@ public:
     /// @return 
     float getBooleanValue(const std::string& name) const;
 
+    /// @brief Get file
+    /// @param name
+    /// @return 
+    std::string getFileValue(const std::string& name) const;
+
     /// @brief Get list of files
     /// @param name
     /// @return 
     std::vector<std::string> getFileArrayValue(const std::string& name) const;
+
+
+    /// @brief Get list of array
+    /// @param name
+    /// @return 
+    std::vector<std::string> getArrayValues(const std::string& name) const;
 
     /// @brief Get given int option by user
     /// @param flagHandler 

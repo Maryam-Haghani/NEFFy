@@ -12,6 +12,7 @@
  *
  * Options:
  *   --file=<input_file>               Input files (comma-separated, no spaces) containing multiple sequence alignments (required)\n"
+ *   --format=<input_format>           Input file formats (comma-separated, no spaces) containing formats of multiple sequence alignments (optional)\n"
  *   --alphabet=<value>                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n"
  *   --check_validation=<true/false>   Perform validation on sequences (default: false)\n"
  *   --threshold=<value>               Threshold value of considering two sequences similar (default: 0.8)\n"
@@ -72,6 +73,7 @@ using namespace std;
 unordered_map<string, FlagInfo> Flags =
 {
     {"file", {true, ""}},                   // Input files (comma-separated, no spaces) containing multiple sequence alignments
+    {"format", {false, ""}},                // Input file formats (comma-separated, no spaces) containing formats of multiple sequence alignments
     {"alphabet", {false, "0"}},             // Alphabet of MSA
     {"check_validation", {false, "false"}}, // Perform validation on sequences to include only alphabet letters
     {"threshold", {false, "0.8"}},          // Threshold value for sequence similarity
@@ -630,8 +632,8 @@ int main(int argc, char **argv)
         }
     }
 
-    vector<string> files;
-    string file, format;
+    vector<string> files, formats;
+    string file;
     float threshold, gapCutoff;
     bool checkValidation, omitGapsInQuery, isSymmetric;
     int depth;
@@ -649,6 +651,17 @@ int main(int argc, char **argv)
         flagHandler.checkRequiredFlags();
 
         checkFlags(flagHandler);
+
+        // file
+        files = flagHandler.getFileArrayValue("file");
+
+        //formats
+        formats = flagHandler.getArrayValues("format");
+
+        if (!formats.empty() && formats.size() != files.size())
+        {
+            throw runtime_error("'format' must either be empty or have the same number of elements as 'file'.");
+        }
                 
         // alphabet
         alphabet = getAlphabet(flagHandler);
@@ -662,16 +675,13 @@ int main(int argc, char **argv)
         //depth    
         depth = flagHandler.getNonZeroIntValue("depth");
 
-        // file
-        files = flagHandler.getFileArrayValue("file");
-
         MSAReader* msaReader;
 
         for(int f=0; f<files.size(); f++)
         {
             file = files[f];
 
-            format = getFormat(file, "file");
+            string format = getFormat(file, !formats.empty()? formats[f] : "", "file");
 
             if (format == "a2m")
                 msaReader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
@@ -687,6 +697,7 @@ int main(int argc, char **argv)
                 msaReader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
             else if (find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
                 msaReader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
+
             sequences = msaReader->read();
 
             if(sequences.size() == 0)

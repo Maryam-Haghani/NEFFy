@@ -55,10 +55,11 @@ enum NonStandardHandler
 /**
  * @brief Get the format from a file path.
  * @param file file path.
+ * @param format file format if given by user.
  * @param name name of the file (for error messages).
  * @return The format string.
  */
-std::string getFormat(std::string file, std::string name);
+std::string getFormat(const std::string& file, const std::string& format, const std::string& name);
 
 /**
  * @brief Keep only the positions of non-gap residues of the query sequence for all sequences.

@@ -43,21 +43,22 @@ unordered_map<string, FlagInfo> Flags =
 {
     {"in_file", {true, ""}},                // in_file path
     {"out_file", {true, ""}},               // out_file path
+    {"in_format", {false, ""}},             // input file format
+    {"out_format", {false, ""}},            // output file format
     {"alphabet", {false, "0"}},             // alphabet of MSA
     {"check_validation", {false, "true"}},  // whether to perform validation on sequences to include only alphabet letters
 };
 
 /// @brief Convert the format of the input MSA file to the format of the output MSA file.
-/// @param inFile 
-/// @param outFile 
-/// @param checkValidation 
-/// @param alphabet 
+/// @param inFile
+/// @param outFile
+/// @param inFormat
+/// @param outFormat
+/// @param checkValidation
+/// @param alphabet
 /// @return size
-int convert(string inFile, string outFile, bool checkValidation, Alphabet alphabet)
+int convert(string inFile, string outFile, string inFormat, string outFormat, bool checkValidation, Alphabet alphabet)
 {
-    string inFormat = getFormat(inFile, "in_file");
-    string outFormat = getFormat(outFile, "out_file");
-
     MSAReader* msaReader;
     if (inFormat == "a2m")
         msaReader = new MSAReader_a2m(inFile, alphabet, checkValidation);
@@ -73,8 +74,6 @@ int convert(string inFile, string outFile, bool checkValidation, Alphabet alphab
         msaReader = new MSAReader_aln(inFile, alphabet, checkValidation);
     else if (inFormat == "pfam")
         msaReader = new MSAReader_pfam(inFile, alphabet, checkValidation);
-    else
-        throw runtime_error("Not supported input MSA file format (" + inFormat + ")");
 
     vector<Sequence> sequences = msaReader->read();
 
@@ -93,10 +92,6 @@ int convert(string inFile, string outFile, bool checkValidation, Alphabet alphab
         msaWriter = new MSAWriter_aln(sequences, outFile);
     else if (outFormat == "pfam")
         msaWriter = new MSAWriter_pfam(sequences, outFile);
-    else
-    {
-        throw runtime_error("Not supported output MSA file format (" + outFormat + ")");
-    }
 
     msaWriter->write();
 
@@ -145,29 +140,35 @@ int main(int argc, char **argv)
         // out_file
         string outFile = flagHandler.getFlagValue("out_file");
 
+        // input file format
+        string inFormat = getFormat(inFile, flagHandler.getFlagValue("in_format"), "in_file");
+
+        // output file format
+        string outFormat = getFormat(outFile, flagHandler.getFlagValue("out_format"), "out_file");
+
         // alphabet
         alphabet = getAlphabet(flagHandler);
 
         // check_validation
         bool checkValidation = flagHandler.getBooleanValue("check_validation");
 
-        int msaDepth = convert(inFile, outFile, checkValidation, alphabet);
+        int msaDepth = convert(inFile, outFile, inFormat, outFormat, checkValidation, alphabet);
 
-        cout << "Converted " << inFile << " with " <<  msaDepth << " sequences from " << getFormat(inFile, "in_file")
-        << " to " << getFormat(outFile, "out_file") << " and saved the output as " << outFile << "." << endl;
+        cout << "Converted " << inFile << " with " <<  msaDepth << " sequences from " << inFormat
+        << " to " << outFormat << " and saved the output as " << outFile << "." << endl;
         
         return 0;
     }
     catch (const runtime_error& e) 
     {
         cerr << "Handled Error: " << e.what() << endl << endl;
-        cerr << docstr;
+        // cerr << docstr;
         return 1;
     } 
     catch (const exception& e) 
     {
         cerr << "Error: " << e.what() << endl << endl;
-        cerr << docstr;
+        // cerr << docstr;
         return 1;
     }
 }
