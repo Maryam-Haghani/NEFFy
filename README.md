@@ -15,6 +15,7 @@ Additionally, NEFFy includes built-in support for format conversion, allowing us
 - [Supported File Formats](#supported-file-formats)
 - [Error Handling](#error-handling)
 - [License](#license)
+- [Citation](#citation)
 
 # C++ Executable
 
@@ -184,6 +185,14 @@ Please refer to the error message for troubleshooting or make necessary correcti
 
 # License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
+
+# Citation
+
+If you use **NEFFy** in your research, please cite the following:
+
+**NEFFy: A Versatile Tool for Computing the Number of Effective Sequences**. Haghani, M., Bhattacharya, D., Murali, T. M. (2024).
+*bioRxiv*. [https://www.biorxiv.org/content/10.1101/2024.12.01.625733v1](https://www.biorxiv.org/content/10.1101/2024.12.01.625733v1)
+
 
 ----------------
 For further assistance, please see the [documentation](https://maryam-haghani.github.io/NEFFy/).
