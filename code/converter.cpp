@@ -15,17 +15,65 @@
  *   --check_validation=<true/false>  Perform validation on sequences (default: true)
  *
  * 
- *  For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
+ *  For more comprehensive instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
  */
 
-const char* docstr = R"(
+//const char* docstr = R"(
+//
+//This program converts the format of an input Multiple Sequence Alignment (MSA) file to the format of an output MSA file.
+//
+//Usage:
+//./converter --in_file=<input_file> --out_file=<output_file> [options]
+//
+//For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
+//)";
 
-This program converts the format of an input Multiple Sequence Alignment (MSA) file to the format of an output MSA file.
+const char* docstr = R"(
+MSA Converter Tool
+
+Description:
+  This program converts the format of an input Multiple Sequence Alignment (MSA) file
+  to that of an output MSA file. It supports various formats and can validate sequences
+  against a specified alphabet.
 
 Usage:
-./converter --in_file=<input_file> --out_file=<output_file> [options]
+  ./converter --in_file=<input_file> --out_file=<output_file> [options]
 
-For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
+Options:
+  --in_file=<input_file>
+      Path to the input MSA file.
+      (Required)
+
+  --out_file=<output_file>
+      Path to the output MSA file.
+      (Required)
+
+  --in_format=<input_format>
+      Format of the input file. If not provided, the format is inferred from the file extension.
+      (Optional)
+
+  --out_format=<output_format>
+      Format of the output file. If not provided, the format is inferred from the file extension.
+      (Optional)
+
+  --alphabet=<value>
+      Specifies the alphabet for the sequences:
+        0 : Protein (default)
+        1 : RNA
+        2 : DNA
+
+  --check_validation=<true/false>
+      If true, validates the sequences to ensure they contain only letters from the specified alphabet.
+      (Default: true)
+
+Examples:
+  Convert a protein MSA from FASTA to Clustal format:
+    ./converter --in_file=msa.fasta --out_file=msa.clustal --alphabet=0
+
+  Convert an RNA MSA with validation:
+    ./converter --in_file=msa.a3m --out_file=msa.sto --alphabet=1 --check_validation=true
+
+For more comprehensive instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
 )";
 
 #include <iostream>
