@@ -18,16 +18,6 @@
  *  For more comprehensive instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
  */
 
-//const char* docstr = R"(
-//
-//This program converts the format of an input Multiple Sequence Alignment (MSA) file to the format of an output MSA file.
-//
-//Usage:
-//./converter --in_file=<input_file> --out_file=<output_file> [options]
-//
-//For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
-//)";
-
 const char* docstr = R"(
 MSA Converter Tool
 
