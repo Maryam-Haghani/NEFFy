@@ -143,7 +143,6 @@ To install the library from the source:
 
 ### From PyPI:
 The package is available on [PyPI](https://pypi.org/project/neffy/).
-
 Install the package via pip:
 
 ```bash
