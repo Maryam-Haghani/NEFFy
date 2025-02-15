@@ -3,6 +3,7 @@
  * @brief This file contains common utility functions used in the MSA project.
  */
 
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <functional>
