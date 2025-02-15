@@ -4,7 +4,7 @@ var searchData=
   ['idspace_1',['IDspace',['../class_m_s_a_writer.html#a146648f051b2cbda84f31d3bf71b8abd',1,'MSAWriter']]],
   ['includesinpairedmsa_2',['includesInPairedMSA',['../class_multimer_handler.html#aa5f161b00349d681cca4828311ea922a',1,'MultimerHandler']]],
   ['installation_3',['&lt;tt&gt;make&lt;/tt&gt; Installation',['../help.html#autotoc_md5',1,'']]],
-  ['installation_20from_20pypi_20upcoming_4',['Installation from PyPI (upcoming)',['../installation_guide.html#autotoc_md15',1,'']]],
+  ['installation_20from_20pypi_4',['Installation from PyPI',['../installation_guide.html#autotoc_md15',1,'']]],
   ['installation_20from_20source_5',['Installation from Source',['../installation_guide.html#autotoc_md14',1,'']]],
   ['installation_20guide_6',['Installation Guide',['../installation_guide.html',1,'Installation Guide'],['../index.html#autotoc_md28',1,'Installation Guide']]],
   ['installation_5fguide_2emd_7',['installation_guide.md',['../installation__guide_8md.html',1,'']]],

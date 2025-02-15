@@ -33,7 +33,7 @@ enum \mbox{\hyperlink{common_8h_a1105b29855665d3017b4a2b889b3f02a}{Non\+Standard
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::string \mbox{\hyperlink{common_8h_a20be35e73f527192e4908daf1aa27d46}{get\+Format}} (std\+::string file, std\+::string name)
+std\+::string \mbox{\hyperlink{common_8h_a96dc38a088eae57b845e73bcb4ea8e3f}{get\+Format}} (const std\+::string \&file, const std\+::string \&format, const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Get the format from a file path. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{common_8h_a7f89060b582fc435cc6a74bee0dc9d07}{keep\+Non\+Gap\+Positions\+Of\+Query\+Sequence}} (std\+::vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&sequences)
 \begin{DoxyCompactList}\small\item\em Keep only the positions of non-\/gap residues of the query sequence for all sequences. \end{DoxyCompactList}\item 
@@ -163,11 +163,11 @@ gets the list of allowed letters for the provided input alphabet
 ~\newline
  
 \end{DoxyReturn}
-\Hypertarget{common_8h_a20be35e73f527192e4908daf1aa27d46}\index{common.h@{common.h}!getFormat@{getFormat}}
+\Hypertarget{common_8h_a96dc38a088eae57b845e73bcb4ea8e3f}\index{common.h@{common.h}!getFormat@{getFormat}}
 \index{getFormat@{getFormat}!common.h@{common.h}}
 \doxysubsubsection{\texorpdfstring{getFormat()}{getFormat()}}
-{\footnotesize\ttfamily \label{common_8h_a20be35e73f527192e4908daf1aa27d46} 
-std\+::string get\+Format (\begin{DoxyParamCaption}\item[{std\+::string}]{file}{, }\item[{std\+::string}]{name}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{common_8h_a96dc38a088eae57b845e73bcb4ea8e3f} 
+std\+::string get\+Format (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file}{, }\item[{const std\+::string \&}]{format}{, }\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
 
 
 
@@ -176,6 +176,8 @@ Get the format from a file path.
 
 \begin{DoxyParams}{Parameters}
 {\em file} & file path. \\
+\hline
+{\em format} & file format if given by user. \\
 \hline
 {\em name} & name of the file (for error messages). \\
 \hline

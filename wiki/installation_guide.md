@@ -59,16 +59,18 @@ To install the library from the source:
     ```bash
     pip install .
     ```
-  - Alternatively, you can install the package directly from the built wheel file (in the `dist` directory):
+   
+- Alternatively, you can install the package directly from the built wheel file (in the `dist` directory):
     ```bash
     pip install dist/neffy-0.1-py3-none-any.whl
     ```
 
 \anchor python_pypi
-## Installation from PyPI (upcoming)
-Our Python library will soon be available on PyPI. This will make it easier for you to install and manage the library using pip. <br>
-To install the package from PyPI:
-```bash
+## Installation from PyPI
+Our Python library is available on [`PyPI`](https://pypi.org/project/neffy).
+This release provides pre-built, platform-specific wheels for Windows, Linux, and macOS, as well as a source distribution for building on other operating systems. This streamlines the installation and management process using pip.<br>
+- To install the package from PyPI, run:
+    ```bash
     pip install neffy
     ```
 <br>

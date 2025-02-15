@@ -79,26 +79,26 @@ This program computes Number of EFFective sequences (NEFF) for a multiple sequen
 Usage\+: ./neff --file=$<$input\+\_\+file$>$ \mbox{[}options\mbox{]}
 
 Options\+: --file=$<$input\+\_\+file$>$ Input files (comma-\/separated, no spaces) containing multiple sequence alignments (required)~\newline
-"{}   -\/-\/alphabet=$<$value$>$                Valid alphabet of MSA; alphabet option (0\+: Protein, 1\+: RNA, 2\+: DNA) (default\+: 0)\textbackslash{}n"{} --check\+\_\+validation=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Perform validation on sequences (default\+: false)~\newline
-"{}   -\/-\/threshold=$<$value$>$               Threshold value of considering two sequences similar (default\+: 0.\+8)\textbackslash{}n"{} --norm=
+"{}   -\/-\/format=$<$input\+\_\+format$>$           Input file formats (comma-\/separated, no spaces) containing formats of multiple sequence alignments (optional)\textbackslash{}n"{} --alphabet=
 
-NEFF normalization option (0\+: sqrt(\+Length of alignment), 1\+: Length of alignment, 2\+: No normalization) (default\+: 0)~\newline
-"{}   -\/-\/omit\+\_\+query\+\_\+gaps=$<$true/false$>$    Omit gap positions of query sequence from all sequences for NEFF computation (default\+: true)\textbackslash{}n"{} --is\+\_\+symmetric=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default\+: true)~\newline
-"{}   -\/-\/non\+\_\+standard\+\_\+option=$<$value$>$     Handling non-\/standard letters in the given alphabet (0\+: As\+Standard, 1\+: Consider\+Gap\+In\+Cutoff, 2\+: Consider\+Gap)\textbackslash{}n"{} --depth=
+Valid alphabet of MSA; alphabet option (0\+: Protein, 1\+: RNA, 2\+: DNA) (default\+: 0)~\newline
+"{}   -\/-\/check\+\_\+validation=$<$true/false$>$   Perform validation on sequences (default\+: false)\textbackslash{}n"{} --threshold=
 
-Depth of MSA to be cosidered in computation (default\+: depth of given MSA)~\newline
-"{}   -\/-\/gap\+\_\+cutoff=$<$value$>$              Cutoff value for removing gappy positions, when \#gaps in position $>$= gap\+\_\+cutoff (default=1 \+: does not remove anything)\textbackslash{}n"{} --pos\+\_\+start=
+Threshold value of considering two sequences similar (default\+: 0.\+8)~\newline
+"{}   -\/-\/norm=$<$value$>$                    NEFF normalization option (0\+: sqrt(\+Length of alignment), 1\+: Length of alignment, 2\+: No normalization) (default\+: 0)\textbackslash{}n"{} --omit\+\_\+query\+\_\+gaps=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Omit gap positions of query sequence from all sequences for NEFF computation (default\+: true)~\newline
+"{}   -\/-\/is\+\_\+symmetric=$<$true/false$>$       Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default\+: true)\textbackslash{}n"{} --non\+\_\+standard\+\_\+option=
 
-Start position of each sequence to be considered in neff (inclusive (default\+: 1))~\newline
-"{}   -\/-\/pos\+\_\+end=$<$value$>$                 Last position of each sequence to be considered in neff (inclusive (default\+: length of MSA sequence))\textbackslash{}n"{} --only\+\_\+weights=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Return only sequence weights, as \# similar sequence, rather than the final NEFF (default\+: false)~\newline
-"{}   -\/-\/multimer\+\_\+\+MSA=$<$true/false$>$       Compute NEFF for a multimer MSA (default\+: false)\textbackslash{}n"{} --stoichiom=
+Handling non-\/standard letters in the given alphabet (0\+: As\+Standard, 1\+: Consider\+Gap\+In\+Cutoff, 2\+: Consider\+Gap)~\newline
+"{}   -\/-\/depth=$<$value$>$                   Depth of MSA to be cosidered in computation (default\+: depth of given MSA)\textbackslash{}n"{} --gap\+\_\+cutoff=
 
-Multimer stoichiometry (default\+: empty) --chain\+\_\+length=
-\begin{DoxyItemize}
-\end{DoxyItemize}of the chains in heteromer multimer (default\+: 0)~\newline
-"{} --residue\+\_\+neff=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute per-\/resiue (column-\/wise) NEFF (default\+: false)
+Cutoff value for removing gappy positions, when \#gaps in position \texorpdfstring{$>$}{>}= gap\+\_\+cutoff (default=1 \+: does not remove anything)~\newline
+"{}   -\/-\/pos\+\_\+start=$<$value$>$               Start position of each sequence to be considered in neff (inclusive (default\+: 1))\textbackslash{}n"{} --pos\+\_\+end=
 
-For detailed instructions, please refer to the documentation at \href{https://maryam-haghani.github.io/NEFFy}{\texttt{ https\+://maryam-\/haghani.\+github.\+io/\+NEFFy}}. 
+Last position of each sequence to be considered in neff (inclusive (default\+: length of MSA sequence))~\newline
+"{}   -\/-\/only\+\_\+weights=$<$true/false$>$       Return only sequence weights, as \# similar sequence, rather than the final NEFF (default\+: false)\textbackslash{}n"{} --multimer\+\_\+\+MSA=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute NEFF for a multimer MSA (default\+: false)~\newline
+"{}   --stoichiom=$<$value$>$               Multimer stoichiometry (default\+: empty)   --chain\+\_\+length=$<$list of values$>$   Length of the chains in heteromer multimer (default\+: 0)\textbackslash{}n"{} --residue\+\_\+neff=\texorpdfstring{$<$}{<}true/false\texorpdfstring{$>$}{>} Compute per-\/resiue (column-\/wise) NEFF (default\+: false)
+
+For more comprehensive instructions, please refer to the documentation at \href{https://maryam-haghani.github.io/NEFFy}{\texttt{ https\+://maryam-\/haghani.\+github.\+io/\+NEFFy}}. 
 
 \doxysubsection{Function Documentation}
 \Hypertarget{neff_8cpp_a0aad7c0a3babadf0f62647fea7f86e38}\index{neff.cpp@{neff.cpp}!char2num@{char2num}}
@@ -426,19 +426,6 @@ Set MSA depth based on \textquotesingle{}depth\textquotesingle{} flag.
 {\footnotesize\ttfamily \label{neff_8cpp_af733a28ff1678d1d21721d9f4fe468af} 
 const char\texorpdfstring{$\ast$}{*} docstr}
 
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=\ R\textcolor{stringliteral}{"{}(}}
-\DoxyCodeLine{\textcolor{stringliteral}{This\ program\ computes\ the\ Number\ of\ Effective\ Sequences\ (NEFF)\ for\ a\ multiple\ sequence\ alignment\ (MSA)\ file.}}
-\DoxyCodeLine{\textcolor{stringliteral}{NEFF\ is\ a\ measure\ of\ the\ effective\ sequence\ number\ that\ accounts\ for\ the\ redundancy\ and\ similarity\ of\ sequences\ in\ the\ MSA.}}
-\DoxyCodeLine{\textcolor{stringliteral}{}}
-\DoxyCodeLine{\textcolor{stringliteral}{Usage:}}
-\DoxyCodeLine{\textcolor{stringliteral}{./neff\ -\/-\/file=<input\_file>\ [options]}}
-\DoxyCodeLine{\textcolor{stringliteral}{}}
-\DoxyCodeLine{\textcolor{stringliteral}{For\ detailed\ instructions,\ please\ refer\ to\ the\ documentation\ at\ https://maryam-\/haghani.github.io/NEFFy.}}
-\DoxyCodeLine{\textcolor{stringliteral}{)"{}}}
-
-\end{DoxyCode}
 \Hypertarget{neff_8cpp_aa3988cde601d3238b612f5d752a56e8b}\index{neff.cpp@{neff.cpp}!Flags@{Flags}}
 \index{Flags@{Flags}!neff.cpp@{neff.cpp}}
 \doxysubsubsection{\texorpdfstring{Flags}{Flags}}
@@ -450,6 +437,7 @@ unordered\+\_\+map$<$string, \mbox{\hyperlink{struct_flag_info}{Flag\+Info}}$>$ 
 \DoxyCodeLine{=}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}file"{}},\ \{\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}format"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}alphabet"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0"{}}\}\},\ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}check\_validation"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}false"{}}\}\},\ }
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}threshold"{}},\ \{\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}0.8"{}}\}\},\ \ \ \ \ \ \ \ \ \ }
