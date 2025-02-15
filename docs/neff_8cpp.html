@@ -213,27 +213,28 @@ Variables</h2></td></tr>
 <p>Usage: ./neff &ndash;file=&lt;input_file&gt; [options]</p>
 <p>Options: &ndash;file=&lt;input_file&gt; Input files (comma-separated, no spaces) containing multiple sequence alignments (required)<br  />
 "
-  --alphabet=&lt;value&gt;                Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)\n" &ndash;check_validation=&lt;true/false&gt; Perform validation on sequences (default: false)<br  />
+  --format=&lt;input_format&gt;           Input file formats (comma-separated, no spaces) containing formats of multiple sequence alignments (optional)\n" &ndash;alphabet=</p>
+<p>Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0)<br  />
 "
-  --threshold=&lt;value&gt;               Threshold value of considering two sequences similar (default: 0.8)\n" &ndash;norm=</p>
-<p>NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)<br  />
+  --check_validation=&lt;true/false&gt;   Perform validation on sequences (default: false)\n" &ndash;threshold=</p>
+<p>Threshold value of considering two sequences similar (default: 0.8)<br  />
 "
-  --omit_query_gaps=&lt;true/false&gt;    Omit gap positions of query sequence from all sequences for NEFF computation (default: true)\n" &ndash;is_symmetric=&lt;true/false&gt; Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)<br  />
+  --norm=&lt;value&gt;                    NEFF normalization option (0: sqrt(Length of alignment), 1: Length of alignment, 2: No normalization) (default: 0)\n" &ndash;omit_query_gaps=&lt;true/false&gt; Omit gap positions of query sequence from all sequences for NEFF computation (default: true)<br  />
 "
-  --non_standard_option=&lt;value&gt;     Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)\n" &ndash;depth=</p>
-<p>Depth of MSA to be cosidered in computation (default: depth of given MSA)<br  />
+  --is_symmetric=&lt;true/false&gt;       Consider gaps in similarity cutoff computation (asymmetric) or not (symmetric) (default: true)\n" &ndash;non_standard_option=</p>
+<p>Handling non-standard letters in the given alphabet (0: AsStandard, 1: ConsiderGapInCutoff, 2: ConsiderGap)<br  />
 "
-  --gap_cutoff=&lt;value&gt;              Cutoff value for removing gappy positions, when #gaps in position &gt;= gap_cutoff (default=1 : does not remove anything)\n" &ndash;pos_start=</p>
-<p>Start position of each sequence to be considered in neff (inclusive (default: 1))<br  />
+  --depth=&lt;value&gt;                   Depth of MSA to be cosidered in computation (default: depth of given MSA)\n" &ndash;gap_cutoff=</p>
+<p>Cutoff value for removing gappy positions, when #gaps in position &gt;= gap_cutoff (default=1 : does not remove anything)<br  />
 "
-  --pos_end=&lt;value&gt;                 Last position of each sequence to be considered in neff (inclusive (default: length of MSA sequence))\n" &ndash;only_weights=&lt;true/false&gt; Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)<br  />
+  --pos_start=&lt;value&gt;               Start position of each sequence to be considered in neff (inclusive (default: 1))\n" &ndash;pos_end=</p>
+<p>Last position of each sequence to be considered in neff (inclusive (default: length of MSA sequence))<br  />
 "
-  --multimer_MSA=&lt;true/false&gt;       Compute NEFF for a multimer MSA (default: false)\n" &ndash;stoichiom=</p>
-<p>Multimer stoichiometry (default: empty) &ndash;chain_length=</p><ul>
-</ul>
-<p>of the chains in heteromer multimer (default: 0)<br  />
-" &ndash;residue_neff=&lt;true/false&gt; Compute per-resiue (column-wise) NEFF (default: false)</p>
-<p>For detailed instructions, please refer to the documentation at <a href="https://maryam-haghani.github.io/NEFFy">https://maryam-haghani.github.io/NEFFy</a>. </p>
+  --only_weights=&lt;true/false&gt;       Return only sequence weights, as # similar sequence, rather than the final NEFF (default: false)\n" &ndash;multimer_MSA=&lt;true/false&gt; Compute NEFF for a multimer MSA (default: false)<br  />
+"
+  &amp;ndash;stoichiom=&lt;value&gt;               Multimer stoichiometry (default: empty)
+  &amp;ndash;chain_length=&lt;list of values&gt;   Length of the chains in heteromer multimer (default: 0)\n" &ndash;residue_neff=&lt;true/false&gt; Compute per-resiue (column-wise) NEFF (default: false)</p>
+<p>For more comprehensive instructions, please refer to the documentation at <a href="https://maryam-haghani.github.io/NEFFy">https://maryam-haghani.github.io/NEFFy</a>. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a0aad7c0a3babadf0f62647fea7f86e38" name="a0aad7c0a3babadf0f62647fea7f86e38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0aad7c0a3babadf0f62647fea7f86e38">&#9670;&#160;</a></span>char2num()</h2>
@@ -787,16 +788,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
-<div class="line"><span class="stringliteral">This program computes the Number of Effective Sequences (NEFF) for a multiple sequence alignment (MSA) file.</span></div>
-<div class="line"><span class="stringliteral">NEFF is a measure of the effective sequence number that accounts for the redundancy and similarity of sequences in the MSA.</span></div>
-<div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral">Usage:</span></div>
-<div class="line"><span class="stringliteral">./neff --file=&lt;input_file&gt; [options]</span></div>
-<div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral">For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.</span></div>
-<div class="line"><span class="stringliteral">)&quot;</span></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aa3988cde601d3238b612f5d752a56e8b" name="aa3988cde601d3238b612f5d752a56e8b"></a>
@@ -813,6 +805,7 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
 <div class="line">    {<span class="stringliteral">&quot;file&quot;</span>, {<span class="keyword">true</span>, <span class="stringliteral">&quot;&quot;</span>}},                   </div>
+<div class="line">    {<span class="stringliteral">&quot;format&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;&quot;</span>}},                </div>
 <div class="line">    {<span class="stringliteral">&quot;alphabet&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;0&quot;</span>}},             </div>
 <div class="line">    {<span class="stringliteral">&quot;check_validation&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;false&quot;</span>}}, </div>
 <div class="line">    {<span class="stringliteral">&quot;threshold&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;0.8&quot;</span>}},          </div>

@@ -31,7 +31,7 @@ var searchData=
   ['containsinvalidletters_28',['containsInvalidLetters',['../class_m_s_a_reader.html#ac79629b6cce3127ccb303a0378ffe1eb',1,'MSAReader']]],
   ['contents_29',['Contents',['../help.html#autotoc_md0',1,'Table of Contents'],['../installation_guide.html#autotoc_md10',1,'Table of Contents'],['../index.html#autotoc_md23',1,'Table of Contents'],['../msa_formats.html#autotoc_md35',1,'Table of Contents'],['../other_tools.html#autotoc_md52',1,'Table of Contents'],['../usage_guide.html#autotoc_md64',1,'Table of Contents']]],
   ['conversion_30',['Conversion',['../index.html#autotoc_md26',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md70',1,'MSA File Conversion'],['../usage_guide.html#autotoc_md86',1,'MSA File Conversion']]],
-  ['convert_31',['convert',['../converter_8cpp.html#a061625e1e49b7a50a37874acc9d32a4d',1,'converter.cpp']]],
+  ['convert_31',['convert',['../converter_8cpp.html#a4a97f5ce496157d5eaf000a05ad5f30a',1,'converter.cpp']]],
   ['convert_5fmsa_20tt_32',['&lt;tt&gt;convert_msa&lt;/tt&gt;',['../usage_guide.html#autotoc_md87',1,'']]],
   ['converter_33',['NEFFy: NEFF Calculator and MSA File Converter',['../index.html',1,'']]],
   ['converter_2ecpp_34',['converter.cpp',['../converter_8cpp.html',1,'']]]

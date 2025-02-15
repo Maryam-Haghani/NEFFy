@@ -5,6 +5,7 @@
 This file contains common utility functions used in the MSA project.  
 
 
+{\ttfamily \#include $<$algorithm$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$functional$>$}\newline
@@ -13,7 +14,7 @@ This file contains common utility functions used in the MSA project.
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \mbox{\hyperlink{common_8cpp_a4f4c5e272fc14bc0efba0dd1fff85e82}{get\+Format}} (string file, string name)
+string \mbox{\hyperlink{common_8cpp_a3e1bc38cf0668d8e1a11a4b4100e0bdb}{get\+Format}} (const string \&file, const string \&format, const string \&name)
 \begin{DoxyCompactList}\small\item\em Get format of the given file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{common_8cpp_a2f59bd7f829ff2896e1cda4d41dce065}{keep\+Non\+Gap\+Positions\+Of\+Query\+Sequence}} (vector$<$ \mbox{\hyperlink{struct_sequence}{Sequence}} $>$ \&sequences)
 \begin{DoxyCompactList}\small\item\em Remove gap positions of the query sequence from all sequences. \end{DoxyCompactList}\item 
@@ -52,11 +53,11 @@ gets the list of allowed letters for the provided input alphabet
 ~\newline
  
 \end{DoxyReturn}
-\Hypertarget{common_8cpp_a4f4c5e272fc14bc0efba0dd1fff85e82}\index{common.cpp@{common.cpp}!getFormat@{getFormat}}
+\Hypertarget{common_8cpp_a3e1bc38cf0668d8e1a11a4b4100e0bdb}\index{common.cpp@{common.cpp}!getFormat@{getFormat}}
 \index{getFormat@{getFormat}!common.cpp@{common.cpp}}
 \doxysubsubsection{\texorpdfstring{getFormat()}{getFormat()}}
-{\footnotesize\ttfamily \label{common_8cpp_a4f4c5e272fc14bc0efba0dd1fff85e82} 
-string get\+Format (\begin{DoxyParamCaption}\item[{string}]{file}{, }\item[{string}]{name}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{common_8cpp_a3e1bc38cf0668d8e1a11a4b4100e0bdb} 
+string get\+Format (\begin{DoxyParamCaption}\item[{const string \&}]{file}{, }\item[{const string \&}]{format}{, }\item[{const string \&}]{name}{}\end{DoxyParamCaption})}
 
 
 
@@ -66,12 +67,13 @@ Get format of the given file.
 \begin{DoxyParams}{Parameters}
 {\em file} & \\
 \hline
+{\em format} & \\
+\hline
 {\em name} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-~\newline
- 
+final\+Format 
 \end{DoxyReturn}
 \Hypertarget{common_8cpp_a10f035dda401f103dd3b269746aab8a5}\index{common.cpp@{common.cpp}!getNonStandardLetters@{getNonStandardLetters}}
 \index{getNonStandardLetters@{getNonStandardLetters}!common.cpp@{common.cpp}}

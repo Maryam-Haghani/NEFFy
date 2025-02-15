@@ -19,8 +19,12 @@ float \mbox{\hyperlink{class_flag_handler_a491e996c3926acc288e6aff711fee80a}{get
 \begin{DoxyCompactList}\small\item\em Get given float option by user. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_flag_handler_a50017c17a737b0ef4fc894328923aec1}{get\+Boolean\+Value}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get given boolean option by user. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_flag_handler_ac5d23b1335b0e2b7667d762fa53dfa62}{get\+File\+Value}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get file. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_flag_handler_a6518b77965cb5a561d4903f09b9bf23f}{get\+File\+Array\+Value}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get list of files. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_flag_handler_ac7e884b2b4d6d1ecf06173d3fa672f64}{get\+Array\+Values}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Get list of array. \end{DoxyCompactList}\item 
 std\+::vector$<$ int $>$ \mbox{\hyperlink{class_flag_handler_ac9eae02a4df585d43bd80a2315760c98}{get\+Int\+Array\+Value}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get given int option by user. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_flag_handler_af3219d2de0154fb4c143bc0b3a51acd6}{get\+Int\+Value}} (const std\+::string \&name) const
@@ -68,6 +72,25 @@ Checks if all required flags have values.
 {\em std\+::runtime\+\_\+error} & if a required flag is missing a value. \\
 \hline
 \end{DoxyExceptions}
+\Hypertarget{class_flag_handler_ac7e884b2b4d6d1ecf06173d3fa672f64}\index{FlagHandler@{FlagHandler}!getArrayValues@{getArrayValues}}
+\index{getArrayValues@{getArrayValues}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getArrayValues()}{getArrayValues()}}
+{\footnotesize\ttfamily \label{class_flag_handler_ac7e884b2b4d6d1ecf06173d3fa672f64} 
+vector$<$ string $>$ Flag\+Handler\+::get\+Array\+Values (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get list of array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
 \Hypertarget{class_flag_handler_a50017c17a737b0ef4fc894328923aec1}\index{FlagHandler@{FlagHandler}!getBooleanValue@{getBooleanValue}}
 \index{getBooleanValue@{getBooleanValue}!FlagHandler@{FlagHandler}}
 \doxysubsubsection{\texorpdfstring{getBooleanValue()}{getBooleanValue()}}
@@ -98,6 +121,25 @@ vector$<$ string $>$ Flag\+Handler\+::get\+File\+Array\+Value (\begin{DoxyParamC
 
 
 Get list of files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\Hypertarget{class_flag_handler_ac5d23b1335b0e2b7667d762fa53dfa62}\index{FlagHandler@{FlagHandler}!getFileValue@{getFileValue}}
+\index{getFileValue@{getFileValue}!FlagHandler@{FlagHandler}}
+\doxysubsubsection{\texorpdfstring{getFileValue()}{getFileValue()}}
+{\footnotesize\ttfamily \label{class_flag_handler_ac5d23b1335b0e2b7667d762fa53dfa62} 
+string Flag\+Handler\+::get\+File\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Get file. 
 
 
 \begin{DoxyParams}{Parameters}

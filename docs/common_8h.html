@@ -159,9 +159,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a20be35e73f527192e4908daf1aa27d46" id="r_a20be35e73f527192e4908daf1aa27d46"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20be35e73f527192e4908daf1aa27d46">getFormat</a> (std::string file, std::string name)</td></tr>
-<tr class="memdesc:a20be35e73f527192e4908daf1aa27d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the format from a file path.  <br /></td></tr>
-<tr class="separator:a20be35e73f527192e4908daf1aa27d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96dc38a088eae57b845e73bcb4ea8e3f" id="r_a96dc38a088eae57b845e73bcb4ea8e3f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96dc38a088eae57b845e73bcb4ea8e3f">getFormat</a> (const std::string &amp;file, const std::string &amp;format, const std::string &amp;name)</td></tr>
+<tr class="memdesc:a96dc38a088eae57b845e73bcb4ea8e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the format from a file path.  <br /></td></tr>
+<tr class="separator:a96dc38a088eae57b845e73bcb4ea8e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f89060b582fc435cc6a74bee0dc9d07" id="r_a7f89060b582fc435cc6a74bee0dc9d07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f89060b582fc435cc6a74bee0dc9d07">keepNonGapPositionsOfQuerySequence</a> (std::vector&lt; <a class="el" href="struct_sequence.html">Sequence</a> &gt; &amp;sequences)</td></tr>
 <tr class="memdesc:a7f89060b582fc435cc6a74bee0dc9d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep only the positions of non-gap residues of the query sequence for all sequences.  <br /></td></tr>
 <tr class="separator:a7f89060b582fc435cc6a74bee0dc9d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,8 +291,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a20be35e73f527192e4908daf1aa27d46" name="a20be35e73f527192e4908daf1aa27d46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20be35e73f527192e4908daf1aa27d46">&#9670;&#160;</a></span>getFormat()</h2>
+<a id="a96dc38a088eae57b845e73bcb4ea8e3f" name="a96dc38a088eae57b845e73bcb4ea8e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96dc38a088eae57b845e73bcb4ea8e3f">&#9670;&#160;</a></span>getFormat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,12 +300,17 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">std::string getFormat </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -314,6 +319,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>file path. </td></tr>
+    <tr><td class="paramname">format</td><td>file format if given by user. </td></tr>
     <tr><td class="paramname">name</td><td>name of the file (for error messages). </td></tr>
   </table>
   </dd>

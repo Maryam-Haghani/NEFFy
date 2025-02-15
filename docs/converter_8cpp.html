@@ -138,9 +138,9 @@ $(function(){ initResizable(false); });
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a061625e1e49b7a50a37874acc9d32a4d" id="r_a061625e1e49b7a50a37874acc9d32a4d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a061625e1e49b7a50a37874acc9d32a4d">convert</a> (string inFile, string outFile, bool checkValidation, <a class="el" href="common_8h.html#ad321c418983642eb2b4360826d489ec4">Alphabet</a> alphabet)</td></tr>
-<tr class="memdesc:a061625e1e49b7a50a37874acc9d32a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the format of the input MSA file to the format of the output MSA file.  <br /></td></tr>
-<tr class="separator:a061625e1e49b7a50a37874acc9d32a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a97f5ce496157d5eaf000a05ad5f30a" id="r_a4a97f5ce496157d5eaf000a05ad5f30a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a97f5ce496157d5eaf000a05ad5f30a">convert</a> (string inFile, string outFile, string inFormat, string outFormat, bool checkValidation, <a class="el" href="common_8h.html#ad321c418983642eb2b4360826d489ec4">Alphabet</a> alphabet)</td></tr>
+<tr class="memdesc:a4a97f5ce496157d5eaf000a05ad5f30a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the format of the input MSA file to the format of the output MSA file.  <br /></td></tr>
+<tr class="separator:a4a97f5ce496157d5eaf000a05ad5f30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fb06c3f546be5708d4b522bc60400aa" id="r_a0fb06c3f546be5708d4b522bc60400aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#ad321c418983642eb2b4360826d489ec4">Alphabet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fb06c3f546be5708d4b522bc60400aa">getAlphabet</a> (<a class="el" href="class_flag_handler.html">FlagHandler</a> &amp;flagHandler)</td></tr>
 <tr class="memdesc:a0fb06c3f546be5708d4b522bc60400aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get given alphabet by user.  <br /></td></tr>
 <tr class="separator:a0fb06c3f546be5708d4b522bc60400aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,10 +160,10 @@ Variables</h2></td></tr>
 <p>Usage: ./converter &ndash;in_file=&lt;input_file&gt; &ndash;out_file=&lt;output_file&gt; [options]</p>
 <p>Options: &ndash;in_file=&lt;input_file&gt; Path to the input MSA file &ndash;out_file=&lt;output_file&gt; Path to the output MSA file &ndash;alphabet=</p>
 <p>Valid alphabet of MSA; alphabet option (0: Protein, 1: RNA, 2: DNA) (default: 0) &ndash;check_validation=&lt;true/false&gt; Perform validation on sequences (default: true)</p>
-<p>For detailed instructions, please refer to the documentation at <a href="https://maryam-haghani.github.io/NEFFy">https://maryam-haghani.github.io/NEFFy</a>. </p>
+<p>For more comprehensive instructions, please refer to the documentation at <a href="https://maryam-haghani.github.io/NEFFy">https://maryam-haghani.github.io/NEFFy</a>. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a061625e1e49b7a50a37874acc9d32a4d" name="a061625e1e49b7a50a37874acc9d32a4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a061625e1e49b7a50a37874acc9d32a4d">&#9670;&#160;</a></span>convert()</h2>
+<a id="a4a97f5ce496157d5eaf000a05ad5f30a" name="a4a97f5ce496157d5eaf000a05ad5f30a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a97f5ce496157d5eaf000a05ad5f30a">&#9670;&#160;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,6 +177,16 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>outFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>inFormat</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>outFormat</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -196,6 +206,8 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">inFile</td><td></td></tr>
     <tr><td class="paramname">outFile</td><td></td></tr>
+    <tr><td class="paramname">inFormat</td><td></td></tr>
+    <tr><td class="paramname">outFormat</td><td></td></tr>
     <tr><td class="paramname">checkValidation</td><td></td></tr>
     <tr><td class="paramname">alphabet</td><td></td></tr>
   </table>
@@ -265,16 +277,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= R<span class="stringliteral">&quot;(</span></div>
-<div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral">This program converts the format of an input Multiple Sequence Alignment (MSA) file to the format of an output MSA file.</span></div>
-<div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral">Usage:</span></div>
-<div class="line"><span class="stringliteral">./converter --in_file=&lt;input_file&gt; --out_file=&lt;output_file&gt; [options]</span></div>
-<div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral">For detailed instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.</span></div>
-<div class="line"><span class="stringliteral">)&quot;</span></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aa3988cde601d3238b612f5d752a56e8b" name="aa3988cde601d3238b612f5d752a56e8b"></a>
@@ -292,6 +295,8 @@ Variables</h2></td></tr>
 <div class="line">{</div>
 <div class="line">    {<span class="stringliteral">&quot;in_file&quot;</span>, {<span class="keyword">true</span>, <span class="stringliteral">&quot;&quot;</span>}},                </div>
 <div class="line">    {<span class="stringliteral">&quot;out_file&quot;</span>, {<span class="keyword">true</span>, <span class="stringliteral">&quot;&quot;</span>}},               </div>
+<div class="line">    {<span class="stringliteral">&quot;in_format&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;&quot;</span>}},             </div>
+<div class="line">    {<span class="stringliteral">&quot;out_format&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;&quot;</span>}},            </div>
 <div class="line">    {<span class="stringliteral">&quot;alphabet&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;0&quot;</span>}},             </div>
 <div class="line">    {<span class="stringliteral">&quot;check_validation&quot;</span>, {<span class="keyword">false</span>, <span class="stringliteral">&quot;true&quot;</span>}},  </div>
 <div class="line">}</div>

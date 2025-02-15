@@ -141,9 +141,9 @@ To install the library from the source:
     pip install dist/neffy-0.1-py3-none-any.whl
     ```
 
-### From PyPI (will be distributed at a later date):
-
-To install the package from PyPI:
+### From PyPI:
+The package is available on [PyPI](https://pypi.org/project/neffy/).
+Install the package via pip:
 
 ```bash
 pip install neffy

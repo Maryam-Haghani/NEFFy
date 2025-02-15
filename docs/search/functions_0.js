@@ -11,5 +11,5 @@ var searchData=
   ['computeresidueneff_8',['computeResidueNEFF',['../neff_8cpp.html#af8b4c4177810a49fe02386e08b06269f',1,'neff.cpp']]],
   ['computeweights_9',['computeWeights',['../neff_8cpp.html#a326f49375aa69b197b475af4407af8ce',1,'neff.cpp']]],
   ['containsinvalidletters_10',['containsInvalidLetters',['../class_m_s_a_reader.html#ac79629b6cce3127ccb303a0378ffe1eb',1,'MSAReader']]],
-  ['convert_11',['convert',['../converter_8cpp.html#a061625e1e49b7a50a37874acc9d32a4d',1,'converter.cpp']]]
+  ['convert_11',['convert',['../converter_8cpp.html#a4a97f5ce496157d5eaf000a05ad5f30a',1,'converter.cpp']]]
 ];

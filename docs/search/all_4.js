@@ -16,6 +16,6 @@ var searchData=
   ['flags_13',['flags',['../class_flag_handler.html#a8ff7ce622dc9fc60f7cb50bc1b94c4ed',1,'FlagHandler']]],
   ['format_14',['format',['../class_m_s_a_writer.html#af795d5c8ef092fff52191dd8c75af32b',1,'MSAWriter']]],
   ['formats_15',['MSA Formats',['../msa_formats.html',1,'']]],
-  ['from_20pypi_20upcoming_16',['Installation from PyPI (upcoming)',['../installation_guide.html#autotoc_md15',1,'']]],
+  ['from_20pypi_16',['Installation from PyPI',['../installation_guide.html#autotoc_md15',1,'']]],
   ['from_20source_17',['Installation from Source',['../installation_guide.html#autotoc_md14',1,'']]]
 ];
