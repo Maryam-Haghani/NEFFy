@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['l_0',['L',['../common_8h.html#a268aac553a187f781fad176cf0ada14eaef31cc6fe9479955961311ee18ac205f',1,'common.h']]],
-  ['library_1',['Library',['../installation_guide.html#autotoc_md13',1,'Python Library'],['../usage_guide.html#autotoc_md75',1,'Python Library']]],
-  ['linux_2',['Linux',['../help.html#autotoc_md7',1,'']]]
+  ['keepnongappositionsofquerysequence_0',['keepNonGapPositionsOfQuerySequence',['../common_8cpp.html#a2f59bd7f829ff2896e1cda4d41dce065',1,'keepNonGapPositionsOfQuerySequence(vector&lt; Sequence &gt; &amp;sequences):&#160;common.cpp'],['../common_8h.html#a7f89060b582fc435cc6a74bee0dc9d07',1,'keepNonGapPositionsOfQuerySequence(std::vector&lt; Sequence &gt; &amp;sequences):&#160;common.h']]]
 ];

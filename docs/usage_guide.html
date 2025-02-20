@@ -117,7 +117,7 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">How to Use</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md64"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md65"></a>
 Table of Contents</h2>
 <ul>
 <li><a class="el" href="#executable">C++ Executable File</a><ul>
@@ -165,18 +165,18 @@ Table of Contents</h2>
 <p><br  />
 </p>
 <p><a class="anchor" id="executable"></a></p>
-<h1><a class="anchor" id="autotoc_md65"></a>
+<h1><a class="anchor" id="autotoc_md66"></a>
 C++ Executable File</h1>
 <p><a class="anchor" id="neff_computation"></a></p>
-<h2><a class="anchor" id="autotoc_md66"></a>
+<h2><a class="anchor" id="autotoc_md67"></a>
 NEFF Computation</h2>
 <p><a class="anchor" id="neff_usage"></a></p>
-<h3><a class="anchor" id="autotoc_md67"></a>
+<h3><a class="anchor" id="autotoc_md68"></a>
 Usage:</h3>
 <div class="fragment"><div class="line">./neff --file=&lt;input_file&gt; [options]</div>
 </div><!-- fragment --><p>To calculate NEFF, provide an MSA file and indicate the desired parameters. NEFF will be computed and presented as the result.</p>
 <p><a class="anchor" id="neff_parameters"></a></p>
-<h3><a class="anchor" id="autotoc_md68"></a>
+<h3><a class="anchor" id="autotoc_md69"></a>
 Parameters:</h3>
 <p>The code accepts the following command-line flags: </p><table class="markdownTable">
 <tr class="markdownTableHead">
@@ -227,7 +227,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone"><code>--residue_neff=[true/false]</code>   </td><td class="markdownTableBodyNone">Compute per-residue (column-wise) NEFF   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">false   </td><td class="markdownTableBodyNone"><code>--residue_neff=true</code>   </td></tr>
 </table>
 <p><a class="anchor" id="neff_example"></a></p>
-<h3><a class="anchor" id="autotoc_md69"></a>
+<h3><a class="anchor" id="autotoc_md70"></a>
 Examples:</h3>
 <ul>
 <li><b>Compute Symmetric NEFF for protein MSA (No Normalization):</b> <div class="fragment"><div class="line">./neff --file=../MSAs/example.a2m --norm=2 </div>
@@ -321,15 +321,15 @@ Examples:</h3>
 <br  />
 </p>
 <p><a class="anchor" id="converter"></a></p>
-<h2><a class="anchor" id="autotoc_md70"></a>
+<h2><a class="anchor" id="autotoc_md71"></a>
 MSA File Conversion</h2>
 <p>To convert an MSA file, specify the input file, output file, and the desired input and output formats. The tool will read the input file, perform the conversion, and write the resulting MSA to the output file in the specified format.</p>
 <p><a class="anchor" id="converter_usage"></a></p>
-<h3><a class="anchor" id="autotoc_md71"></a>
+<h3><a class="anchor" id="autotoc_md72"></a>
 Usage:</h3>
 <div class="fragment"><div class="line">./converter --in_file=&lt;input_file&gt; --out_file=&lt;input_file&gt; [options]</div>
 </div><!-- fragment --><p> <a class="anchor" id="converter_parameters"></a></p>
-<h3><a class="anchor" id="autotoc_md72"></a>
+<h3><a class="anchor" id="autotoc_md73"></a>
 Parameters:</h3>
 <p>The code accepts the following command-line flags: </p><table class="markdownTable">
 <tr class="markdownTableHead">
@@ -350,7 +350,7 @@ Parameters:</h3>
 </table>
 <p>Please note that the conversion is performed based on the specified input and output file extensions.</p>
 <p><a class="anchor" id="converter_example"></a></p>
-<h3><a class="anchor" id="autotoc_md73"></a>
+<h3><a class="anchor" id="autotoc_md74"></a>
 Examples:</h3>
 <ul>
 <li><b>Convert an A3M file to Stockholm format with RNA alphabet:</b> <div class="fragment"><div class="line">./converter --in_file=../MSAs/example.a2m --out_file=../MSAs/example.sto --alphabet=1</div>
@@ -364,16 +364,16 @@ Examples:</h3>
 </p>
 <hr  />
 <p> <a class="anchor" id="python"></a></p>
-<h1><a class="anchor" id="autotoc_md75"></a>
+<h1><a class="anchor" id="autotoc_md76"></a>
 Python Library</h1>
 <p><a class="anchor" id="python_neff_main"></a></p>
-<h2><a class="anchor" id="autotoc_md76"></a>
+<h2><a class="anchor" id="autotoc_md77"></a>
 NEFF Computation</h2>
 <p><a class="anchor" id="python_neff"></a></p>
-<h2><a class="anchor" id="autotoc_md77"></a>
+<h2><a class="anchor" id="autotoc_md78"></a>
 <code>compute_neff</code></h2>
 <p><a class="anchor" id="python_neff_params"></a></p>
-<h3><a class="anchor" id="autotoc_md78"></a>
+<h3><a class="anchor" id="autotoc_md79"></a>
 Parameters:</h3>
 <p>The method accepts the following parameters:</p>
 <table class="markdownTable">
@@ -407,7 +407,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone"><code>pos_end</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td></tr>
 </table>
 <p><a class="anchor" id="python_neff_example"></a></p>
-<h3><a class="anchor" id="autotoc_md79"></a>
+<h3><a class="anchor" id="autotoc_md80"></a>
 Examples:</h3>
 <ul>
 <li><b>Compute Symmetric NEFF for protein MSA with No Normalization:</b> <div class="fragment"><div class="line">import neffy</div>
@@ -526,10 +526,10 @@ Examples:</h3>
 <br  />
 </p>
 <p><a class="anchor" id="python_neff_multimer"></a></p>
-<h2><a class="anchor" id="autotoc_md80"></a>
+<h2><a class="anchor" id="autotoc_md81"></a>
 <code>compute_multimer_neff</code></h2>
 <p><a class="anchor" id="python_neff_multimer_params"></a></p>
-<h3><a class="anchor" id="autotoc_md81"></a>
+<h3><a class="anchor" id="autotoc_md82"></a>
 Parameters:</h3>
 <p>The method accepts the following parameters:</p>
 <table class="markdownTable">
@@ -565,7 +565,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone"><code>pos_end</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td></tr>
 </table>
 <p><a class="anchor" id="python_neff_multimer_example"></a></p>
-<h3><a class="anchor" id="autotoc_md82"></a>
+<h3><a class="anchor" id="autotoc_md83"></a>
 Examples:</h3>
 <ul>
 <li><b>Compute NEFF for MSA of a Homomer (Default Normalization):</b> <div class="fragment"><div class="line">import neffy</div>
@@ -632,10 +632,10 @@ Examples:</h3>
 <br  />
 </p>
 <p><a class="anchor" id="python_neff_residue"></a></p>
-<h2><a class="anchor" id="autotoc_md83"></a>
+<h2><a class="anchor" id="autotoc_md84"></a>
 <code>compute_residue_neff</code></h2>
 <p><a class="anchor" id="python_neff_residue_params"></a></p>
-<h3><a class="anchor" id="autotoc_md84"></a>
+<h3><a class="anchor" id="autotoc_md85"></a>
 Parameters:</h3>
 <p>The method accepts the following parameters:</p>
 <table class="markdownTable">
@@ -667,7 +667,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone"><code>pos_end</code>   </td><td class="markdownTableBodyNone">int   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">inf (consider the whole sequence)   </td><td class="markdownTableBodyNone">Last position of each sequence to be considered in NEFF (inclusive)   </td></tr>
 </table>
 <p><a class="anchor" id="python_neff_residue_example"></a></p>
-<h3><a class="anchor" id="autotoc_md85"></a>
+<h3><a class="anchor" id="autotoc_md86"></a>
 Examples:</h3>
 <ul>
 <li><b>Compute per-residue (column-wise) NEFF:</b> <div class="fragment"><div class="line">import neffy</div>
@@ -700,12 +700,12 @@ Examples:</h3>
 <p><br  />
 </p>
 <p><a class="anchor" id="python_converter"></a></p>
-<h2><a class="anchor" id="autotoc_md86"></a>
-MSA File Conversion</h2>
 <h2><a class="anchor" id="autotoc_md87"></a>
+MSA File Conversion</h2>
+<h2><a class="anchor" id="autotoc_md88"></a>
 <code>convert_msa</code></h2>
 <p><a class="anchor" id="python_convert_msa_params"></a></p>
-<h3><a class="anchor" id="autotoc_md88"></a>
+<h3><a class="anchor" id="autotoc_md89"></a>
 Parameters:</h3>
 <p>The method accepts the following parameters:</p>
 <table class="markdownTable">
@@ -721,7 +721,7 @@ Parameters:</h3>
 <td class="markdownTableBodyNone">check_validation   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone">No   </td><td class="markdownTableBodyNone">True   </td><td class="markdownTableBodyNone">Whether to check the validation of the MSA file before conversion   </td></tr>
 </table>
 <p><a class="anchor" id="python_convert_msa_example"></a></p>
-<h3><a class="anchor" id="autotoc_md89"></a>
+<h3><a class="anchor" id="autotoc_md90"></a>
 Example:</h3>
 <div class="fragment"><div class="line">import sys</div>
 <div class="line">import neffy</div>

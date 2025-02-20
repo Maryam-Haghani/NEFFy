@@ -1,17 +1,15 @@
 var searchData=
 [
-  ['sequence_0',['Sequence',['../struct_sequence.html',1,'']]],
-  ['sequence_1',['sequence',['../struct_sequence.html#aceea1f464ac511c8d8ab7d10229c6e2e',1,'Sequence']]],
-  ['sequences_2',['Sequences',['../class_m_s_a_reader.html#a8d47973f8edb13b9fc89ab2a14720443',1,'MSAReader::Sequences'],['../class_m_s_a_writer.html#a79650331bf37ebbbc5f0eb4ce1ef2785',1,'MSAWriter::Sequences']]],
-  ['sequences_20neff_3',['Number of EFFective sequences (NEFF)',['../neff.html',1,'']]],
-  ['setdepth_4',['setDepth',['../neff_8cpp.html#ac9888c1771d6daee204721f140731c39',1,'neff.cpp']]],
-  ['source_5',['Installation from Source',['../installation_guide.html#autotoc_md14',1,'']]],
-  ['sqrt_5fl_6',['Sqrt_L',['../common_8h.html#a268aac553a187f781fad176cf0ada14ea9cf59750c46815a6671a352d5f75f0d0',1,'common.h']]],
-  ['standard_20residues_7',['Non-standard Residues',['../help.html#autotoc_md3',1,'']]],
-  ['standard_5famino_5facids_8',['STANDARD_AMINO_ACIDS',['../common_8h.html#acce6f36ae6d960b9d172c09f06357e44',1,'common.h']]],
-  ['standard_5fdna_5fnucleotides_9',['STANDARD_DNA_NUCLEOTIDES',['../common_8h.html#a43b11597b2f51799912662182567d3ee',1,'common.h']]],
-  ['standard_5frna_5fnucleotides_10',['STANDARD_RNA_NUCLEOTIDES',['../common_8h.html#ad38e8843145278cc7247126fe01fb91a',1,'common.h']]],
-  ['sto_20stockholm_11',['STO (Stockholm)',['../msa_formats.html#autotoc_md42',1,'']]],
-  ['stockholm_12',['STO (Stockholm)',['../msa_formats.html#autotoc_md42',1,'']]],
-  ['stoichiom_13',['stoichiom',['../class_multimer_handler.html#ab9c541f4062654e6f626db418e94ff9f',1,'MultimerHandler']]]
+  ['raptorx_0',['RaptorX',['../other.html#autotoc_md22',1,'']]],
+  ['raptorx_20tt_1',['&lt;tt&gt;RaptorX&lt;/tt&gt;',['../other_tools.html#autotoc_md54',1,'']]],
+  ['read_2',['read',['../class_m_s_a_reader.html#a356034b6d0d5bd18a3ab260718dd48fb',1,'MSAReader']]],
+  ['readfile_3',['readFile',['../class_m_s_a_reader.html#a64e2867b03ae541903f3f088c8eb6ad6',1,'MSAReader::readFile()'],['../class_m_s_a_reader__a2m.html#a3182f7d13b19a8575c4429cc1febf7b7',1,'MSAReader_a2m::readFile()'],['../class_m_s_a_reader__a3m.html#ab2746ef0829dd87e4c6bcf0959336e94',1,'MSAReader_a3m::readFile()'],['../class_m_s_a_reader__sto.html#a8e2d7bbdfb1279cfe4c0bf23f0c8391a',1,'MSAReader_sto::readFile()'],['../class_m_s_a_reader__fasta.html#a149a10ed6f00a7c02bb4007a2308d03b',1,'MSAReader_fasta::readFile()'],['../class_m_s_a_reader__clustal.html#ac99c5cd7f499beb7a524c320ad24e9fd',1,'MSAReader_clustal::readFile()'],['../class_m_s_a_reader__aln.html#a9069c7fa060788208800561c85ae47f2',1,'MSAReader_aln::readFile()'],['../class_m_s_a_reader__pfam.html#a3ac2c032b534905575aac69a5d3396cb',1,'MSAReader_pfam::readFile()']]],
+  ['references_4',['References',['../neff.html#autotoc_md51',1,'References'],['../other_tools.html#autotoc_md63',1,'References']]],
+  ['remarks_5',['remarks',['../struct_sequence.html#aa19c72c6fd8f6193aba7cdfcf5c1d64c',1,'Sequence']]],
+  ['removegappypositions_6',['removeGappyPositions',['../neff_8cpp.html#a85f0b065ef69a8d7ae84bc0907e8c39b',1,'neff.cpp']]],
+  ['required_7',['required',['../struct_flag_info.html#a71576d3da60bed92d6d70b15f3a4ec8a',1,'FlagInfo']]],
+  ['residues_8',['Non-standard Residues',['../help.html#autotoc_md3',1,'']]],
+  ['rmsa_9',['rMSA',['../other.html#autotoc_md20',1,'']]],
+  ['rmsa_20tt_10',['&lt;tt&gt;rMSA&lt;/tt&gt;',['../other_tools.html#autotoc_md62',1,'']]],
+  ['rna_11',['RNA',['../common_8h.html#ad321c418983642eb2b4360826d489ec4a92efc5f13441d2abd5e146e629196c7e',1,'common.h']]]
 ];

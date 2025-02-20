@@ -4,7 +4,8 @@
 - [C++ Executable File](#executable_install)
 - [Python Library](#python_install)
   - [Installation from Source](#python_source)
-  - [Installation From PyPI (upcoming)](#python_pypi)
+  - [Installation from PyPI](#python_pypi)
+  - [Installation from BioConda](#python_bioconda)
 
 <br>
 
@@ -73,6 +74,17 @@ This release provides pre-built, platform-specific wheels for Windows, Linux, an
     ```bash
     pip install neffy
     ```
+
+\anchor python_bioconda
+## Installation from BioConda:
+You can also install neffy through [`BioConda`](https://bioconda.github.io/contributor/guidelines.html) by running the following commands:
+
+```bash
+conda config --add channels conda-forge
+conda install -c bioconda neffy
+```
+The first command adds the conda-forge channel to your Conda configuration, which is necessary to access a broader range of packages and dependencies that might not be available on the default channels.
+
 <br>
 
 ----------------

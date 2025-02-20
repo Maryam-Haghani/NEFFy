@@ -149,6 +149,15 @@ Install the package via pip:
 pip install neffy
 ```
 
+### From BioConda:
+You can also install neffy through [BioConda](https://bioconda.github.io/contributor/guidelines.html) by running the following commands:
+
+```bash
+conda config --add channels conda-forge
+conda install -c bioconda neffy
+```
+The first command adds the conda-forge channel to your Conda configuration, which is necessary to access a broader range of packages and dependencies that might not be available on the default channels.
+
 ## Library Usage
 ### An example of neff computation:
 ```bash
