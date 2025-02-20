@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['page_0',['Help Page',['../help.html',1,'']]],
-  ['parameters_3a_1',['Parameters:',['../usage_guide.html#autotoc_md68',1,'Parameters:'],['../usage_guide.html#autotoc_md72',1,'Parameters:'],['../usage_guide.html#autotoc_md78',1,'Parameters:'],['../usage_guide.html#autotoc_md81',1,'Parameters:'],['../usage_guide.html#autotoc_md84',1,'Parameters:'],['../usage_guide.html#autotoc_md88',1,'Parameters:']]],
-  ['pfam_2',['PFAM',['../msa_formats.html#autotoc_md48',1,'']]],
-  ['processflags_3',['processFlags',['../class_flag_handler.html#ac38f216e5616214e253a9e25c2e755e9',1,'FlagHandler']]],
-  ['processsequences_4',['processSequences',['../neff_8cpp.html#a8ef182365fedce2fa110da176eff76c5',1,'neff.cpp']]],
-  ['protein_5',['protein',['../common_8h.html#ad321c418983642eb2b4360826d489ec4a7eebac5ec8b6706eb00b1a2b17836d99',1,'common.h']]],
-  ['pypi_6',['Installation from PyPI',['../installation_guide.html#autotoc_md15',1,'']]],
-  ['python_20library_7',['Python Library',['../installation_guide.html#autotoc_md13',1,'Python Library'],['../usage_guide.html#autotoc_md75',1,'Python Library']]]
+  ['of_20contents_0',['of Contents',['../help.html#autotoc_md0',1,'Table of Contents'],['../installation_guide.html#autotoc_md10',1,'Table of Contents'],['../index.html#autotoc_md24',1,'Table of Contents'],['../msa_formats.html#autotoc_md36',1,'Table of Contents'],['../other_tools.html#autotoc_md53',1,'Table of Contents'],['../usage_guide.html#autotoc_md65',1,'Table of Contents']]],
+  ['of_20effective_20sequences_20neff_1',['Number of EFFective sequences (NEFF)',['../neff.html',1,'']]],
+  ['omitgaps_2',['omitGaps',['../class_m_s_a_reader.html#a8a14f09f0127afc4cbe9705b1eae9315',1,'MSAReader']]],
+  ['other_20neff_20computation_20tools_3',['Other NEFF Computation Tools',['../other.html',1,'']]],
+  ['other_20tools_4',['Other Tools',['../other_tools.html',1,'']]],
+  ['other_5ftools_2emd_5',['other_tools.md',['../other__tools_8md.html',1,'']]],
+  ['overview_6',['Overview',['../index.html#autotoc_md25',1,'']]]
 ];

@@ -117,7 +117,7 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">Other Tools</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md52"></a>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md53"></a>
 Table of Contents</h2>
 <ul>
 <li><a class="el" href="#raptorX">RaptorX</a></li>
@@ -132,14 +132,14 @@ Table of Contents</h2>
 <p><br  />
 </p>
 <p><a class="anchor" id="raptorX"></a></p>
-<h2><a class="anchor" id="autotoc_md53"></a>
+<h2><a class="anchor" id="autotoc_md54"></a>
 <code>RaptorX</code></h2>
 <p><code>RaptorX</code>, a well-established protein structure prediction method developed since 2012, specializes in predicting protein tertiary and contact structures, particularly for sequences lacking close homologs in the Protein Data Bank [1]. <code>RaptorX</code> includes an integrated Python helper function for NEFF calculation, which is specifically designed for computing asymmetric NEFF. This tool is primarily designed for handling aligned <code>a2m</code> and <code>a3m</code> formats, without the specification of biological sequence alphabets. The code is available on <a href="https://github.com/j3xugit/RaptorX-3DModeling/tree/master/BuildFeatures/Helpers/CalcMeff.py">GitHub</a>.</p>
 <p><br  />
 </p>
 <hr  />
 <p> <a class="anchor" id="conkit"></a></p>
-<h2><a class="anchor" id="autotoc_md55"></a>
+<h2><a class="anchor" id="autotoc_md56"></a>
 <code>Conkit</code></h2>
 <p><a href="https://www.conkit.org"><code>Conkit</code></a> is a Python library designed to facilitate the management and manipulation of residue-residue contact prediction data [2]. Among its key functionalities, it provides parsers for different MSA formats, allowing conversion between different MSAs, as well as the the capability to compute NEFF and sequence weights, with a performance boost from <code>Cython</code> for time efficiency. The source code is available on <a href="https://github.com/rigdenlab/conkit/blob/master/conkit/core/sequencefile.py">GitHub</a>. <br  />
  While supporting multiple MSA formats, it does not specify the biological sequence type for NEFF computation. Additionally, when calculating symmetric NEFF, it gives an integer-valued NEFF value without normalization. Furthermore, <code>Conkit</code> can handle gaps in query sequences, but this option is available exclusively in the <code>a3m</code> format, distinguishing it from the <code>a3m-inserts</code> format, which includes gap positions of the query sequence in MSAs.</p>
@@ -147,14 +147,14 @@ Table of Contents</h2>
 </p>
 <hr  />
 <p> <a class="anchor" id="deep_msa"></a></p>
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md58"></a>
 <code>DeepMSA</code></h2>
 <p><a href="https://zhanggroup.org/DeepMSA/"><code>DeepMSA</code></a> is an open-source tool designed for constriction of deep and sensitive MSAs [3]. It achieves this by leveraging homologous sequences and alignments derived from a diverse range of whole-genome and metagenome databases, utilizing complementary hidden Markov model algorithms. <code>DeepMSA</code> includes a built-in feature for NEFF computation in <code>C++</code>, which is exclusively available for the <code>aln</code> format. It offers support for both symmetric and asymmetric NEFF calculation for <code>protein</code> alphabets. The source code can be accessed through <a href="https://github.com/kad-ecoli/MSAParser/blob/master/calNf.cpp">this link</a> on GtiHub.</p>
 <p><br  />
 </p>
 <hr  />
 <p> <a class="anchor" id="gremlin"></a></p>
-<h2><a class="anchor" id="autotoc_md59"></a>
+<h2><a class="anchor" id="autotoc_md60"></a>
 <code>Gremlin</code></h2>
 <p><code>Gremlin</code> is a method for prediction of residue-residue contacts that uses the power of sequence coevolution and structural context data using a pseudo-likelihood approach. This allows for more precise prediction in protein structures, even when working with a limited set of homologous sequences [4]. <code>Gremlin</code> has been implemented in both <code>Python</code> and <code>C++</code>, and within its code, it includes the capability to compute symmetric NEFF.<br  />
  When computing NEFF, <code>Gremlin</code> treats all non-standard residues as equivalent to gaps. It can support various biological sequences, including <code>protein</code>s, <code>RNA</code>s, and <code>DNA</code>s. <code>Gremlin</code> offers the feature to exclude gappy positions from the MSA and supports <code>fasta</code> and <code>aln</code> MSA formats. The source code is accessible on GitHub at <a href="https://github.com/sokrypton/GREMLIN_CPP/blob/master/gremlin_cpp.cpp">this link</a>.</p>
@@ -162,14 +162,14 @@ Table of Contents</h2>
 </p>
 <hr  />
 <p> <a class="anchor" id="rMSA"></a></p>
-<h2><a class="anchor" id="autotoc_md61"></a>
+<h2><a class="anchor" id="autotoc_md62"></a>
 <code>rMSA</code></h2>
 <p><code>rMSA</code> is a hierarchical pipeline designed for conducting sensitive searches and precise alignments of RNA homologs for a RNA sequence <b>[5]</b>]. <code>rMSA</code> includes a native feature for computing NEFF values specifically customized for <code>RNA</code> sequences. Research in RNA 3D structure prediction and protein-nucleotide structure prediction has employed <code>rMSA</code> to generate MSAs for RNA sequences [6-8]. <br  />
 </p>
 <p><br  />
 <br  />
 </p>
-<h4><a class="anchor" id="autotoc_md62"></a>
+<h4><a class="anchor" id="autotoc_md63"></a>
 References</h4>
 <p><small></small></p>
 <p><small></p><ol type="1">

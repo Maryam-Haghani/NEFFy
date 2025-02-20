@@ -123,7 +123,8 @@ Table of Contents</h2>
 <li><a class="el" href="#executable_install">C++ Executable File</a></li>
 <li><a class="el" href="#python_install">Python Library</a><ul>
 <li><a class="el" href="#python_source">Installation from Source</a></li>
-<li><a class="el" href="#python_pypi">Installation From PyPI (upcoming)</a></li>
+<li><a class="el" href="#python_pypi">Installation from PyPI</a></li>
+<li><a class="el" href="#python_bioconda">Installation from BioConda</a></li>
 </ul>
 </li>
 </ul>
@@ -177,9 +178,17 @@ Installation from PyPI</h2>
 <p>Our Python library is available on <a href="https://pypi.org/project/neffy"><code>PyPI</code></a>. This release provides pre-built, platform-specific wheels for Windows, Linux, and macOS, as well as a source distribution for building on other operating systems. This streamlines the installation and management process using pip.<br  />
 </p><ul>
 <li>To install the package from PyPI, run: <div class="fragment"><div class="line">pip install neffy</div>
-</div><!-- fragment --> <br  />
-</li>
+</div><!-- fragment --></li>
 </ul>
+<p><a class="anchor" id="python_bioconda"></a></p>
+<h2><a class="anchor" id="autotoc_md16"></a>
+Installation from BioConda:</h2>
+<p>You can also install neffy through <a href="https://bioconda.github.io/contributor/guidelines.html"><code>BioConda</code></a> by running the following commands:</p>
+<div class="fragment"><div class="line">conda config --add channels conda-forge</div>
+<div class="line">conda install -c bioconda neffy</div>
+</div><!-- fragment --><p> The first command adds the conda-forge channel to your Conda configuration, which is necessary to access a broader range of packages and dependencies that might not be available on the default channels.</p>
+<p><br  />
+</p>
 <hr  />
 <p> For further assistance or inquiries, please <a href="#" onclick="location.href='mai'+'lto:'+'hag'+'ha'+'ni@'+'vt'+'.ed'+'u'; return false;">contact the developer</a> or create an <a href="https://github.com/Maryam-Haghani/Neffy/issues">issue</a> in the GitHub repository. </p>
 </div></div><!-- contents -->

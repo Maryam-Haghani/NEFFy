@@ -7,7 +7,8 @@
 \item \doxylink{installation_guide_python_install}{Python Library}
 \begin{DoxyItemize}
 \item \doxylink{installation_guide_python_source}{Installation from Source}
-\item \doxylink{installation_guide_python_pypi}{Installation From Py\+PI (upcoming)}
+\item \doxylink{installation_guide_python_pypi}{Installation from Py\+PI}
+\item \doxylink{installation_guide_python_bioconda}{Installation from Bio\+Conda}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -110,9 +111,24 @@ Our Python library is available on \href{https://pypi.org/project/neffy}{\texttt
 \DoxyCodeLine{pip\ install\ neffy}
 
 \end{DoxyCode}
- ~\newline
 
 \end{DoxyItemize}
+
+\label{installation_guide_python_bioconda}%
+\Hypertarget{installation_guide_python_bioconda}%
+\hypertarget{installation_guide_autotoc_md16}{}\doxysubsection{\texorpdfstring{Installation from Bio\+Conda\+:}{Installation from Bio\+Conda\+:}}\label{installation_guide_autotoc_md16}
+You can also install neffy through \href{https://bioconda.github.io/contributor/guidelines.html}{\texttt{ {\ttfamily Bio\+Conda}}} by running the following commands\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{conda\ config\ -\/-\/add\ channels\ conda-\/forge}
+\DoxyCodeLine{conda\ install\ -\/c\ bioconda\ neffy}
+
+\end{DoxyCode}
+ The first command adds the conda-\/forge channel to your Conda configuration, which is necessary to access a broader range of packages and dependencies that might not be available on the default channels.
+
+~\newline
+
 
 \DoxyHorRuler{0}
  For further assistance or inquiries, please \href{mailto:haghani@vt.edu}{\texttt{ contact the developer}} or create an \href{https://github.com/Maryam-Haghani/Neffy/issues}{\texttt{ issue}} in the Git\+Hub repository. 

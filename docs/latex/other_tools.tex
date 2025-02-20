@@ -1,6 +1,6 @@
 \chapter{Other Tools}
 \hypertarget{other_tools}{}\label{other_tools}\index{Other Tools@{Other Tools}}
-\hypertarget{other_tools_autotoc_md52}{}\doxysubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{other_tools_autotoc_md52}
+\hypertarget{other_tools_autotoc_md53}{}\doxysubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{other_tools_autotoc_md53}
 
 \begin{DoxyItemize}
 \item \doxylink{other_tools_raptorX}{RaptorX}
@@ -20,7 +20,7 @@ Here, we provide an exploration of the tools which have integrated NEFF calculat
 
 \label{other_tools_raptorX}%
 \Hypertarget{other_tools_raptorX}%
-\hypertarget{other_tools_autotoc_md53}{}\doxysubsection{\texorpdfstring{{\ttfamily RaptorX}}{{\ttfamily RaptorX}}}\label{other_tools_autotoc_md53}
+\hypertarget{other_tools_autotoc_md54}{}\doxysubsection{\texorpdfstring{{\ttfamily RaptorX}}{{\ttfamily RaptorX}}}\label{other_tools_autotoc_md54}
 {\ttfamily RaptorX}, a well-\/established protein structure prediction method developed since 2012, specializes in predicting protein tertiary and contact structures, particularly for sequences lacking close homologs in the Protein Data Bank \mbox{[}1\mbox{]}. {\ttfamily RaptorX} includes an integrated Python helper function for NEFF calculation, which is specifically designed for computing asymmetric NEFF. This tool is primarily designed for handling aligned {\ttfamily a2m} and {\ttfamily a3m} formats, without the specification of biological sequence alphabets. The code is available on \href{https://github.com/j3xugit/RaptorX-3DModeling/tree/master/BuildFeatures/Helpers/CalcMeff.py}{\texttt{ Git\+Hub}}.
 
 ~\newline
@@ -29,7 +29,7 @@ Here, we provide an exploration of the tools which have integrated NEFF calculat
 \DoxyHorRuler{0}
  \label{other_tools_conkit}%
 \Hypertarget{other_tools_conkit}%
-\hypertarget{other_tools_autotoc_md55}{}\doxysubsection{\texorpdfstring{{\ttfamily Conkit}}{{\ttfamily Conkit}}}\label{other_tools_autotoc_md55}
+\hypertarget{other_tools_autotoc_md56}{}\doxysubsection{\texorpdfstring{{\ttfamily Conkit}}{{\ttfamily Conkit}}}\label{other_tools_autotoc_md56}
 \href{https://www.conkit.org}{\texttt{ {\ttfamily Conkit}}} is a Python library designed to facilitate the management and manipulation of residue-\/residue contact prediction data \mbox{[}2\mbox{]}. Among its key functionalities, it provides parsers for different MSA formats, allowing conversion between different MSAs, as well as the the capability to compute NEFF and sequence weights, with a performance boost from {\ttfamily Cython} for time efficiency. The source code is available on \href{https://github.com/rigdenlab/conkit/blob/master/conkit/core/sequencefile.py}{\texttt{ Git\+Hub}}. ~\newline
  While supporting multiple MSA formats, it does not specify the biological sequence type for NEFF computation. Additionally, when calculating symmetric NEFF, it gives an integer-\/valued NEFF value without normalization. Furthermore, {\ttfamily Conkit} can handle gaps in query sequences, but this option is available exclusively in the {\ttfamily a3m} format, distinguishing it from the {\ttfamily a3m-\/inserts} format, which includes gap positions of the query sequence in MSAs.
 
@@ -39,7 +39,7 @@ Here, we provide an exploration of the tools which have integrated NEFF calculat
 \DoxyHorRuler{0}
  \label{other_tools_deep_msa}%
 \Hypertarget{other_tools_deep_msa}%
-\hypertarget{other_tools_autotoc_md57}{}\doxysubsection{\texorpdfstring{{\ttfamily Deep\+MSA}}{{\ttfamily Deep\+MSA}}}\label{other_tools_autotoc_md57}
+\hypertarget{other_tools_autotoc_md58}{}\doxysubsection{\texorpdfstring{{\ttfamily Deep\+MSA}}{{\ttfamily Deep\+MSA}}}\label{other_tools_autotoc_md58}
 \href{https://zhanggroup.org/DeepMSA/}{\texttt{ {\ttfamily Deep\+MSA}}} is an open-\/source tool designed for constriction of deep and sensitive MSAs \mbox{[}3\mbox{]}. It achieves this by leveraging homologous sequences and alignments derived from a diverse range of whole-\/genome and metagenome databases, utilizing complementary hidden Markov model algorithms. {\ttfamily Deep\+MSA} includes a built-\/in feature for NEFF computation in {\ttfamily C++}, which is exclusively available for the {\ttfamily aln} format. It offers support for both symmetric and asymmetric NEFF calculation for {\ttfamily protein} alphabets. The source code can be accessed through \href{https://github.com/kad-ecoli/MSAParser/blob/master/calNf.cpp}{\texttt{ this link}} on Gti\+Hub.
 
 ~\newline
@@ -48,7 +48,7 @@ Here, we provide an exploration of the tools which have integrated NEFF calculat
 \DoxyHorRuler{0}
  \label{other_tools_gremlin}%
 \Hypertarget{other_tools_gremlin}%
-\hypertarget{other_tools_autotoc_md59}{}\doxysubsection{\texorpdfstring{{\ttfamily Gremlin}}{{\ttfamily Gremlin}}}\label{other_tools_autotoc_md59}
+\hypertarget{other_tools_autotoc_md60}{}\doxysubsection{\texorpdfstring{{\ttfamily Gremlin}}{{\ttfamily Gremlin}}}\label{other_tools_autotoc_md60}
 {\ttfamily Gremlin} is a method for prediction of residue-\/residue contacts that uses the power of sequence coevolution and structural context data using a pseudo-\/likelihood approach. This allows for more precise prediction in protein structures, even when working with a limited set of homologous sequences \mbox{[}4\mbox{]}. {\ttfamily Gremlin} has been implemented in both {\ttfamily Python} and {\ttfamily C++}, and within its code, it includes the capability to compute symmetric NEFF.~\newline
  When computing NEFF, {\ttfamily Gremlin} treats all non-\/standard residues as equivalent to gaps. It can support various biological sequences, including {\ttfamily protein}s, {\ttfamily RNA}s, and {\ttfamily DNA}s. {\ttfamily Gremlin} offers the feature to exclude gappy positions from the MSA and supports {\ttfamily fasta} and {\ttfamily aln} MSA formats. The source code is accessible on Git\+Hub at \href{https://github.com/sokrypton/GREMLIN_CPP/blob/master/gremlin_cpp.cpp}{\texttt{ this link}}.
 
@@ -58,13 +58,13 @@ Here, we provide an exploration of the tools which have integrated NEFF calculat
 \DoxyHorRuler{0}
  \label{other_tools_rMSA}%
 \Hypertarget{other_tools_rMSA}%
-\hypertarget{other_tools_autotoc_md61}{}\doxysubsection{\texorpdfstring{{\ttfamily r\+MSA}}{{\ttfamily r\+MSA}}}\label{other_tools_autotoc_md61}
+\hypertarget{other_tools_autotoc_md62}{}\doxysubsection{\texorpdfstring{{\ttfamily r\+MSA}}{{\ttfamily r\+MSA}}}\label{other_tools_autotoc_md62}
 {\ttfamily r\+MSA} is a hierarchical pipeline designed for conducting sensitive searches and precise alignments of RNA homologs for a RNA sequence {\bfseries [5]}\mbox{]}. {\ttfamily r\+MSA} includes a native feature for computing NEFF values specifically customized for {\ttfamily RNA} sequences. Research in RNA 3D structure prediction and protein-\/nucleotide structure prediction has employed {\ttfamily r\+MSA} to generate MSAs for RNA sequences \mbox{[}6-\/8\mbox{]}. ~\newline
 
 
 ~\newline
 ~\newline
-\hypertarget{other_tools_autotoc_md62}{}\doxysubsubsubsection{\texorpdfstring{References}{References}}\label{other_tools_autotoc_md62}
+\hypertarget{other_tools_autotoc_md63}{}\doxysubsubsubsection{\texorpdfstring{References}{References}}\label{other_tools_autotoc_md63}
 
 \footnotesize 
 \normalsize 
