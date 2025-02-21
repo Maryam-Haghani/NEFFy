@@ -1,0 +1,4 @@
+include Makefile
+include README.md
+include LICENSE.txt
+recursive-include code *
