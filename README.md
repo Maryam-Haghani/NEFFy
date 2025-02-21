@@ -205,6 +205,11 @@ If you use **NEFFy** in your research, please cite the following:
 **NEFFy: A Versatile Tool for Computing the Number of Effective Sequences**. Haghani, M., Bhattacharya, D., Murali, T. M. (2024).
 *bioRxiv*. [https://www.biorxiv.org/content/10.1101/2024.12.01.625733v1](https://www.biorxiv.org/content/10.1101/2024.12.01.625733v1)
 
+## Archival DOI  
 
+For long-term accessibility and reproducibility, each release of **NEFFy** is archived with a DOI:
+| Version  | DOI |
+|----------|-------------------------------------------|
+| **Latest (v0.1.1)** | 🔗 [Zenodo DOI: 10.5281/zenodo.14908220](https://doi.org/10.5281/zenodo.14908219) |
 ----------------
 For further assistance, please see the [documentation](https://maryam-haghani.github.io/NEFFy/).
