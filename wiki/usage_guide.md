@@ -170,7 +170,6 @@ The code accepts the following command-line flags:
 | `--out_file=<filename>`| Specifies the output file where the converted MSA will be saved.<br /> Replace `<filename>` with the desired path and name of the output file | Yes | N/A | `--out_file=output.a2m` |
 | `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
-| `skip_lines` | Number of lines to skip at the beginning of the file | No | 0 | `--skip_lines=1` |
 
 Please note that the conversion is performed based on the specified input and output file extensions.
 
@@ -219,6 +218,7 @@ The method accepts the following parameters:
 | `gap_cutoff`          | float               | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
 | `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
 
 \anchor python_neff_example
 ### Examples:
@@ -356,6 +356,7 @@ The method accepts the following parameters:
 | `gap_cutoff`          | float           | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
 | `pos_start`           | int             | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
 
 \anchor python_neff_multimer_example
 ### Examples:
@@ -442,6 +443,7 @@ The method accepts the following parameters:
 | `gap_cutoff`          | float               | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
 | `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
 
 \anchor python_neff_residue_example
 ### Examples:
