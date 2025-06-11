@@ -62,6 +62,7 @@ The code accepts the following command-line flags:
 | `--stoichiom=<value>` | Stochiometry of the multimer | when _multimer_MSA_=true |  | `--stoichiom=A2B1`    |
 | `--chain_length=<list of values>` | Length of the chains in a heteromer  | when _multimer_MSA_=true and multimer is a heteromer | 0 | `--chain_length=17 45`    |
 | `--residue_neff=[true/false]` | Compute per-residue (column-wise) NEFF | No | false | `--residue_neff=true`    |
+| `--skip_lines=<value>` | Number of lines to skip at the beginning of the file | No | 0 | `--skip_lines=1` |
 
 
 \anchor neff_example
@@ -169,6 +170,7 @@ The code accepts the following command-line flags:
 | `--out_file=<filename>`| Specifies the output file where the converted MSA will be saved.<br /> Replace `<filename>` with the desired path and name of the output file | Yes | N/A | `--out_file=output.a2m` |
 | `--alphabet=<value>` | Alphabet of MSA <br /> __0__: Protein <br /> __1__: RNA <br /> __2__: DNA | No | 0 | `--alphabet=1` |
 | `--check_validation=[true/false]` | Validate the input MSA file based on alphabet or not | No | true | `--check_validation=true` |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
 
 Please note that the conversion is performed based on the specified input and output file extensions.
 
