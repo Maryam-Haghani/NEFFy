@@ -62,7 +62,7 @@ The code accepts the following command-line flags:
 | `--stoichiom=<value>` | Stochiometry of the multimer | when _multimer_MSA_=true |  | `--stoichiom=A2B1`    |
 | `--chain_length=<list of values>` | Length of the chains in a heteromer  | when _multimer_MSA_=true and multimer is a heteromer | 0 | `--chain_length=17 45`    |
 | `--residue_neff=[true/false]` | Compute per-residue (column-wise) NEFF | No | false | `--residue_neff=true`    |
-| `--skip_lines=<value>` | Number of lines to skip at the beginning of the file | No | 0 | `--skip_lines=1` |
+| `--skip_lines=<value>` | Number of lines to skip at the beginning of the input file. | No | 0 | `--skip_lines=1` |
 
 
 \anchor neff_example
@@ -218,7 +218,7 @@ The method accepts the following parameters:
 | `gap_cutoff`          | float               | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
 | `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
-| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the input file.                               |
 
 \anchor python_neff_example
 ### Examples:
@@ -356,7 +356,7 @@ The method accepts the following parameters:
 | `gap_cutoff`          | float           | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
 | `pos_start`           | int             | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
-| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the input file.                               |
 
 \anchor python_neff_multimer_example
 ### Examples:
@@ -443,7 +443,7 @@ The method accepts the following parameters:
 | `gap_cutoff`          | float               | No       | 1 (no gappy position)        | Threshold for considering a position as gappy and removing that (between 0 and 1)   |
 | `pos_start`           | int               | No       | 1 (the first position)       | Start position of each sequence to be considered in NEFF (inclusive)                |
 | `pos_end`             | int             | No       | inf (consider the whole sequence) | Last position of each sequence to be considered in NEFF (inclusive)            |
-| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the file                               |
+| `skip_lines`          | int               | No       | 0                            | Number of lines to skip at the beginning of the input file.                               |
 
 \anchor python_neff_residue_example
 ### Examples:
