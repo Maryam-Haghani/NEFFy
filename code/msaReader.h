@@ -23,6 +23,7 @@ protected:
     bool checkValidation;
     bool omitGaps;
     std::vector<Sequence> Sequences; // the sequences read from the file
+    int skipLines; // number of lines to skip at the beginning of the file
 
     /// @brief  Check if the MSA sequences are aligned
     /// @return -1 if aligned, otherwise return the index of the unaligned sequence     
@@ -47,7 +48,7 @@ public:
     /// @param _alphabet 
     /// @param _checkValidation 
     /// @param _omitGaps 
-    MSAReader(std::string _file, Alphabet _alphabet, bool _checkValidation, bool _omitGaps = false);
+    MSAReader(std::string _file, Alphabet _alphabet, bool _checkValidation, bool _omitGaps = false, int _skipLines = 0);
 
     /// @brief Read the MSA file
     /// @return The processed sequences in the file

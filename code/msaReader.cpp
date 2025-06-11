@@ -19,8 +19,8 @@
 
 using namespace std;
 
-MSAReader::MSAReader(string _file, Alphabet _alphabet,  bool _checkValidation, bool _omitGaps)
-: file(_file), alphabet(_alphabet), checkValidation(_checkValidation), omitGaps(_omitGaps) {}
+MSAReader::MSAReader(string _file, Alphabet _alphabet,  bool _checkValidation, bool _omitGaps, int _skipLines)
+: file(_file), alphabet(_alphabet), checkValidation(_checkValidation), omitGaps(_omitGaps), skipLines(_skipLines) {}
 
 vector<Sequence> MSAReader::read()
 {
@@ -28,6 +28,13 @@ vector<Sequence> MSAReader::read()
     if (!inputFile)
     {
         throw runtime_error( "Failed to open the input file '"+ file + "'.");
+    }
+
+    // Skip the first n lines
+    if (skipLines > 0)
+    {
+        string line;
+        for (int i = 0; i < skipLines && std::getline(inputFile, line); ++i);
     }
 
     readFile(inputFile);

@@ -191,7 +191,8 @@ unordered_map<string, FlagInfo> Flags =
     {"multimer_MSA", {false, "false"}},     // Compute NEFF for a multimer MSA
     {"stoichiom", {false, ""}},             // Multimer stoichiometry
     {"chain_length", {false, "0"}},         // Length of the chains in heteromer multimer
-    {"residue_neff", {false, "false"}}      // Compute per-resiue (column-wise) NEFF
+    {"residue_neff", {false, "false"}},     // Compute per-resiue (column-wise) NEFF
+    {"skip_lines", {false, "0"}}            // Number of lines to skip at the beginning of the file
 };
 
 /// @brief Map char residues to digit based on given 'nonStandardOption'
@@ -777,6 +778,9 @@ int main(int argc, char **argv)
         //depth    
         depth = flagHandler.getNonZeroIntValue("depth");
 
+        // skip_lines
+        int skipLines = flagHandler.getIntValue("skip_lines");
+
         MSAReader* msaReader;
 
         for(int f=0; f<files.size(); f++)
@@ -786,19 +790,19 @@ int main(int argc, char **argv)
             string format = getFormat(file, !formats.empty()? formats[f] : "", "file");
 
             if (format == "a2m")
-                msaReader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_a2m(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
             else if(format == "a3m")
-                msaReader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_a3m(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
             else if(format == "sto")
-                msaReader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_sto(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
             else if(format == "clustal")
-                msaReader = new MSAReader_clustal(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_clustal(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
             else if (format == "aln")
-                msaReader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_aln(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
             else if (format == "pfam")
-                msaReader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_pfam(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
             else if (find(FASTA_FORMATS.begin(), FASTA_FORMATS.end(), format) != FASTA_FORMATS.end())
-                msaReader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery);
+                msaReader = new MSAReader_fasta(file, alphabet, checkValidation, omitGapsInQuery, skipLines);
 
             sequences = msaReader->read();
 

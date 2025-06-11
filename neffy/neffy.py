@@ -196,7 +196,8 @@ def compute_neff(
         gap_cutoff: float = 1,
         pos_start: int = 1,
         pos_end: int = 'inf',
-        only_weights: bool = False
+        only_weights: bool = False,
+        skip_lines: int = 0
 ):
     try:
 
@@ -229,7 +230,8 @@ def compute_residue_neff(
         depth: int = 'inf',
         gap_cutoff: float = 1,
         pos_start: int = 1,
-        pos_end: int = 'inf'
+        pos_end: int = 'inf',
+        skip_lines: int = 0
 ):
     try:
         params = locals()
@@ -262,7 +264,8 @@ def compute_multimer_neff(
         depth: int = 'inf',
         gap_cutoff: float = 1,
         pos_start: int = 1,
-        pos_end: int = 'inf'
+        pos_end: int = 'inf',
+        skip_lines: int = 0
 ):
     try:
         params = locals()
