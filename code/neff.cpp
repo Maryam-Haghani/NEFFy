@@ -29,6 +29,7 @@
  *   --stoichiom=<value>               Multimer stoichiometry (default: empty)
  *   --chain_length=<list of values>   Length of the chains in heteromer multimer (default: 0)\n"
  *   --residue_neff=<true/false>       Compute per-resiue (column-wise) NEFF (default: false)
+ *   --skip_lines=<value>              Number of lines to skip at the beginning of the file (default: 0)
  *
  * For more comprehensive instructions, please refer to the documentation at https://maryam-haghani.github.io/NEFFy.
  */
@@ -131,6 +132,10 @@ Options:
   --residue_neff=<true/false>
       If true, computes per-residue (column-wise) NEFF.
       (Default: false)
+
+  --skip_lines=<value>
+      Number of lines to skip at the beginning of the input file(s).
+      (Default: 0)
 
 Examples:
   Compute the NEFF for a protein MSA:
