@@ -203,8 +203,7 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 If you use **NEFFy** in your research, please cite the following:
 
-**NEFFy: A Versatile Tool for Computing the Number of Effective Sequences**. Haghani, M., Bhattacharya, D., Murali, T. M. (2024).
-*bioRxiv*. [https://www.biorxiv.org/content/10.1101/2024.12.01.625733v1](https://www.biorxiv.org/content/10.1101/2024.12.01.625733v1)
+Maryam Haghani, Debswapna Bhattacharya, T M Murali, NEFFy: A Versatile Tool for Computing the Number of Effective Sequences, Bioinformatics, 2025; [https://doi.org/10.1093/bioinformatics/btaf222](https://doi.org/10.1093/bioinformatics/btaf222)
 
 ## Archival DOI  
 
