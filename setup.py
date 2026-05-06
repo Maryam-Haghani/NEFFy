@@ -86,7 +86,7 @@ class CustomBuildPyCommand(build_py):
 
 setup(
     name='neffy',
-    version='0.1.1',
+    version='0.1.2',
     author='Maryam Haghani',
     author_email='haghani@vt.edu',
     description='A Python interface of NEFFy C++ tool: NEFF Calculator and MSA File Converter',
