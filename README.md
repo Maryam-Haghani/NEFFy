@@ -210,6 +210,6 @@ Maryam Haghani, Debswapna Bhattacharya, T M Murali, NEFFy: A Versatile Tool for 
 For long-term accessibility and reproducibility, each release of **NEFFy** is archived with a DOI:
 | Version  | DOI |
 |----------|-------------------------------------------|
-| **Latest (v0.1.1)** | 🔗 [Zenodo DOI: 10.5281/zenodo.14908220](https://doi.org/10.5281/zenodo.14908219) |
+| **Latest (v0.1.2)** | 🔗 [Zenodo DOI: 10.5281/zenodo.14908220](https://doi.org/10.5281/zenodo.14908219) |
 ----------------
 For further assistance, please see the [documentation](https://maryam-haghani.github.io/NEFFy/).
